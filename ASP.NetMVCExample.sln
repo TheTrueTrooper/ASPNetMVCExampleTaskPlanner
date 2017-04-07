@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASP.NetMVCExample", "ASP.NetMVCExample\ASP.NetMVCExample.csproj", "{66E613DD-6420-489C-A102-93B367487F98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASP.NetMVCExample.Tests", "ASP.NetMVCExample.Tests\ASP.NetMVCExample.Tests.csproj", "{30DD0B25-20EA-4A29-8855-D55198C42368}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{66E613DD-6420-489C-A102-93B367487F98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66E613DD-6420-489C-A102-93B367487F98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66E613DD-6420-489C-A102-93B367487F98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66E613DD-6420-489C-A102-93B367487F98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30DD0B25-20EA-4A29-8855-D55198C42368}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30DD0B25-20EA-4A29-8855-D55198C42368}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30DD0B25-20EA-4A29-8855-D55198C42368}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30DD0B25-20EA-4A29-8855-D55198C42368}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

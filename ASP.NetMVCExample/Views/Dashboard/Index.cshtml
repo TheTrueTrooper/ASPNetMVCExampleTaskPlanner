@@ -1,0 +1,38 @@
+﻿@{
+            Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    bool open = false;
+
+    ViewBag.Title = "Dashboard";
+    List<object> _List = new List<object>();
+    _List.Add(new Dictionary<string, object>() { { "IDNumber", 1 }, { "ProjectName", "Test Projects" }, { "StartDate", DateTime.UtcNow }, { "EndDate", DateTime.UtcNow.AddDays(2) }, { "Description", "test" } });
+    _List.Add(new Dictionary<string, object>() { { "IDNumber", 1 }, { "ProjectName", "Test Projects2" }, { "StartDate", DateTime.UtcNow }, { "EndDate", DateTime.UtcNow.AddDays(2) }, { "Description", "test" } });
+    _List.Add(new Dictionary<string, object>() { { "IDNumber", 1 }, { "ProjectName", "Test Projects2" }, { "StartDate", DateTime.UtcNow }, { "EndDate", DateTime.UtcNow.AddDays(2) }, { "Description", "test" } });
+    _List.Add(new Dictionary<string, object>() { { "IDNumber", 1 }, { "ProjectName", "Test Projects2" }, { "StartDate", DateTime.UtcNow }, { "EndDate", DateTime.UtcNow.AddDays(2) }, { "Description", "test" } });
+    _List.Add(new Dictionary<string, object>() { { "IDNumber", 1 }, { "ProjectName", "Test Projects2" }, { "StartDate", DateTime.UtcNow }, { "EndDate", DateTime.UtcNow.AddDays(2) }, { "Description", "test" } });
+    _List.Add(new Dictionary<string, object>() { { "IDNumber", 1 }, { "ProjectName", "Test Projects2" }, { "StartDate", DateTime.UtcNow }, { "EndDate", DateTime.UtcNow.AddDays(2) }, { "Description", "test" } });
+}
+
+    
+@for (int i = 0; i < _List.Count(); i++)
+{
+        if (i % 3 == 0)
+        {
+            if (open)
+            {
+                    @Html.Raw("</div>")
+            }
+                @Html.Raw("<div class=\"row\">")
+                open = true;
+          }
+            @RenderPage("~/Views/Dashboard/_ProjectBox.cshtml", _List[i])
+
+}
+
+@Html.Raw("</div>")
+
+
+
+
