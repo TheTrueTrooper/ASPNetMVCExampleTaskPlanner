@@ -11,7 +11,19 @@ namespace ASP.NetMVCExample.Controllers
         // GET: Dashboard
         public ActionResult Index()
         {
+            //Per Page styles (css) add here
+            @ViewBag.Styles = new List<string>()
+            {
+                "\"/Content/ProjectBoxCSS.css\""
+            };
+            //Per Page styles (java) add here
+            @ViewBag.Scripts = new List<string>()
+            {
+            };
+
             return View();
         }
+
+
     }
 }

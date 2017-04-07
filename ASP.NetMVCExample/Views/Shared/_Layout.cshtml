@@ -6,7 +6,17 @@
     <title>@ViewBag.Title - Prototype Task Master App</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <link href="~/Content/ProjectBoxCSS.css" rel="stylesheet" />
+    @{ //this is to add per page scripts or styles to any page from controller methods
+    <!--Per page added scripts-->
+    if (@ViewBag.Scripts != null)
+    { foreach (string @addScript in @ViewBag.Scripts)
+        {<link href=@Html.Raw(@addScript) rel="stylesheet" />}}
+    <!--Per page added styles-->
+    if (@ViewBag.Styles != null)
+    { foreach (string @addStyle in @ViewBag.Styles)
+        {<link href=@Html.Raw(@addStyle) rel="stylesheet" />}}
+    }
+    <!--close per page-->
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
