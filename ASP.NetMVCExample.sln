@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASP.NetMVCExample", "ASP.Ne
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASP.NetMVCExample.Tests", "ASP.NetMVCExample.Tests\ASP.NetMVCExample.Tests.csproj", "{30DD0B25-20EA-4A29-8855-D55198C42368}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MVCTaskMasterAppData", "MVCTaskMasterAppData\MVCTaskMasterAppData.sqlproj", "{FACA6DED-30E1-4E7B-B963-110877490E7A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,12 @@ Global
 		{30DD0B25-20EA-4A29-8855-D55198C42368}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30DD0B25-20EA-4A29-8855-D55198C42368}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30DD0B25-20EA-4A29-8855-D55198C42368}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FACA6DED-30E1-4E7B-B963-110877490E7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FACA6DED-30E1-4E7B-B963-110877490E7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FACA6DED-30E1-4E7B-B963-110877490E7A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{FACA6DED-30E1-4E7B-B963-110877490E7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FACA6DED-30E1-4E7B-B963-110877490E7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FACA6DED-30E1-4E7B-B963-110877490E7A}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

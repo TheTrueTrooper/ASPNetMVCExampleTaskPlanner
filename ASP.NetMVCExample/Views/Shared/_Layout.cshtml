@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using ASP.NetMVCExample.WebHelpers;
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -6,17 +7,9 @@
     <title>@ViewBag.Title - Prototype Task Master App</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    @{ //this is to add per page scripts or styles to any page from controller methods
-    <!--Per page added scripts-->
-    if (@ViewBag.Scripts != null)
-    { foreach (string @addScript in @ViewBag.Scripts)
-        {<link href=@Html.Raw(@addScript) rel="stylesheet" />}}
-    <!--Per page added styles-->
-    if (@ViewBag.Styles != null)
-    { foreach (string @addStyle in @ViewBag.Styles)
-        {<link href=@Html.Raw(@addStyle) rel="stylesheet" />}}
-    }
-    <!--close per page-->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Html.RenderBundles()
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -39,7 +32,7 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div class="container body-content" style="padding-top:75px">
         @RenderBody()
         <hr />
         <footer>
@@ -47,8 +40,6 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>

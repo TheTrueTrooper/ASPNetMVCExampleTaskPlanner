@@ -45,3 +45,8 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+MVCTaskMasterAppData/Scripts/StoredProce/Company/DeleteTheCompany.sql
+MVCTaskMasterAppData/Scripts/StoredProce/Company/UpdateTheCompany.sql
+MVCTaskMasterAppData/Scripts/StoredProce/Company/InsertNewCompany.sql
+MVCTaskMasterAppData/Scripts/StoredProce/CompanyRoles/DeleteTheRole.sql
+MVCTaskMasterAppData/Scripts/StoredProce/CompanyRoles/InsertNewRole.sql

@@ -1,0 +1,1 @@
+﻿ALTER SERVER ROLE [BasicViewServerRole]  Add MEMBER [BasicViewLogin]

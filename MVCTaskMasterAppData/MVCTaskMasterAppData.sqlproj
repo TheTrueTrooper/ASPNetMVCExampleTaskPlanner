@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>MVCTaskMasterAppData</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{faca6ded-30e1-4e7b-b963-110877490e7a}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>MVCTaskMasterAppData</RootNamespace>
+    <AssemblyName>MVCTaskMasterAppData</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>0</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Scripts" />
+    <Folder Include="Scripts\Tables" />
+    <Folder Include="Scripts\StoredProce" />
+    <Folder Include="Scripts\Tables\ErrorLogs" />
+    <Folder Include="Scripts\StoredProce\_ErrorLog" />
+    <Folder Include="Scripts\StoredProce\Users" />
+    <Folder Include="Scripts\StoredProce\Company" />
+    <Folder Include="Scripts\StoredProce\CompanyRoles" />
+    <Folder Include="Scripts\StoredProce\CompanyWorkers" />
+    <Folder Include="Scripts\Util" />
+    <Folder Include="Scripts\Util\Events" />
+    <Folder Include="Scripts\Util\BuildScripts" />
+    <Folder Include="Scripts\Util\Scripts" />
+    <Folder Include="Login" />
+    <Folder Include="Login\LoginRolls" />
+    <Folder Include="Login\Login" />
+    <Folder Include="Login\Schema" />
+    <Folder Include="Login\User" />
+    <Folder Include="Views" />
+    <Folder Include="Views\Other" />
+    <Folder Include="Scripts\StoredProce\Offices" />
+    <Folder Include="Scripts\StoredProce\Session" />
+    <Folder Include="Scripts\Functions" />
+    <Folder Include="Scripts\StoredProce\PasswordResset" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Scripts\Tables\CompanyRoles.sql" />
+    <Build Include="Scripts\Tables\Companys.sql" />
+    <Build Include="Scripts\Tables\CompanyWorkers.sql" />
+    <Build Include="Scripts\Tables\Messages.sql" />
+    <Build Include="Scripts\Tables\Offices.sql" />
+    <Build Include="Scripts\Tables\ProjectFiles.sql" />
+    <Build Include="Scripts\Tables\Projects.sql" />
+    <Build Include="Scripts\Tables\Tasks.sql" />
+    <Build Include="Scripts\Tables\TaskTypes.sql" />
+    <Build Include="Scripts\Tables\Users.sql" />
+    <Build Include="Scripts\Tables\ErrorLogs\ErrorTable.sql" />
+    <Build Include="Scripts\Tables\ErrorLogs\MYTableList.sql" />
+    <Build Include="Scripts\Tables\ErrorLogs\OperationTypes.sql" />
+    <Build Include="Scripts\StoredProce\Users\DeleteTheUser.sql" />
+    <Build Include="Scripts\StoredProce\_ErrorLog\InsertErrorInfo.sql" />
+    <Build Include="Scripts\StoredProce\Users\InsertNewUser.sql" />
+    <Build Include="Scripts\StoredProce\Users\UpdateTheUserInfo.sql" />
+    <Build Include="Scripts\StoredProce\Company\UpdateTheCompany.sql" />
+    <Build Include="Scripts\StoredProce\Company\DeleteTheCompany.sql" />
+    <Build Include="Scripts\StoredProce\Company\InsertNewCompany.sql" />
+    <Build Include="Scripts\StoredProce\Users\PasswordCheck.sql" />
+    <Build Include="Scripts\StoredProce\Users\UpdateTheUserChangePassword.sql" />
+    <Build Include="Scripts\StoredProce\CompanyRoles\InsertNewRole.sql" />
+    <Build Include="Scripts\StoredProce\CompanyRoles\DeleteTheRole.sql" />
+    <Build Include="Scripts\StoredProce\CompanyRoles\UpdateTheRole.sql" />
+    <Build Include="Scripts\StoredProce\Users\GetTheSalt.sql" />
+    <Build Include="Login\Login\BasicView.sql" />
+    <Build Include="Login\LoginRolls\BasicViewS.sql" />
+    <Build Include="Login\LoginRolls\BasicView.sql" />
+    <Build Include="Login\User\BasicView.sql" />
+    <Build Include="Login\Schema\BasicView.sql" />
+    <Build Include="Scripts\Tables\Sessions.sql" />
+    <Build Include="Scripts\StoredProce\Users\SelectTheUser.sql" />
+    <Build Include="Scripts\StoredProce\Offices\InsertNewOffice.sql" />
+    <Build Include="Scripts\StoredProce\Session\ValidateSession.sql" />
+    <Build Include="Scripts\StoredProce\Session\CreateTheSession.sql" />
+    <Build Include="Scripts\StoredProce\Session\DeleteTheSession.sql" />
+    <Build Include="Scripts\StoredProce\Users\SelectUserProjectsDashboard.sql" />
+    <Build Include="Scripts\Tables\PasswordResset.sql" />
+    <Build Include="Scripts\StoredProce\PasswordResset\DoPasswordResset.sql" />
+    <Build Include="Scripts\StoredProce\PasswordResset\CreateThePasswordResset.sql" />
+    <Build Include="Scripts\StoredProce\Users\IsEmailUsed.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\Util\Scripts\ErrorTablesReBuildScript.sql" />
+    <None Include="Scripts\Util\Scripts\ErrorTablesCleanScript.sql" />
+    <None Include="Scripts\Util\Scripts\Permis.sql" />
+    <None Include="TestingScript.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="MVCTaskMasterAppData.refactorlog" />
+  </ItemGroup>
+</Project>

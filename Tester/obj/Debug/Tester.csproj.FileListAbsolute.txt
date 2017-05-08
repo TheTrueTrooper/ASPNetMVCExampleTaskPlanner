@@ -1,0 +1,6 @@
+C:\Users\Angelo\Desktop\ASP.NetMVCExample\Tester\bin\Debug\Tester.exe.config
+C:\Users\Angelo\Desktop\ASP.NetMVCExample\Tester\bin\Debug\Tester.exe
+C:\Users\Angelo\Desktop\ASP.NetMVCExample\Tester\bin\Debug\Tester.pdb
+C:\Users\Angelo\Desktop\ASP.NetMVCExample\Tester\obj\Debug\Tester.csprojResolveAssemblyReference.cache
+C:\Users\Angelo\Desktop\ASP.NetMVCExample\Tester\obj\Debug\Tester.exe
+C:\Users\Angelo\Desktop\ASP.NetMVCExample\Tester\obj\Debug\Tester.pdb

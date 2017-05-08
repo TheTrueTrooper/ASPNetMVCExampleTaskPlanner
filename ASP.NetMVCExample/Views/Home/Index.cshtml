@@ -3,29 +3,29 @@
 }
 
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <img src="~/Images/HouseTempBanner.jpg" style="width:100%;" /> @*Must change the picture on production*@
+    <h1>Welcome To the Contractors Task Master Alpha</h1>
+    <p class="lead">This is a web application that aims to solve your task management problems with interconnected data. The web application finds strength in the cloud where it connects companies. We provide powerful tools for you to use in projects like gant charts, perk charts, and task management. Alone these tools are powerful assets to your company; however, we take them to the cloud to connect with your project partners. This allows us to augment your data with task assignments, notifications, and virtual board rooms. Instantly plan your project from anywhere. Then share these plans in real time and get real time feed back from partners!</p>
+    <p>@Html.ActionLink("Sign In", "Login", "Account", new { }, new { Class = "btn btn-default" }) or @Html.ActionLink("Create New Account", "Register", "Account", new { }, new { Class = "btn btn-default" })</p>
+    <p>It's completely free to try</p>
 </div>
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
+        <h2>Get started with powerful tools</h2>
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            Get a Power full set of tools vital to any project. Use tools such as gant charts, perk charts, and data storage. Tools that will help you to plan your projects and work flows.
         </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <p>@Html.ActionLink("More On Tools", "About", new { Topic = "Tools"}, new { Class = "btn btn-default" })</p>
     </div>
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        <h2>Take to your team and get feed back in real time</h2>
+        <p>All projects live in the cloud and can be shared in real time. To further augment the data get real time responses and feed back from project team members in our virtual board rooms. Just working on the project? Well see the project in a instant and then notify of conserns. Never guess again!</p>
+        <p>@Html.ActionLink("More On The Cloud", "About", new { Topic = "Cloud" }, new { Class = "btn btn-default" })</p>
     </div>
     <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        <h2>View from any device anywhere</h2>
+        <p>You can easily find the data you need on any device that suports a web browser or uses apps that are coming to your device. All this so you can plan and execute in the field from your phone.</p>
+        <p>@Html.ActionLink("Read Testimonials", "About", new { Topic = "Testimonials" }, new { Class = "btn btn-default" })</p>
     </div>
 </div>

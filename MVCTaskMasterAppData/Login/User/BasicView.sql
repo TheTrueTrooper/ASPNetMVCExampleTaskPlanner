@@ -1,0 +1,7 @@
+﻿CREATE USER [BasicViewUser]
+	WITHOUT LOGIN
+	WITH DEFAULT_SCHEMA = [BasicViewSchema]
+
+GO
+
+GRANT CONNECT TO [BasicViewUser]

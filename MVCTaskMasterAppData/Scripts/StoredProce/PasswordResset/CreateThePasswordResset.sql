@@ -1,0 +1,31 @@
+﻿CREATE PROCEDURE [dbo].[CreateThePasswordResset]
+	@Email nvarchar(70),
+	@Code char(28)
+AS
+	declare @UserID int = null,
+	@Exists bit = 0
+
+	if not exists(select UserID from Users where Email = @Email)
+	begin 
+		select @Exists
+		return -1;
+	end
+
+	set @UserID = (select top 1 UserID from Users where Email = @Email)
+	set @Exists = 1
+
+	if exists(select UserID from [UserPasswordResset] where UserID = UserID)
+	begin
+		update [UserPasswordResset]
+		set Code = @Code,
+		TimeIssued = GETDATE()
+		where UserID = @UserID
+	end
+	else 
+	begin 
+	insert into [UserPasswordResset] (UserID, Code)
+	values (@UserID, @Code)
+	end
+
+	select @Exists
+RETURN 0

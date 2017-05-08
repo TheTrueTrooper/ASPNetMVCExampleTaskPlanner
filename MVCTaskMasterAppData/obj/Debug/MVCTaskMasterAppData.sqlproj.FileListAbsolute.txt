@@ -1,0 +1,5 @@
+C:\Users\Angelo\Desktop\ASP.NetMVCExample\MVCTaskMasterAppData\bin\Debug\MVCTaskMasterAppData.dacpac
+C:\Users\Angelo\Desktop\ASP.NetMVCExample\MVCTaskMasterAppData\bin\Debug\MVCTaskMasterAppData.dll
+C:\Users\Angelo\Desktop\ASP.NetMVCExample\MVCTaskMasterAppData\bin\Debug\MVCTaskMasterAppData.pdb
+C:\Users\Angelo\Desktop\ASP.NetMVCExample\MVCTaskMasterAppData\obj\Debug\MVCTaskMasterAppData.dll
+C:\Users\Angelo\Desktop\ASP.NetMVCExample\MVCTaskMasterAppData\obj\Debug\MVCTaskMasterAppData.pdb
