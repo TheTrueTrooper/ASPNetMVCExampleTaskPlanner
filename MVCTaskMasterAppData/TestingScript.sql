@@ -91,7 +91,7 @@ where 1 = 1
 --(
 --[id] int Identity(1,1),
 --[desc] varchar(100)
---)
+--) Azto3D5FIT3PbYv2D2dJCTV5J9nF3B63XLYhxpq49og= 44      
 delete from [Sessions]
 where 1 = 1
 

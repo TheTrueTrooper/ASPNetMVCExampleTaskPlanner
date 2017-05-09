@@ -183,6 +183,10 @@
     <Compile Include="Controllers\FindController.cs" />
     <Compile Include="Controllers\ManageCompanyController.cs" />
     <Compile Include="Controllers\UtilitiesAPIController.cs" />
+    <Compile Include="Models\IdentityLogin.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Search\SearchCompany.cs" />
+    <Compile Include="Models\Search\SearchUsers.cs" />
     <Compile Include="Models\SelectUserProjectsDashboard_Result.cs">
       <DependentUpon>TaskMasterData.tt</DependentUpon>
     </Compile>

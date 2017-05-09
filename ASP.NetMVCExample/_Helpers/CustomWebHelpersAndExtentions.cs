@@ -130,7 +130,7 @@ namespace ASP.NetMVCExample.WebHelpers
 
         public static bool IsValidPassword(this string ToCheck)
         {
-            return ToCheck != null && PasswordCheckerTool.RegexEmailChecker.IsMatch(ToCheck);
+            return ToCheck != null && PasswordCheckerTool.RegexPaswordChecker.IsMatch(ToCheck);
         }
 
         public static bool IsNullEmptyOrWhiteSpace(this string ToCheck)
