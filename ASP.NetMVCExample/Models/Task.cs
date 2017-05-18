@@ -18,15 +18,12 @@ namespace ASP.NetMVCExample.Models
         public Task()
         {
             this.Tasks1 = new HashSet<Task>();
-            this.Tasks11 = new HashSet<Task>();
         }
     
         public int TaskID { get; set; }
         public int SubContractorID { get; set; }
         public int TaskTypeID { get; set; }
         public int ProjectID { get; set; }
-        public Nullable<int> PrevTask { get; set; }
-        public Nullable<int> NextTask { get; set; }
         public string Description { get; set; }
         public System.DateTime StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
@@ -34,12 +31,9 @@ namespace ASP.NetMVCExample.Models
     
         public virtual Company Company { get; set; }
         public virtual Project Project { get; set; }
+        public virtual TaskType TaskType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Task> Tasks1 { get; set; }
         public virtual Task Task1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Task> Tasks11 { get; set; }
-        public virtual Task Task2 { get; set; }
-        public virtual TaskType TaskType { get; set; }
     }
 }

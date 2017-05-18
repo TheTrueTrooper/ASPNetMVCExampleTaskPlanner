@@ -34,7 +34,6 @@ C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample.Tests\bin\Debug\Syst
 C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample.Tests\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample.Tests\bin\Debug\EntityFramework.dll
 C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample.Tests\bin\Debug\System.Web.Http.WebHost.dll
-C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample.Tests\bin\Debug\Microsoft.Owin.Host.SystemWeb.dll
 C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample.Tests\bin\Debug\System.Net.Http.Formatting.dll
 C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample.Tests\bin\Debug\ASP.NetMVCExample.pdb
 C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample.Tests\bin\Debug\Newtonsoft.Json.xml
@@ -54,7 +53,6 @@ C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample.Tests\bin\Debug\Syst
 C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample.Tests\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample.Tests\bin\Debug\EntityFramework.xml
 C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample.Tests\bin\Debug\System.Web.Http.WebHost.xml
-C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample.Tests\bin\Debug\Microsoft.Owin.Host.SystemWeb.xml
 C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample.Tests\bin\Debug\System.Net.Http.Formatting.xml
 C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample.Tests\obj\Debug\ASP.NetMVCExample.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample.Tests\obj\Debug\ASP.NetMVCExample.Tests.dll

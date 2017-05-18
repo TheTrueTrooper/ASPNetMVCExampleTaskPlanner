@@ -41,5 +41,6 @@ namespace ASP.NetMVCExample.Models
         public virtual Session Session { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Message> Messages { get; set; }
+        public virtual UserPasswordResset UserPasswordResset { get; set; }
     }
 }

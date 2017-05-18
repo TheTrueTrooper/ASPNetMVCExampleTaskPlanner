@@ -7,14 +7,10 @@ using System.Web;
 
 namespace ASP.NetMVCExample.Models.Users
 {
-    public class UserPasswordRessetStep1
-    {
-        [DisplayName("Email"), Required(ErrorMessage = "This field is required")]
-        public string Email { get; set; }
-    }
 
-    public class UserPasswordRessetStep2
+    public class UserPasswordResset
     {
+        public bool SendEmail { get; set; } = true;
         [DisplayName("Email"), Required(ErrorMessage = "This field is required")]
         public string Email { get; set; }
         public string Salt { get; set; }

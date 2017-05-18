@@ -20,6 +20,10 @@ namespace ASP.NetMVCExample.Controllers
     public class AccountController : Controller
     {
         /// <summary>
+        /// const for the salt length, picked 20 iff the top of my head. due to array contruction it turn into 24 spaces but thats ok
+        /// </summary>
+        const int CodeLengths = 20;
+        /// <summary>
         /// the Global Shared Database 
         /// </summary>
         MVCTaskMasterAppDataEntities2 DB = DataBaseHelpers.GetDataBase();
@@ -80,7 +84,7 @@ namespace ASP.NetMVCExample.Controllers
                         SecurityHelper.GetCode();
                         Session["SessionUserID"] = UserID;
                         Session["Email"] = LoginAttempt.Email;
-                        Session["SessionCode"] = SecurityHelper.GetCode(20);
+                        Session["SessionCode"] = SecurityHelper.GetCode(CodeLengths);
                         DB.CreateTheSession((int)Session["SessionUserID"], (string)Session["SessionCode"]);
                     if (ReturnURL == null) //if we dont have a redirect go to dashboard
                         return RedirectToAction("Index", "DashBoard");
@@ -117,7 +121,7 @@ namespace ASP.NetMVCExample.Controllers
                 new ObjectParameter("ErrorMessage", ErrorMessage) :
                 new ObjectParameter("ErrorMessage", typeof(string));
 
-                SecurityReturn PasscodeHasher = SecurityHelper.PasswordToSaltedHash(Registy.Password, 20);
+                SecurityReturn PasscodeHasher = SecurityHelper.PasswordToSaltedHash(Registy.Password, CodeLengths);
                 Registy.Salt = PasscodeHasher.Salt;
                 Registy.Password = PasscodeHasher.SaltedHashedPassword;
 
@@ -139,30 +143,35 @@ namespace ASP.NetMVCExample.Controllers
         {
             return View("PasswordResetStep1");
         }
-
+        
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult PasswordResset(UserPasswordRessetStep1 RessetStep1)
+        public ActionResult PasswordReset(UserPasswordResset Resset)
         {
+            //if we have a fully valid reset then we are done
             if (ModelState.IsValid)
             {
-                UserPasswordRessetStep2 RessetStep2 = new UserPasswordRessetStep2();
-                RessetStep2.Email = RessetStep1.Email;
-                return View("PasswordResetStep2", RessetStep2.Email);
+                //database maybe should have a key for valid apps incase of database leak?? maybe 
+                //change the password
+                SecurityReturn TempReturn = SecurityHelper.PasswordToSaltedHash(Resset.NewConfirmPassword, CodeLengths);
+                DB.DoPasswordResset(Resset.Email, Resset.RessetCode, TempReturn.SaltedHashedPassword, TempReturn.Salt);
+                return RedirectToAction("", "Home");
             }
-            return View("PasswordResetStep1", RessetStep1);
-        }
-
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public ActionResult PasswordResset(UserPasswordRessetStep2 Resset)
-        {
-            if (ModelState.IsValid)
+            //if we provided a email to work with move to step 2
+            if (ModelState["Email"].Errors.Count < 1)
             {
+                //make a code and attempt bind it
+                string Code = SecurityHelper.GetCode(20);
+                if (DB.CreateThePasswordResset(Resset.Email, Code).First().Value)
+                {
+                    // if bound send an email to the email
+                    //place email smpt here Provider not choosen yet
+                }
+                //move to the next step - dont inform fail in case of data drilling
+                return View("PasswordResetStep2", Resset);
             }
-            return View("PasswordResetStep2", Resset);
+            return View("PasswordResetStep1", Resset);
         }
 
 

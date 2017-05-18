@@ -33,12 +33,13 @@ namespace ASP.NetMVCExample.Models
         public virtual DbSet<CompanyWorker> CompanyWorkers { get; set; }
         public virtual DbSet<ProjectFile> ProjectFiles { get; set; }
         public virtual DbSet<Project> Projects { get; set; }
-        public virtual DbSet<Task> Tasks { get; set; }
         public virtual DbSet<TaskType> TaskTypes { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Session> Sessions { get; set; }
         public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<Office> Offices { get; set; }
+        public virtual DbSet<UserPasswordResset> UserPasswordRessets { get; set; }
+        public virtual DbSet<Task> Tasks { get; set; }
     
         public virtual int DeleteTheCompany(Nullable<int> companyID, ObjectParameter errorMessage)
         {

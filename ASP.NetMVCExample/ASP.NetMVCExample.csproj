@@ -193,6 +193,12 @@
     <Compile Include="Models\SelectUserProjects_Result.cs">
       <DependentUpon>TaskMasterData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Task.cs">
+      <DependentUpon>TaskMasterData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserPasswordResset.cs">
+      <DependentUpon>TaskMasterData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Users\UserPasswordResset.cs" />
     <Compile Include="Models\Users\UserEditPref.cs" />
     <Compile Include="Models\Users\UserChangePassword.cs" />
@@ -235,9 +241,6 @@
       <DependentUpon>TaskMasterData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Session.cs">
-      <DependentUpon>TaskMasterData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Task.cs">
       <DependentUpon>TaskMasterData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TaskMasterData.Context.cs">
@@ -290,6 +293,7 @@
       <DependentUpon>TaskMasterData.edmx</DependentUpon>
       <LastGenOutput>TaskMasterData.cs</LastGenOutput>
     </Content>
+    <Content Include="MyNotesReadMe.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\TaskMasterData.edmx">

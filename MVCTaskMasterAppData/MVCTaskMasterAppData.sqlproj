@@ -123,8 +123,9 @@
     <Build Include="Scripts\StoredProce\Users\SelectUserProjectsDashboard.sql" />
     <Build Include="Scripts\Tables\PasswordResset.sql" />
     <Build Include="Scripts\StoredProce\PasswordResset\DoPasswordResset.sql" />
-    <Build Include="Scripts\StoredProce\PasswordResset\CreateThePasswordResset.sql" />
     <Build Include="Scripts\StoredProce\Users\IsEmailUsed.sql" />
+    <Build Include="Scripts\StoredProce\PasswordResset\CreateThePasswordResset.sql" />
+    <Build Include="Scripts\Tables\TaskLinkers.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\Util\Scripts\ErrorTablesReBuildScript.sql" />

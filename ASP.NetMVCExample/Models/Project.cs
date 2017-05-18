@@ -18,8 +18,8 @@ namespace ASP.NetMVCExample.Models
         public Project()
         {
             this.ProjectFiles = new HashSet<ProjectFile>();
-            this.Tasks = new HashSet<Task>();
             this.Messages = new HashSet<Message>();
+            this.Tasks = new HashSet<Task>();
         }
     
         public int ProjectID { get; set; }
@@ -41,8 +41,8 @@ namespace ASP.NetMVCExample.Models
         public virtual ICollection<ProjectFile> ProjectFiles { get; set; }
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Task> Tasks { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Message> Messages { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Task> Tasks { get; set; }
     }
 }

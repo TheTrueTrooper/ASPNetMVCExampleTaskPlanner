@@ -36,7 +36,7 @@ namespace ASP.NetMVCExample.SecurityValidation
             //if property not on (defualt) or we faild at the last test skip over this one as no need
             if(CompanyEdit && success)
             {
-                //httpContext.Request.QueryString[ID]
+                //success = httpContext.Request.QueryString["CompanyID"];
             }
 
             return success;

@@ -22,10 +22,10 @@ namespace ASP.NetMVCExample.SecurityHelpers
     public static class SecurityHelper
     {
         const int _SaltSize = 32;
-        const int _CodeSize = 70;
+        const int _CodeSize = 32;
 
         /// <summary>
-        /// Gets a buffer of letters or random salt
+        /// Gets a buffer of letters or random salt should be multiple of 8 but it doesnt matter soo much results will just be the next multiple of 8
         /// </summary>
         /// <param name="size">the Buffer size to use</param>
         /// <returns>the random output string</returns>

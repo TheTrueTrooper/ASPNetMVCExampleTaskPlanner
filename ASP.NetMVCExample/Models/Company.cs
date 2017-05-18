@@ -20,9 +20,9 @@ namespace ASP.NetMVCExample.Models
             this.CompanyRoles = new HashSet<CompanyRole>();
             this.CompanyWorkers = new HashSet<CompanyWorker>();
             this.Projects = new HashSet<Project>();
-            this.Tasks = new HashSet<Task>();
             this.TaskTypes = new HashSet<TaskType>();
             this.Offices = new HashSet<Office>();
+            this.Tasks = new HashSet<Task>();
         }
     
         public int CompanyID { get; set; }
@@ -37,10 +37,10 @@ namespace ASP.NetMVCExample.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Project> Projects { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Task> Tasks { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TaskType> TaskTypes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Office> Offices { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Task> Tasks { get; set; }
     }
 }
