@@ -4,8 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c497afa92f8a42a79262b9bd1f733c0e" Name="Diagram1" ZoomLevel="70">
-        <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.CompanyRole" Width="1.5" PointX="0.5" PointY="5.875" IsExpanded="true" />
+      <Diagram DiagramId="c497afa92f8a42a79262b9bd1f733c0e" Name="Diagram1" ZoomLevel="92">
+        <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.CompanyRole" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.Company" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
         <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.CompanyWorker" Width="1.5" PointX="3.625" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.ProjectFile" Width="1.5" PointX="5.25" PointY="11.625" IsExpanded="true" />
@@ -16,10 +16,10 @@
         <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_CompanyWorkers_Rolls" ManuallyRouted="false" />
         <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_Rolls_SuperRoles" ManuallyRouted="false" />
         <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_CompanyWorkers_Company" ManuallyRouted="true" >
-          <ConnectorPoint PointX="2.25" PointY="10.898027720895321" />
-          <ConnectorPoint PointX="4.104166666666667" PointY="10.898027720895321" />
-          <ConnectorPoint PointX="4.270833333333333" PointY="10.898027720895321" />
-          <ConnectorPoint PointX="4.96875" PointY="10.898027720895321" />
+          <ConnectorPoint PointX="2.25" PointY="11.21875" />
+          <ConnectorPoint PointX="4.104166666666667" PointY="11.21875" />
+          <ConnectorPoint PointX="4.270833333333333" PointY="11.21875" />
+          <ConnectorPoint PointX="4.96875" PointY="11.21875" />
           <ConnectorPoint PointX="4.96875" PointY="9.9994921875" />
         </AssociationConnector>
         <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_Projects_Company" ManuallyRouted="false" />
@@ -27,21 +27,23 @@
         <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_CompanyWorkers_Users" ManuallyRouted="false" />
         <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_ProjectFiles_Projects" ManuallyRouted="false" />
         <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_Projects_User_PManager" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.Session" Width="1.5" PointX="0.5" PointY="3.375" />
+        <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.Session" Width="1.5" PointX="0.625" PointY="3.25" />
         <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_Sessions_Users" />
-        <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.Message" Width="1.5" PointX="8.25" PointY="5.125" />
+        <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.Message" Width="1.5" PointX="8.375" PointY="4.75" />
         <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.Office" Width="1.5" PointX="3.25" PointY="11.875" />
         <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_Offices_Company" />
         <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_CompanyWorkers_Offices" />
         <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_Messages_Projects" />
         <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_Messages_Users" />
-        <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.UserPasswordResset" Width="1.5" PointX="0.5" PointY="1.25" />
+        <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.UserPasswordResset" Width="1.5" PointX="0.625" PointY="1.125" />
         <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_UserPasswordResset_Users" />
         <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.Task" Width="1.5" PointX="8.5" PointY="9.625" />
         <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_Projects_SubContractorID" />
         <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_Tasks_Projects" />
         <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_Tasks_TaskTypes" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.TaskLinkers" />
+        <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.TaskLinker" Width="1.5" PointX="8.5" PointY="7.25" />
+        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_TaskLinkers_Tasks_Next" />
+        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_TaskLinkers_Tasks_Owner" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

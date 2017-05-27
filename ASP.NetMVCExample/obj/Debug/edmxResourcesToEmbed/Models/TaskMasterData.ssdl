@@ -87,6 +87,14 @@
     <Property Name="UserID" Type="int" Nullable="false" />
     <Property Name="TimeLastValidated" Type="datetime" Nullable="false" />
   </EntityType>
+  <EntityType Name="TaskLinkers">
+    <Key>
+      <PropertyRef Name="linkerID" />
+    </Key>
+    <Property Name="linkerID" Type="int" Nullable="false" />
+    <Property Name="TaskID" Type="int" Nullable="false" />
+    <Property Name="NextTaskID" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="Tasks">
     <Key>
       <PropertyRef Name="TaskID" />
@@ -95,8 +103,6 @@
     <Property Name="SubContractorID" Type="int" Nullable="false" />
     <Property Name="TaskTypeID" Type="int" Nullable="false" />
     <Property Name="ProjectID" Type="int" Nullable="false" />
-    <Property Name="PrevTask" Type="int" />
-    <Property Name="NextTask" Type="int" />
     <Property Name="Description" Type="nvarchar" MaxLength="250" />
     <Property Name="StartDate" Type="datetime" Nullable="false" />
     <Property Name="EndDate" Type="datetime" />
@@ -109,6 +115,14 @@
     <Property Name="TaskTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CompanyID" Type="int" Nullable="false" />
     <Property Name="Tag" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserPasswordResset">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="Code" Type="char" MaxLength="28" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="TimeIssued" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
@@ -294,6 +308,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_TaskLinkers_Tasks_Next">
+    <End Role="Tasks" Type="Self.Tasks" Multiplicity="1" />
+    <End Role="TaskLinkers" Type="Self.TaskLinkers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tasks">
+        <PropertyRef Name="TaskID" />
+      </Principal>
+      <Dependent Role="TaskLinkers">
+        <PropertyRef Name="NextTaskID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskLinkers_Tasks_Owner">
+    <End Role="Tasks" Type="Self.Tasks" Multiplicity="1" />
+    <End Role="TaskLinkers" Type="Self.TaskLinkers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tasks">
+        <PropertyRef Name="TaskID" />
+      </Principal>
+      <Dependent Role="TaskLinkers">
+        <PropertyRef Name="TaskID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Tasks_Projects">
     <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
     <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
@@ -303,30 +341,6 @@
       </Principal>
       <Dependent Role="Tasks">
         <PropertyRef Name="ProjectID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Tasks_Tasks_Next">
-    <End Role="Tasks" Type="Self.Tasks" Multiplicity="0..1" />
-    <End Role="Tasks1" Type="Self.Tasks" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Tasks">
-        <PropertyRef Name="TaskID" />
-      </Principal>
-      <Dependent Role="Tasks1">
-        <PropertyRef Name="NextTask" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Tasks_Tasks_Prev">
-    <End Role="Tasks" Type="Self.Tasks" Multiplicity="0..1" />
-    <End Role="Tasks1" Type="Self.Tasks" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Tasks">
-        <PropertyRef Name="TaskID" />
-      </Principal>
-      <Dependent Role="Tasks1">
-        <PropertyRef Name="PrevTask" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -351,6 +365,18 @@
       </Principal>
       <Dependent Role="TaskTypes">
         <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserPasswordResset_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UserPasswordResset" Type="Self.UserPasswordResset" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserPasswordResset">
+        <PropertyRef Name="UserID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -500,8 +526,10 @@
     <EntitySet Name="ProjectFiles" EntityType="Self.ProjectFiles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sessions" EntityType="Self.Sessions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TaskLinkers" EntityType="Self.TaskLinkers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TaskTypes" EntityType="Self.TaskTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserPasswordResset" EntityType="Self.UserPasswordResset" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_CompanyRoles_Companys" Association="Self.FK_CompanyRoles_Companys">
       <End Role="Companys" EntitySet="Companys" />
@@ -559,17 +587,17 @@
       <End Role="Users" EntitySet="Users" />
       <End Role="Sessions" EntitySet="Sessions" />
     </AssociationSet>
+    <AssociationSet Name="FK_TaskLinkers_Tasks_Next" Association="Self.FK_TaskLinkers_Tasks_Next">
+      <End Role="Tasks" EntitySet="Tasks" />
+      <End Role="TaskLinkers" EntitySet="TaskLinkers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskLinkers_Tasks_Owner" Association="Self.FK_TaskLinkers_Tasks_Owner">
+      <End Role="Tasks" EntitySet="Tasks" />
+      <End Role="TaskLinkers" EntitySet="TaskLinkers" />
+    </AssociationSet>
     <AssociationSet Name="FK_Tasks_Projects" Association="Self.FK_Tasks_Projects">
       <End Role="Projects" EntitySet="Projects" />
       <End Role="Tasks" EntitySet="Tasks" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Tasks_Tasks_Next" Association="Self.FK_Tasks_Tasks_Next">
-      <End Role="Tasks" EntitySet="Tasks" />
-      <End Role="Tasks1" EntitySet="Tasks" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Tasks_Tasks_Prev" Association="Self.FK_Tasks_Tasks_Prev">
-      <End Role="Tasks" EntitySet="Tasks" />
-      <End Role="Tasks1" EntitySet="Tasks" />
     </AssociationSet>
     <AssociationSet Name="FK_Tasks_TaskTypes" Association="Self.FK_Tasks_TaskTypes">
       <End Role="TaskTypes" EntitySet="TaskTypes" />
@@ -578,6 +606,10 @@
     <AssociationSet Name="FK_TaskTypes_Companys" Association="Self.FK_TaskTypes_Companys">
       <End Role="Companys" EntitySet="Companys" />
       <End Role="TaskTypes" EntitySet="TaskTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserPasswordResset_Users" Association="Self.FK_UserPasswordResset_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserPasswordResset" EntitySet="UserPasswordResset" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

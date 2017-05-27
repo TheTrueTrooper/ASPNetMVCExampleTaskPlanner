@@ -10,7 +10,6 @@
     [HomePhone] CHAR(11) NOT NULL, 
     [CellPhone] CHAR(11) NULL, 
     [WorkPhone] CHAR(11) NULL, 
-    [Valid] BIT NOT NULL DEFAULT 0, 
 
     CONSTRAINT [CK_Users_Email] CHECK (Email like '[^.]%[^.][@]%[.]%'), 
     CONSTRAINT [CK_Users_HomePhone] CHECK (HomePhone like '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'),

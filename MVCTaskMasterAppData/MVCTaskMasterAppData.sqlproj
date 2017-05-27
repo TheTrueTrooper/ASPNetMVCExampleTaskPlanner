@@ -126,6 +126,7 @@
     <Build Include="Scripts\StoredProce\Users\IsEmailUsed.sql" />
     <Build Include="Scripts\StoredProce\PasswordResset\CreateThePasswordResset.sql" />
     <Build Include="Scripts\Tables\TaskLinkers.sql" />
+    <Build Include="Scripts\Tables\UserValidations.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\Util\Scripts\ErrorTablesReBuildScript.sql" />

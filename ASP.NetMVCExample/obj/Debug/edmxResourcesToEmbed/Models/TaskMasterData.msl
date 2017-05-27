@@ -61,22 +61,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Tasks">
-      <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.Task">
-        <MappingFragment StoreEntitySet="Tasks">
-          <ScalarProperty Name="TaskID" ColumnName="TaskID" />
-          <ScalarProperty Name="SubContractorID" ColumnName="SubContractorID" />
-          <ScalarProperty Name="TaskTypeID" ColumnName="TaskTypeID" />
-          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
-          <ScalarProperty Name="PrevTask" ColumnName="PrevTask" />
-          <ScalarProperty Name="NextTask" ColumnName="NextTask" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="TaskTypes">
       <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.TaskType">
         <MappingFragment StoreEntitySet="TaskTypes">
@@ -228,5 +212,37 @@
     <FunctionImportMapping FunctionImportName="CreateThePasswordResset" FunctionName="MVCTaskMasterAppDataModel.Store.CreateThePasswordResset" />
     <FunctionImportMapping FunctionImportName="DoPasswordResset" FunctionName="MVCTaskMasterAppDataModel.Store.DoPasswordResset" />
     <FunctionImportMapping FunctionImportName="IsEmailUsed" FunctionName="MVCTaskMasterAppDataModel.Store.IsEmailUsed" />
+    <EntitySetMapping Name="UserPasswordRessets">
+      <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.UserPasswordResset">
+        <MappingFragment StoreEntitySet="UserPasswordResset">
+          <ScalarProperty Name="TimeIssued" ColumnName="TimeIssued" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tasks">
+      <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.Task">
+        <MappingFragment StoreEntitySet="Tasks">
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+          <ScalarProperty Name="TaskTypeID" ColumnName="TaskTypeID" />
+          <ScalarProperty Name="SubContractorID" ColumnName="SubContractorID" />
+          <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TaskLinkers">
+      <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.TaskLinker">
+        <MappingFragment StoreEntitySet="TaskLinkers">
+          <ScalarProperty Name="NextTaskID" ColumnName="NextTaskID" />
+          <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+          <ScalarProperty Name="linkerID" ColumnName="linkerID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

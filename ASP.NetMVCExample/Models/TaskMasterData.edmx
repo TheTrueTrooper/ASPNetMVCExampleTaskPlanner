@@ -94,8 +94,9 @@
         </EntityType>
         <EntityType Name="TaskLinkers">
           <Key>
-            <PropertyRef Name="TaskID" />
+            <PropertyRef Name="linkerID" />
           </Key>
+          <Property Name="linkerID" Type="int" Nullable="false" />
           <Property Name="TaskID" Type="int" Nullable="false" />
           <Property Name="NextTaskID" Type="int" Nullable="false" />
         </EntityType>
@@ -326,7 +327,7 @@
         </Association>
         <Association Name="FK_TaskLinkers_Tasks_Owner">
           <End Role="Tasks" Type="Self.Tasks" Multiplicity="1" />
-          <End Role="TaskLinkers" Type="Self.TaskLinkers" Multiplicity="0..1" />
+          <End Role="TaskLinkers" Type="Self.TaskLinkers" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tasks">
               <PropertyRef Name="TaskID" />
@@ -1056,9 +1057,14 @@
             <End Role="TaskType" EntitySet="TaskTypes" />
             <End Role="Task" EntitySet="Tasks" />
           </AssociationSet>
-          <AssociationSet Name="TaskLinkers" Association="MVCTaskMasterAppDataModel.TaskLinkers">
+          <EntitySet Name="TaskLinkers" EntityType="MVCTaskMasterAppDataModel.TaskLinker" />
+          <AssociationSet Name="FK_TaskLinkers_Tasks_Next" Association="MVCTaskMasterAppDataModel.FK_TaskLinkers_Tasks_Next">
             <End Role="Task" EntitySet="Tasks" />
-            <End Role="Task1" EntitySet="Tasks" />
+            <End Role="TaskLinker" EntitySet="TaskLinkers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskLinkers_Tasks_Owner" Association="MVCTaskMasterAppDataModel.FK_TaskLinkers_Tasks_Owner">
+            <End Role="Task" EntitySet="Tasks" />
+            <End Role="TaskLinker" EntitySet="TaskLinkers" />
           </AssociationSet>
         </EntityContainer>
         <ComplexType Name="DeleteTheRole_Result">
@@ -1243,8 +1249,8 @@
           <NavigationProperty Name="Company" Relationship="MVCTaskMasterAppDataModel.FK_Projects_SubContractorID" FromRole="Task" ToRole="Company" />
           <NavigationProperty Name="Project" Relationship="MVCTaskMasterAppDataModel.FK_Tasks_Projects" FromRole="Task" ToRole="Project" />
           <NavigationProperty Name="TaskType" Relationship="MVCTaskMasterAppDataModel.FK_Tasks_TaskTypes" FromRole="Task" ToRole="TaskType" />
-          <NavigationProperty Name="Tasks1" Relationship="MVCTaskMasterAppDataModel.TaskLinkers" FromRole="Task" ToRole="Task1" />
-          <NavigationProperty Name="Task1" Relationship="MVCTaskMasterAppDataModel.TaskLinkers" FromRole="Task1" ToRole="Task" />
+          <NavigationProperty Name="TaskLinkers" Relationship="MVCTaskMasterAppDataModel.FK_TaskLinkers_Tasks_Next" FromRole="Task" ToRole="TaskLinker" />
+          <NavigationProperty Name="TaskLinkers1" Relationship="MVCTaskMasterAppDataModel.FK_TaskLinkers_Tasks_Owner" FromRole="Task" ToRole="TaskLinker" />
           </EntityType>
         <Association Name="FK_Projects_SubContractorID">
           <End Type="MVCTaskMasterAppDataModel.Company" Role="Company" Multiplicity="1" />
@@ -1282,9 +1288,39 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="TaskLinkers">
-          <End Type="MVCTaskMasterAppDataModel.Task" Role="Task" Multiplicity="0..1" />
-          <End Type="MVCTaskMasterAppDataModel.Task" Role="Task1" Multiplicity="*" />
+        <EntityType Name="TaskLinker">
+          <Key>
+            <PropertyRef Name="linkerID" />
+          </Key>
+          <Property Name="linkerID" Type="Int32" Nullable="false" />
+          <Property Name="TaskID" Type="Int32" Nullable="false" />
+          <Property Name="NextTaskID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Task" Relationship="MVCTaskMasterAppDataModel.FK_TaskLinkers_Tasks_Next" FromRole="TaskLinker" ToRole="Task" />
+          <NavigationProperty Name="Task1" Relationship="MVCTaskMasterAppDataModel.FK_TaskLinkers_Tasks_Owner" FromRole="TaskLinker" ToRole="Task" />
+        </EntityType>
+        <Association Name="FK_TaskLinkers_Tasks_Next">
+          <End Type="MVCTaskMasterAppDataModel.Task" Role="Task" Multiplicity="1" />
+          <End Type="MVCTaskMasterAppDataModel.TaskLinker" Role="TaskLinker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="TaskID" />
+            </Principal>
+            <Dependent Role="TaskLinker">
+              <PropertyRef Name="NextTaskID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskLinkers_Tasks_Owner">
+          <End Type="MVCTaskMasterAppDataModel.Task" Role="Task" Multiplicity="1" />
+          <End Type="MVCTaskMasterAppDataModel.TaskLinker" Role="TaskLinker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="TaskID" />
+            </Principal>
+            <Dependent Role="TaskLinker">
+              <PropertyRef Name="TaskID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -1526,15 +1562,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="TaskLinkers" TypeName="MVCTaskMasterAppDataModel.TaskLinkers" StoreEntitySet="TaskLinkers">
-            <EndProperty Name="Task1">
-              <ScalarProperty Name="TaskID" ColumnName="TaskID" />
-            </EndProperty>
-            <EndProperty Name="Task">
-              <ScalarProperty Name="TaskID" ColumnName="NextTaskID" />
-            </EndProperty>
-            <Condition ColumnName="NextTaskID" IsNull="false" />
-          </AssociationSetMapping>
+          <EntitySetMapping Name="TaskLinkers">
+            <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.TaskLinker">
+              <MappingFragment StoreEntitySet="TaskLinkers">
+                <ScalarProperty Name="NextTaskID" ColumnName="NextTaskID" />
+                <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+                <ScalarProperty Name="linkerID" ColumnName="linkerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

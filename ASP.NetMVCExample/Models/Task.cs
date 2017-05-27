@@ -17,7 +17,8 @@ namespace ASP.NetMVCExample.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Task()
         {
-            this.Tasks1 = new HashSet<Task>();
+            this.TaskLinkers = new HashSet<TaskLinker>();
+            this.TaskLinkers1 = new HashSet<TaskLinker>();
         }
     
         public int TaskID { get; set; }
@@ -33,7 +34,8 @@ namespace ASP.NetMVCExample.Models
         public virtual Project Project { get; set; }
         public virtual TaskType TaskType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Task> Tasks1 { get; set; }
-        public virtual Task Task1 { get; set; }
+        public virtual ICollection<TaskLinker> TaskLinkers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TaskLinker> TaskLinkers1 { get; set; }
     }
 }

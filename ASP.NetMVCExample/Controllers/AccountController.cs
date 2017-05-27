@@ -147,7 +147,7 @@ namespace ASP.NetMVCExample.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult PasswordReset(UserPasswordResset Resset)
+        public ActionResult PasswordReset(ASP.NetMVCExample.Models.Users.UserPasswordResset Resset)
         {
             //if we have a fully valid reset then we are done
             if (ModelState.IsValid)
@@ -166,12 +166,29 @@ namespace ASP.NetMVCExample.Controllers
                 if (DB.CreateThePasswordResset(Resset.Email, Code).First().Value)
                 {
                     // if bound send an email to the email
-                    //place email smpt here Provider not choosen yet
+                    //place email smpt here Provider not choosen yet Is google make a helper now
                 }
                 //move to the next step - dont inform fail in case of data drilling
                 return View("PasswordResetStep2", Resset);
             }
             return View("PasswordResetStep1", Resset);
+        }
+
+        /// <summary>
+        /// this will work as a getter to validate form an email string
+        /// </summary>
+        /// <param name="User">The user to validate</param>
+        /// <param name="Code">The Code for the user</param>
+        /// <returns>A View to congraduate them</returns>
+        [AllowAnonymous]
+        public ActionResult ValidateAccount(string User, string Code)
+        {
+            if(!User.IsNullEmptyOrWhiteSpace() || !Code.IsNullEmptyOrWhiteSpace() )//|| DB.ValidateUser)
+            {
+                //come back to this....
+                return View("FriendlyErr");
+            }
+            return View();
         }
 
 

@@ -1,6 +1,7 @@
 ﻿CREATE TABLE [dbo].[TaskLinkers]
 (
-	[TaskID] INT NOT NULL PRIMARY KEY, 
+	[linkerID] INT NOT NULL PRIMARY KEY, 
+	[TaskID] INT NOT NULL, 
 	[NextTaskID] INT NOT NULL, 
 
     CONSTRAINT [FK_TaskLinkers_Tasks_Owner] FOREIGN KEY ([TaskID]) REFERENCES [Tasks]([TaskID]),
