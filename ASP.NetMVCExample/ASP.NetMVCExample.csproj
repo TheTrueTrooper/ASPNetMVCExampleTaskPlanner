@@ -292,6 +292,7 @@
     <Compile Include="_Helpers\CustomWebHelpersAndExtentions.cs" />
     <Compile Include="_Helpers\DataBaseHelpers.cs" />
     <Compile Include="_Helpers\SecurityHelper.cs" />
+    <Compile Include="_Helpers\SMTPHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
