@@ -12,8 +12,6 @@
 
 <h2>Index</h2>
 
-
-
 @for (int i = 0; i < List.Count(); i++)
 {
     if (i % 3 == 0)
@@ -26,8 +24,7 @@
         open = true;
     }
     @RenderPage("~/Views/Dashboard/_ProjectBox.cshtml", List[i])
-
-    }
+ }
 
 @Html.Raw("</div>") @*close the div in raw so we dont get squigs*@
 

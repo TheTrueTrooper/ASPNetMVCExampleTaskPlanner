@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using System.Web.Optimization;
+using System.Web.Routing;
 
 namespace ASP.NetMVCExample.WebHelpers
 {
@@ -310,10 +313,7 @@ namespace ASP.NetMVCExample.WebHelpers
                 return This;
             return AddToRenderScriptBundles(This, new string[] { ScriptBundles });
         }
-
-
         #endregion
-
     }
 
     /// <summary>
@@ -463,6 +463,25 @@ namespace ASP.NetMVCExample.WebHelpers
             return AddToRenderScriptBundles(This, new string[] { ScriptBundles });
         }
         #endregion
+        
+        #region RazorTemplating
+        /// <summary>
+        /// Gets a String rep. of a view Back after Templateing. This is usefull if you would like to Template an email or something?
+        /// </summary>
+        /// <param name="This">The Contorller extending off of</param>
+        /// <param name="ViewName">The name of the view to use</param>
+        /// <returns>The HTML Templated rep. as a string</returns>
+        public static string GetRazorTemplateAsString(this Controller This, string ViewName)
+        {
+            OpenStringResult Result = new OpenStringResult(ViewName);
+
+            ControllerContext Context = new ControllerContext(This.HttpContext, This.RouteData, This);
+
+            Result.ExecuteResult(Context);
+
+            return Result.Result;
+        }
+        #endregion
     }
 
     #endregion
@@ -495,11 +514,50 @@ namespace ASP.NetMVCExample.WebHelpers
         }
 
 
-    }
 
-    public class CustomControllerHelper
-    {
     }
     #endregion
 
+    #region Other
+    /// <summary>
+    /// A class to allow us to Template with the existing MVC eng in a Extention class
+    /// </summary>
+    internal class OpenStringResult : ViewResult
+    {
+        public string Result { private set; get; }
+
+        /// <summary>
+        /// Creates a OpenStringResult From a ViewName
+        /// </summary>
+        /// <param name="ViewNameIn"></param>
+        public OpenStringResult(string ViewNameIn)
+        {
+            ViewName = ViewNameIn;
+        }
+
+        /// <summary>
+        /// forces a render and stores the existing HTML text as a string
+        /// </summary>
+        /// <param name="Context">a Controller Context</param>
+        public override void ExecuteResult(ControllerContext Context)
+        {
+            if (Context == null)
+                throw new ArgumentNullException("Context");
+
+            if (String.IsNullOrEmpty(ViewName))
+                throw new Exception("ViewName Can't be null");
+           
+            View = FindView(Context).View;
+
+            StringBuilder Builder = new StringBuilder();
+            StringWriter Writer = new StringWriter(Builder);
+
+            ViewContext ViewContext = new ViewContext(Context, View, ViewData, TempData, Writer);
+
+            View.Render(ViewContext, Writer);
+
+            Result = Builder.ToString();
+        }
+    }
+    #endregion
 }

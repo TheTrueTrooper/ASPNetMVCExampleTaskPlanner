@@ -289,10 +289,10 @@
     <Compile Include="Models\Users\UserRegEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="_Helpers\CustomWebHelpersAndExtentions.cs" />
-    <Compile Include="_Helpers\DataBaseHelpers.cs" />
-    <Compile Include="_Helpers\SecurityHelper.cs" />
-    <Compile Include="_Helpers\SMTPHelper.cs" />
+    <Compile Include="_HelpersAndExtens\CustomWebHelpersAndExtentions.cs" />
+    <Compile Include="_HelpersAndExtens\DataBaseHelpers.cs" />
+    <Compile Include="_HelpersAndExtens\SecurityHelper.cs" />
+    <Compile Include="_HelpersAndExtens\SMTPHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
