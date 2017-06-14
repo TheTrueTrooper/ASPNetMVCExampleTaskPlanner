@@ -14,6 +14,7 @@ using System.Web.Routing;
 
 namespace ASP.NetMVCExample.WebHelpers
 {
+    //I plan to export some of this to a class lib
     //Useful classes and tools that could be used out side
     #region Tools
     /// <summary>
@@ -144,7 +145,6 @@ namespace ASP.NetMVCExample.WebHelpers
         #endregion
 
         #region HTMLInjectionStyleAndScript
-       
         /// <summary>
         /// This Renders To the HTML after the controller and view render Adds styles and script in the head of the DOM. In Debug it marks end and start.
         /// Make Sure is in the head
@@ -471,13 +471,19 @@ namespace ASP.NetMVCExample.WebHelpers
         /// <param name="This">The Contorller extending off of</param>
         /// <param name="ViewName">The name of the view to use</param>
         /// <returns>The HTML Templated rep. as a string</returns>
-        public static string GetRazorTemplateAsString(this Controller This, string ViewName)
+        public static string GetRazorTemplateAsString(this Controller This, string ViewName, object Model = null)
         {
+            object TempRecallData = This.ViewData.Model;
+
             OpenStringResult Result = new OpenStringResult(ViewName);
+
+            This.ViewData.Model = Model;
 
             ControllerContext Context = new ControllerContext(This.HttpContext, This.RouteData, This);
 
             Result.ExecuteResult(Context);
+
+            This.ViewData.Model = TempRecallData;
 
             return Result.Result;
         }
@@ -518,6 +524,7 @@ namespace ASP.NetMVCExample.WebHelpers
     }
     #endregion
 
+    //classes required for other classes
     #region Other
     /// <summary>
     /// A class to allow us to Template with the existing MVC eng in a Extention class
@@ -530,13 +537,14 @@ namespace ASP.NetMVCExample.WebHelpers
         /// Creates a OpenStringResult From a ViewName
         /// </summary>
         /// <param name="ViewNameIn"></param>
-        public OpenStringResult(string ViewNameIn)
+        public OpenStringResult(string ViewNameIn) : base()
         {
             ViewName = ViewNameIn;
         }
 
         /// <summary>
         /// forces a render and stores the existing HTML text as a string
+        /// Is only to be used with the contorller templating extention extention 
         /// </summary>
         /// <param name="Context">a Controller Context</param>
         public override void ExecuteResult(ControllerContext Context)
@@ -548,6 +556,7 @@ namespace ASP.NetMVCExample.WebHelpers
                 throw new Exception("ViewName Can't be null");
            
             View = FindView(Context).View;
+            ViewData = Context.Controller.ViewData;
 
             StringBuilder Builder = new StringBuilder();
             StringWriter Writer = new StringWriter(Builder);
