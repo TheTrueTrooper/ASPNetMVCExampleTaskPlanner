@@ -17,9 +17,25 @@ namespace ASP.NetMVCExample.Controllers
             return View();
         }
 
+
         public ActionResult About(string Topic = "")
         {
-            ViewBag.ScrollId = Topic;
+            Topic = Topic.ToLower();
+            switch (Topic)
+            {
+                case "cloud":
+                    ViewBag.ScrollId = "Cloud";
+                    break;
+                case "tools":
+                    ViewBag.ScrollId = "Tools";
+                    break;
+                case "testimonial":
+                    ViewBag.ScrollId = "Testimonial";
+                    break;
+                default:
+                    ViewBag.ScrollId = "";
+                    break;
+            }
 
             return View();
         }
@@ -32,8 +48,16 @@ namespace ASP.NetMVCExample.Controllers
             return View();
         }
 
-        public ActionResult Help(string Subject)
+        public ActionResult Help(string Subject = "")
         {
+            Subject = Subject.ToLower();
+            switch (Subject)
+            {
+                default:
+                    ViewBag.ScrollId = "";
+                    break;
+            }
+
             ViewBag.HelpSubject = Subject;
             return View();
         }

@@ -197,7 +197,6 @@
     <Compile Include="Controllers\AccountManagementController.cs" />
     <Compile Include="Controllers\FindController.cs" />
     <Compile Include="Controllers\ManageCompanyController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\UtilitiesAPIController.cs" />
     <Compile Include="Models\IdentityLogin.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -215,7 +214,6 @@
     <Compile Include="Models\TaskLinker.cs">
       <DependentUpon>TaskMasterData.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TestModel.cs" />
     <Compile Include="Models\UserPasswordResset.cs">
       <DependentUpon>TaskMasterData.tt</DependentUpon>
     </Compile>
@@ -372,8 +370,6 @@
     <Content Include="Views\Account\PasswordResetStep2.cshtml" />
     <Content Include="Views\Shared\FriendlyErr.cshtml" />
     <Content Include="Scripts\TypeScriptOutput\Gant.js.map" />
-    <Content Include="Views\Test\Index.cshtml" />
-    <Content Include="Views\Test\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\ManageCompany\" />

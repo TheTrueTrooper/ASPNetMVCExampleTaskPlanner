@@ -1,0 +1,704 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MVCTaskMasterAppDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CompanyRole">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyID" Type="Int32" Nullable="false" />
+    <Property Name="RoleName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SuperRole" Type="Int32" />
+    <Property Name="Admin" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_CompanyRoles_Companys" FromRole="CompanyRoles" ToRole="Companys" />
+    <NavigationProperty Name="CompanyWorkers" Relationship="Self.FK_CompanyWorkers_Rolls" FromRole="CompanyRoles" ToRole="CompanyWorkers" />
+    <NavigationProperty Name="CompanyRoles1" Relationship="Self.FK_Rolls_SuperRoles" FromRole="CompanyRoles" ToRole="CompanyRoles1" />
+    <NavigationProperty Name="CompanyRole1" Relationship="Self.FK_Rolls_SuperRoles" FromRole="CompanyRoles1" ToRole="CompanyRoles" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+    </Key>
+    <Property Name="CompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CompanySite" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="CompanyRoles" Relationship="Self.FK_CompanyRoles_Companys" FromRole="Companys" ToRole="CompanyRoles" />
+    <NavigationProperty Name="CompanyWorkers" Relationship="Self.FK_CompanyWorkers_Company" FromRole="Companys" ToRole="CompanyWorkers" />
+    <NavigationProperty Name="Projects" Relationship="Self.FK_Projects_Company" FromRole="Companys" ToRole="Projects" />
+    <NavigationProperty Name="TaskTypes" Relationship="Self.FK_TaskTypes_Companys" FromRole="Companys" ToRole="TaskTypes" />
+    <NavigationProperty Name="Offices" Relationship="MVCTaskMasterAppDataModel.FK_Offices_Company" FromRole="Company" ToRole="Office" />
+    <NavigationProperty Name="Tasks" Relationship="MVCTaskMasterAppDataModel.FK_Projects_SubContractorID" FromRole="Company" ToRole="Task" />
+  </EntityType>
+  <EntityType Name="CompanyWorker">
+    <Key>
+      <PropertyRef Name="WorkerID" />
+    </Key>
+    <Property Name="CompanyID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <Property Name="WorkerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="CompanyRole" Relationship="Self.FK_CompanyWorkers_Rolls" FromRole="CompanyWorkers" ToRole="CompanyRoles" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_CompanyWorkers_Company" FromRole="CompanyWorkers" ToRole="Companys" />
+    <NavigationProperty Name="User" Relationship="Self.FK_CompanyWorkers_Users" FromRole="CompanyWorkers" ToRole="Users" />
+    <Property Name="OfficeID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Office" Relationship="MVCTaskMasterAppDataModel.FK_CompanyWorkers_Offices" FromRole="CompanyWorker" ToRole="Office" />
+  </EntityType>
+  <EntityType Name="ProjectFile">
+    <Key>
+      <PropertyRef Name="FileID" />
+    </Key>
+    <Property Name="FileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectID" Type="Int32" Nullable="false" />
+    <Property Name="File" Type="Binary" MaxLength="16" FixedLength="false" Nullable="false" />
+    <NavigationProperty Name="Project" Relationship="Self.FK_ProjectFiles_Projects" FromRole="ProjectFiles" ToRole="Projects" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="ProjectID" />
+    </Key>
+    <Property Name="ProjectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyID" Type="Int32" Nullable="false" />
+    <Property Name="ManagerID" Type="Int32" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PostalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Country" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Province" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="City" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Precision="3" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_Projects_Company" FromRole="Projects" ToRole="Companys" />
+    <NavigationProperty Name="ProjectFiles" Relationship="Self.FK_ProjectFiles_Projects" FromRole="Projects" ToRole="ProjectFiles" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Projects_User_PManager" FromRole="Projects" ToRole="Users" />
+    <Property Name="ProjectName" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Messages" Relationship="MVCTaskMasterAppDataModel.FK_Messages_Projects" FromRole="Project" ToRole="Message" />
+    <NavigationProperty Name="Tasks" Relationship="MVCTaskMasterAppDataModel.FK_Tasks_Projects" FromRole="Project" ToRole="Task" />
+  </EntityType>
+  <EntityType Name="TaskType">
+    <Key>
+      <PropertyRef Name="TaskTypeID" />
+    </Key>
+    <Property Name="TaskTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyID" Type="Int32" Nullable="false" />
+    <Property Name="Tag" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_TaskTypes_Companys" FromRole="TaskTypes" ToRole="Companys" />
+    <NavigationProperty Name="Tasks" Relationship="MVCTaskMasterAppDataModel.FK_Tasks_TaskTypes" FromRole="TaskType" ToRole="Task" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MiddleInitial" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="320" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Salt" Type="String" MaxLength="28" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="HomePhone" Type="String" MaxLength="11" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="CellPhone" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+    <Property Name="WorkPhone" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+    <Property Name="Valid" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="CompanyWorkers" Relationship="Self.FK_CompanyWorkers_Users" FromRole="Users" ToRole="CompanyWorkers" />
+    <NavigationProperty Name="Projects" Relationship="Self.FK_Projects_User_PManager" FromRole="Users" ToRole="Projects" />
+    <NavigationProperty Name="Session" Relationship="MVCTaskMasterAppDataModel.FK_Sessions_Users" FromRole="User" ToRole="Session" />
+    <NavigationProperty Name="Messages" Relationship="MVCTaskMasterAppDataModel.FK_Messages_Users" FromRole="User" ToRole="Message" />
+    <NavigationProperty Name="UserPasswordResset" Relationship="MVCTaskMasterAppDataModel.FK_UserPasswordResset_Users" FromRole="User" ToRole="UserPasswordResset" />
+  </EntityType>
+  <Association Name="FK_CompanyRoles_Companys">
+    <End Role="Companys" Type="Self.Company" Multiplicity="1" />
+    <End Role="CompanyRoles" Type="Self.CompanyRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companys">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="CompanyRoles">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CompanyWorkers_Rolls">
+    <End Role="CompanyRoles" Type="Self.CompanyRole" Multiplicity="1" />
+    <End Role="CompanyWorkers" Type="Self.CompanyWorker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CompanyRoles">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="CompanyWorkers">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rolls_SuperRoles">
+    <End Role="CompanyRoles" Type="Self.CompanyRole" Multiplicity="0..1" />
+    <End Role="CompanyRoles1" Type="Self.CompanyRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CompanyRoles">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="CompanyRoles1">
+        <PropertyRef Name="SuperRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CompanyWorkers_Company">
+    <End Role="Companys" Type="Self.Company" Multiplicity="1" />
+    <End Role="CompanyWorkers" Type="Self.CompanyWorker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companys">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="CompanyWorkers">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Projects_Company">
+    <End Role="Companys" Type="Self.Company" Multiplicity="1" />
+    <End Role="Projects" Type="Self.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companys">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="Projects">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskTypes_Companys">
+    <End Role="Companys" Type="Self.Company" Multiplicity="1" />
+    <End Role="TaskTypes" Type="Self.TaskType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companys">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="TaskTypes">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CompanyWorkers_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="CompanyWorkers" Type="Self.CompanyWorker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="CompanyWorkers">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectFiles_Projects">
+    <End Role="Projects" Type="Self.Project" Multiplicity="1" />
+    <End Role="ProjectFiles" Type="Self.ProjectFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projects">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="ProjectFiles">
+        <PropertyRef Name="ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Projects_User_PManager">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Projects" Type="Self.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Projects">
+        <PropertyRef Name="ManagerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MVCTaskMasterAppDataEntities2" annotation:LazyLoadingEnabled="false">
+    <EntitySet Name="CompanyRoles" EntityType="Self.CompanyRole" />
+    <EntitySet Name="Companys" EntityType="Self.Company" />
+    <EntitySet Name="CompanyWorkers" EntityType="Self.CompanyWorker" />
+    <EntitySet Name="ProjectFiles" EntityType="Self.ProjectFile" />
+    <EntitySet Name="Projects" EntityType="Self.Project" />
+    <EntitySet Name="TaskTypes" EntityType="Self.TaskType" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_CompanyRoles_Companys" Association="Self.FK_CompanyRoles_Companys">
+      <End Role="Companys" EntitySet="Companys" />
+      <End Role="CompanyRoles" EntitySet="CompanyRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CompanyWorkers_Rolls" Association="Self.FK_CompanyWorkers_Rolls">
+      <End Role="CompanyRoles" EntitySet="CompanyRoles" />
+      <End Role="CompanyWorkers" EntitySet="CompanyWorkers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rolls_SuperRoles" Association="Self.FK_Rolls_SuperRoles">
+      <End Role="CompanyRoles" EntitySet="CompanyRoles" />
+      <End Role="CompanyRoles1" EntitySet="CompanyRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CompanyWorkers_Company" Association="Self.FK_CompanyWorkers_Company">
+      <End Role="Companys" EntitySet="Companys" />
+      <End Role="CompanyWorkers" EntitySet="CompanyWorkers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Projects_Company" Association="Self.FK_Projects_Company">
+      <End Role="Companys" EntitySet="Companys" />
+      <End Role="Projects" EntitySet="Projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskTypes_Companys" Association="Self.FK_TaskTypes_Companys">
+      <End Role="Companys" EntitySet="Companys" />
+      <End Role="TaskTypes" EntitySet="TaskTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CompanyWorkers_Users" Association="Self.FK_CompanyWorkers_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="CompanyWorkers" EntitySet="CompanyWorkers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectFiles_Projects" Association="Self.FK_ProjectFiles_Projects">
+      <End Role="Projects" EntitySet="Projects" />
+      <End Role="ProjectFiles" EntitySet="ProjectFiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Projects_User_PManager" Association="Self.FK_Projects_User_PManager">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Projects" EntitySet="Projects" />
+    </AssociationSet>
+    <FunctionImport Name="DeleteTheCompany">
+      <Parameter Name="CompanyID" Mode="In" Type="Int32" />
+      <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteTheRole" ReturnType="Collection(MVCTaskMasterAppDataModel.DeleteTheRole_Result)">
+      <Parameter Name="RoleID" Mode="In" Type="Int32" />
+      <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteTheUser">
+      <Parameter Name="FirstName" Mode="In" Type="String" />
+      <Parameter Name="MiddleInitial" Mode="In" Type="String" />
+      <Parameter Name="LastName" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="HomePhone" Mode="In" Type="String" />
+      <Parameter Name="CellPhone" Mode="In" Type="String" />
+      <Parameter Name="WorkPhone" Mode="In" Type="String" />
+      <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="InsertErrorInfo">
+      <Parameter Name="ErrorMessage" Mode="In" Type="String" />
+      <Parameter Name="Type" Mode="In" Type="Byte" />
+      <Parameter Name="Table" Mode="In" Type="Byte" />
+      <Parameter Name="SQLErrorCode" Mode="In" Type="Int32" />
+      <Parameter Name="MyErrorCode" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="InsertNewCompany">
+      <Parameter Name="CompanyName" Mode="In" Type="String" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="CompanySite" Mode="In" Type="String" />
+      <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="InsertNewRole" ReturnType="Collection(MVCTaskMasterAppDataModel.InsertNewRole_Result)">
+      <Parameter Name="CompanyID" Mode="In" Type="Int32" />
+      <Parameter Name="RoleName" Mode="In" Type="String" />
+      <Parameter Name="SuperRole" Mode="In" Type="Int32" />
+      <Parameter Name="Admin" Mode="In" Type="Boolean" />
+      <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="InsertNewUser">
+      <Parameter Name="FirstName" Mode="In" Type="String" />
+      <Parameter Name="MiddleInitial" Mode="In" Type="String" />
+      <Parameter Name="LastName" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="Salt" Mode="In" Type="String" />
+      <Parameter Name="HomePhone" Mode="In" Type="String" />
+      <Parameter Name="CellPhone" Mode="In" Type="String" />
+      <Parameter Name="WorkPhone" Mode="In" Type="String" />
+      <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PasswordCheck">
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="IDOut" Mode="InOut" Type="Int32" />
+      <Parameter Name="ChecksOut" Mode="InOut" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateTheCompany">
+      <Parameter Name="CompanyID" Mode="In" Type="Int32" />
+      <Parameter Name="CompanyName" Mode="In" Type="String" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="CompanySite" Mode="In" Type="String" />
+      <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateTheRole" ReturnType="Collection(MVCTaskMasterAppDataModel.UpdateTheRole_Result)">
+      <Parameter Name="RollID" Mode="In" Type="Int32" />
+      <Parameter Name="RoleName" Mode="In" Type="String" />
+      <Parameter Name="SuperRole" Mode="In" Type="Int32" />
+      <Parameter Name="Admin" Mode="In" Type="Boolean" />
+      <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateTheUserChangePassword">
+      <Parameter Name="UserID" Mode="In" Type="Int32" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="NewPassword" Mode="In" Type="String" />
+      <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SelectTheUser" ReturnType="Collection(MVCTaskMasterAppDataModel.SelectTheUser_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="InsertNewOffice">
+      <Parameter Name="CompanyID" Mode="In" Type="Int32" />
+      <Parameter Name="Country" Mode="In" Type="String" />
+      <Parameter Name="Province" Mode="In" Type="String" />
+      <Parameter Name="City" Mode="In" Type="String" />
+      <Parameter Name="Address" Mode="In" Type="String" />
+      <Parameter Name="PostalCode" Mode="In" Type="String" />
+      <Parameter Name="Phone" Mode="In" Type="String" />
+      <Parameter Name="Fax" Mode="In" Type="String" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetTheSalt" ReturnType="Collection(String)">
+      <Parameter Name="Email" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CreateTheSession">
+      <Parameter Name="UserID" Mode="In" Type="Int32" />
+      <Parameter Name="Code" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteTheSession">
+      <Parameter Name="SessionID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ValidateSession" ReturnType="Collection(Boolean)">
+      <Parameter Name="UserID" Mode="In" Type="Int32" />
+      <Parameter Name="Code" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="Sessions" EntityType="MVCTaskMasterAppDataModel.Session" />
+    <AssociationSet Name="FK_Sessions_Users" Association="MVCTaskMasterAppDataModel.FK_Sessions_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Session" EntitySet="Sessions" />
+    </AssociationSet>
+    <FunctionImport Name="UpdateTheUserInfo">
+      <Parameter Name="UserID" Mode="In" Type="Int32" />
+      <Parameter Name="FirstName" Mode="In" Type="String" />
+      <Parameter Name="MiddleInitial" Mode="In" Type="String" />
+      <Parameter Name="LastName" Mode="In" Type="String" />
+      <Parameter Name="HomePhone" Mode="In" Type="String" />
+      <Parameter Name="CellPhone" Mode="In" Type="String" />
+      <Parameter Name="WorkPhone" Mode="In" Type="String" />
+      <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SelectUserProjects" ReturnType="Collection(MVCTaskMasterAppDataModel.SelectUserProjects_Result)">
+      <Parameter Name="param1" Mode="In" Type="Int32" />
+      <Parameter Name="param2" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="Messages" EntityType="MVCTaskMasterAppDataModel.Message" />
+    <EntitySet Name="Offices" EntityType="MVCTaskMasterAppDataModel.Office" />
+    <AssociationSet Name="FK_Offices_Company" Association="MVCTaskMasterAppDataModel.FK_Offices_Company">
+      <End Role="Company" EntitySet="Companys" />
+      <End Role="Office" EntitySet="Offices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CompanyWorkers_Offices" Association="MVCTaskMasterAppDataModel.FK_CompanyWorkers_Offices">
+      <End Role="Office" EntitySet="Offices" />
+      <End Role="CompanyWorker" EntitySet="CompanyWorkers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Messages_Projects" Association="MVCTaskMasterAppDataModel.FK_Messages_Projects">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="Message" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Messages_Users" Association="MVCTaskMasterAppDataModel.FK_Messages_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Message" EntitySet="Messages" />
+    </AssociationSet>
+    <FunctionImport Name="SelectUserProjectsDashboard" ReturnType="Collection(MVCTaskMasterAppDataModel.SelectUserProjectsDashboard_Result)">
+      <Parameter Name="UserID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="CreateThePasswordResset" ReturnType="Collection(Boolean)">
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Code" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DoPasswordResset" ReturnType="Collection(Boolean)">
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Code" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="Salt" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="IsEmailUsed" ReturnType="Collection(Boolean)">
+      <Parameter Name="Email" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="UserPasswordRessets" EntityType="MVCTaskMasterAppDataModel.UserPasswordResset" />
+    <AssociationSet Name="FK_UserPasswordResset_Users" Association="MVCTaskMasterAppDataModel.FK_UserPasswordResset_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserPasswordResset" EntitySet="UserPasswordRessets" />
+    </AssociationSet>
+    <EntitySet Name="Tasks" EntityType="MVCTaskMasterAppDataModel.Task" />
+    <AssociationSet Name="FK_Projects_SubContractorID" Association="MVCTaskMasterAppDataModel.FK_Projects_SubContractorID">
+      <End Role="Company" EntitySet="Companys" />
+      <End Role="Task" EntitySet="Tasks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tasks_Projects" Association="MVCTaskMasterAppDataModel.FK_Tasks_Projects">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="Task" EntitySet="Tasks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tasks_TaskTypes" Association="MVCTaskMasterAppDataModel.FK_Tasks_TaskTypes">
+      <End Role="TaskType" EntitySet="TaskTypes" />
+      <End Role="Task" EntitySet="Tasks" />
+    </AssociationSet>
+    <EntitySet Name="TaskLinkers" EntityType="MVCTaskMasterAppDataModel.TaskLinker" />
+    <AssociationSet Name="FK_TaskLinkers_Tasks_Next" Association="MVCTaskMasterAppDataModel.FK_TaskLinkers_Tasks_Next">
+      <End Role="Task" EntitySet="Tasks" />
+      <End Role="TaskLinker" EntitySet="TaskLinkers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskLinkers_Tasks_Owner" Association="MVCTaskMasterAppDataModel.FK_TaskLinkers_Tasks_Owner">
+      <End Role="Task" EntitySet="Tasks" />
+      <End Role="TaskLinker" EntitySet="TaskLinkers" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="DeleteTheRole_Result">
+    <Property Type="Int32" Name="Column1" Nullable="true" />
+    <Property Type="Int32" Name="Column2" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="InsertNewRole_Result">
+    <Property Type="Int32" Name="Column1" Nullable="true" />
+    <Property Type="Int32" Name="Column2" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="UpdateTheRole_Result">
+    <Property Type="Int32" Name="Column1" Nullable="true" />
+    <Property Type="Int32" Name="Column2" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SelectTheUser_Result">
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="MiddleInitial" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="HomePhone" Nullable="false" MaxLength="14" />
+    <Property Type="String" Name="CellPhone" Nullable="true" MaxLength="14" />
+    <Property Type="String" Name="WorkPhone" Nullable="true" MaxLength="14" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="320" />
+  </ComplexType>
+  <EntityType Name="Session">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="Code" Type="String" Nullable="false" MaxLength="28" FixedLength="true" Unicode="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="TimeLastValidated" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="User" Relationship="MVCTaskMasterAppDataModel.FK_Sessions_Users" FromRole="Session" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_Sessions_Users">
+    <End Type="MVCTaskMasterAppDataModel.User" Role="User" Multiplicity="1" />
+    <End Type="MVCTaskMasterAppDataModel.Session" Role="Session" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Session">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="SelectUserProjects_Result">
+    <Property Type="Int32" Name="ProjectID" Nullable="false" />
+    <Property Type="String" Name="ProjectName" Nullable="false" MaxLength="70" />
+    <Property Type="String" Name="CompanyName" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="OfficeName" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Address" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="PostalCode" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Country" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Province" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Description" Nullable="false" MaxLength="250" />
+    <Property Type="DateTime" Name="StartDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="EndDate" Nullable="true" Precision="23" />
+  </ComplexType>
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="MessageID" />
+    </Key>
+    <Property Name="MessageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="ProjectID" Type="Int32" Nullable="false" />
+    <Property Name="Text" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Project" Relationship="MVCTaskMasterAppDataModel.FK_Messages_Projects" FromRole="Message" ToRole="Project" />
+    <NavigationProperty Name="User" Relationship="MVCTaskMasterAppDataModel.FK_Messages_Users" FromRole="Message" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Office">
+    <Key>
+      <PropertyRef Name="OfficeID" />
+    </Key>
+    <Property Name="OfficeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyID" Type="Int32" Nullable="false" />
+    <Property Name="Country" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Province" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="City" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="PostalCode" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="false" />
+    <Property Name="Phone" Type="String" Nullable="false" MaxLength="14" FixedLength="true" Unicode="false" />
+    <Property Name="Fax" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+    <Property Name="OfficeName" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Company" Relationship="MVCTaskMasterAppDataModel.FK_Offices_Company" FromRole="Office" ToRole="Company" />
+    <NavigationProperty Name="CompanyWorkers" Relationship="MVCTaskMasterAppDataModel.FK_CompanyWorkers_Offices" FromRole="Office" ToRole="CompanyWorker" />
+  </EntityType>
+  <Association Name="FK_Offices_Company">
+    <End Type="MVCTaskMasterAppDataModel.Company" Role="Company" Multiplicity="1" />
+    <End Type="MVCTaskMasterAppDataModel.Office" Role="Office" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="Office">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CompanyWorkers_Offices">
+    <End Type="MVCTaskMasterAppDataModel.Office" Role="Office" Multiplicity="1" />
+    <End Type="MVCTaskMasterAppDataModel.CompanyWorker" Role="CompanyWorker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Office">
+        <PropertyRef Name="OfficeID" />
+      </Principal>
+      <Dependent Role="CompanyWorker">
+        <PropertyRef Name="OfficeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Messages_Projects">
+    <End Type="MVCTaskMasterAppDataModel.Project" Role="Project" Multiplicity="1" />
+    <End Type="MVCTaskMasterAppDataModel.Message" Role="Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Messages_Users">
+    <End Type="MVCTaskMasterAppDataModel.User" Role="User" Multiplicity="1" />
+    <End Type="MVCTaskMasterAppDataModel.Message" Role="Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="SelectUserProjectsDashboard_Result">
+    <Property Type="Int32" Name="ProjectID" Nullable="false" />
+    <Property Type="String" Name="ProjectName" Nullable="false" MaxLength="70" />
+    <Property Type="String" Name="CompanyName" Nullable="false" MaxLength="30" />
+    <Property Type="Int32" Name="CompanyID" Nullable="false" />
+    <Property Type="String" Name="OfficeName" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Address" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="PostalCode" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Country" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Province" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="City" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Description" Nullable="false" MaxLength="250" />
+    <Property Type="DateTime" Name="StartDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="EndDate" Nullable="true" Precision="23" />
+  </ComplexType>
+  <EntityType Name="UserPasswordResset">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="Code" Type="String" Nullable="false" MaxLength="28" FixedLength="true" Unicode="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="TimeIssued" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="User" Relationship="MVCTaskMasterAppDataModel.FK_UserPasswordResset_Users" FromRole="UserPasswordResset" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_UserPasswordResset_Users">
+    <End Type="MVCTaskMasterAppDataModel.User" Role="User" Multiplicity="1" />
+    <End Type="MVCTaskMasterAppDataModel.UserPasswordResset" Role="UserPasswordResset" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserPasswordResset">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Task">
+    <Key>
+      <PropertyRef Name="TaskID" />
+    </Key>
+    <Property Name="TaskID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SubContractorID" Type="Int32" Nullable="false" />
+    <Property Name="TaskTypeID" Type="Int32" Nullable="false" />
+    <Property Name="ProjectID" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Precision="3" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Company" Relationship="MVCTaskMasterAppDataModel.FK_Projects_SubContractorID" FromRole="Task" ToRole="Company" />
+    <NavigationProperty Name="Project" Relationship="MVCTaskMasterAppDataModel.FK_Tasks_Projects" FromRole="Task" ToRole="Project" />
+    <NavigationProperty Name="TaskType" Relationship="MVCTaskMasterAppDataModel.FK_Tasks_TaskTypes" FromRole="Task" ToRole="TaskType" />
+    <NavigationProperty Name="TaskLinkers" Relationship="MVCTaskMasterAppDataModel.FK_TaskLinkers_Tasks_Next" FromRole="Task" ToRole="TaskLinker" />
+    <NavigationProperty Name="TaskLinkers1" Relationship="MVCTaskMasterAppDataModel.FK_TaskLinkers_Tasks_Owner" FromRole="Task" ToRole="TaskLinker" />
+  </EntityType>
+  <Association Name="FK_Projects_SubContractorID">
+    <End Type="MVCTaskMasterAppDataModel.Company" Role="Company" Multiplicity="1" />
+    <End Type="MVCTaskMasterAppDataModel.Task" Role="Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="SubContractorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tasks_Projects">
+    <End Type="MVCTaskMasterAppDataModel.Project" Role="Project" Multiplicity="1" />
+    <End Type="MVCTaskMasterAppDataModel.Task" Role="Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tasks_TaskTypes">
+    <End Type="MVCTaskMasterAppDataModel.TaskType" Role="TaskType" Multiplicity="1" />
+    <End Type="MVCTaskMasterAppDataModel.Task" Role="Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaskType">
+        <PropertyRef Name="TaskTypeID" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="TaskTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TaskLinker">
+    <Key>
+      <PropertyRef Name="linkerID" />
+    </Key>
+    <Property Name="linkerID" Type="Int32" Nullable="false" />
+    <Property Name="TaskID" Type="Int32" Nullable="false" />
+    <Property Name="NextTaskID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Task" Relationship="MVCTaskMasterAppDataModel.FK_TaskLinkers_Tasks_Next" FromRole="TaskLinker" ToRole="Task" />
+    <NavigationProperty Name="Task1" Relationship="MVCTaskMasterAppDataModel.FK_TaskLinkers_Tasks_Owner" FromRole="TaskLinker" ToRole="Task" />
+  </EntityType>
+  <Association Name="FK_TaskLinkers_Tasks_Next">
+    <End Type="MVCTaskMasterAppDataModel.Task" Role="Task" Multiplicity="1" />
+    <End Type="MVCTaskMasterAppDataModel.TaskLinker" Role="TaskLinker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Task">
+        <PropertyRef Name="TaskID" />
+      </Principal>
+      <Dependent Role="TaskLinker">
+        <PropertyRef Name="NextTaskID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskLinkers_Tasks_Owner">
+    <End Type="MVCTaskMasterAppDataModel.Task" Role="Task" Multiplicity="1" />
+    <End Type="MVCTaskMasterAppDataModel.TaskLinker" Role="TaskLinker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Task">
+        <PropertyRef Name="TaskID" />
+      </Principal>
+      <Dependent Role="TaskLinker">
+        <PropertyRef Name="TaskID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,615 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MVCTaskMasterAppDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CompanyRoles">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyID" Type="int" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="SuperRole" Type="int" />
+    <Property Name="Admin" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Companys">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+    </Key>
+    <Property Name="CompanyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+    <Property Name="CompanySite" Type="nchar" MaxLength="40" />
+  </EntityType>
+  <EntityType Name="CompanyWorkers">
+    <Key>
+      <PropertyRef Name="WorkerID" />
+    </Key>
+    <Property Name="CompanyID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="RoleID" Type="int" Nullable="false" />
+    <Property Name="OfficeID" Type="int" Nullable="false" />
+    <Property Name="WorkerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Messages">
+    <Key>
+      <PropertyRef Name="MessageID" />
+    </Key>
+    <Property Name="MessageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="ProjectID" Type="int" Nullable="false" />
+    <Property Name="Text" Type="nvarchar" MaxLength="2000" />
+  </EntityType>
+  <EntityType Name="Offices">
+    <Key>
+      <PropertyRef Name="OfficeID" />
+    </Key>
+    <Property Name="OfficeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyID" Type="int" Nullable="false" />
+    <Property Name="Country" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Province" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="City" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="Address" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="PostalCode" Type="char" MaxLength="6" Nullable="false" />
+    <Property Name="Phone" Type="char" MaxLength="14" Nullable="false" />
+    <Property Name="Fax" Type="char" MaxLength="14" />
+    <Property Name="OfficeName" Type="nchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProjectFiles">
+    <Key>
+      <PropertyRef Name="FileID" />
+    </Key>
+    <Property Name="FileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectID" Type="int" Nullable="false" />
+    <Property Name="File" Type="varbinary" MaxLength="16" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Projects">
+    <Key>
+      <PropertyRef Name="ProjectID" />
+    </Key>
+    <Property Name="ProjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectName" Type="nvarchar" MaxLength="70" Nullable="false" />
+    <Property Name="CompanyID" Type="int" Nullable="false" />
+    <Property Name="ManagerID" Type="int" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="PostalCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Country" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Province" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="City" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" Nullable="false" />
+    <Property Name="EndDate" Type="datetime" />
+    <Property Name="CreationDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sessions">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="Code" Type="char" MaxLength="28" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="TimeLastValidated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TaskLinkers">
+    <Key>
+      <PropertyRef Name="linkerID" />
+    </Key>
+    <Property Name="linkerID" Type="int" Nullable="false" />
+    <Property Name="TaskID" Type="int" Nullable="false" />
+    <Property Name="NextTaskID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tasks">
+    <Key>
+      <PropertyRef Name="TaskID" />
+    </Key>
+    <Property Name="TaskID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubContractorID" Type="int" Nullable="false" />
+    <Property Name="TaskTypeID" Type="int" Nullable="false" />
+    <Property Name="ProjectID" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+    <Property Name="StartDate" Type="datetime" Nullable="false" />
+    <Property Name="EndDate" Type="datetime" />
+    <Property Name="CreationDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TaskTypes">
+    <Key>
+      <PropertyRef Name="TaskTypeID" />
+    </Key>
+    <Property Name="TaskTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyID" Type="int" Nullable="false" />
+    <Property Name="Tag" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserPasswordResset">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="Code" Type="char" MaxLength="28" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="TimeIssued" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MiddleInitial" Type="nchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="320" Nullable="false" />
+    <Property Name="Password" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="Salt" Type="char" MaxLength="28" Nullable="false" />
+    <Property Name="HomePhone" Type="char" MaxLength="11" Nullable="false" />
+    <Property Name="CellPhone" Type="char" MaxLength="11" />
+    <Property Name="WorkPhone" Type="char" MaxLength="11" />
+    <Property Name="Valid" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_CompanyRoles_Companys">
+    <End Role="Companys" Type="Self.Companys" Multiplicity="1" />
+    <End Role="CompanyRoles" Type="Self.CompanyRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companys">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="CompanyRoles">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CompanyWorkers_Company">
+    <End Role="Companys" Type="Self.Companys" Multiplicity="1" />
+    <End Role="CompanyWorkers" Type="Self.CompanyWorkers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companys">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="CompanyWorkers">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CompanyWorkers_Offices">
+    <End Role="Offices" Type="Self.Offices" Multiplicity="1" />
+    <End Role="CompanyWorkers" Type="Self.CompanyWorkers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Offices">
+        <PropertyRef Name="OfficeID" />
+      </Principal>
+      <Dependent Role="CompanyWorkers">
+        <PropertyRef Name="OfficeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CompanyWorkers_Rolls">
+    <End Role="CompanyRoles" Type="Self.CompanyRoles" Multiplicity="1" />
+    <End Role="CompanyWorkers" Type="Self.CompanyWorkers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CompanyRoles">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="CompanyWorkers">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CompanyWorkers_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="CompanyWorkers" Type="Self.CompanyWorkers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="CompanyWorkers">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Messages_Projects">
+    <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
+    <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projects">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="Messages">
+        <PropertyRef Name="ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Messages_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Messages">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Offices_Company">
+    <End Role="Companys" Type="Self.Companys" Multiplicity="1" />
+    <End Role="Offices" Type="Self.Offices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companys">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="Offices">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectFiles_Projects">
+    <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
+    <End Role="ProjectFiles" Type="Self.ProjectFiles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projects">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="ProjectFiles">
+        <PropertyRef Name="ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Projects_Company">
+    <End Role="Companys" Type="Self.Companys" Multiplicity="1" />
+    <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companys">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="Projects">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Projects_SubContractorID">
+    <End Role="Companys" Type="Self.Companys" Multiplicity="1" />
+    <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companys">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="Tasks">
+        <PropertyRef Name="SubContractorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Projects_User_PManager">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Projects">
+        <PropertyRef Name="ManagerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rolls_SuperRoles">
+    <End Role="CompanyRoles" Type="Self.CompanyRoles" Multiplicity="0..1" />
+    <End Role="CompanyRoles1" Type="Self.CompanyRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CompanyRoles">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="CompanyRoles1">
+        <PropertyRef Name="SuperRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sessions_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Sessions" Type="Self.Sessions" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Sessions">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskLinkers_Tasks_Next">
+    <End Role="Tasks" Type="Self.Tasks" Multiplicity="1" />
+    <End Role="TaskLinkers" Type="Self.TaskLinkers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tasks">
+        <PropertyRef Name="TaskID" />
+      </Principal>
+      <Dependent Role="TaskLinkers">
+        <PropertyRef Name="NextTaskID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskLinkers_Tasks_Owner">
+    <End Role="Tasks" Type="Self.Tasks" Multiplicity="1" />
+    <End Role="TaskLinkers" Type="Self.TaskLinkers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tasks">
+        <PropertyRef Name="TaskID" />
+      </Principal>
+      <Dependent Role="TaskLinkers">
+        <PropertyRef Name="TaskID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tasks_Projects">
+    <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
+    <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projects">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="Tasks">
+        <PropertyRef Name="ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tasks_TaskTypes">
+    <End Role="TaskTypes" Type="Self.TaskTypes" Multiplicity="1" />
+    <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaskTypes">
+        <PropertyRef Name="TaskTypeID" />
+      </Principal>
+      <Dependent Role="Tasks">
+        <PropertyRef Name="TaskTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskTypes_Companys">
+    <End Role="Companys" Type="Self.Companys" Multiplicity="1" />
+    <End Role="TaskTypes" Type="Self.TaskTypes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companys">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="TaskTypes">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserPasswordResset_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UserPasswordResset" Type="Self.UserPasswordResset" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserPasswordResset">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="CreateThePasswordResset" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="Code" Type="char" Mode="In" />
+  </Function>
+  <Function Name="CreateTheSession" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="int" Mode="In" />
+    <Parameter Name="Code" Type="char" Mode="In" />
+  </Function>
+  <Function Name="DeleteTheCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CompanyID" Type="int" Mode="In" />
+    <Parameter Name="ErrorMessage" Type="char" Mode="InOut" />
+  </Function>
+  <Function Name="DeleteTheRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RoleID" Type="int" Mode="In" />
+    <Parameter Name="ErrorMessage" Type="nvarchar" Mode="InOut" />
+  </Function>
+  <Function Name="DeleteTheSession" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SessionID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="DeleteTheUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+    <Parameter Name="MiddleInitial" Type="nchar" Mode="In" />
+    <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="Password" Type="nvarchar" Mode="In" />
+    <Parameter Name="HomePhone" Type="char" Mode="In" />
+    <Parameter Name="CellPhone" Type="char" Mode="In" />
+    <Parameter Name="WorkPhone" Type="char" Mode="In" />
+    <Parameter Name="ErrorMessage" Type="char" Mode="InOut" />
+  </Function>
+  <Function Name="DoPasswordResset" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="Code" Type="char" Mode="In" />
+    <Parameter Name="Password" Type="nvarchar" Mode="In" />
+    <Parameter Name="Salt" Type="char" Mode="In" />
+  </Function>
+  <Function Name="GetTheSalt" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Email" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="InsertErrorInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ErrorMessage" Type="nvarchar" Mode="In" />
+    <Parameter Name="Type" Type="tinyint" Mode="In" />
+    <Parameter Name="Table" Type="tinyint" Mode="In" />
+    <Parameter Name="SQLErrorCode" Type="int" Mode="In" />
+    <Parameter Name="MyErrorCode" Type="int" Mode="In" />
+  </Function>
+  <Function Name="InsertNewCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CompanyName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Description" Type="nvarchar" Mode="In" />
+    <Parameter Name="CompanySite" Type="nchar" Mode="In" />
+    <Parameter Name="ErrorMessage" Type="char" Mode="InOut" />
+  </Function>
+  <Function Name="InsertNewOffice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CompanyID" Type="int" Mode="In" />
+    <Parameter Name="Country" Type="varchar" Mode="In" />
+    <Parameter Name="Province" Type="nchar" Mode="In" />
+    <Parameter Name="City" Type="nchar" Mode="In" />
+    <Parameter Name="Address" Type="nchar" Mode="In" />
+    <Parameter Name="PostalCode" Type="char" Mode="In" />
+    <Parameter Name="Phone" Type="char" Mode="In" />
+    <Parameter Name="Fax" Type="char" Mode="In" />
+    <Parameter Name="Name" Type="nchar" Mode="In" />
+    <Parameter Name="ErrorMessage" Type="char" Mode="InOut" />
+  </Function>
+  <Function Name="InsertNewRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CompanyID" Type="int" Mode="In" />
+    <Parameter Name="RoleName" Type="nvarchar" Mode="In" />
+    <Parameter Name="SuperRole" Type="int" Mode="In" />
+    <Parameter Name="Admin" Type="bit" Mode="In" />
+    <Parameter Name="ErrorMessage" Type="nvarchar" Mode="InOut" />
+  </Function>
+  <Function Name="InsertNewUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+    <Parameter Name="MiddleInitial" Type="nchar" Mode="In" />
+    <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="Password" Type="nvarchar" Mode="In" />
+    <Parameter Name="Salt" Type="char" Mode="In" />
+    <Parameter Name="HomePhone" Type="char" Mode="In" />
+    <Parameter Name="CellPhone" Type="char" Mode="In" />
+    <Parameter Name="WorkPhone" Type="char" Mode="In" />
+    <Parameter Name="ErrorMessage" Type="nvarchar" Mode="InOut" />
+  </Function>
+  <Function Name="IsEmailUsed" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Email" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="PasswordCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="Password" Type="nvarchar" Mode="In" />
+    <Parameter Name="IDOut" Type="int" Mode="InOut" />
+    <Parameter Name="ChecksOut" Type="bit" Mode="InOut" />
+  </Function>
+  <Function Name="SelectTheUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="ErrorMessage" Type="char" Mode="InOut" />
+  </Function>
+  <Function Name="SelectUserProjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="param1" Type="int" Mode="In" />
+    <Parameter Name="param2" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SelectUserProjectsDashboard" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UpdateTheCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CompanyID" Type="int" Mode="In" />
+    <Parameter Name="CompanyName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Description" Type="nvarchar" Mode="In" />
+    <Parameter Name="CompanySite" Type="nchar" Mode="In" />
+    <Parameter Name="ErrorMessage" Type="char" Mode="InOut" />
+  </Function>
+  <Function Name="UpdateTheRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RollID" Type="int" Mode="In" />
+    <Parameter Name="RoleName" Type="nvarchar" Mode="In" />
+    <Parameter Name="SuperRole" Type="int" Mode="In" />
+    <Parameter Name="Admin" Type="bit" Mode="In" />
+    <Parameter Name="ErrorMessage" Type="nvarchar" Mode="InOut" />
+  </Function>
+  <Function Name="UpdateTheUserChangePassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="int" Mode="In" />
+    <Parameter Name="Password" Type="nvarchar" Mode="In" />
+    <Parameter Name="NewPassword" Type="nvarchar" Mode="In" />
+    <Parameter Name="ErrorMessage" Type="char" Mode="InOut" />
+  </Function>
+  <Function Name="UpdateTheUserInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="int" Mode="In" />
+    <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+    <Parameter Name="MiddleInitial" Type="nchar" Mode="In" />
+    <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+    <Parameter Name="HomePhone" Type="char" Mode="In" />
+    <Parameter Name="CellPhone" Type="char" Mode="In" />
+    <Parameter Name="WorkPhone" Type="char" Mode="In" />
+    <Parameter Name="ErrorMessage" Type="char" Mode="InOut" />
+  </Function>
+  <Function Name="ValidateSession" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="int" Mode="In" />
+    <Parameter Name="Code" Type="char" Mode="In" />
+  </Function>
+  <EntityContainer Name="MVCTaskMasterAppDataModelStoreContainer">
+    <EntitySet Name="CompanyRoles" EntityType="Self.CompanyRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Companys" EntityType="Self.Companys" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CompanyWorkers" EntityType="Self.CompanyWorkers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Offices" EntityType="Self.Offices" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectFiles" EntityType="Self.ProjectFiles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sessions" EntityType="Self.Sessions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TaskLinkers" EntityType="Self.TaskLinkers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TaskTypes" EntityType="Self.TaskTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserPasswordResset" EntityType="Self.UserPasswordResset" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CompanyRoles_Companys" Association="Self.FK_CompanyRoles_Companys">
+      <End Role="Companys" EntitySet="Companys" />
+      <End Role="CompanyRoles" EntitySet="CompanyRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CompanyWorkers_Company" Association="Self.FK_CompanyWorkers_Company">
+      <End Role="Companys" EntitySet="Companys" />
+      <End Role="CompanyWorkers" EntitySet="CompanyWorkers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CompanyWorkers_Offices" Association="Self.FK_CompanyWorkers_Offices">
+      <End Role="Offices" EntitySet="Offices" />
+      <End Role="CompanyWorkers" EntitySet="CompanyWorkers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CompanyWorkers_Rolls" Association="Self.FK_CompanyWorkers_Rolls">
+      <End Role="CompanyRoles" EntitySet="CompanyRoles" />
+      <End Role="CompanyWorkers" EntitySet="CompanyWorkers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CompanyWorkers_Users" Association="Self.FK_CompanyWorkers_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="CompanyWorkers" EntitySet="CompanyWorkers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Messages_Projects" Association="Self.FK_Messages_Projects">
+      <End Role="Projects" EntitySet="Projects" />
+      <End Role="Messages" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Messages_Users" Association="Self.FK_Messages_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Messages" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Offices_Company" Association="Self.FK_Offices_Company">
+      <End Role="Companys" EntitySet="Companys" />
+      <End Role="Offices" EntitySet="Offices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectFiles_Projects" Association="Self.FK_ProjectFiles_Projects">
+      <End Role="Projects" EntitySet="Projects" />
+      <End Role="ProjectFiles" EntitySet="ProjectFiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Projects_Company" Association="Self.FK_Projects_Company">
+      <End Role="Companys" EntitySet="Companys" />
+      <End Role="Projects" EntitySet="Projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Projects_SubContractorID" Association="Self.FK_Projects_SubContractorID">
+      <End Role="Companys" EntitySet="Companys" />
+      <End Role="Tasks" EntitySet="Tasks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Projects_User_PManager" Association="Self.FK_Projects_User_PManager">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Projects" EntitySet="Projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rolls_SuperRoles" Association="Self.FK_Rolls_SuperRoles">
+      <End Role="CompanyRoles" EntitySet="CompanyRoles" />
+      <End Role="CompanyRoles1" EntitySet="CompanyRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sessions_Users" Association="Self.FK_Sessions_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Sessions" EntitySet="Sessions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskLinkers_Tasks_Next" Association="Self.FK_TaskLinkers_Tasks_Next">
+      <End Role="Tasks" EntitySet="Tasks" />
+      <End Role="TaskLinkers" EntitySet="TaskLinkers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskLinkers_Tasks_Owner" Association="Self.FK_TaskLinkers_Tasks_Owner">
+      <End Role="Tasks" EntitySet="Tasks" />
+      <End Role="TaskLinkers" EntitySet="TaskLinkers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tasks_Projects" Association="Self.FK_Tasks_Projects">
+      <End Role="Projects" EntitySet="Projects" />
+      <End Role="Tasks" EntitySet="Tasks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tasks_TaskTypes" Association="Self.FK_Tasks_TaskTypes">
+      <End Role="TaskTypes" EntitySet="TaskTypes" />
+      <End Role="Tasks" EntitySet="Tasks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskTypes_Companys" Association="Self.FK_TaskTypes_Companys">
+      <End Role="Companys" EntitySet="Companys" />
+      <End Role="TaskTypes" EntitySet="TaskTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserPasswordResset_Users" Association="Self.FK_UserPasswordResset_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserPasswordResset" EntitySet="UserPasswordResset" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
