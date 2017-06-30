@@ -221,6 +221,9 @@
     <Compile Include="Models\Users\UserEditPref.cs" />
     <Compile Include="Models\Users\UserChangePassword.cs" />
     <Compile Include="Models\Users\UserEditProfile.cs" />
+    <Compile Include="Models\UserValidation.cs">
+      <DependentUpon>TaskMasterData.tt</DependentUpon>
+    </Compile>
     <Compile Include="SecurityValidation\DBFSPAuthorizeAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
@@ -290,7 +293,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="_HelpersAndExtens\CustomWebHelpersAndExtentions.cs" />
-    <Compile Include="_HelpersAndExtens\DataBaseHelpers.cs" />
+    <Compile Include="_HelpersAndExtens\SharedStarters.cs" />
     <Compile Include="_HelpersAndExtens\SecurityHelper.cs" />
     <Compile Include="_HelpersAndExtens\SMTPHelper.cs" />
   </ItemGroup>
@@ -322,6 +325,7 @@
     <Content Include="Models\TaskMasterData.edmx.diagram">
       <DependentUpon>TaskMasterData.edmx</DependentUpon>
     </Content>
+    <None Include="PrivateServerOptions - ExForSMTPOp.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -370,6 +374,9 @@
     <Content Include="Views\Account\PasswordResetStep2.cshtml" />
     <Content Include="Views\Shared\FriendlyErr.cshtml" />
     <Content Include="Scripts\TypeScriptOutput\Gant.js.map" />
+    <Content Include="Views\Account\PasswordResetEmailTemplate.cshtml" />
+    <Content Include="Views\Shared\_EmailLayout.cshtml" />
+    <None Include="PrivateServerOptions.Config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\ManageCompany\" />

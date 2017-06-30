@@ -83,7 +83,6 @@
           <ScalarProperty Name="HomePhone" ColumnName="HomePhone" />
           <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
           <ScalarProperty Name="WorkPhone" ColumnName="WorkPhone" />
-          <ScalarProperty Name="Valid" ColumnName="Valid" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -241,6 +240,15 @@
           <ScalarProperty Name="NextTaskID" ColumnName="NextTaskID" />
           <ScalarProperty Name="TaskID" ColumnName="TaskID" />
           <ScalarProperty Name="linkerID" ColumnName="linkerID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserValidations">
+      <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.UserValidation">
+        <MappingFragment StoreEntitySet="UserValidations">
+          <ScalarProperty Name="TimeIssued" ColumnName="TimeIssued" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

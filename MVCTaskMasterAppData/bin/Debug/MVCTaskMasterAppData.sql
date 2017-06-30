@@ -40,6 +40,30 @@ USE [$(DatabaseName)];
 
 
 GO
+PRINT N'Dropping [dbo].[CK_Users_CellPhone]...';
+
+
+GO
+ALTER TABLE [dbo].[Users] DROP CONSTRAINT [CK_Users_CellPhone];
+
+
+GO
+PRINT N'Dropping [dbo].[CK_Users_HomePhone]...';
+
+
+GO
+ALTER TABLE [dbo].[Users] DROP CONSTRAINT [CK_Users_HomePhone];
+
+
+GO
+PRINT N'Dropping [dbo].[CK_Users_WorkPhone]...';
+
+
+GO
+ALTER TABLE [dbo].[Users] DROP CONSTRAINT [CK_Users_WorkPhone];
+
+
+GO
 PRINT N'Update complete.';
 
 

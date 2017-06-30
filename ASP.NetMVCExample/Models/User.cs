@@ -32,7 +32,6 @@ namespace ASP.NetMVCExample.Models
         public string HomePhone { get; set; }
         public string CellPhone { get; set; }
         public string WorkPhone { get; set; }
-        public bool Valid { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CompanyWorker> CompanyWorkers { get; set; }
@@ -42,5 +41,6 @@ namespace ASP.NetMVCExample.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Message> Messages { get; set; }
         public virtual UserPasswordResset UserPasswordResset { get; set; }
+        public virtual UserValidation UserValidation { get; set; }
     }
 }
