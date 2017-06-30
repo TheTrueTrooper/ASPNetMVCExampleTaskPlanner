@@ -99,12 +99,12 @@
     <Property Name="HomePhone" Type="String" MaxLength="11" FixedLength="true" Unicode="false" Nullable="false" />
     <Property Name="CellPhone" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
     <Property Name="WorkPhone" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+    <Property Name="Valid" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="CompanyWorkers" Relationship="Self.FK_CompanyWorkers_Users" FromRole="Users" ToRole="CompanyWorkers" />
     <NavigationProperty Name="Projects" Relationship="Self.FK_Projects_User_PManager" FromRole="Users" ToRole="Projects" />
     <NavigationProperty Name="Session" Relationship="MVCTaskMasterAppDataModel.FK_Sessions_Users" FromRole="User" ToRole="Session" />
     <NavigationProperty Name="Messages" Relationship="MVCTaskMasterAppDataModel.FK_Messages_Users" FromRole="User" ToRole="Message" />
     <NavigationProperty Name="UserPasswordResset" Relationship="MVCTaskMasterAppDataModel.FK_UserPasswordResset_Users" FromRole="User" ToRole="UserPasswordResset" />
-    <NavigationProperty Name="UserValidation" Relationship="MVCTaskMasterAppDataModel.FK_UserValidations_Users" FromRole="User" ToRole="UserValidation" />
   </EntityType>
   <Association Name="FK_CompanyRoles_Companys">
     <End Role="Companys" Type="Self.Company" Multiplicity="1" />
@@ -445,11 +445,6 @@
       <End Role="Task" EntitySet="Tasks" />
       <End Role="TaskLinker" EntitySet="TaskLinkers" />
     </AssociationSet>
-    <EntitySet Name="UserValidations" EntityType="MVCTaskMasterAppDataModel.UserValidation" />
-    <AssociationSet Name="FK_UserValidations_Users" Association="MVCTaskMasterAppDataModel.FK_UserValidations_Users">
-      <End Role="User" EntitySet="Users" />
-      <End Role="UserValidation" EntitySet="UserValidations" />
-    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="DeleteTheRole_Result">
     <Property Type="Int32" Name="Column1" Nullable="true" />
@@ -703,27 +698,6 @@
       </Principal>
       <Dependent Role="TaskLinker">
         <PropertyRef Name="TaskID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityType Name="UserValidation">
-    <Key>
-      <PropertyRef Name="UserID" />
-    </Key>
-    <Property Name="Code" Type="String" Nullable="false" MaxLength="28" FixedLength="true" Unicode="false" />
-    <Property Name="UserID" Type="Int32" Nullable="false" />
-    <Property Name="TimeIssued" Type="DateTime" Nullable="false" Precision="3" />
-    <NavigationProperty Name="User" Relationship="MVCTaskMasterAppDataModel.FK_UserValidations_Users" FromRole="UserValidation" ToRole="User" />
-  </EntityType>
-  <Association Name="FK_UserValidations_Users">
-    <End Type="MVCTaskMasterAppDataModel.User" Role="User" Multiplicity="1" />
-    <End Type="MVCTaskMasterAppDataModel.UserValidation" Role="UserValidation" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="UserID" />
-      </Principal>
-      <Dependent Role="UserValidation">
-        <PropertyRef Name="UserID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

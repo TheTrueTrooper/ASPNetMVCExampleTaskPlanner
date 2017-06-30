@@ -16,7 +16,7 @@ namespace ASP.NetMVCExample.Controllers
     [DBFSPAuthorize]
     public class DashboardController : Controller
     {
-        static MVCTaskMasterAppDataEntities2 DB = SharedStarter.GetDataBase();
+        static MVCTaskMasterAppDataEntities2 DB = DataBaseHelpers.GetDataBase();
         // GET: Dashboard
         /// <summary>
         /// returns the dash board page from which we can move around from

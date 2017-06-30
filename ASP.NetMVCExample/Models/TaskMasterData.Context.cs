@@ -41,7 +41,6 @@ namespace ASP.NetMVCExample.Models
         public virtual DbSet<UserPasswordResset> UserPasswordRessets { get; set; }
         public virtual DbSet<Task> Tasks { get; set; }
         public virtual DbSet<TaskLinker> TaskLinkers { get; set; }
-        public virtual DbSet<UserValidation> UserValidations { get; set; }
     
         public virtual int DeleteTheCompany(Nullable<int> companyID, ObjectParameter errorMessage)
         {

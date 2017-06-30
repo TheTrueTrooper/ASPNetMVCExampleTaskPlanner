@@ -124,6 +124,7 @@ namespace ASP.NetMVCExample.WebHelpers
     /// </summary>
     public static class CustomWebExtentions
     {
+
         //Extentions for use with strings 
         #region Strings
         public static bool IsValidEmail(this string ToCheck)

@@ -1,6 +1,4 @@
-﻿select * from ErrorTable
-
-select * from Users
+﻿select * from Users
 
 select * from Companys
 

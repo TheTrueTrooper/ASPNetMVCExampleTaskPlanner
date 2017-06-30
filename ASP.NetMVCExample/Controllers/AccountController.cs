@@ -10,7 +10,6 @@ using ASP.NetMVCExample.Models.Users;
 using ASP.NetMVCExample.Models;
 using ASP.NetMVCExample.SecurityValidation;
 using ASP.NetMVCExample._Helpers;
-using ASP.NetMVCExample.SMTPHelpers;
 
 namespace ASP.NetMVCExample.Controllers
 {
@@ -27,20 +26,7 @@ namespace ASP.NetMVCExample.Controllers
         /// <summary>
         /// the Global Shared Database 
         /// </summary>
-        MVCTaskMasterAppDataEntities2 DB = SharedStarter.GetDataBase();
-
-        SMTPClient SMTPClient = SharedStarter.GetSMTP();
-
-        [NonAction]
-        void SendEmail(string ToEmail, string Subject, string View, object Model = null)
-        {
-            string EmailTempOut = this.GetRazorTemplateAsString(View, Model);
-
-            SMTPClient.SendMessage(ToEmail, Subject, EmailTempOut);
-        }
-
-
-        //-----------------------------------------------------------------------Pages------------------------------------------------------------------------------
+        MVCTaskMasterAppDataEntities2 DB = DataBaseHelpers.GetDataBase();
 
         /// <summary>
         /// creates a page for us to login at
@@ -163,8 +149,6 @@ namespace ASP.NetMVCExample.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult PasswordReset(ASP.NetMVCExample.Models.Users.UserPasswordResset Resset)
         {
-            const string PasswordResetSub = "Task Manager - Password Resset";
-
             //if we have a fully valid reset then we are done
             if (ModelState.IsValid)
             {
@@ -182,7 +166,7 @@ namespace ASP.NetMVCExample.Controllers
                 if (DB.CreateThePasswordResset(Resset.Email, Code).First().Value)
                 {
                     // if bound send an email to the email
-                    SendEmail(Resset.Email, PasswordResetSub, "PasswordResetEmailTemplate", Resset);
+                    //place email smpt here Provider not choosen yet Is google make a helper now
                 }
                 //move to the next step - dont inform fail in case of data drilling
                 return View("PasswordResetStep2", Resset);
@@ -213,5 +197,6 @@ namespace ASP.NetMVCExample.Controllers
             Session.Abandon();
             return RedirectToAction("Index", "Home");
         }
+
     }
 }

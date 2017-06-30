@@ -12,5 +12,8 @@
     [WorkPhone] CHAR(11) NULL, 
 
     CONSTRAINT [CK_Users_Email] CHECK (Email like '[^.]%[^.][@]%[.]%'), 
+    CONSTRAINT [CK_Users_HomePhone] CHECK (HomePhone like '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'),
+	CONSTRAINT [CK_Users_CellPhone] CHECK (CellPhone like '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'),
+	CONSTRAINT [CK_Users_WorkPhone] CHECK (WorkPhone like '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'), 
     CONSTRAINT [AK_Users_Email] UNIQUE ([Email])
 )
