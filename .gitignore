@@ -50,3 +50,4 @@ MVCTaskMasterAppData/Scripts/StoredProce/Company/UpdateTheCompany.sql
 MVCTaskMasterAppData/Scripts/StoredProce/Company/InsertNewCompany.sql
 MVCTaskMasterAppData/Scripts/StoredProce/CompanyRoles/DeleteTheRole.sql
 MVCTaskMasterAppData/Scripts/StoredProce/CompanyRoles/InsertNewRole.sql
+ASP.NetMVCExample/PrivateServerOptions.Config
