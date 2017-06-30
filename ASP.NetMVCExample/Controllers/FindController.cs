@@ -14,7 +14,7 @@ namespace ASP.NetMVCExample.Controllers
 {
     public class FindController : Controller
     {
-        static MVCTaskMasterAppDataEntities2 DB = DataBaseHelpers.GetDataBase();
+        static MVCTaskMasterAppDataEntities2 DB = SharedStarter.GetDataBase();
 
         // GET: Find
         public ActionResult Index()
