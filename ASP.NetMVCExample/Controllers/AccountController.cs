@@ -11,6 +11,8 @@ using ASP.NetMVCExample.Models;
 using ASP.NetMVCExample.SecurityValidation;
 using ASP.NetMVCExample._Helpers;
 using ASP.NetMVCExample.SMTPHelpers;
+using AngelASPExtentions.ASPMVCControllerExtentions;
+using AngelASPExtentions.ExtraExtentions;
 
 namespace ASP.NetMVCExample.Controllers
 {
@@ -157,37 +159,51 @@ namespace ASP.NetMVCExample.Controllers
         {
             return View("PasswordResetStep1");
         }
-        
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult PasswordResetEmailRedirect(string Email, string Code)
+        {
+            UserPasswordReset Reset = new UserPasswordReset() { Email = Email, ResetCode = Code };
+            return RedirectToAction("PasswordReset", Reset);
+        }
+
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult PasswordReset(ASP.NetMVCExample.Models.Users.UserPasswordResset Resset)
+        public ActionResult PasswordReset(ASP.NetMVCExample.Models.Users.UserPasswordReset Reset)
         {
-            const string PasswordResetSub = "Task Manager - Password Resset";
+            const string PasswordResetSub = "Task Manager - Password Reset";
 
             //if we have a fully valid reset then we are done
             if (ModelState.IsValid)
             {
-                //database maybe should have a key for valid apps incase of database leak?? maybe 
                 //change the password
-                SecurityReturn TempReturn = SecurityHelper.PasswordToSaltedHash(Resset.NewConfirmPassword, CodeLengths);
-                DB.DoPasswordResset(Resset.Email, Resset.RessetCode, TempReturn.SaltedHashedPassword, TempReturn.Salt);
+                SecurityReturn TempReturn = SecurityHelper.PasswordToSaltedHash(Reset.NewConfirmPassword, CodeLengths);
+                DB.DoPasswordResset(Reset.Email, Reset.ResetCode, TempReturn.SaltedHashedPassword, TempReturn.Salt);
                 return RedirectToAction("", "Home");
+            }
+            //if from the email you have gotten the reset code move to next step
+            if(ModelState["ResetCode"].Errors.Count < 1 && ModelState["Email"].Errors.Count < 1)
+            {
+                return View("PasswordResetStep2", Reset);
             }
             //if we provided a email to work with move to step 2
             if (ModelState["Email"].Errors.Count < 1)
             {
                 //make a code and attempt bind it
                 string Code = SecurityHelper.GetCode(20);
-                if (DB.CreateThePasswordResset(Resset.Email, Code).First().Value)
+                if (DB.CreateThePasswordResset(Reset.Email, Code).First().Value)
                 {
+                    ViewBag.URL = Url.Action("PasswordResetEmailRedirect", "Account", new { Email = Reset.Email, Code = Code });
                     // if bound send an email to the email
-                    SendEmail(Resset.Email, PasswordResetSub, "PasswordResetEmailTemplate", Resset);
+                    SendEmail(Reset.Email, PasswordResetSub, "PasswordResetEmailTemplate", Reset);
                 }
-                //move to the next step - dont inform fail in case of data drilling
-                return View("PasswordResetStep2", Resset);
+                //Display to check the email or resend
+                return View("PasswordResetCheckYourEmail", Reset);
             }
-            return View("PasswordResetStep1", Resset);
+            return View("PasswordResetStep1", Reset);
         }
 
         /// <summary>

@@ -32,5 +32,6 @@ namespace ASP.NetMVCExample.Controllers
 
             return Json(true, JsonRequestBehavior.AllowGet);
         }
+
     }
 }

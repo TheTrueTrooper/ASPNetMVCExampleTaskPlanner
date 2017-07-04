@@ -217,7 +217,7 @@
     <Compile Include="Models\UserPasswordResset.cs">
       <DependentUpon>TaskMasterData.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Users\UserPasswordResset.cs" />
+    <Compile Include="Models\Users\UserPasswordReset.cs" />
     <Compile Include="Models\Users\UserEditPref.cs" />
     <Compile Include="Models\Users\UserChangePassword.cs" />
     <Compile Include="Models\Users\UserEditProfile.cs" />
@@ -325,7 +325,9 @@
     <Content Include="Models\TaskMasterData.edmx.diagram">
       <DependentUpon>TaskMasterData.edmx</DependentUpon>
     </Content>
-    <None Include="PrivateServerOptions - ExForSMTPOp.config" />
+    <None Include="PrivateServerOptions - ExForSMTPOp.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -377,6 +379,7 @@
     <Content Include="Views\Account\PasswordResetEmailTemplate.cshtml" />
     <Content Include="Views\Shared\_EmailLayout.cshtml" />
     <None Include="PrivateServerOptions.Config" />
+    <Content Include="Views\Account\PasswordResetCheckYourEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\ManageCompany\" />
@@ -396,6 +399,12 @@
   <ItemGroup>
     <TypeScriptCompile Include="src\Code\Gant.ts" />
     <TypeScriptCompile Include="src\TypeDeffs\Moment.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\AngelASPExtentions\AngelASPExtentions\AngelASPExtentions.csproj">
+      <Project>{6d934664-f600-4b7d-8ff6-1ec49d290c04}</Project>
+      <Name>AngelASPExtentions</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

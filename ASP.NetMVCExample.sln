@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASP.NetMVCExample.Tests", "
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MVCTaskMasterAppData", "MVCTaskMasterAppData\MVCTaskMasterAppData.sqlproj", "{FACA6DED-30E1-4E7B-B963-110877490E7A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngelASPExtentions", "..\AngelASPExtentions\AngelASPExtentions\AngelASPExtentions.csproj", "{6D934664-F600-4B7D-8FF6-1EC49D290C04}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{FACA6DED-30E1-4E7B-B963-110877490E7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FACA6DED-30E1-4E7B-B963-110877490E7A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FACA6DED-30E1-4E7B-B963-110877490E7A}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{6D934664-F600-4B7D-8FF6-1EC49D290C04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D934664-F600-4B7D-8FF6-1EC49D290C04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D934664-F600-4B7D-8FF6-1EC49D290C04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D934664-F600-4B7D-8FF6-1EC49D290C04}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -235,7 +235,7 @@ namespace ASP.NetMVCExample.SMTPHelpers
         public void SendMessage(string[] To, string Subject, string Message, string[] CC = null, MailPriority MailPriority = MailPriority.Normal, bool IsHTML = true, DeliveryNotificationOptions DeliveryNotificationOptions = DeliveryNotificationOptions.None, MailAddress From = null, Encoding MSGEncoding = null)
         {
             List<MailAddress> ToList = new List<MailAddress>();
-            List<MailAddress> CCList = null;
+            List<MailAddress> CCList = new List<MailAddress>();
 
             if (To == null)
                 throw new ArgumentNullException("To is null");
@@ -260,7 +260,6 @@ namespace ASP.NetMVCExample.SMTPHelpers
 
             if(CC != null)
             {
-                CCList = new List<MailAddress>();
 
                 foreach (string s in CC)
                 {

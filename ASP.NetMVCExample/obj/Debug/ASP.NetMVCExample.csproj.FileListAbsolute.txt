@@ -73,3 +73,5 @@ C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\bin\Microsoft.Owin.S
 C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\obj\Debug\ASP.NetMVCExample.dll
 C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\obj\Debug\ASP.NetMVCExample.pdb
 C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\obj\Debug\ASP.NetMVCExample.csprojResolveAssemblyReference.cache
+C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\bin\AngelASPExtentions.dll
+C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\bin\AngelASPExtentions.pdb
