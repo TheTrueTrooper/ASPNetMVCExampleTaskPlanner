@@ -162,10 +162,11 @@ namespace ASP.NetMVCExample.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public ActionResult PasswordResetEmailRedirect(string Email, string Code)
+        public ActionResult PasswordResetEmailRedirect(string Email, string Domain, string Code)
         {
-            UserPasswordReset Reset = new UserPasswordReset() { Email = Email, ResetCode = Code };
-            return RedirectToAction("PasswordReset", Reset);
+            UserPasswordReset Reset = new UserPasswordReset() { Email = Email + "@" + Domain, ResetCode = Code };
+            string test = Reset.ToString();
+            return Json(Reset, JsonRequestBehavior.AllowGet);
         }
 
 
@@ -174,6 +175,7 @@ namespace ASP.NetMVCExample.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult PasswordReset(ASP.NetMVCExample.Models.Users.UserPasswordReset Reset)
         {
+           
             const string PasswordResetSub = "Task Manager - Password Reset";
 
             //if we have a fully valid reset then we are done
@@ -193,12 +195,13 @@ namespace ASP.NetMVCExample.Controllers
             if (ModelState["Email"].Errors.Count < 1)
             {
                 //make a code and attempt bind it
-                string Code = SecurityHelper.GetCode(20);
+                string Code = SecurityHelper.GetCode(20).CleanURLIllegalChars();
                 if (DB.CreateThePasswordResset(Reset.Email, Code).First().Value)
                 {
-                    ViewBag.URL = Url.Action("PasswordResetEmailRedirect", "Account", new { Email = Reset.Email, Code = Code });
+                    string[] Split = Reset.Email.Split(new char[] { '@' }, StringSplitOptions.RemoveEmptyEntries);
+                    ViewBag.URL = this.MakeFullURLActionLink("PasswordResetEmailRedirect", "Account", new { Email = Split[0], Domain = Split[1], Code = Code }, false);
                     // if bound send an email to the email
-                    SendEmail(Reset.Email, PasswordResetSub, "PasswordResetEmailTemplate", Reset);
+                    SendEmail(Reset.Email, PasswordResetSub, "PasswordResetEmailTemplate");
                 }
                 //Display to check the email or resend
                 return View("PasswordResetCheckYourEmail", Reset);

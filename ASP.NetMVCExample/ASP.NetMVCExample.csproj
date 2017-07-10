@@ -342,6 +342,8 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\TypeScriptOutput\Gant.js" />
+    <Content Include="Scripts\TypeScriptOutput\graph.js" />
+    <Content Include="Scripts\TypeScriptOutput\TimeManagementContainers.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -380,6 +382,8 @@
     <Content Include="Views\Shared\_EmailLayout.cshtml" />
     <None Include="PrivateServerOptions.Config" />
     <Content Include="Views\Account\PasswordResetCheckYourEmail.cshtml" />
+    <Content Include="Scripts\TypeScriptOutput\graph.js.map" />
+    <Content Include="Scripts\TypeScriptOutput\TimeManagementContainers.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\ManageCompany\" />
@@ -398,6 +402,8 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="src\Code\Gant.ts" />
+    <TypeScriptCompile Include="src\Code\Graph.ts" />
+    <TypeScriptCompile Include="src\Code\TimeManagementContainers.ts" />
     <TypeScriptCompile Include="src\TypeDeffs\Moment.d.ts" />
   </ItemGroup>
   <ItemGroup>

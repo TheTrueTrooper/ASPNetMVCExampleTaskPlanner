@@ -111,3 +111,4 @@ SELECT P.ProjectID, P.ProjectName, C.CompanyName, O.CompanyID, O.OfficeName, P.[
 
 	
 select * from Users
+select * from UserPasswordResset
