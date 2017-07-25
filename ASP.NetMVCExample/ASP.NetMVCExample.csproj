@@ -341,6 +341,7 @@
     <Content Include="Scripts\PageScripts\About\About.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\TypeScriptOutput\BasicVectors.js" />
     <Content Include="Scripts\TypeScriptOutput\Gant.js" />
     <Content Include="Scripts\TypeScriptOutput\graph.js" />
     <Content Include="Scripts\TypeScriptOutput\TimeManagementContainers.js" />
@@ -382,8 +383,9 @@
     <Content Include="Views\Shared\_EmailLayout.cshtml" />
     <None Include="PrivateServerOptions.Config" />
     <Content Include="Views\Account\PasswordResetCheckYourEmail.cshtml" />
-    <Content Include="Scripts\TypeScriptOutput\graph.js.map" />
     <Content Include="Scripts\TypeScriptOutput\TimeManagementContainers.js.map" />
+    <Content Include="Scripts\TypeScriptOutput\BasicVectors.js.map" />
+    <Content Include="Scripts\TypeScriptOutput\graph.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\ManageCompany\" />
@@ -401,6 +403,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="src\Code\BasicVectors.ts" />
     <TypeScriptCompile Include="src\Code\Gant.ts" />
     <TypeScriptCompile Include="src\Code\Graph.ts" />
     <TypeScriptCompile Include="src\Code\TimeManagementContainers.ts" />

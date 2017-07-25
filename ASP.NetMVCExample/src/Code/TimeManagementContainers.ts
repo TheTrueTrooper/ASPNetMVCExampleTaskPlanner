@@ -1,16 +1,23 @@
-﻿import * as MoDate from "../typedeffs/moment.d.ts";
+﻿/// <reference path="basicvectors.ts" />
+import * as MoDate from "../typedeffs/moment.d.ts";
 
-
-export module TimeManagementContainers
-{
+//A class that encapulates a Task
     export class Task
     {
+        //the Tasks name
         protected _TaskName: string;
+        //the time a task will start
         protected _StartDate: MoDate.Moment;
+        //the time a task will end
         protected _EndDate: MoDate.Moment;
+        //the time a task will take as a length
         protected _TimeLength: MoDate.Duration;
+         // to overload it should be set to OverloadRender with a void typodis
+        // it should do the main render you could also draw axis here
+        // wish I could type define this more but you cant function type or else I dont know how :'0 really should have one if you want to extend
         protected _VirtualRender;
 
+        //constructor used to make a task from a set of moments and a name
         constructor(name: string, StartDate: MoDate.Moment, EndDate: MoDate.Moment)
         {
             this._TaskName = name;
@@ -19,11 +26,13 @@ export module TimeManagementContainers
             this._TimeLength = MoDate.duration(EndDate.diff(StartDate));
         }
 
-        public ConstructFromDuration(name: string, StartDate: MoDate.Moment, Duration: MoDate.Duration): Task
+        // a Extra static funtion that is used to make a Task from a Duration
+        public static ConstructFromDuration(name: string, StartDate: MoDate.Moment, Duration: MoDate.Duration): Task
         {
             return new Task(name, StartDate, StartDate.add(Duration));
         }
 
+        //called to call the virtual Render or a Non-virtual interface pattern INV call system for use in rendering
         public Render(Canvas: SVGSVGElement): void
         {
             this._VirtualRender(Canvas);
@@ -31,18 +40,26 @@ export module TimeManagementContainers
 
     }
 
+    //a class that encaplates a Realational connection between tasks
     export class Linker
     {
+        //The set of tasks that must be completed befor moving on
         protected _StartTask: Task[];
+        //The set of tasks that will be moved on to
         protected _EndTask: Task[];
+         // to overload it should be set to OverloadRender with a void typodis
+        // it should do the main render you could also draw axis here
+        // wish I could type define this more but you cant function type or else I dont know how :'0 really should have one if you want to extend
         protected _VirtualRender;
 
+        //a simple constructor used to make taskLinkers from a set of tasks
         constructor(StartTask: Task[], EndTask: Task[])
         {
             this._StartTask = StartTask;
             this._EndTask = EndTask;
         }
 
+        //called to call the virtual Render or a Non-virtual interface pattern INV call system for use in rendering
         public Render(Canvas: SVGSVGElement): void
         {
             this._VirtualRender(Canvas)
@@ -52,4 +69,4 @@ export module TimeManagementContainers
             });
         }
     }
-}
+

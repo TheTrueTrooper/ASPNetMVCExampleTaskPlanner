@@ -9,13 +9,13 @@ namespace ASP.NetMVCExample
         public static void RegisterBundles(BundleCollection bundles)
         {
 
-#if DEBUG
-//BundleTable.EnableOptimizations = false;
-//            bundles.Add(new ScriptBundle("~/bundles/mainJs")
-//      .Include("~/Scripts/mainSite.js")
-//      .Include("~/Scripts/helperStuff.js"));
-//after a push up date all
-#endif
+//#if DEBUG
+////BundleTable.EnableOptimizations = false;
+////            bundles.Add(new ScriptBundle("~/bundles/mainJs")
+////      .Include("~/Scripts/mainSite.js")
+////      .Include("~/Scripts/helperStuff.js"));
+////after a push up date all
+//#endif
 
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(

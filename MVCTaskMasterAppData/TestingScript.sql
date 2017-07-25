@@ -106,8 +106,9 @@ SELECT P.ProjectID, P.ProjectName, C.CompanyName, O.CompanyID, O.OfficeName, P.[
 	join Users as U on P.ManagerID = U.UserID and CW.UserID = U.UserID
 	where P.ManagerID = 1
 
-	delete from [Sessions] where 1=1
-	delete from users where 1=1
+delete from [Sessions] where 1=1
+delete from UserPasswordResset where 1=1
+delete from users where 1=1
 
 	
 select * from Users

@@ -13,7 +13,7 @@ namespace ASP.NetMVCExample.Controllers
 {
     public class UtilitiesAPIController : Controller
     {
-        MVCTaskMasterAppDataEntities2 DB = SharedStarter.GetDataBase();
+        MVCTaskMasterAppDataEntities2 DB = new MVCTaskMasterAppDataEntities2();
 
         /// <summary>
         /// A severside validation sub page API so that we can get a post back as to vailidship

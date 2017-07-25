@@ -1,30 +1,9 @@
-/// <reference path="../typedeffs/moment.d.ts" />
 "use strict";
+/// <reference path="../typedeffs/moment.d.ts" />
+var BasicVectors = require("../Code/BasicVectors.ts");
 var Graphing;
 (function (Graphing) {
-    var Vector2D = (function () {
-        function Vector2D(X, Y) {
-            this.X = X;
-            this.Y = Y;
-        }
-        Vector2D.prototype.Add = function (Vector) {
-            this.X += Vector.X;
-            this.Y += Vector.Y;
-        };
-        Vector2D.prototype.Sub = function (Vector) {
-            this.X -= Vector.X;
-            this.Y -= Vector.Y;
-        };
-        Vector2D.prototype.Scale = function (Number) {
-            this.X *= Number;
-            this.Y *= Number;
-        };
-        Vector2D.prototype.ToString = function () {
-            return this.X.toString() + "," + this.Y.toString() + " ";
-        };
-        return Vector2D;
-    }());
-    Graphing.Vector2D = Vector2D;
+    var Vector2D = BasicVectors.Vector2D;
     var Graph = (function () {
         function Graph(Canvas) {
             // to overload it should be set to OverloadRender with a void typodis
@@ -32,11 +11,12 @@ var Graphing;
             // wish I could type define this more but you cant function type or else I dont know how :'0 really should have one if you want to extend
             this._VirtalRender = null;
             this._Canvas = Canvas;
-            this._Size = new Vector2D(Canvas.getBoundingClientRect().width, Canvas.getBoundingClientRect().height);
-            this._StartPoint = new Vector2D(0, 0);
+            this._Size = new BasicVectors.Vector2D(Canvas.getBoundingClientRect().width, Canvas.getBoundingClientRect().height);
+            this._StartPoint = new BasicVectors.Vector2D(0, 0);
             //rest per graph after
-            this._UnitPxScale = new Vector2D(50, 50);
+            this._UnitPxScale = new BasicVectors.Vector2D(50, 50);
         }
+        //called to call the virtual Render or a Non-virtual interface pattern INV call system for use in rendering
         Graph.prototype.Render = function () {
             this._VirtalRender();
         };

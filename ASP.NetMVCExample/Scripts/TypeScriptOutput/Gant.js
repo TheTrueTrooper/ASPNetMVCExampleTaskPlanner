@@ -6,6 +6,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var Graphing = require("../Code/Graph.ts");
 var TimeManagementContainers = require("../Code/TimeManagementContainers.ts");
+var BasicVectors = require("../Code/BasicVectors.ts");
 var GantGraphing;
 (function (GantGraphing) {
     var GantTask = (function (_super) {
@@ -17,7 +18,7 @@ var GantGraphing;
         GantTask.prototype.OverloadRender = function (Canvas) {
         };
         return GantTask;
-    }(TimeManagementContainers.TimeManagementContainers.Task));
+    }(TimeManagementContainers.Task));
     GantGraphing.GantTask = GantTask;
     var GantLinker = (function (_super) {
         __extends(GantLinker, _super);
@@ -26,16 +27,20 @@ var GantGraphing;
             this._VirtualRender = this.OverloadRender;
         }
         GantLinker.prototype.OverloadRender = function (Canvas) {
+            //Render all lines
+            //then render all tasks accordingly
+            this._StartTask.forEach(function (x) { return x.Render(Canvas); });
+            this._EndTask[this._EndTask.length - 1].Render(Canvas);
         };
         return GantLinker;
-    }(TimeManagementContainers.TimeManagementContainers.Linker));
+    }(TimeManagementContainers.Linker));
     GantGraphing.GantLinker = GantLinker;
     var GantChart = (function (_super) {
         __extends(GantChart, _super);
         function GantChart(Canvas) {
             _super.call(this, Canvas);
-            this._AxisTickScale = new Graphing.Graphing.Vector2D(5, 1);
-            this._UnitPxScale = new Graphing.Graphing.Vector2D(50, 50);
+            this._AxisTickScale = new BasicVectors.Vector2D(5, 1);
+            this._UnitPxScale = new BasicVectors.Vector2D(50, 50);
             this._VirtalRender = this.OverloadRender;
         }
         GantChart.prototype.OverloadRender = function () {

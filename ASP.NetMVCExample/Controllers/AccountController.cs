@@ -29,7 +29,7 @@ namespace ASP.NetMVCExample.Controllers
         /// <summary>
         /// the Global Shared Database 
         /// </summary>
-        MVCTaskMasterAppDataEntities2 DB = SharedStarter.GetDataBase();
+        MVCTaskMasterAppDataEntities2 DB = new MVCTaskMasterAppDataEntities2();
 
         SMTPClient SMTPClient = SharedStarter.GetSMTP();
 
@@ -165,14 +165,15 @@ namespace ASP.NetMVCExample.Controllers
         public ActionResult PasswordResetEmailRedirect(string Email, string Domain, string Code)
         {
             UserPasswordReset Reset = new UserPasswordReset() { Email = Email + "@" + Domain, ResetCode = Code };
-            string test = Reset.ToString();
-            return Json(Reset, JsonRequestBehavior.AllowGet);
+            return this.RedirectToPostAction("PasswordReset", Reset);
+
+            //return Json(Reset, JsonRequestBehavior.AllowGet);
         }
 
 
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult PasswordReset(ASP.NetMVCExample.Models.Users.UserPasswordReset Reset)
         {
            

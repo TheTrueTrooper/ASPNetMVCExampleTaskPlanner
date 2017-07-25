@@ -17,7 +17,7 @@ namespace ASP.NetMVCExample.Controllers
     [DBFSPAuthorize]
     public class AccountManagementController : Controller
     {
-        static MVCTaskMasterAppDataEntities2 DB = SharedStarter.GetDataBase();
+        MVCTaskMasterAppDataEntities2 DB = new MVCTaskMasterAppDataEntities2();
         // GET: AccountManagement
         //will change preferences here not edit Data, so bits extra, but it will link to data edit 
         public ActionResult Index()
