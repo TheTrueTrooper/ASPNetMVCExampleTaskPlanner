@@ -1,4 +1,21 @@
-﻿using System;
+﻿#region WritersSigniture
+//Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)
+//Date Writen: June 16,2017
+//Project Goal: Encapsulate code for reuse and make more readable.
+//File Goal: To add some custom helpers 
+//Link: https://github.com/TheTrueTrooper/AngelASPExtentions
+//Sources: 
+//  {
+//  Name: ASP.NetMVC-razor-Example-TaskPlanner 
+//  Writer/Publisher:Angelo Sanches (BitSan)
+//  Link: https://github.com/TheTrueTrooper/ASP.NetMVC-razor-Example-TaskPlanner
+//
+//  Name: ASP.net
+//  Writer/Publisher: Microsoft
+//  Link: https://www.asp.net/
+//  }
+#endregion
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;

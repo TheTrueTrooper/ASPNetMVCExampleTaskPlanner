@@ -338,6 +338,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\Moment.js" />
+    <Content Include="Scripts\MyAjaxRequest.js" />
     <Content Include="Scripts\PageScripts\About\About.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />

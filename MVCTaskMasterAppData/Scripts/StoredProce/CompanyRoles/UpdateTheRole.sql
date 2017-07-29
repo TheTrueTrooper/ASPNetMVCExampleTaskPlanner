@@ -1,4 +1,15 @@
-﻿/*
+﻿--	  Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)
+--    Date Writen: June 23,2017
+--    Project Goal: Make a cloud based app to aid in project management
+--    File Goal: 
+--    Link: https://github.com/TheTrueTrooper/AngelASPExtentions
+--    Sources/References:
+--      {
+--      Name: ASP.net
+--      Writer/Publisher: Microsoft
+--      Link: https://www.asp.net/
+--      }
+/*
 *Update Error code is 3
 *Role Table Error code is 3
 */

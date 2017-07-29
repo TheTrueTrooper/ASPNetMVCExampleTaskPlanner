@@ -1,4 +1,16 @@
-﻿/// <reference path="../typedeffs/moment.d.ts" />
+﻿/* WritersSigniture
+//Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)
+//Date Writen: June 23,2017
+//Project Goal: Make a cloud based app to aid in project management 
+//File Goal: To make a reusable graph base to extend
+//Link: https://github.com/TheTrueTrooper/AngelASPExtentions
+//Sources: 
+//  {
+//  Name: TypeScript
+//  Writer/Publisher: Microsoft
+//  Link: https://www.typescriptlang.org/
+//  }
+*/
 import * as BasicVectors from "../Code/BasicVectors.ts";
 
 export namespace Graphing

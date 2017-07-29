@@ -1,4 +1,15 @@
-﻿select * from ErrorTable
+﻿--	  Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)
+--    Date Writen: June 23,2017
+--    Project Goal: Make a cloud based app to aid in project management
+--    File Goal: To Test/Verify SQL Data base changes
+--    Link: https://github.com/TheTrueTrooper/AngelASPExtentions
+--    Sources/References:
+--      {
+--      Name: NA
+--      Writer/Publisher: NA
+--      Link: NA
+--      }
+select * from ErrorTable
 
 select * from Users
 

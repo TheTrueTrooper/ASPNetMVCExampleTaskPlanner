@@ -1,4 +1,17 @@
-﻿using System;
+﻿#region WritersSigniture
+//Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)
+//Date Writen: June 23,2017
+//Project Goal: Make a cloud based app to aid in project management 
+//File Goal: To add an encapsolated 255 salt and hash encoder
+//Link: https://github.com/TheTrueTrooper/AngelASPExtentions
+//Sources: 
+//  {
+//  Name: NA
+//  Writer/Publisher: NA
+//  Link: NA
+//  }
+#endregion
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;

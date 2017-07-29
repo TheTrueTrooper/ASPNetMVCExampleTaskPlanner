@@ -9,21 +9,24 @@ var TimeManagementContainers = require("../Code/TimeManagementContainers.ts");
 var BasicVectors = require("../Code/BasicVectors.ts");
 var GantGraphing;
 (function (GantGraphing) {
+    // an extention of the task to allow specfic gant rendering of the data
     var GantTask = (function (_super) {
         __extends(GantTask, _super);
         function GantTask(name, StartDate, EndDate) {
             _super.call(this, name, StartDate, EndDate);
+            //after a basic build set the overload accordingly
             this._VirtualRender = this.OverloadRender;
         }
         GantTask.prototype.OverloadRender = function (Canvas) {
         };
         return GantTask;
     }(TimeManagementContainers.Task));
-    GantGraphing.GantTask = GantTask;
+    // an extention of the linker to allow specfic gant rendering of the data
     var GantLinker = (function (_super) {
         __extends(GantLinker, _super);
         function GantLinker(StartTask, EndTask) {
             _super.call(this, StartTask, EndTask);
+            //after a basic build set the overload accordingly
             this._VirtualRender = this.OverloadRender;
         }
         GantLinker.prototype.OverloadRender = function (Canvas) {
@@ -34,15 +37,18 @@ var GantGraphing;
         };
         return GantLinker;
     }(TimeManagementContainers.Linker));
-    GantGraphing.GantLinker = GantLinker;
+    //a class for drawing the gant chart using the Graphing.Graph base
     var GantChart = (function (_super) {
         __extends(GantChart, _super);
         function GantChart(Canvas) {
             _super.call(this, Canvas);
+            //set some draw values
             this._AxisTickScale = new BasicVectors.Vector2D(5, 1);
             this._UnitPxScale = new BasicVectors.Vector2D(50, 50);
+            //after a basic build set the overload accordingly
             this._VirtalRender = this.OverloadRender;
         }
+        //the Over load render
         GantChart.prototype.OverloadRender = function () {
             var _this = this;
             this._Chains.forEach(function (x) {
@@ -51,6 +57,5 @@ var GantGraphing;
         };
         return GantChart;
     }(Graphing.Graphing.Graph));
-    GantGraphing.GantChart = GantChart;
 })(GantGraphing = exports.GantGraphing || (exports.GantGraphing = {}));
 //# sourceMappingURL=Gant.js.map

@@ -1,4 +1,17 @@
-﻿using System;
+﻿#region WritersSigniture
+//Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)
+//Date Writen: June 23,2017
+//Project Goal: Make a cloud based app to aid in project management 
+//File Goal: To help control the calls relating public profile searches
+//Link: https://github.com/TheTrueTrooper/AngelASPExtentions
+//Sources/References: 
+//  {
+//  Name: ASP.net
+//  Writer/Publisher: Microsoft
+//  Link: https://www.asp.net/
+//  }
+#endregion
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,7 +27,7 @@ namespace ASP.NetMVCExample.Controllers
 {
     public class FindController : Controller
     {
-        static MVCTaskMasterAppDataEntities2 DB = SharedStarter.GetDataBase();
+        MVCTaskMasterAppDataEntities2 DB = new MVCTaskMasterAppDataEntities2();
 
         // GET: Find
         public ActionResult Index()

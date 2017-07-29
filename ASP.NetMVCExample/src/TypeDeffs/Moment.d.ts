@@ -1,4 +1,12 @@
-﻿declare function moment(inp?: moment.MomentInput, format?: moment.MomentFormatSpecification, strict?: boolean): moment.Moment;
+﻿//Reseached by: Angelo Sanches (BitSan)(Git:TheTrueTrooper)
+//Reason: To use MomentJS with TypeScript
+//Sources: 
+//  {
+//  Name: DefinitelyTyped-MomentJS.d.ts
+//  Writer/Publisher: Various under DefinitelyTyped
+//  Link: https://github.com/DefinitelyTyped/DefinitelyTyped
+//  }
+declare function moment(inp?: moment.MomentInput, format?: moment.MomentFormatSpecification, strict?: boolean): moment.Moment;
 declare function moment(inp?: moment.MomentInput, format?: moment.MomentFormatSpecification, language?: string, strict?: boolean): moment.Moment;
 
 declare namespace moment {

@@ -1,4 +1,17 @@
-﻿
+﻿/* WritersSigniture
+//Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)
+//Date Writen: June 23,2017
+//Project Goal: Make a cloud based app to aid in project management 
+//File Goal: To make a Reusable vector to use in graphic transformations
+//Link: https://github.com/TheTrueTrooper/AngelASPExtentions
+//Sources: 
+//  {
+//  Name: TypeScript
+//  Writer/Publisher: Microsoft
+//  Link: https://www.typescriptlang.org/
+//  }
+*/
+
     export class Vector2D
     {
         //A simple X cord

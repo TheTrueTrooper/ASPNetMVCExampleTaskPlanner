@@ -1,4 +1,16 @@
-﻿///<reference path="graph.ts" />
+﻿/* WritersSigniture
+//Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)
+//Date Writen: June 23,2017
+//Project Goal: Make a cloud based app to aid in project management 
+//File Goal: To make a Gantt Grapher
+//Link: https://github.com/TheTrueTrooper/AngelASPExtentions
+//Sources: 
+//  {
+//  Name: TypeScript
+//  Writer/Publisher: Microsoft
+//  Link: https://www.typescriptlang.org/
+//  }
+*/
 import * as MoDate from "../typedeffs/moment.d.ts";
 import * as Graphing from "../Code/Graph.ts";
 import * as TimeManagementContainers from "../Code/TimeManagementContainers.ts";

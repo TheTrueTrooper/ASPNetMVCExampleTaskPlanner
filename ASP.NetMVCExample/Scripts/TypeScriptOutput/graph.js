@@ -3,7 +3,6 @@
 var BasicVectors = require("../Code/BasicVectors.ts");
 var Graphing;
 (function (Graphing) {
-    var Vector2D = BasicVectors.Vector2D;
     var Graph = (function () {
         function Graph(Canvas) {
             // to overload it should be set to OverloadRender with a void typodis
@@ -11,7 +10,9 @@ var Graphing;
             // wish I could type define this more but you cant function type or else I dont know how :'0 really should have one if you want to extend
             this._VirtalRender = null;
             this._Canvas = Canvas;
+            //get the size of the graph
             this._Size = new BasicVectors.Vector2D(Canvas.getBoundingClientRect().width, Canvas.getBoundingClientRect().height);
+            //set the basic start
             this._StartPoint = new BasicVectors.Vector2D(0, 0);
             //rest per graph after
             this._UnitPxScale = new BasicVectors.Vector2D(50, 50);
