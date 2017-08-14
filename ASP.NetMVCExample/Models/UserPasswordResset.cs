@@ -7,17 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+
 namespace ASP.NetMVCExample.Models
 {
-    using System;
-    using System.Collections.Generic;
-    
     public partial class UserPasswordResset
     {
         public string Code { get; set; }
         public int UserID { get; set; }
         public System.DateTime TimeIssued { get; set; }
-    
+
         public virtual User User { get; set; }
     }
 }

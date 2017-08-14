@@ -1,3 +1,16 @@
+/* WritersSigniture
+//Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)
+//Date Writen: June 23,2017
+//Project Goal: Make a cloud based app to aid in project management
+//File Goal: To make a Reusable vector to use in graphic transformations
+//Link: https://github.com/TheTrueTrooper/AngelASPExtentions
+//Sources:
+//  {
+//  Name: TypeScript
+//  Writer/Publisher: Microsoft
+//  Link: https://www.typescriptlang.org/
+//  }
+*/
 "use strict";
 var Vector2D = (function () {
     //Constructs a 2D vector X is the horizontal location Y is the Vertical location

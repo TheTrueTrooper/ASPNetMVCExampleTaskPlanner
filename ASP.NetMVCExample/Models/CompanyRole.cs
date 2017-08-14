@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+
 namespace ASP.NetMVCExample.Models
 {
-    using System;
-    using System.Collections.Generic;
-    
     public partial class CompanyRole
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,13 +20,13 @@ namespace ASP.NetMVCExample.Models
             this.CompanyWorkers = new HashSet<CompanyWorker>();
             this.CompanyRoles1 = new HashSet<CompanyRole>();
         }
-    
+
         public int RoleID { get; set; }
         public int CompanyID { get; set; }
         public string RoleName { get; set; }
         public Nullable<int> SuperRole { get; set; }
         public bool Admin { get; set; }
-    
+
         public virtual Company Company { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CompanyWorker> CompanyWorkers { get; set; }

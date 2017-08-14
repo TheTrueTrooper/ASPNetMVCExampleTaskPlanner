@@ -1,5 +1,17 @@
 "use strict";
-/// <reference path="../typedeffs/moment.d.ts" />
+/* WritersSigniture
+//Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)
+//Date Writen: June 23,2017
+//Project Goal: Make a cloud based app to aid in project management
+//File Goal: To make a reusable graph base to extend
+//Link: https://github.com/TheTrueTrooper/AngelASPExtentions
+//Sources:
+//  {
+//  Name: TypeScript
+//  Writer/Publisher: Microsoft
+//  Link: https://www.typescriptlang.org/
+//  }
+*/
 var BasicVectors = require("../Code/BasicVectors.ts");
 var Graphing;
 (function (Graphing) {
@@ -25,4 +37,4 @@ var Graphing;
     }());
     Graphing.Graph = Graph;
 })(Graphing = exports.Graphing || (exports.Graphing = {}));
-//# sourceMappingURL=graph.js.map
+//# sourceMappingURL=Graph.js.map

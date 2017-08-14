@@ -105,6 +105,9 @@
     <NavigationProperty Name="Messages" Relationship="MVCTaskMasterAppDataModel.FK_Messages_Users" FromRole="User" ToRole="Message" />
     <NavigationProperty Name="UserPasswordResset" Relationship="MVCTaskMasterAppDataModel.FK_UserPasswordResset_Users" FromRole="User" ToRole="UserPasswordResset" />
     <NavigationProperty Name="UserValidation" Relationship="MVCTaskMasterAppDataModel.FK_UserValidations_Users" FromRole="User" ToRole="UserValidation" />
+    <Property Name="Picture" Type="Binary" MaxLength="12" FixedLength="false" />
+    <Property Name="Bio" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="PortfollURL" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
   </EntityType>
   <Association Name="FK_CompanyRoles_Companys">
     <End Role="Companys" Type="Self.Company" Multiplicity="1" />
@@ -380,10 +383,6 @@
       <Parameter Name="WorkPhone" Mode="In" Type="String" />
       <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="SelectUserProjects" ReturnType="Collection(MVCTaskMasterAppDataModel.SelectUserProjects_Result)">
-      <Parameter Name="param1" Mode="In" Type="Int32" />
-      <Parameter Name="param2" Mode="In" Type="Int32" />
-    </FunctionImport>
     <EntitySet Name="Messages" EntityType="MVCTaskMasterAppDataModel.Message" />
     <EntitySet Name="Offices" EntityType="MVCTaskMasterAppDataModel.Office" />
     <AssociationSet Name="FK_Offices_Company" Association="MVCTaskMasterAppDataModel.FK_Offices_Company">
@@ -402,9 +401,6 @@
       <End Role="User" EntitySet="Users" />
       <End Role="Message" EntitySet="Messages" />
     </AssociationSet>
-    <FunctionImport Name="SelectUserProjectsDashboard" ReturnType="Collection(MVCTaskMasterAppDataModel.SelectUserProjectsDashboard_Result)">
-      <Parameter Name="UserID" Mode="In" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="CreateThePasswordResset" ReturnType="Collection(Boolean)">
       <Parameter Name="Email" Mode="In" Type="String" />
       <Parameter Name="Code" Mode="In" Type="String" />
@@ -450,6 +446,10 @@
       <End Role="User" EntitySet="Users" />
       <End Role="UserValidation" EntitySet="UserValidations" />
     </AssociationSet>
+    <FunctionImport Name="SelectUserProjects" ReturnType="Collection(MVCTaskMasterAppDataModel.SelectUserProjects_Result)">
+      <Parameter Name="UserID" Mode="In" Type="Int32" />
+      <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="DeleteTheRole_Result">
     <Property Type="Int32" Name="Column1" Nullable="true" />
@@ -493,19 +493,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <ComplexType Name="SelectUserProjects_Result">
-    <Property Type="Int32" Name="ProjectID" Nullable="false" />
-    <Property Type="String" Name="ProjectName" Nullable="false" MaxLength="70" />
-    <Property Type="String" Name="CompanyName" Nullable="false" MaxLength="30" />
-    <Property Type="String" Name="OfficeName" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="Address" Nullable="false" MaxLength="30" />
-    <Property Type="String" Name="PostalCode" Nullable="false" MaxLength="10" />
-    <Property Type="String" Name="Country" Nullable="false" MaxLength="10" />
-    <Property Type="String" Name="Province" Nullable="false" MaxLength="10" />
-    <Property Type="String" Name="Description" Nullable="false" MaxLength="250" />
-    <Property Type="DateTime" Name="StartDate" Nullable="false" Precision="23" />
-    <Property Type="DateTime" Name="EndDate" Nullable="true" Precision="23" />
-  </ComplexType>
   <EntityType Name="Message">
     <Key>
       <PropertyRef Name="MessageID" />
@@ -582,21 +569,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <ComplexType Name="SelectUserProjectsDashboard_Result">
-    <Property Type="Int32" Name="ProjectID" Nullable="false" />
-    <Property Type="String" Name="ProjectName" Nullable="false" MaxLength="70" />
-    <Property Type="String" Name="CompanyName" Nullable="false" MaxLength="30" />
-    <Property Type="Int32" Name="CompanyID" Nullable="false" />
-    <Property Type="String" Name="OfficeName" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="Address" Nullable="false" MaxLength="30" />
-    <Property Type="String" Name="PostalCode" Nullable="false" MaxLength="10" />
-    <Property Type="String" Name="Country" Nullable="false" MaxLength="10" />
-    <Property Type="String" Name="Province" Nullable="false" MaxLength="10" />
-    <Property Type="String" Name="City" Nullable="false" MaxLength="10" />
-    <Property Type="String" Name="Description" Nullable="false" MaxLength="250" />
-    <Property Type="DateTime" Name="StartDate" Nullable="false" Precision="23" />
-    <Property Type="DateTime" Name="EndDate" Nullable="true" Precision="23" />
-  </ComplexType>
   <EntityType Name="UserPasswordResset">
     <Key>
       <PropertyRef Name="UserID" />
@@ -727,4 +699,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <ComplexType Name="SelectUserProjects_Result">
+    <Property Type="Int32" Name="ProjectID" Nullable="false" />
+    <Property Type="String" Name="ProjectName" Nullable="false" MaxLength="70" />
+    <Property Type="String" Name="CompanyName" Nullable="false" MaxLength="30" />
+    <Property Type="Int32" Name="CompanyID" Nullable="false" />
+    <Property Type="String" Name="OfficeName" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Address" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="PostalCode" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Country" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Province" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="City" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Description" Nullable="false" MaxLength="250" />
+    <Property Type="DateTime" Name="StartDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="EndDate" Nullable="true" Precision="23" />
+  </ComplexType>
 </Schema>

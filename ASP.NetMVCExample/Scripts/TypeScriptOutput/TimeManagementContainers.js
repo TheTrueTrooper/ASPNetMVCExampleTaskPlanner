@@ -1,5 +1,17 @@
 "use strict";
-/// <reference path="basicvectors.ts" />
+/* WritersSigniture
+//Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)
+//Date Writen: June 23,2017
+//Project Goal: Make a cloud based app to aid in project management
+//File Goal: To make some reuseable java containers to use in graphing time objects
+//Link: https://github.com/TheTrueTrooper/AngelASPExtentions
+//Sources:
+//  {
+//  Name: TypeScript
+//  Writer/Publisher: Microsoft
+//  Link: https://www.typescriptlang.org/
+//  }
+*/
 var MoDate = require("../typedeffs/moment.d.ts");
 //A class that encapulates a Task
 var Task = (function () {

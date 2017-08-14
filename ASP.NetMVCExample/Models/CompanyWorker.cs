@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+
 namespace ASP.NetMVCExample.Models
 {
-    using System;
-    using System.Collections.Generic;
-    
     public partial class CompanyWorker
     {
         public int CompanyID { get; set; }
@@ -19,7 +19,7 @@ namespace ASP.NetMVCExample.Models
         public int RoleID { get; set; }
         public int WorkerID { get; set; }
         public int OfficeID { get; set; }
-    
+
         public virtual CompanyRole CompanyRole { get; set; }
         public virtual Company Company { get; set; }
         public virtual User User { get; set; }

@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+
 namespace ASP.NetMVCExample.Models
 {
-    using System;
-    using System.Collections.Generic;
-    
     public partial class Company
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,12 +24,12 @@ namespace ASP.NetMVCExample.Models
             this.Offices = new HashSet<Office>();
             this.Tasks = new HashSet<Task>();
         }
-    
+
         public int CompanyID { get; set; }
         public string CompanyName { get; set; }
         public string Description { get; set; }
         public string CompanySite { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CompanyRole> CompanyRoles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

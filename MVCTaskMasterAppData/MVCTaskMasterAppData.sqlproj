@@ -120,7 +120,7 @@
     <Build Include="Scripts\StoredProce\Session\ValidateSession.sql" />
     <Build Include="Scripts\StoredProce\Session\CreateTheSession.sql" />
     <Build Include="Scripts\StoredProce\Session\DeleteTheSession.sql" />
-    <Build Include="Scripts\StoredProce\Users\SelectUserProjectsDashboard.sql" />
+    <Build Include="Scripts\StoredProce\Users\SelectUserProjects.sql" />
     <Build Include="Scripts\Tables\PasswordResset.sql" />
     <Build Include="Scripts\StoredProce\PasswordResset\DoPasswordResset.sql" />
     <Build Include="Scripts\StoredProce\Users\IsEmailUsed.sql" />

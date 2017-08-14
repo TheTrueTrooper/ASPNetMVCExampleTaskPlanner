@@ -7,10 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+
 namespace ASP.NetMVCExample.Models
 {
-    using System;
-    
     public partial class DeleteTheRole_Result
     {
         public Nullable<int> Column1 { get; set; }

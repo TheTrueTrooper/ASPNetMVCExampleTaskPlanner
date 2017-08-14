@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+
 namespace ASP.NetMVCExample.Models
 {
-    using System;
-    using System.Collections.Generic;
-    
     public partial class TaskType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,11 +19,11 @@ namespace ASP.NetMVCExample.Models
         {
             this.Tasks = new HashSet<Task>();
         }
-    
+
         public int TaskTypeID { get; set; }
         public int CompanyID { get; set; }
         public string Tag { get; set; }
-    
+
         public virtual Company Company { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Task> Tasks { get; set; }

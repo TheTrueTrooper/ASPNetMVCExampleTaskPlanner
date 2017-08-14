@@ -198,13 +198,11 @@
     <Compile Include="Controllers\FindController.cs" />
     <Compile Include="Controllers\ManageCompanyController.cs" />
     <Compile Include="Controllers\UtilitiesAPIController.cs" />
+    <Compile Include="Models\DashBoard\DashBoard.cs" />
     <Compile Include="Models\IdentityLogin.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Search\SearchCompany.cs" />
     <Compile Include="Models\Search\SearchUsers.cs" />
-    <Compile Include="Models\SelectUserProjectsDashboard_Result.cs">
-      <DependentUpon>TaskMasterData.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\SelectUserProjects_Result.cs">
       <DependentUpon>TaskMasterData.tt</DependentUpon>
     </Compile>
@@ -218,9 +216,9 @@
       <DependentUpon>TaskMasterData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Users\UserPasswordReset.cs" />
-    <Compile Include="Models\Users\UserEditPref.cs" />
     <Compile Include="Models\Users\UserChangePassword.cs" />
     <Compile Include="Models\Users\UserEditProfile.cs" />
+    <Compile Include="Models\Users\UserProfile.cs" />
     <Compile Include="Models\UserValidation.cs">
       <DependentUpon>TaskMasterData.tt</DependentUpon>
     </Compile>
@@ -332,6 +330,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.FilesExtention.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />

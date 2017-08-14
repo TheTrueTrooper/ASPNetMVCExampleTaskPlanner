@@ -13,6 +13,7 @@
 #endregion
 using ASP.NetMVCExample._Helpers;
 using ASP.NetMVCExample.Models;
+using ASP.NetMVCExample.Models.DashBoard;
 using ASP.NetMVCExample.SecurityValidation;
 using System;
 using System.Collections.Generic;
@@ -37,13 +38,30 @@ namespace ASP.NetMVCExample.Controllers
         /// <returns>the page</returns>
         public ActionResult Index()
         {
-            List<SelectUserProjectsDashboard_Result> Results;
+
+            string ErrorMessage = "";
+            ObjectParameter ErrorMessageParameter = 
+            new ObjectParameter("ErrorMessage", ErrorMessage);
+
+            DashBoard Dash = new DashBoard();
             //Get a list of results to use for the quick navagation
-            using (ObjectResult<SelectUserProjectsDashboard_Result> TempResults = DB.SelectUserProjectsDashboard((int)Session["SessionUserID"]))
-                Results = TempResults.ToList();
+            using (ObjectResult<SelectUserProjects_Result> TempResults = DB.SelectUserProjects((int)Session["SessionUserID"], ErrorMessageParameter))
+                Dash.ProjectData = TempResults.ToList();
+
+            if ((string)ErrorMessageParameter.Value != "")
+                return View(@"~\Shared\FriendlyErr.cshtml");
+
+            ErrorMessageParameter =
+            new ObjectParameter("ErrorMessage", ErrorMessage);
+
+            using (ObjectResult<SelectTheUser_Result> TempResults2 = DB.SelectTheUser((int)Session["SessionUserID"], ErrorMessageParameter))
+                Dash.UsersProfileData = TempResults2.First();
+
+            if ((string)ErrorMessageParameter.Value != "")
+                return View(@"~\Shared\FriendlyErr.cshtml");
 
             //pass to the page
-            return View(Results);
+            return View(Dash);
         }
 
 

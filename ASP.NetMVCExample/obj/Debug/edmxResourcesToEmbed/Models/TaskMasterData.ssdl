@@ -138,6 +138,9 @@
     <Property Name="HomePhone" Type="char" MaxLength="11" Nullable="false" />
     <Property Name="CellPhone" Type="char" MaxLength="11" />
     <Property Name="WorkPhone" Type="char" MaxLength="11" />
+    <Property Name="Picture" Type="varbinary" MaxLength="12" />
+    <Property Name="Bio" Type="nvarchar" MaxLength="250" />
+    <Property Name="PortfollURL" Type="nvarchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="UserValidations">
     <Key>
@@ -496,11 +499,8 @@
     <Parameter Name="ErrorMessage" Type="char" Mode="InOut" />
   </Function>
   <Function Name="SelectUserProjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="param1" Type="int" Mode="In" />
-    <Parameter Name="param2" Type="int" Mode="In" />
-  </Function>
-  <Function Name="SelectUserProjectsDashboard" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="UserID" Type="int" Mode="In" />
+    <Parameter Name="ErrorMessage" Type="char" Mode="InOut" />
   </Function>
   <Function Name="UpdateTheCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="CompanyID" Type="int" Mode="In" />

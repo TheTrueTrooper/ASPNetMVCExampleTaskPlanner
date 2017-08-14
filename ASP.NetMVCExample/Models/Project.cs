@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+
 namespace ASP.NetMVCExample.Models
 {
-    using System;
-    using System.Collections.Generic;
-    
     public partial class Project
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,7 +21,7 @@ namespace ASP.NetMVCExample.Models
             this.Messages = new HashSet<Message>();
             this.Tasks = new HashSet<Task>();
         }
-    
+
         public int ProjectID { get; set; }
         public int CompanyID { get; set; }
         public int ManagerID { get; set; }
@@ -35,7 +35,7 @@ namespace ASP.NetMVCExample.Models
         public Nullable<System.DateTime> EndDate { get; set; }
         public System.DateTime CreationDate { get; set; }
         public string ProjectName { get; set; }
-    
+
         public virtual Company Company { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProjectFile> ProjectFiles { get; set; }

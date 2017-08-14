@@ -20,7 +20,13 @@ CREATE TABLE [dbo].[Users]
 	[Salt] CHAR(28) NOT NULL,
     [HomePhone] CHAR(11) NOT NULL, 
     [CellPhone] CHAR(11) NULL, 
-    [WorkPhone] CHAR(11) NULL, 
+    [WorkPhone] CHAR(11) NULL,
+
+	--Profile stuff
+	--size is 2 tothe 12 - 1 = 4,096 - 1 bytes 
+    [Picture] VARBINARY(12) NULL, 
+    [Bio] NVARCHAR(250) NULL, 
+	[PortfollURL] NVARCHAR(20) NULL, 
 
     CONSTRAINT [CK_Users_Email] CHECK (Email like '[^.]%[^.][@]%[.]%'), 
     CONSTRAINT [AK_Users_Email] UNIQUE ([Email])

@@ -7,18 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+
 namespace ASP.NetMVCExample.Models
 {
-    using System;
-    using System.Collections.Generic;
-    
     public partial class Message
     {
         public int MessageID { get; set; }
         public int UserID { get; set; }
         public int ProjectID { get; set; }
         public string Text { get; set; }
-    
+
         public virtual Project Project { get; set; }
         public virtual User User { get; set; }
     }

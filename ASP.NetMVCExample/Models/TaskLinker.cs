@@ -7,17 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+
 namespace ASP.NetMVCExample.Models
 {
-    using System;
-    using System.Collections.Generic;
-    
     public partial class TaskLinker
     {
         public int linkerID { get; set; }
         public int TaskID { get; set; }
         public int NextTaskID { get; set; }
-    
+
         public virtual Task Task { get; set; }
         public virtual Task Task1 { get; set; }
     }

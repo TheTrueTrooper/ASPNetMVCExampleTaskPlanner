@@ -7,17 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+
 namespace ASP.NetMVCExample.Models
 {
-    using System;
-    using System.Collections.Generic;
-    
     public partial class ProjectFile
     {
         public int FileID { get; set; }
         public int ProjectID { get; set; }
         public byte[] File { get; set; }
-    
+
         public virtual Project Project { get; set; }
     }
 }

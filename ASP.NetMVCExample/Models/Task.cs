@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+
 namespace ASP.NetMVCExample.Models
 {
-    using System;
-    using System.Collections.Generic;
-    
     public partial class Task
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,7 +20,7 @@ namespace ASP.NetMVCExample.Models
             this.TaskLinkers = new HashSet<TaskLinker>();
             this.TaskLinkers1 = new HashSet<TaskLinker>();
         }
-    
+
         public int TaskID { get; set; }
         public int SubContractorID { get; set; }
         public int TaskTypeID { get; set; }
@@ -29,7 +29,7 @@ namespace ASP.NetMVCExample.Models
         public System.DateTime StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
         public System.DateTime CreationDate { get; set; }
-    
+
         public virtual Company Company { get; set; }
         public virtual Project Project { get; set; }
         public virtual TaskType TaskType { get; set; }

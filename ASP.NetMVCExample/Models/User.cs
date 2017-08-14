@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+
 namespace ASP.NetMVCExample.Models
 {
-    using System;
-    using System.Collections.Generic;
-    
     public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,7 +21,7 @@ namespace ASP.NetMVCExample.Models
             this.Projects = new HashSet<Project>();
             this.Messages = new HashSet<Message>();
         }
-    
+
         public int UserID { get; set; }
         public string FirstName { get; set; }
         public string MiddleInitial { get; set; }
@@ -32,7 +32,10 @@ namespace ASP.NetMVCExample.Models
         public string HomePhone { get; set; }
         public string CellPhone { get; set; }
         public string WorkPhone { get; set; }
-    
+        public byte[] Picture { get; set; }
+        public string Bio { get; set; }
+        public string PortfollURL { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CompanyWorker> CompanyWorkers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

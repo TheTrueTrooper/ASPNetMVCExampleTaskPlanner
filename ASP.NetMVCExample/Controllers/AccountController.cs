@@ -25,7 +25,8 @@ using ASP.NetMVCExample.SecurityValidation;
 using ASP.NetMVCExample._Helpers;
 using ASP.NetMVCExample.SMTPHelpers;
 using AngelASPExtentions.ASPMVCControllerExtentions;
-using AngelASPExtentions.ExtraExtentions;
+using AngelASPExtentions.ExtraExtentions.Types;
+using AngelASPExtentions.ExtraExtentions.Strings;
 
 namespace ASP.NetMVCExample.Controllers
 {
