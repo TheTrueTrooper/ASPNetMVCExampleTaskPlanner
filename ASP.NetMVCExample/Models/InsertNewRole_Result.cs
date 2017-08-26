@@ -6,12 +6,11 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using System;
-using System.Collections.Generic;
-
 namespace ASP.NetMVCExample.Models
 {
+    using System;
+    using System.Collections.Generic;
+
     public partial class InsertNewRole_Result
     {
         public Nullable<int> Column1 { get; set; }

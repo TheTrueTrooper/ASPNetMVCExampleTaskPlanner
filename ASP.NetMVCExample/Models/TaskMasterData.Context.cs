@@ -6,15 +6,14 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using System;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Data.Entity.Core.Objects;
-using System.Linq;
-
 namespace ASP.NetMVCExample.Models
 {
+    using System;
+    using System.Data.Entity;
+    using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
+
     public partial class MVCTaskMasterAppDataEntities2 : DbContext
     {
         public MVCTaskMasterAppDataEntities2()
@@ -274,15 +273,6 @@ namespace ASP.NetMVCExample.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateTheUserChangePassword", userIDParameter, passwordParameter, newPasswordParameter, errorMessage);
         }
 
-        public virtual ObjectResult<SelectTheUser_Result> SelectTheUser(Nullable<int> iD, ObjectParameter errorMessage)
-        {
-            var iDParameter = iD.HasValue ?
-                new ObjectParameter("ID", iD) :
-                new ObjectParameter("ID", typeof(int));
-
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectTheUser_Result>("SelectTheUser", iDParameter, errorMessage);
-        }
-
         public virtual int InsertNewOffice(Nullable<int> companyID, string country, string province, string city, string address, string postalCode, string phone, string fax, string name, ObjectParameter errorMessage)
         {
             var companyIDParameter = companyID.HasValue ?
@@ -442,6 +432,15 @@ namespace ASP.NetMVCExample.Models
                 new ObjectParameter("Email", typeof(string));
 
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<bool>>("IsEmailUsed", emailParameter);
+        }
+
+        public virtual ObjectResult<SelectTheUser_Result> SelectTheUser(Nullable<int> iD, ObjectParameter errorMessage)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectTheUser_Result>("SelectTheUser", iDParameter, errorMessage);
         }
 
         public virtual ObjectResult<SelectUserProjects_Result> SelectUserProjects(Nullable<int> userID, ObjectParameter errorMessage)

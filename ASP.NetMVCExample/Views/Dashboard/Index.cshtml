@@ -9,23 +9,69 @@
     //  Writer/Publisher: Microsoft
     //  Link: https://www.asp.net/
     //  }*@
-@model IEnumerable<ASP.NetMVCExample.Models.SelectUserProjectsDashboard_Result>
+@model ASP.NetMVCExample.Models.DashBoard.DashBoardView
 @{
+    ViewBag.NgApp = "NGDashBoard";
+
     ViewBag.Title = "Index";
 
-    bool open = false;
+    List<ASP.NetMVCExample.Models.SelectUserProjects_Result> ProjectList = Model.ProjectData;
+    ASP.NetMVCExample.Models.SelectTheUser_Result Profile = Model.UsersProfileData;
 
-    var List = Model.ToList();
-
-    Styles.Render("~/Content/Project");
+    Html.AddToRenderScriptBundles("~/bundles/DashBoard");
+    Html.AddToRenderScriptBundles("~/bundles/MomentJS");
+    Html.AddToRenderStyleBundles("~/Content/Project");
 }
-
-<h2>Index</h2>
-
-@for (int i = 0; i < List.Count(); i++)
+@Scripts.Render("~/Scripts/Moment.js")
+@Scripts.Render("~/Scripts/PageScripts/DashBoard/DashBoard.js")
+<h2>Profile Dashboard</h2>
+<div class="row">
+    <div class="col-lg-4">
+        <div class="jumbotron">
+            <h3>Profile Overview</h3>
+            <p class="text-info">
+                <img src="data:image;base64,@Convert.ToBase64String(Profile.Picture)" class="img-thumbnail" width="140" height="140" />
+                <br />Name: @Profile.FirstName,
+                Html.Raw("<br />Middle Name: " + @Profile.MiddleInitial + ",")
+                <br />Last Name: @Profile.LastName
+                @Html.Raw(Profile.WorkPhone != null ? ",<br />Work Phone: " + Profile.WorkPhone.Insert(3, "-").Insert(7, "-") : "")
+                @Html.Raw(Profile.CellPhone != null ? ",<br />Cell Phone: " + Profile.CellPhone.Insert(3, "-").Insert(7, "-") : "")
+                @Html.Raw(Profile.HomePhone != null ? ",<br />Home Phone: " + Profile.HomePhone.Insert(3, "-").Insert(7, "-") : "")
+            </p>
+            <hr4>Bio</hr4>
+            <p class="text-info " style="word-wrap:hyphenate;">
+                @Html.Raw(Profile.Bio != null ? Profile.Bio : "")
+                @Html.Raw(Profile.PortfollURL != null ? String.Format(@"<br /><button onclick=""window.location = '{0}'"">Click Me</button>", Profile.PortfollURL) : "" )
+            </p>
+        </div>
+    </div>
+    <h3>Event Feed</h3>
+    <div class="col-lg-8">
+        <div class="jumbotron">
+            
+        </div>
+    </div>
+</div>
+<hr />
+<div class="jumbotron">
+    <hr4>Your Projects</hr4>
+    <div ng-controller="ProjectList" class="row">
+        <div ng-repeat="project in projects" class="col-sm-4">
+            <h3>{{project.ProjectName}}</h3>
+            <p>Address: {{project.Address}}, {{project.City}}, {{project.Province}}, {{project.Country}}, {{project.PostalCode}}<br />
+            For: {{project.CompanyName}}<br />
+            From<br/>
+            StartDate: {{project.StartDate}}<br />
+            EndDate: {{project.EndDate}}<br />
+            Description:<br/>
+            {{project.Description}}
+            </p>
+         </div>
+@*@for (int i = 0; i < ProjectList.Count(); i++)
 {
     if (i % 3 == 0)
     {
+        //Skip the first open
         if (open)
         {
             @Html.Raw("</div>") // close the div in raw so we dont get squigs
@@ -33,12 +79,14 @@
         @Html.Raw("<div class=\"row\">")// open the div in raw so we dont get squigs
         open = true;
     }
-    @RenderPage("~/Views/Dashboard/_ProjectBox.cshtml", List[i])
- }
-
-@Html.Raw("</div>") @*close the div in raw so we dont get squigs*@
-
-<div>
+    @RenderPage("~/Views/Dashboard/_ProjectBox.cshtml", ProjectList[i])
+ }*@
+    @*last wil not be open so close*@
+@*@Html.Raw("</div>") @*close the div in a raw so we dont get squigs*@
+    </div>
+    <hr />
     @Html.ActionLink("Add a Project", "CreateProject", "Project", new { Topic = "Cloud" }, new { Class = "btn btn-default" })
 </div>
+
+
 

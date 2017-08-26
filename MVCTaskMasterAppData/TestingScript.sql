@@ -110,12 +110,12 @@ where 1 = 1
 
 
 SELECT P.ProjectID, P.ProjectName, C.CompanyName, O.CompanyID, O.OfficeName, P.[Address], P.PostalCode, P.Country, P.Province, P.[Description], P.StartDate, P.EndDate from Projects as P
-	join Companys as C on P.CompanyID = C.CompanyID
-	join Offices as O on O.CompanyID = C.CompanyID
-	join CompanyRoles as CR on CR.CompanyID = C.CompanyID
-	join CompanyWorkers as CW on CW.OfficeID = O.OfficeID and CW.CompanyID = C.CompanyID and CW.RoleID = CR.RoleID
-	join Users as U on P.ManagerID = U.UserID and CW.UserID = U.UserID
-	where P.ManagerID = 1
+	left join Companys as C on P.CompanyID = C.CompanyID
+	left join Offices as O on O.CompanyID = C.CompanyID
+	left join CompanyRoles as CR on CR.CompanyID = C.CompanyID
+	left join CompanyWorkers as CW on CW.OfficeID = O.OfficeID and CW.CompanyID = C.CompanyID and CW.RoleID = CR.RoleID
+	left join Users as U on P.ManagerID = U.UserID and CW.UserID = U.UserID
+	where P.ManagerID = 2013 
 
 delete from [Sessions] where 1=1
 delete from UserPasswordResset where 1=1
@@ -124,3 +124,28 @@ delete from users where 1=1
 	
 select * from Users
 select * from UserPasswordResset
+
+UPDATE Users
+set MiddleInitial = 'M',
+ CellPhone = '7802572525',
+ WorkPhone = '7802572525',
+ Bio = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+ PortfollURL = 'https://www.linkedin.com/in/angelo-sanches-a4b94a129'
+where UserID = 2013
+
+select FirstName, MiddleInitial, LastName, Bio, Picture, HomePhone, CellPhone, WorkPhone, Email, PortfollURL, UserID from Users where 2013 = UserID
+
+insert into Projects(
+	[ProjectName], 
+	-- WorkerID that is rep to Pro
+    [ManagerID], 
+    [Address], 
+    [PostalCode], 
+    [Country], 
+    [Province], 
+    [City], 
+    [Description], 
+    [StartDate])
+	values ('Test 2', 2013, '8140', 'T6X1A5', 'Canada', 'Alberta', 'Edmonton', 'This is a test', GETDATE())
+
+	select * from Projects

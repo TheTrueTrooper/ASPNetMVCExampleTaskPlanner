@@ -12,7 +12,7 @@
     //*@  
 @using ASP.NetMVCExample.WebHelpers;
 <!DOCTYPE html>
-<html>
+<html @Html.Raw(ViewBag.NgApp != null ? "ng-app=\"" + ViewBag.NgApp + "\"" : "")>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,6 +21,7 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/angular")
     @Html.RenderBundles()
 </head>
 <body>

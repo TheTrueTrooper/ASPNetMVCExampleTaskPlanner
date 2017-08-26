@@ -20,8 +20,8 @@ AS
 		--check for a time out in case -_- sever is down with attack to create secure gap -_- its all ways worst case with clever hacker 
 		select top 1 @CutOffDate = DATEADD(hour, 1, TimeLastValidated) from [Sessions] where UserID = @UserID and Code = @Code
 		if @CutOffDate < GETDATE()
-		begin -- if its old clean it out and return
-			delete from [Sessions] where UserID = @UserID
+		begin -- if its old clean all of it out and return
+			delete from [Sessions] where UserID = @UserID or DATEADD(hour, 1, TimeLastValidated) < GETDATE()
 			SELECT @Success
 			return 0
 		end

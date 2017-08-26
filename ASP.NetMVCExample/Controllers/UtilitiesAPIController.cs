@@ -14,9 +14,11 @@
 using ASP.NetMVCExample._Helpers;
 using ASP.NetMVCExample.Models;
 using ASP.NetMVCExample.Models.Users;
+using ASP.NetMVCExample.SecurityValidation;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -24,6 +26,7 @@ using System.Web.Mvc;
 
 namespace ASP.NetMVCExample.Controllers
 {
+    [DBFSPAuthorize]
     public class UtilitiesAPIController : Controller
     {
         MVCTaskMasterAppDataEntities2 DB = new MVCTaskMasterAppDataEntities2();
@@ -45,6 +48,32 @@ namespace ASP.NetMVCExample.Controllers
 
             return Json(true, JsonRequestBehavior.AllowGet);
         }
+
+        /// <summary>
+        /// A severside Getter for a user's Projects that they are working on
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        [AcceptVerbs("Get", "Post")]
+        public JsonResult GetUsersProjectData()
+        {
+            if (Session["SessionUserID"] == null)
+                return Json(@"Access Denied", JsonRequestBehavior.AllowGet);
+
+            string ErrorMessage = "";
+            ObjectParameter ErrorMessageParameter = new ObjectParameter("ErrorMessage", ErrorMessage);
+
+            List<SelectUserProjects_Result> UsersProjectData;
+            using (ObjectResult<SelectUserProjects_Result> TempResults = DB.SelectUserProjects((int)Session["SessionUserID"], ErrorMessageParameter))
+                UsersProjectData = TempResults.ToList();
+
+            if (((string)ErrorMessageParameter.Value).Trim() != "")
+                return Json(@"Error", JsonRequestBehavior.AllowGet);
+
+            return Json(UsersProjectData, JsonRequestBehavior.AllowGet);
+        }
+
+
 
     }
 }

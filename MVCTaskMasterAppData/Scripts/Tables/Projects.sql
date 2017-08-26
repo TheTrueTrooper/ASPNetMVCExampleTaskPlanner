@@ -13,7 +13,7 @@ CREATE TABLE [dbo].[Projects]
 (
 	[ProjectID] INT IDENTITY(1,1) NOT NULL PRIMARY KEY, 
 	[ProjectName] NVARCHAR(70) NOT NULL, 
-    [CompanyID] INT NOT NULL, 
+    [CompanyID] INT NULL, 
 	-- WorkerID that is rep to Pro
     [ManagerID] INT NOT NULL, 
     [Address] NVARCHAR(30) NOT NULL, 

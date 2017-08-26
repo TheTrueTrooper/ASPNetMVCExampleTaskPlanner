@@ -216,7 +216,7 @@ namespace ASP.NetMVCExample.Controllers
                     string[] Split = Reset.Email.Split(new char[] { '@' }, StringSplitOptions.RemoveEmptyEntries);
                     ViewBag.URL = this.MakeFullURLActionLink("PasswordResetEmailRedirect", "Account", new { Email = Split[0], Domain = Split[1], Code = Code }, false);
                     // if bound send an email to the email
-                    SendEmail(Reset.Email, PasswordResetSub, "PasswordResetEmailTemplate");
+                     SendEmail(Reset.Email, PasswordResetSub, "PasswordResetEmailTemplate");
                 }
                 //Display to check the email or resend
                 return View("PasswordResetCheckYourEmail", Reset);

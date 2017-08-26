@@ -338,10 +338,6 @@
       <Parameter Name="NewPassword" Mode="In" Type="String" />
       <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="SelectTheUser" ReturnType="Collection(MVCTaskMasterAppDataModel.SelectTheUser_Result)">
-      <Parameter Name="ID" Mode="In" Type="Int32" />
-      <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
-    </FunctionImport>
     <FunctionImport Name="InsertNewOffice">
       <Parameter Name="CompanyID" Mode="In" Type="Int32" />
       <Parameter Name="Country" Mode="In" Type="String" />
@@ -446,6 +442,10 @@
       <End Role="User" EntitySet="Users" />
       <End Role="UserValidation" EntitySet="UserValidations" />
     </AssociationSet>
+    <FunctionImport Name="SelectTheUser" ReturnType="Collection(MVCTaskMasterAppDataModel.SelectTheUser_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="SelectUserProjects" ReturnType="Collection(MVCTaskMasterAppDataModel.SelectUserProjects_Result)">
       <Parameter Name="UserID" Mode="In" Type="Int32" />
       <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
@@ -462,15 +462,6 @@
   <ComplexType Name="UpdateTheRole_Result">
     <Property Type="Int32" Name="Column1" Nullable="true" />
     <Property Type="Int32" Name="Column2" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="SelectTheUser_Result">
-    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="MiddleInitial" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="HomePhone" Nullable="false" MaxLength="14" />
-    <Property Type="String" Name="CellPhone" Nullable="true" MaxLength="14" />
-    <Property Type="String" Name="WorkPhone" Nullable="true" MaxLength="14" />
-    <Property Type="String" Name="Email" Nullable="false" MaxLength="320" />
   </ComplexType>
   <EntityType Name="Session">
     <Key>
@@ -699,6 +690,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <ComplexType Name="SelectTheUser_Result">
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="MiddleInitial" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Bio" Nullable="true" MaxLength="250" />
+    <Property Type="Binary" Name="Picture" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="HomePhone" Nullable="false" MaxLength="11" />
+    <Property Type="String" Name="CellPhone" Nullable="true" MaxLength="11" />
+    <Property Type="String" Name="WorkPhone" Nullable="true" MaxLength="11" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="320" />
+    <Property Type="String" Name="PortfollURL" Nullable="true" MaxLength="20" />
+  </ComplexType>
   <ComplexType Name="SelectUserProjects_Result">
     <Property Type="Int32" Name="ProjectID" Nullable="false" />
     <Property Type="String" Name="ProjectName" Nullable="false" MaxLength="70" />

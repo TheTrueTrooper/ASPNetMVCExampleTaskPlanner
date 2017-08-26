@@ -6,20 +6,22 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using System;
-using System.Collections.Generic;
-
 namespace ASP.NetMVCExample.Models
 {
+    using System;
+    using System.Collections.Generic;
+
     public partial class SelectTheUser_Result
     {
         public string FirstName { get; set; }
         public string MiddleInitial { get; set; }
         public string LastName { get; set; }
+        public string Bio { get; set; }
+        public byte[] Picture { get; set; }
         public string HomePhone { get; set; }
         public string CellPhone { get; set; }
         public string WorkPhone { get; set; }
         public string Email { get; set; }
+        public string PortfollURL { get; set; }
     }
 }

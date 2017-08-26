@@ -23,7 +23,7 @@ namespace ASP.NetMVCExample._Helpers
     /// <summary>
     /// this class simply makes a database for use to share
     /// </summary>
-    public class SharedStarter
+    public static class SharedStarter
     {
         /// <summary>
         /// the client to use

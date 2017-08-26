@@ -25,7 +25,7 @@ AS
 			@ErrorOperation tinyint = 1
 
 
-	select FirstName, MiddleInitial, LastName, Bio, Picture, HomePhone, CellPhone, WorkPhone, Email from Users where UserID = @ID
+	select FirstName, MiddleInitial, LastName, Bio, Picture, HomePhone, CellPhone, WorkPhone, Email, PortfollURL from Users where UserID = @ID
 	set @TempError = @@ERROR
 	if @TempError != 0
 		begin

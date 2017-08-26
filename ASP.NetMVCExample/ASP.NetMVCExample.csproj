@@ -198,11 +198,14 @@
     <Compile Include="Controllers\FindController.cs" />
     <Compile Include="Controllers\ManageCompanyController.cs" />
     <Compile Include="Controllers\UtilitiesAPIController.cs" />
-    <Compile Include="Models\DashBoard\DashBoard.cs" />
+    <Compile Include="Models\DashBoard\DashBoardView.cs" />
     <Compile Include="Models\IdentityLogin.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Search\SearchCompany.cs" />
     <Compile Include="Models\Search\SearchUsers.cs" />
+    <Compile Include="Models\SelectTheUser_Result.cs">
+      <DependentUpon>TaskMasterData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SelectUserProjects_Result.cs">
       <DependentUpon>TaskMasterData.tt</DependentUpon>
     </Compile>
@@ -221,6 +224,11 @@
     <Compile Include="Models\Users\UserProfile.cs" />
     <Compile Include="Models\UserValidation.cs">
       <DependentUpon>TaskMasterData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="SecurityValidation\DBFSPAuthorizeAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -254,9 +262,6 @@
       <DependentUpon>TaskMasterData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProjectFile.cs">
-      <DependentUpon>TaskMasterData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SelectTheUser_Result.cs">
       <DependentUpon>TaskMasterData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Session.cs">
@@ -298,11 +303,13 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PageCss\Dashboard\ProjectStyles.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\HouseTempBanner.jpg" />
+    <Content Include="Images\NoProfilePicPic.jpg" />
     <Content Include="Models\TaskMasterData.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TaskMasterData.edmx</DependentUpon>
@@ -314,6 +321,7 @@
       <LastGenOutput>TaskMasterData.cs</LastGenOutput>
     </Content>
     <Content Include="MyNotesReadMe.txt" />
+    <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\TaskMasterData.edmx">
@@ -339,6 +347,7 @@
     <Content Include="Scripts\Moment.js" />
     <Content Include="Scripts\MyAjaxRequest.js" />
     <Content Include="Scripts\PageScripts\About\About.js" />
+    <Content Include="Scripts\PageScripts\DashBoard\DashBoard.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\TypeScriptOutput\BasicVectors.js" />
@@ -414,6 +423,12 @@
       <Project>{6d934664-f600-4b7d-8ff6-1ec49d290c04}</Project>
       <Name>AngelASPExtentions</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
