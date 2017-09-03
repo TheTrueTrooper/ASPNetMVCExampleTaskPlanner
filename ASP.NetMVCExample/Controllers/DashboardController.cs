@@ -45,10 +45,7 @@ namespace ASP.NetMVCExample.Controllers
             string ErrorMessage = "";
             ObjectParameter ErrorMessageParameter = new ObjectParameter("ErrorMessage", ErrorMessage);
 
-            DashBoardView Dash = new DashBoardView();
-            //Get a list of results to use for the quick navagation
-            using (ObjectResult<SelectUserProjects_Result> TempResults = DB.SelectUserProjects((int)Session["SessionUserID"], ErrorMessageParameter))
-                Dash.ProjectData = TempResults.ToList();
+            SelectTheUser_Result ProfileData;
 
             if (((string)ErrorMessageParameter.Value).Trim() != "")
                 return View(@"~\Shared\FriendlyErr.cshtml");
@@ -57,17 +54,17 @@ namespace ASP.NetMVCExample.Controllers
             ErrorMessageParameter = new ObjectParameter("ErrorMessage", ErrorMessage);
 
             using (ObjectResult<SelectTheUser_Result> TempResults2 = DB.SelectTheUser((int)Session["SessionUserID"], ErrorMessageParameter))
-                Dash.UsersProfileData = TempResults2.First();
+                ProfileData = TempResults2.First();
 
             if (((string)ErrorMessageParameter.Value).Trim() != "")
                 return View(@"~\Shared\FriendlyErr.cshtml");
 
-            if (Dash.UsersProfileData.Picture == null)
-                Dash.UsersProfileData.Picture = new Bitmap(HostingEnvironment.MapPath("~/Images/NoProfilePicPic.jpg")).ToByteArray();
+            if (ProfileData.Picture == null)
+                ProfileData.Picture = new Bitmap(HostingEnvironment.MapPath("~/Images/NoProfilePicPic.jpg")).ToByteArray();
             
 
             //pass to the page
-            return View(Dash);
+            return View(ProfileData);
         }
 
 

@@ -16,6 +16,7 @@ CREATE TABLE [dbo].[Projects]
     [CompanyID] INT NULL, 
 	-- WorkerID that is rep to Pro
     [ManagerID] INT NOT NULL, 
+	[ProjectTaskTypeManagersID] INT NULL, 
     [Address] NVARCHAR(30) NOT NULL, 
     [PostalCode] NVARCHAR(10) NOT NULL, 
     [Country] NVARCHAR(10) NOT NULL, 
@@ -24,14 +25,17 @@ CREATE TABLE [dbo].[Projects]
     [Description] NVARCHAR(250) NOT NULL, 
 
     [StartDate] DateTime NOT NULL, 
-    [EndDate] DateTime NULL, 
+    [EndDate] DateTime NOT NULL, 
+
+	[ActualStartDate] DateTime NULL, 
+    [ActualEndDate] DateTime NULL,
 
 	--time that the project was opened utc
     [CreationDate] DateTime NOT NULL DEFAULT GETDATE(), 
 
-
     CONSTRAINT [FK_Projects_Company] FOREIGN KEY ([CompanyID]) REFERENCES [Companys]([CompanyID]), 
     CONSTRAINT [FK_Projects_User_PManager] FOREIGN KEY ([ManagerID]) REFERENCES [Users]([UserID]),
+	CONSTRAINT [FK_Projects_ProjectTaskTypeManagersID] FOREIGN KEY ([ProjectTaskTypeManagersID]) REFERENCES [ProjectTaskTypeManagers]([ProjectTaskTypeManagersID]),
 
 	CONSTRAINT [CK_Projects_PostalCode] CHECK (PostalCode like '[A-Z][0-9][A-Z][0-9][A-Z][0-9]'), 
     CONSTRAINT [CK_Projects_EndDate] CHECK (EndDate < StartDate or EndDate is NULL)

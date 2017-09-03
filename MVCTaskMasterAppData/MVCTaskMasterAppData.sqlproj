@@ -81,6 +81,7 @@
     <Folder Include="Scripts\StoredProce\Session" />
     <Folder Include="Scripts\Functions" />
     <Folder Include="Scripts\StoredProce\PasswordResset" />
+    <Folder Include="Scripts\StoredProce\Project" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Scripts\Tables\CompanyRoles.sql" />
@@ -127,6 +128,8 @@
     <Build Include="Scripts\StoredProce\PasswordResset\CreateThePasswordResset.sql" />
     <Build Include="Scripts\Tables\TaskLinkers.sql" />
     <Build Include="Scripts\Tables\UserValidations.sql" />
+    <Build Include="Scripts\StoredProce\Project\CreateProject.sql" />
+    <Build Include="Scripts\Tables\ProjectTaskTypeManagers.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\Util\Scripts\ErrorTablesReBuildScript.sql" />

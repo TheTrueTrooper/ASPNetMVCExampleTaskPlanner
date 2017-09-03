@@ -11,14 +11,24 @@
 //  Link: NA
 //  }
 */
-.MyProjectBox {
-    background-color:darkgray;
+.MyBox {
+    background-color:lightgray;
     border-radius: 25px;
     padding: 20px;
-    
+}
+
+.MyProjectBox {
+    background-color:lightgray;
+    border-radius: 25px;
+    padding: 20px;
 }
 
 .MyProjectBox:hover{
-    background-color:lightgray;
+    filter: brightness(105%);
+    text-decoration:none;
+}
+
+a:hover{
+    text-decoration:none;
 }
 

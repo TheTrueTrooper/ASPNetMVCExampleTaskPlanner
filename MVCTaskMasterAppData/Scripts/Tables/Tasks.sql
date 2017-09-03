@@ -20,6 +20,9 @@ CREATE TABLE [dbo].[Tasks]
     [StartDate] DateTime NOT NULL, 
     [EndDate] DateTime NULL, 
 
+	[ActualStartDate] DateTime NULL, 
+    [ActualEndDate] DateTime NULL,
+
 	--time that the project was opened utc
     [CreationDate] DateTime NOT NULL DEFAULT GETDATE(), 
 
@@ -28,5 +31,5 @@ CREATE TABLE [dbo].[Tasks]
     CONSTRAINT [FK_Tasks_Projects] FOREIGN KEY ([ProjectID]) REFERENCES [Projects]([ProjectID]), 
     CONSTRAINT [FK_Tasks_TaskTypes] FOREIGN KEY ([TaskTypeID]) REFERENCES [TaskTypes]([TaskTypeID]),
 
-	CONSTRAINT [CK_Tasks_EndDate] CHECK (EndDate < StartDate or EndDate is NULL), 
+	CONSTRAINT [CK_Tasks_EndDate] CHECK (EndDate < StartDate or EndDate is NULL)
 )

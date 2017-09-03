@@ -9,83 +9,70 @@
     //  Writer/Publisher: Microsoft
     //  Link: https://www.asp.net/
     //  }*@
-@model ASP.NetMVCExample.Models.DashBoard.DashBoardView
+@model ASP.NetMVCExample.Models.SelectTheUser_Result
 @{
     ViewBag.NgApp = "NGDashBoard";
 
     ViewBag.Title = "Index";
 
-    List<ASP.NetMVCExample.Models.SelectUserProjects_Result> ProjectList = Model.ProjectData;
-    ASP.NetMVCExample.Models.SelectTheUser_Result Profile = Model.UsersProfileData;
-
-    Html.AddToRenderScriptBundles("~/bundles/DashBoard");
     Html.AddToRenderScriptBundles("~/bundles/MomentJS");
     Html.AddToRenderStyleBundles("~/Content/Project");
+    string url = Url.Action("", "Project", new { ID = "f" });
+    url = url.Remove(url.Count() - 1, 1);
 }
-@Scripts.Render("~/Scripts/Moment.js")
 @Scripts.Render("~/Scripts/PageScripts/DashBoard/DashBoard.js")
-<h2>Profile Dashboard</h2>
-<div class="row">
+@Styles.Render("~/Content/PageCss/Dashboard/ProjectBoxCSS.css")
+<div class="row" id="TopInfo">
     <div class="col-lg-4">
-        <div class="jumbotron">
+        <h2>Profile Dashboard</h2>
+        <div class="MyBox" style="word-wrap:break-word; overflow:hidden;">
             <h3>Profile Overview</h3>
-            <p class="text-info">
-                <img src="data:image;base64,@Convert.ToBase64String(Profile.Picture)" class="img-thumbnail" width="140" height="140" />
-                <br />Name: @Profile.FirstName,
-                Html.Raw("<br />Middle Name: " + @Profile.MiddleInitial + ",")
-                <br />Last Name: @Profile.LastName
-                @Html.Raw(Profile.WorkPhone != null ? ",<br />Work Phone: " + Profile.WorkPhone.Insert(3, "-").Insert(7, "-") : "")
-                @Html.Raw(Profile.CellPhone != null ? ",<br />Cell Phone: " + Profile.CellPhone.Insert(3, "-").Insert(7, "-") : "")
-                @Html.Raw(Profile.HomePhone != null ? ",<br />Home Phone: " + Profile.HomePhone.Insert(3, "-").Insert(7, "-") : "")
+            <p class="text-info" style="word-wrap:break-word; overflow:hidden;" >
+                <img src="data:image;base64,@Convert.ToBase64String(Model.Picture)" class="img-thumbnail" width="140" height="140" />
+                <br />Name: @Model.FirstName,
+                @Html.Raw("<br />Middle Name: " + @Model.MiddleInitial + ",")
+                <br />Last Name: @Model.LastName
+                @Html.Raw(Model.WorkPhone != null ? ",<br />Work Phone: " + Model.WorkPhone.Insert(3, "-").Insert(7, "-") : "")
+                @Html.Raw(Model.CellPhone != null ? ",<br />Cell Phone: " + Model.CellPhone.Insert(3, "-").Insert(7, "-") : "")
+                @Html.Raw(Model.HomePhone != null ? ",<br />Home Phone: " + Model.HomePhone.Insert(3, "-").Insert(7, "-") : "")
             </p>
             <hr4>Bio</hr4>
-            <p class="text-info " style="word-wrap:hyphenate;">
-                @Html.Raw(Profile.Bio != null ? Profile.Bio : "")
-                @Html.Raw(Profile.PortfollURL != null ? String.Format(@"<br /><button onclick=""window.location = '{0}'"">Click Me</button>", Profile.PortfollURL) : "" )
+            <p class="text-info " style="word-wrap:break-word;">
+                @Html.Raw(Model.Bio != null ? Model.Bio : "")
+                @Html.Raw(Model.PortfollURL != null ? String.Format(@"<br /><button onclick=""window.location = '{0}'"">Click Me</button>", Model.PortfollURL) : "" )
             </p>
         </div>
     </div>
-    <h3>Event Feed</h3>
-    <div class="col-lg-8">
-        <div class="jumbotron">
+    <div class="col-lg-8" style="word-wrap:break-word; overflow:hidden;">
+        <h2>News Feed</h2>
+        <div class="MyBox" style="word-wrap:break-word; overflow:scroll;">
             
         </div>
     </div>
 </div>
 <hr />
-<div class="jumbotron">
+<div>
     <hr4>Your Projects</hr4>
-    <div ng-controller="ProjectList" class="row">
-        <div ng-repeat="project in projects" class="col-sm-4">
-            <h3>{{project.ProjectName}}</h3>
-            <p>Address: {{project.Address}}, {{project.City}}, {{project.Province}}, {{project.Country}}, {{project.PostalCode}}<br />
-            For: {{project.CompanyName}}<br />
-            From<br/>
-            StartDate: {{project.StartDate}}<br />
-            EndDate: {{project.EndDate}}<br />
-            Description:<br/>
-            {{project.Description}}
-            </p>
+    <div ng-controller="ProjectList" class="row" id="Projects">
+        <div ng-repeat="project in projects" class="col-sm-4" style="word-wrap:break-word; overflow:hidden;">
+            <a href="@url{{project.ProjectID}}">
+                <div class="MyProjectBox">
+                    <h3 style="word-wrap:break-word;">{{project.ProjectName}}</h3>
+                    <p style="word-wrap:break-word;">
+                        Address: {{project.Address}}, {{project.City}}, {{project.Province}}, {{project.Country}}, {{project.PostalCode}}<br />
+                        For: {{project.CompanyName}}<br />
+                        From<br />
+                        StartDate: {{project.StartDate}}<br />
+                        EndDate: {{project.EndDate}}<br />
+                        Description:<br />
+                        {{project.Description}}
+                    </p>
+                </div>
+            </a>
          </div>
-@*@for (int i = 0; i < ProjectList.Count(); i++)
-{
-    if (i % 3 == 0)
-    {
-        //Skip the first open
-        if (open)
-        {
-            @Html.Raw("</div>") // close the div in raw so we dont get squigs
-        }
-        @Html.Raw("<div class=\"row\">")// open the div in raw so we dont get squigs
-        open = true;
-    }
-    @RenderPage("~/Views/Dashboard/_ProjectBox.cshtml", ProjectList[i])
- }*@
-    @*last wil not be open so close*@
-@*@Html.Raw("</div>") @*close the div in a raw so we dont get squigs*@
     </div>
     <hr />
-    @Html.ActionLink("Add a Project", "CreateProject", "Project", new { Topic = "Cloud" }, new { Class = "btn btn-default" })
+    @Html.ActionLink("Add a new project", "CreateProject", "Project", new { }, new { Class = "btn btn-default" })
 </div>
 
 

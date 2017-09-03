@@ -19,7 +19,7 @@ CREATE TABLE [dbo].[Users]
     [Password] NCHAR(50) NOT NULL, 
 	[Salt] CHAR(28) NOT NULL,
     [HomePhone] CHAR(11) NOT NULL, 
-    [CellPhone] CHAR(11) NULL, 
+    [CellPhone] CHAR(11) NULL,
     [WorkPhone] CHAR(11) NULL,
 
 	--Profile stuff

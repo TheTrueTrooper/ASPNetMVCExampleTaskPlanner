@@ -133,6 +133,9 @@ set MiddleInitial = 'M',
  PortfollURL = 'https://www.linkedin.com/in/angelo-sanches-a4b94a129'
 where UserID = 2013
 
+delete from Projects
+where 1 = 1
+
 select FirstName, MiddleInitial, LastName, Bio, Picture, HomePhone, CellPhone, WorkPhone, Email, PortfollURL, UserID from Users where 2013 = UserID
 
 insert into Projects(
@@ -146,6 +149,6 @@ insert into Projects(
     [City], 
     [Description], 
     [StartDate])
-	values ('Test 2', 2013, '8140', 'T6X1A5', 'Canada', 'Alberta', 'Edmonton', 'This is a test', GETDATE())
+	values ('Test 3', 2013, '8140', 'T6X1A5', 'Canada', 'Alberta', 'Edmonton', 'This is a test cvzxv xzvcxzvc  xzvxzcv xcv cxv cxz vxcv xczv xvxc vcx vxzc 312432 3243214 321421  xz dsfdv', GETDATE())
 
 	select * from Projects
