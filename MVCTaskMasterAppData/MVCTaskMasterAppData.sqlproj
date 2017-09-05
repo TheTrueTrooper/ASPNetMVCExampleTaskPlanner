@@ -130,6 +130,7 @@
     <Build Include="Scripts\Tables\UserValidations.sql" />
     <Build Include="Scripts\StoredProce\Project\CreateProject.sql" />
     <Build Include="Scripts\Tables\ProjectTaskTypeManagers.sql" />
+    <Build Include="Scripts\StoredProce\Project\SelectProjectByID.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\Util\Scripts\ErrorTablesReBuildScript.sql" />

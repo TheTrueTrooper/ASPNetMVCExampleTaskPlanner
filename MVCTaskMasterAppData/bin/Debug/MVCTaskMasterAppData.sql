@@ -40,45 +40,34 @@ USE [$(DatabaseName)];
 
 
 GO
-PRINT N'Dropping [dbo].[FK_ProjectTaskTypeManagers_UserManagingCompanysID]...';
+PRINT N'Creating [dbo].[SelectProjectByID]...';
 
 
 GO
-ALTER TABLE [dbo].[ProjectTaskTypeManagers] DROP CONSTRAINT [FK_ProjectTaskTypeManagers_UserManagingCompanysID];
-
-
-GO
-PRINT N'Creating [dbo].[FK_ProjectTaskTypeManagers_UserManagingCompanysID]...';
-
-
-GO
-ALTER TABLE [dbo].[ProjectTaskTypeManagers] WITH NOCHECK
-    ADD CONSTRAINT [FK_ProjectTaskTypeManagers_UserManagingCompanysID] FOREIGN KEY ([ManagingCompanysID]) REFERENCES [dbo].[Companys] ([CompanyID]);
-
-
-GO
-PRINT N'Creating [dbo].[FK_Projects_ProjectTaskTypeManagersID]...';
-
-
-GO
-ALTER TABLE [dbo].[Projects] WITH NOCHECK
-    ADD CONSTRAINT [FK_Projects_ProjectTaskTypeManagersID] FOREIGN KEY ([ProjectTaskTypeManagersID]) REFERENCES [dbo].[ProjectTaskTypeManagers] ([ProjectTaskTypeManagersID]);
-
-
-GO
-PRINT N'Checking existing data against newly created constraints';
-
-
-GO
-USE [$(DatabaseName)];
-
-
-GO
-ALTER TABLE [dbo].[ProjectTaskTypeManagers] WITH CHECK CHECK CONSTRAINT [FK_ProjectTaskTypeManagers_UserManagingCompanysID];
-
-ALTER TABLE [dbo].[Projects] WITH CHECK CHECK CONSTRAINT [FK_Projects_ProjectTaskTypeManagersID];
-
-
+--	  Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)
+--    Date Writen: Augest 30, 2017
+--    Project Goal: Make a cloud based app to aid in project management
+--    File Goal: Allow the view of all of the top data of a project
+--    Link: https://github.com/TheTrueTrooper/AngelASPExtentions
+--    Sources/References:
+--      {
+--      Name: ASP.net
+--      Writer/Publisher: Microsoft
+--      Link: https://www.asp.net/
+--      }
+CREATE PROCEDURE [dbo].[SelectProjectByID]
+	@ID int = 0
+AS
+	SELECT P.ProjectID, P.ProjectName, P.Address as ProjectAddress, P.City as ProjectCity, P.Province as ProjectProvince, P.Country as ProjectCountry, 
+	P.PostalCode as ProjectPostalCode, P.StartDate as ProjectStartDate, P.EndDate as ProjectEndDate, P.EndDate as ProjectEndDate, 
+	P.ActualStartDate as ProjectActualStartDate, P.ActualEndDate as ProjectActualEndDate, P.Description as ProjectDescription, 
+	P.CreationDate as ProjectCreationDate,
+	U.UserID as ManagerID, U.Picture as ManagerPicture, U.FirstName as ManagerFirstName, U.MiddleInitial as ManagerMiddleInitial, 
+	U.LastName as ManagerLastName, U.HomePhone as ManagerHomePhone, U.WorkPhone as ManagerWorkPhone, U.CellPhone as ManagerCellPhone,
+	C.CompanyID, C.CompanyName, C.CompanySite
+	from Projects as P left join Users as U on P.ManagerID = U.UserID left join Companys as C on P.CompanyID = C.CompanyID 
+	where ProjectID = @ID
+RETURN 0
 GO
 PRINT N'Update complete.';
 

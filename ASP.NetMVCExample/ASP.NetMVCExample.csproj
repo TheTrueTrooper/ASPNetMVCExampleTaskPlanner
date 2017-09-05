@@ -199,15 +199,69 @@
     <Compile Include="Controllers\ManageCompanyController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\UtilitiesAPIController.cs" />
-    <Compile Include="Models\DashBoard\DashBoardView.cs" />
+    <Compile Include="Models\CompanyRoles.cs">
+      <DependentUpon>TaskMasterData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Companys.cs">
+      <DependentUpon>TaskMasterData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CompanyWorkers.cs">
+      <DependentUpon>TaskMasterData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityLogin.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Search\SearchCompany.cs" />
-    <Compile Include="Models\Search\SearchUsers.cs" />
-    <Compile Include="Models\Users\UserPasswordReset.cs" />
-    <Compile Include="Models\Users\UserChangePassword.cs" />
-    <Compile Include="Models\Users\UserEditProfile.cs" />
-    <Compile Include="Models\Users\UserProfile.cs" />
+    <Compile Include="Models\Messages.cs">
+      <DependentUpon>TaskMasterData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Offices.cs">
+      <DependentUpon>TaskMasterData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProjectFiles.cs">
+      <DependentUpon>TaskMasterData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Projects.cs">
+      <DependentUpon>TaskMasterData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProjectTaskTypeManagers.cs">
+      <DependentUpon>TaskMasterData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProjectView\CreateProject.cs" />
+    <Compile Include="Models\SearchView\SearchCompany.cs" />
+    <Compile Include="Models\SearchView\SearchUsers.cs" />
+    <Compile Include="Models\SelectProjectByID_Result.cs">
+      <DependentUpon>TaskMasterData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SelectTheUser_Result.cs">
+      <DependentUpon>TaskMasterData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SelectUserProjects_Result.cs">
+      <DependentUpon>TaskMasterData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sessions.cs">
+      <DependentUpon>TaskMasterData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TaskLinkers.cs">
+      <DependentUpon>TaskMasterData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tasks.cs">
+      <DependentUpon>TaskMasterData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TaskTypes.cs">
+      <DependentUpon>TaskMasterData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserPasswordResset.cs">
+      <DependentUpon>TaskMasterData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Users.cs">
+      <DependentUpon>TaskMasterData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UsersView\UserPasswordReset.cs" />
+    <Compile Include="Models\UsersView\UserChangePassword.cs" />
+    <Compile Include="Models\UsersView\UserEditProfile.cs" />
+    <Compile Include="Models\UsersView\UserProfile.cs" />
+    <Compile Include="Models\UserValidations.cs">
+      <DependentUpon>TaskMasterData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -235,8 +289,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TaskMasterData.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Users\UserLoginTry.cs" />
-    <Compile Include="Models\Users\UserRegEntry.cs" />
+    <Compile Include="Models\UsersView\UserLoginTry.cs" />
+    <Compile Include="Models\UsersView\UserRegEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="_HelpersAndExtens\CustomWebHelpersAndExtentions.cs" />
@@ -286,6 +340,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jQueryUI.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\Moment.js" />
     <Content Include="Scripts\MyAjaxRequest.js" />
@@ -318,7 +373,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Dashboard\_ProjectBox.cshtml" />
     <Content Include="Content\PageCss\Dashboard\ProjectBoxCSS.css" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />

@@ -1,7 +1,59 @@
-﻿
+﻿@*  //Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)
+    //Date Writen: Sep 3,2017
+    //Project Goal: Make a cloud based app to aid in project management
+    //File Goal: To make a view to view projects
+    //Link: https://github.com/TheTrueTrooper/AngelASPExtentions
+    //Sources/References:
+    //  {
+    //  Name: ASP.net
+    //  Writer/Publisher: Microsoft
+    //  Link: https://www.asp.net/
+    //  }*@
+@model ASP.NetMVCExample.Models.SelectProjectByID_Result
 @{
     ViewBag.Title = "Index";
 }
+<div>
+    <h2>@Html.Raw(Model.ProjectName + "#" + Model.ProjectID)</h2>
+    <ul class="nav nav-tabs">
+        <li id="OverViewTab" class="active">Over View</li>
+        <li id="TaskCellViewTab">Task Cell View</li>
+        <li id="GanttChartViewTab">Gantt Chart View</li>
+        <li id="PerkChartViewTab">Perk Chart View</li>
+    </ul>
+    <div id="OverViewBody">
+        <hr3>Over View</hr3>
+        <div class="row">
+            <h2>Profile Dashboard</h2>
+                <div class="MyBox" style="word-wrap:break-word; overflow:hidden;">
+                    <h3>Profile Overview</h3>
+                    <p class="text-info" style="word-wrap:break-word; overflow:hidden;">
+                        <img src="data:image;base64,@Convert.ToBase64String(Model.ManagerPicture)" class="img-thumbnail" width="140" height="140" />
+                        <br /> User ID #: @((int)Session["SessionUserID"])
+                        <br />First Name: @Model.ManagerFirstName,
+                        @Html.Raw("<br />Middle Name: " + @Model.ManagerMiddleInitial + ",")
+                        <br />Last Name: @Model.ManagerLastName
+                        @Html.Raw(Model.ManagerWorkPhone != null ? ",<br />Work Phone: " + Model.ManagerWorkPhone.Insert(3, "-").Insert(7, "-") : "")
+                        @Html.Raw(Model.ManagerCellPhone != null ? ",<br />Cell Phone: " + Model.ManagerCellPhone.Insert(3, "-").Insert(7, "-") : "")
+                        @Html.Raw(Model.ManagerHomePhone != null ? ",<br />Home Phone: " + Model.ManagerHomePhone.Insert(3, "-").Insert(7, "-") : "")
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-8" style="word-wrap:break-word; overflow:hidden;">
+                <h2>News Feed</h2>
+                <div class="MyBox" style="word-wrap:break-word; overflow:scroll;">
 
-<h2>Index</h2>
-
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="TaskCellViewBody" hidden>
+        <hr3>Task Cell View</hr3>
+    </div>
+    <div id="GanttChartViewBody" hidden>
+        <hr3>Gantt Chart View</hr3>
+    </div>
+    <div id="PerkChartViewBody" hidden>
+        <hr3>Perk Chart View</hr3>
+    </div>
+</div>

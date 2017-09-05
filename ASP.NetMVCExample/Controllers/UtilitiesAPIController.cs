@@ -13,7 +13,6 @@
 #endregion
 using ASP.NetMVCExample._Helpers;
 using ASP.NetMVCExample.Models;
-using ASP.NetMVCExample.Models.Users;
 using ASP.NetMVCExample.SecurityValidation;
 using Newtonsoft.Json;
 using System;

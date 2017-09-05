@@ -16,19 +16,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ASP.NetMVCExample.SecurityValidation;
+using ASP.NetMVCExample.Models.ProjectView;
+using ASP.NetMVCExample.Models;
+using System.Data.Entity.Core.Objects;
 
 namespace ASP.NetMVCExample.Controllers
 {
+    [DBFSPAuthorize]
     public class ProjectController : Controller
     {
+        MVCTaskMasterAppDataEntities2 DB = new MVCTaskMasterAppDataEntities2();
         // GET: Project
-        public ActionResult Index()
+        public ActionResult Index(int ID)
         {
-            return View();
+            SelectProjectByID_Result Project = null;
+            using (ObjectResult<SelectProjectByID_Result> Result = DB.SelectProjectByID(ID))
+                Project = Result.First();
+            return View(Project);
         }
 
-        public ActionResult CreateProject()
+        
+        public ActionResult CreateProject(CreateProject ProjectToCreate)
         {
+            List<SelectListItem> UserList = new List<SelectListItem>{ new SelectListItem { Text = "Me", Value = ((int)Session["SessionUserID"]).ToString() } };
+            ViewBag.UserList = UserList;
+            ProjectToCreate.StartDate = DateTime.Now;
+            if (ModelState.IsValid)
+            {
+                 
+            }
             return View();
         }
     }

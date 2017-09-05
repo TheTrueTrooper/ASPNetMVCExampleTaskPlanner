@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace ASP.NetMVCExample.Models.Users
+namespace ASP.NetMVCExample.Models.UsersView
 {
     public class UserLoginTry
     {

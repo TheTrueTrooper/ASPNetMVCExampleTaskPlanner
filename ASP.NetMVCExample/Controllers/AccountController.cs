@@ -19,7 +19,7 @@ using System.Web.Mvc;
 using ASP.NetMVCExample.WebHelpers;
 using ASP.NetMVCExample.SecurityHelpers;
 using System.Data.Entity.Core.Objects;
-using ASP.NetMVCExample.Models.Users;
+using ASP.NetMVCExample.Models.UsersView;
 using ASP.NetMVCExample.Models;
 using ASP.NetMVCExample.SecurityValidation;
 using ASP.NetMVCExample._Helpers;
@@ -188,7 +188,7 @@ namespace ASP.NetMVCExample.Controllers
         [HttpPost]
         [AllowAnonymous]
         //[ValidateAntiForgeryToken]
-        public ActionResult PasswordReset(ASP.NetMVCExample.Models.Users.UserPasswordReset Reset)
+        public ActionResult PasswordReset(UserPasswordReset Reset)
         {
            
             const string PasswordResetSub = "Task Manager - Password Reset";

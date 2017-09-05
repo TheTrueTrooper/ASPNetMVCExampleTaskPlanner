@@ -19,7 +19,7 @@ using System.Linq;
 using System.Web;
 using System.Drawing;
 
-namespace ASP.NetMVCExample.Models.Users
+namespace ASP.NetMVCExample.Models.UsersView
 {
     public class UserProfile
     {

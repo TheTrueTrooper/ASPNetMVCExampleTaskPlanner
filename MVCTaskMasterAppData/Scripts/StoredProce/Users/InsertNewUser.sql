@@ -95,18 +95,14 @@ AS
 
 	insert into Users (FirstName, MiddleInitial, LastName, Email, [Password], Salt, HomePhone, CellPhone, WorkPhone)
 	values (@FirstName, @MiddleInitial, @LastName, @Email, @Password, @Salt, @HomePhone, @CellPhone, @WorkPhone)
-	set @TempError = @@ERROR
-	if exists (select FirstName from Users where @Email = Email)
-		begin
-			return 0
-		end
-	else
+	if not(@@ERROR = 0)
 		begin
 			set @ErrorMessage = 'Error UnkownSQLError'
 			set @MyTempError = -6
 			execute InsertErrorInfo  @ErrorMessage, @ErrorOperation, @ErrorTable, @TempError, @MyTempError
 			return @MyTempError
 		end
+	return 0
 go
 
 

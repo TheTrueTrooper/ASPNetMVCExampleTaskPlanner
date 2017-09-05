@@ -14,7 +14,6 @@
 using AngelASPExtentions.ExtraExtentions;
 using ASP.NetMVCExample._Helpers;
 using ASP.NetMVCExample.Models;
-using ASP.NetMVCExample.Models.DashBoard;
 using ASP.NetMVCExample.SecurityValidation;
 using System;
 using System.Collections.Generic;

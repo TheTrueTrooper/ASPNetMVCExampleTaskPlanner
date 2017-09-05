@@ -23,6 +23,7 @@ CREATE PROCEDURE [dbo].[CreateProject]
 
     @StartDate DateTime, 
     @EndDate DateTime, 
+	@OutID Int output,
 	@ErrorMessage char(100) output 
 AS
 	Declare @TempError int = 0,
@@ -74,4 +75,12 @@ AS
 	([ProjectName], [CompanyID], [ManagerID], [Address], [PostalCode], [Country], [Province], [City], [Description], [StartDate], [EndDate])
 	values
 	(@ProjectName, @CompanyID, @ManagerID, @Address, @PostalCode, @Country, @Province, @City, @Description, @StartDate, @EndDate)
+	if not(@@ERROR = 0)
+		begin
+			set @ErrorMessage = 'Error UnkownSQLError'
+			set @MyTempError = -5
+			execute InsertErrorInfo  @ErrorMessage, @ErrorOperation, @ErrorTable, @TempError, @MyTempError
+			return @MyTempError
+		end
+	set @OutID = Scope_Identity()
 RETURN 0

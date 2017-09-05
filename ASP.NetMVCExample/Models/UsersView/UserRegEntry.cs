@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace ASP.NetMVCExample.Models.Users
+namespace ASP.NetMVCExample.Models.UsersView
 {
     public class UserRegEntry
     {

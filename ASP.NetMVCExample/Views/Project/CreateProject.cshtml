@@ -1,7 +1,113 @@
-﻿
+﻿@*  //Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)
+    //Date Writen: Sep 3,2017
+    //Project Goal: Make a cloud based app to aid in project management
+    //File Goal: To make a view to view projects
+    //Link: https://github.com/TheTrueTrooper/AngelASPExtentions
+    //Sources/References:
+    //  {
+    //  Name: ASP.net
+    //  Writer/Publisher: Microsoft
+    //  Link: https://www.asp.net/
+    //  }*@
+@model ASP.NetMVCExample.Models.ProjectView.CreateProject
 @{
+    List<SelectListItem> UserList = ViewBag.UserList as List<SelectListItem>;
     ViewBag.Title = "CreateProject";
+
 }
+<script>
+    //creates the illus that min is a class 
+    var NowLocal = moment();
+    $(".MinDateNow").attr({ min: NowLocal })
+</script>
 
 <h2>CreateProject</h2>
-
+@using (Html.BeginForm("CreateProject", "Project", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>Create a new account.</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.ProjectName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.ProjectName, new { @class = "form-control" })<p class="text-info" style="font-size:xx-small"> Required *</p>
+            @Html.ValidationMessageFor(m => m.ProjectName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.StartDate, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.StartDate, new { type="datetime", @class = "form-control DatePicker MinDateNow", placeholder = "MM/DD/YYYY"})<p class="text-info" style="font-size:xx-small"> Required *</p>
+            @Html.ValidationMessageFor(m => m.StartDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.EndDate, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.EndDate, new { type="datetime", @class = "form-control DatePicker MinDateNow", placeholder = "MM/DD/YYYY"})<p class="text-info" style="font-size:xx-small"> Required *</p>
+            @Html.ValidationMessageFor(m => m.EndDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ManagerID, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.ManagerID, UserList, new { @class = "form-control" })<p class="text-info" style="font-size:xx-small"> Required *</p>
+            @Html.ValidationMessageFor(m => m.ManagerID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.CompanyID, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.CompanyID, new { @class = "form-control" })<p class="text-info" style="font-size:xx-small"></p>
+            @Html.ValidationMessageFor(m => m.CompanyID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Address, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })<p class="text-info" style="font-size:xx-small"> Required *</p>
+            @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.City, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.City, new { @class = "form-control" })<p class="text-info" style="font-size:xx-small"> Required *</p>
+            @Html.ValidationMessageFor(m => m.City, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Province, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Province, new { @class = "form-control" })<p class="text-info" style="font-size:xx-small"> Required *</p>
+            @Html.ValidationMessageFor(m => m.Province, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Country, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Country, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Country, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PostalCode, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.PostalCode, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.PostalCode, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })<p class="text-info" style="font-size:xx-small"> Required *</p>
+            @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Create Project" />
+        </div>
+    </div>
+}

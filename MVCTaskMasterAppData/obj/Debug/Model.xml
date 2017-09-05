@@ -126,22 +126,6 @@
 		</Element>
 		<Element Type="SqlDefaultConstraint">
 			<Property Name="DefaultExpressionScript">
-				<Value><![CDATA[GetDate()]]></Value>
-			</Property>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[Messages]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="ForColumn">
-				<Entry>
-					<References Name="[dbo].[Messages].[Time]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="10" />
-		</Element>
-		<Element Type="SqlDefaultConstraint">
-			<Property Name="DefaultExpressionScript">
 				<Value><![CDATA[GETDATE()]]></Value>
 			</Property>
 			<Relationship Name="DefiningTable">
@@ -152,6 +136,22 @@
 			<Relationship Name="ForColumn">
 				<Entry>
 					<References Name="[dbo].[Tasks].[CreationDate]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="10" />
+		</Element>
+		<Element Type="SqlDefaultConstraint">
+			<Property Name="DefaultExpressionScript">
+				<Value><![CDATA[GetDate()]]></Value>
+			</Property>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[Messages]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForColumn">
+				<Entry>
+					<References Name="[dbo].[Messages].[Time]" />
 				</Entry>
 			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="11" />
@@ -425,25 +425,6 @@
 					<Element Type="SqlIndexedColumnSpecification">
 						<Relationship Name="Column">
 							<Entry>
-								<References Name="[dbo].[Messages].[MessageID]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[Messages]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="26" />
-		</Element>
-		<Element Type="SqlPrimaryKeyConstraint">
-			<Relationship Name="ColumnSpecifications">
-				<Entry>
-					<Element Type="SqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
 								<References Name="[dbo].[Tasks].[TaskID]" />
 							</Entry>
 						</Relationship>
@@ -455,7 +436,7 @@
 					<References Name="[dbo].[Tasks]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="27" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="26" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -463,7 +444,7 @@
 					<Element Type="SqlIndexedColumnSpecification">
 						<Relationship Name="Column">
 							<Entry>
-								<References Name="[dbo].[ProjectTaskTypeManagers].[ProjectTaskTypeManagersID]" />
+								<References Name="[dbo].[Messages].[MessageID]" />
 							</Entry>
 						</Relationship>
 					</Element>
@@ -471,10 +452,10 @@
 			</Relationship>
 			<Relationship Name="DefiningTable">
 				<Entry>
-					<References Name="[dbo].[ProjectTaskTypeManagers]" />
+					<References Name="[dbo].[Messages]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="28" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="27" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -491,6 +472,25 @@
 			<Relationship Name="DefiningTable">
 				<Entry>
 					<References Name="[dbo].[Projects]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="28" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[ProjectTaskTypeManagers].[ProjectTaskTypeManagersID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[ProjectTaskTypeManagers]" />
 				</Entry>
 			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="29" />
@@ -1225,6 +1225,14 @@
 	([ProjectName], [CompanyID], [ManagerID], [Address], [PostalCode], [Country], [Province], [City], [Description], [StartDate], [EndDate])
 	values
 	(@ProjectName, @CompanyID, @ManagerID, @Address, @PostalCode, @Country, @Province, @City, @Description, @StartDate, @EndDate)
+	if not(@@ERROR = 0)
+		begin
+			set @ErrorMessage = 'Error UnkownSQLError'
+			set @MyTempError = -5
+			execute InsertErrorInfo  @ErrorMessage, @ErrorOperation, @ErrorTable, @TempError, @MyTempError
+			return @MyTempError
+		end
+	set @OutID = Scope_Identity()
 RETURN 0]]></Value>
 			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -1327,6 +1335,9 @@ RETURN 0]]></Value>
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[CreateProject].[@StartDate]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CreateProject].[@OutID]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="Parameters">
@@ -1503,6 +1514,22 @@ RETURN 0]]></Value>
 					</Element>
 				</Entry>
 				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CreateProject].[@OutID]">
+						<Property Name="IsOutput" Value="True" />
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
 					<Element Type="SqlSubroutineParameter" Name="[dbo].[CreateProject].[@ErrorMessage]">
 						<Property Name="IsOutput" Value="True" />
 						<Relationship Name="Type">
@@ -1527,10 +1554,10 @@ RETURN 0]]></Value>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
 				<Property Name="CreateOffset" Value="449" />
-				<Property Name="Length" Value="2880" />
+				<Property Name="Length" Value="3167" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="--&#x9;  Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)&#xD;&#xA;--    Date Writen: Augest 30, 2017&#xD;&#xA;--    Project Goal: Make a cloud based app to aid in project management&#xD;&#xA;--    File Goal: Allow additional projects to be made in the database&#xD;&#xA;--    Link: https://github.com/TheTrueTrooper/AngelASPExtentions&#xD;&#xA;--    Sources/References:&#xD;&#xA;--      {&#xD;&#xA;--      Name: ASP.net&#xD;&#xA;--      Writer/Publisher: Microsoft&#xD;&#xA;--      Link: https://www.asp.net/&#xD;&#xA;--      }&#xD;&#xA;CREATE PROCEDURE [dbo].[CreateProject]&#xD;&#xA;&#x9;@ProjectName NVARCHAR(70), &#xD;&#xA;    @CompanyID INT, &#xD;&#xA;&#x9;-- WorkerID that is rep to Pro&#xD;&#xA;    @ManagerID INT, &#xD;&#xA;    @Address NVARCHAR(30), &#xD;&#xA;    @PostalCode NVARCHAR(10), &#xD;&#xA;    @Country NVARCHAR(10), &#xD;&#xA;    @Province NVARCHAR(10), &#xD;&#xA;    @City NVARCHAR(10), &#xD;&#xA;    @Description NVARCHAR(250), &#xD;&#xA;&#xD;&#xA;    @StartDate DateTime, &#xD;&#xA;    @EndDate DateTime, &#xD;&#xA;&#x9;@ErrorMessage char(100) output &#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="--&#x9;  Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)&#xD;&#xA;--    Date Writen: Augest 30, 2017&#xD;&#xA;--    Project Goal: Make a cloud based app to aid in project management&#xD;&#xA;--    File Goal: Allow additional projects to be made in the database&#xD;&#xA;--    Link: https://github.com/TheTrueTrooper/AngelASPExtentions&#xD;&#xA;--    Sources/References:&#xD;&#xA;--      {&#xD;&#xA;--      Name: ASP.net&#xD;&#xA;--      Writer/Publisher: Microsoft&#xD;&#xA;--      Link: https://www.asp.net/&#xD;&#xA;--      }&#xD;&#xA;CREATE PROCEDURE [dbo].[CreateProject]&#xD;&#xA;&#x9;@ProjectName NVARCHAR(70), &#xD;&#xA;    @CompanyID INT, &#xD;&#xA;&#x9;-- WorkerID that is rep to Pro&#xD;&#xA;    @ManagerID INT, &#xD;&#xA;    @Address NVARCHAR(30), &#xD;&#xA;    @PostalCode NVARCHAR(10), &#xD;&#xA;    @Country NVARCHAR(10), &#xD;&#xA;    @Province NVARCHAR(10), &#xD;&#xA;    @City NVARCHAR(10), &#xD;&#xA;    @Description NVARCHAR(250), &#xD;&#xA;&#xD;&#xA;    @StartDate DateTime, &#xD;&#xA;    @EndDate DateTime, &#xD;&#xA;&#x9;@OutID Int output,&#xD;&#xA;&#x9;@ErrorMessage char(100) output &#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[CreateThePasswordResset]">
@@ -4274,18 +4301,14 @@ RETURN 0]]></Value>
 
 	insert into Users (FirstName, MiddleInitial, LastName, Email, [Password], Salt, HomePhone, CellPhone, WorkPhone)
 	values (@FirstName, @MiddleInitial, @LastName, @Email, @Password, @Salt, @HomePhone, @CellPhone, @WorkPhone)
-	set @TempError = @@ERROR
-	if exists (select FirstName from Users where @Email = Email)
-		begin
-			return 0
-		end
-	else
+	if not(@@ERROR = 0)
 		begin
 			set @ErrorMessage = 'Error UnkownSQLError'
 			set @MyTempError = -6
 			execute InsertErrorInfo  @ErrorMessage, @ErrorOperation, @ErrorTable, @TempError, @MyTempError
 			return @MyTempError
-		end]]></Value>
+		end
+	return 0]]></Value>
 			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="BodyDependencies">
@@ -4544,7 +4567,7 @@ RETURN 0]]></Value>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
 				<Property Name="CreateOffset" Value="555" />
-				<Property Name="Length" Value="3721" />
+				<Property Name="Length" Value="3628" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="--&#x9;  Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)&#xD;&#xA;--    Date Writen: June 23,2017&#xD;&#xA;--    Project Goal: Make a cloud based app to aid in project management&#xD;&#xA;--    File Goal: &#xD;&#xA;--    Link: https://github.com/TheTrueTrooper/AngelASPExtentions&#xD;&#xA;--    Sources/References:&#xD;&#xA;--      {&#xD;&#xA;--      Name: ASP.net&#xD;&#xA;--      Writer/Publisher: Microsoft&#xD;&#xA;--      Link: https://www.asp.net/&#xD;&#xA;--      }&#xD;&#xA;/*&#xD;&#xA;*Basic insert user for loggin and tracking&#xD;&#xA;*Will have a Salted and Hashed password by this point&#xD;&#xA;*Insert Error code is 1&#xD;&#xA;*User Table Error code is 1&#xD;&#xA;*/&#xD;&#xA;CREATE PROCEDURE [dbo].[InsertNewUser]&#xD;&#xA;&#x9;@FirstName NVARCHAR(20), &#xD;&#xA;    @MiddleInitial NCHAR(1), &#xD;&#xA;    @LastName NVARCHAR(20), &#xD;&#xA;    @Email NVARCHAR(320), &#xD;&#xA;    @Password NVARCHAR(50), &#xD;&#xA;&#x9;@Salt CHAR(28),&#xD;&#xA;    @HomePhone CHAR(14), &#xD;&#xA;    @CellPhone CHAR(14), &#xD;&#xA;    @WorkPhone CHAR(14),&#xD;&#xA;&#x9;@ErrorMessage nvarchar(100) output&#xD;&#xA;AS" />
@@ -4626,7 +4649,7 @@ RETURN 0]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="26" />
+						<AttachedAnnotation Disambiguator="27" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -4765,7 +4788,7 @@ RETURN 0]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="10" />
+						<AttachedAnnotation Disambiguator="11" />
 					</Element>
 				</Entry>
 			</Relationship>
@@ -5274,7 +5297,7 @@ RETURN 0]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="29" />
+						<AttachedAnnotation Disambiguator="28" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -5550,7 +5573,7 @@ RETURN 0]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="28" />
+						<AttachedAnnotation Disambiguator="29" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -5597,7 +5620,6 @@ RETURN 0]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="69" />
 					</Element>
 				</Entry>
 			</Relationship>
@@ -5606,7 +5628,154 @@ RETURN 0]]></Value>
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
+			<AttachedAnnotation Disambiguator="69" />
 			<AttachedAnnotation Disambiguator="70" />
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[SelectProjectByID]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	SELECT P.ProjectID, P.ProjectName, P.Address as ProjectAddress, P.City as ProjectCity, P.Province as ProjectProvince, P.Country as ProjectCountry, 
+	P.PostalCode as ProjectPostalCode, P.StartDate as ProjectStartDate, P.EndDate as ProjectEndDate, P.EndDate as ProjectEndDate, 
+	P.ActualStartDate as ProjectActualStartDate, P.ActualEndDate as ProjectActualEndDate, P.Description as ProjectDescription, 
+	P.CreationDate as ProjectCreationDate,
+	U.UserID as ManagerID, U.Picture as ManagerPicture, U.FirstName as ManagerFirstName, U.MiddleInitial as ManagerMiddleInitial, 
+	U.LastName as ManagerLastName, U.HomePhone as ManagerHomePhone, U.WorkPhone as ManagerWorkPhone, U.CellPhone as ManagerCellPhone,
+	C.CompanyID, C.CompanyName, C.CompanySite
+	from Projects as P left join Users as U on P.ManagerID = U.UserID left join Companys as C on P.CompanyID = C.CompanyID 
+	where ProjectID = @ID
+RETURN 0]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Projects]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Users]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Projects].[ManagerID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Users].[UserID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Companys]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Projects].[CompanyID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Companys].[CompanyID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Projects].[ProjectID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Projects].[ProjectName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Projects].[Address]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Projects].[City]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Projects].[Province]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Projects].[Country]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Projects].[PostalCode]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Projects].[StartDate]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Projects].[EndDate]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Projects].[ActualStartDate]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Projects].[ActualEndDate]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Projects].[Description]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Projects].[CreationDate]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Users].[UserID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Users].[Picture]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Users].[FirstName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Users].[MiddleInitial]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Users].[LastName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Users].[HomePhone]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Users].[WorkPhone]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Users].[CellPhone]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Companys].[CompanyName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Companys].[CompanySite]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Projects].[ProjectID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SelectProjectByID].[@ID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SelectProjectByID].[@ID]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA[0]]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="447" />
+				<Property Name="Length" Value="1414" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="--&#x9;  Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)&#xD;&#xA;--    Date Writen: Augest 30, 2017&#xD;&#xA;--    Project Goal: Make a cloud based app to aid in project management&#xD;&#xA;--    File Goal: Allow the view of all of the top data of a project&#xD;&#xA;--    Link: https://github.com/TheTrueTrooper/AngelASPExtentions&#xD;&#xA;--    Sources/References:&#xD;&#xA;--      {&#xD;&#xA;--      Name: ASP.net&#xD;&#xA;--      Writer/Publisher: Microsoft&#xD;&#xA;--      Link: https://www.asp.net/&#xD;&#xA;--      }&#xD;&#xA;CREATE PROCEDURE [dbo].[SelectProjectByID]&#xD;&#xA;&#x9;@ID int = 0&#xD;&#xA;AS" />
+			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[SelectTheUser]">
 			<Property Name="BodyScript">
@@ -6044,7 +6213,7 @@ RETURN 0]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="27" />
+						<AttachedAnnotation Disambiguator="26" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -6186,7 +6355,7 @@ RETURN 0]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="11" />
+						<AttachedAnnotation Disambiguator="10" />
 					</Element>
 				</Entry>
 			</Relationship>

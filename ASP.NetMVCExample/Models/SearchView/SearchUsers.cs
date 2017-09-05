@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace ASP.NetMVCExample.Models.Search
+namespace ASP.NetMVCExample.Models.SearchView
 {
     public class SearchUsers
     {

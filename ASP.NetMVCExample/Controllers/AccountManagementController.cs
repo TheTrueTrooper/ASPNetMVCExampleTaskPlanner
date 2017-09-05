@@ -16,7 +16,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ASP.NetMVCExample.Models.Users;
+using ASP.NetMVCExample.Models.UsersView;
 using ASP.NetMVCExample.SecurityValidation;
 using ASP.NetMVCExample.Models;
 using System.Data.Entity.Core.Objects;

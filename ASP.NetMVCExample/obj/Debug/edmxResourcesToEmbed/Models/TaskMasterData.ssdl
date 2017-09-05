@@ -35,8 +35,14 @@
     </Key>
     <Property Name="MessageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserID" Type="int" Nullable="false" />
-    <Property Name="ProjectID" Type="int" Nullable="false" />
+    <Property Name="ReplyToID" Type="int" />
+    <Property Name="DirectToID" Type="int" />
+    <Property Name="ProjectGroupID" Type="int" />
+    <Property Name="TaskTypesGroupID" Type="int" />
+    <Property Name="CompanyGroupID" Type="int" />
+    <Property Name="OfficeGroupID" Type="int" />
     <Property Name="Text" Type="nvarchar" MaxLength="2000" />
+    <Property Name="Time" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Offices">
     <Key>
@@ -67,8 +73,9 @@
     </Key>
     <Property Name="ProjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ProjectName" Type="nvarchar" MaxLength="70" Nullable="false" />
-    <Property Name="CompanyID" Type="int" Nullable="false" />
+    <Property Name="CompanyID" Type="int" />
     <Property Name="ManagerID" Type="int" Nullable="false" />
+    <Property Name="ProjectTaskTypeManagersID" Type="int" />
     <Property Name="Address" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="PostalCode" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="Country" Type="nvarchar" MaxLength="10" Nullable="false" />
@@ -76,8 +83,19 @@
     <Property Name="City" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="Description" Type="nvarchar" MaxLength="250" Nullable="false" />
     <Property Name="StartDate" Type="datetime" Nullable="false" />
-    <Property Name="EndDate" Type="datetime" />
+    <Property Name="EndDate" Type="datetime" Nullable="false" />
+    <Property Name="ActualStartDate" Type="datetime" />
+    <Property Name="ActualEndDate" Type="datetime" />
     <Property Name="CreationDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProjectTaskTypeManagers">
+    <Key>
+      <PropertyRef Name="ProjectTaskTypeManagersID" />
+    </Key>
+    <Property Name="ProjectTaskTypeManagersID" Type="int" Nullable="false" />
+    <Property Name="TaskTypeID" Type="int" Nullable="false" />
+    <Property Name="ManagerID" Type="int" />
+    <Property Name="ManagingCompanysID" Type="int" />
   </EntityType>
   <EntityType Name="Sessions">
     <Key>
@@ -106,6 +124,8 @@
     <Property Name="Description" Type="nvarchar" MaxLength="250" />
     <Property Name="StartDate" Type="datetime" Nullable="false" />
     <Property Name="EndDate" Type="datetime" />
+    <Property Name="ActualStartDate" Type="datetime" />
+    <Property Name="ActualEndDate" Type="datetime" />
     <Property Name="CreationDate" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="TaskTypes">
@@ -140,7 +160,7 @@
     <Property Name="WorkPhone" Type="char" MaxLength="11" />
     <Property Name="Picture" Type="varbinary" MaxLength="12" />
     <Property Name="Bio" Type="nvarchar" MaxLength="250" />
-    <Property Name="PortfollURL" Type="nvarchar" MaxLength="20" />
+    <Property Name="PortfollURL" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="UserValidations">
     <Key>
@@ -210,15 +230,75 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Messages_Projects">
-    <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
+  <Association Name="FK_Messages_CompanyGroupID">
+    <End Role="Companys" Type="Self.Companys" Multiplicity="0..1" />
+    <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companys">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="Messages">
+        <PropertyRef Name="CompanyGroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Messages_DirectToID">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Messages">
+        <PropertyRef Name="DirectToID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Messages_OfficeGroupID">
+    <End Role="Offices" Type="Self.Offices" Multiplicity="0..1" />
+    <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Offices">
+        <PropertyRef Name="OfficeID" />
+      </Principal>
+      <Dependent Role="Messages">
+        <PropertyRef Name="OfficeGroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Messages_ProjectsGroupID">
+    <End Role="Projects" Type="Self.Projects" Multiplicity="0..1" />
     <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Projects">
         <PropertyRef Name="ProjectID" />
       </Principal>
       <Dependent Role="Messages">
-        <PropertyRef Name="ProjectID" />
+        <PropertyRef Name="ProjectGroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Messages_ReplyToID">
+    <End Role="Messages" Type="Self.Messages" Multiplicity="0..1" />
+    <End Role="Messages1" Type="Self.Messages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Messages">
+        <PropertyRef Name="MessageID" />
+      </Principal>
+      <Dependent Role="Messages1">
+        <PropertyRef Name="ReplyToID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Messages_TaskTypesGroupID">
+    <End Role="TaskTypes" Type="Self.TaskTypes" Multiplicity="0..1" />
+    <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaskTypes">
+        <PropertyRef Name="TaskTypeID" />
+      </Principal>
+      <Dependent Role="Messages">
+        <PropertyRef Name="TaskTypesGroupID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -259,7 +339,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Projects_Company">
-    <End Role="Companys" Type="Self.Companys" Multiplicity="1" />
+    <End Role="Companys" Type="Self.Companys" Multiplicity="0..1" />
     <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Companys">
@@ -267,6 +347,18 @@
       </Principal>
       <Dependent Role="Projects">
         <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Projects_ProjectTaskTypeManagersID">
+    <End Role="ProjectTaskTypeManagers" Type="Self.ProjectTaskTypeManagers" Multiplicity="0..1" />
+    <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectTaskTypeManagers">
+        <PropertyRef Name="ProjectTaskTypeManagersID" />
+      </Principal>
+      <Dependent Role="Projects">
+        <PropertyRef Name="ProjectTaskTypeManagersID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -291,6 +383,30 @@
       </Principal>
       <Dependent Role="Projects">
         <PropertyRef Name="ManagerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectTaskTypeManagers_User_ManagerID">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="ProjectTaskTypeManagers" Type="Self.ProjectTaskTypeManagers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="ProjectTaskTypeManagers">
+        <PropertyRef Name="ManagerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectTaskTypeManagers_UserManagingCompanysID">
+    <End Role="Companys" Type="Self.Companys" Multiplicity="0..1" />
+    <End Role="ProjectTaskTypeManagers" Type="Self.ProjectTaskTypeManagers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companys">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="ProjectTaskTypeManagers">
+        <PropertyRef Name="ManagingCompanysID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -402,6 +518,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="CreateProject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProjectName" Type="nvarchar" Mode="In" />
+    <Parameter Name="CompanyID" Type="int" Mode="In" />
+    <Parameter Name="ManagerID" Type="int" Mode="In" />
+    <Parameter Name="Address" Type="nvarchar" Mode="In" />
+    <Parameter Name="PostalCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="Country" Type="nvarchar" Mode="In" />
+    <Parameter Name="Province" Type="nvarchar" Mode="In" />
+    <Parameter Name="City" Type="nvarchar" Mode="In" />
+    <Parameter Name="Description" Type="nvarchar" Mode="In" />
+    <Parameter Name="StartDate" Type="datetime" Mode="In" />
+    <Parameter Name="EndDate" Type="datetime" Mode="In" />
+    <Parameter Name="ErrorMessage" Type="char" Mode="InOut" />
+  </Function>
   <Function Name="CreateThePasswordResset" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Email" Type="nvarchar" Mode="In" />
     <Parameter Name="Code" Type="char" Mode="In" />
@@ -544,6 +674,7 @@
     <EntitySet Name="Offices" EntityType="Self.Offices" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProjectFiles" EntityType="Self.ProjectFiles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectTaskTypeManagers" EntityType="Self.ProjectTaskTypeManagers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sessions" EntityType="Self.Sessions" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TaskLinkers" EntityType="Self.TaskLinkers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
@@ -571,8 +702,28 @@
       <End Role="Users" EntitySet="Users" />
       <End Role="CompanyWorkers" EntitySet="CompanyWorkers" />
     </AssociationSet>
-    <AssociationSet Name="FK_Messages_Projects" Association="Self.FK_Messages_Projects">
+    <AssociationSet Name="FK_Messages_CompanyGroupID" Association="Self.FK_Messages_CompanyGroupID">
+      <End Role="Companys" EntitySet="Companys" />
+      <End Role="Messages" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Messages_DirectToID" Association="Self.FK_Messages_DirectToID">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Messages" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Messages_OfficeGroupID" Association="Self.FK_Messages_OfficeGroupID">
+      <End Role="Offices" EntitySet="Offices" />
+      <End Role="Messages" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Messages_ProjectsGroupID" Association="Self.FK_Messages_ProjectsGroupID">
       <End Role="Projects" EntitySet="Projects" />
+      <End Role="Messages" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Messages_ReplyToID" Association="Self.FK_Messages_ReplyToID">
+      <End Role="Messages" EntitySet="Messages" />
+      <End Role="Messages1" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Messages_TaskTypesGroupID" Association="Self.FK_Messages_TaskTypesGroupID">
+      <End Role="TaskTypes" EntitySet="TaskTypes" />
       <End Role="Messages" EntitySet="Messages" />
     </AssociationSet>
     <AssociationSet Name="FK_Messages_Users" Association="Self.FK_Messages_Users">
@@ -591,6 +742,10 @@
       <End Role="Companys" EntitySet="Companys" />
       <End Role="Projects" EntitySet="Projects" />
     </AssociationSet>
+    <AssociationSet Name="FK_Projects_ProjectTaskTypeManagersID" Association="Self.FK_Projects_ProjectTaskTypeManagersID">
+      <End Role="ProjectTaskTypeManagers" EntitySet="ProjectTaskTypeManagers" />
+      <End Role="Projects" EntitySet="Projects" />
+    </AssociationSet>
     <AssociationSet Name="FK_Projects_SubContractorID" Association="Self.FK_Projects_SubContractorID">
       <End Role="Companys" EntitySet="Companys" />
       <End Role="Tasks" EntitySet="Tasks" />
@@ -598,6 +753,14 @@
     <AssociationSet Name="FK_Projects_User_PManager" Association="Self.FK_Projects_User_PManager">
       <End Role="Users" EntitySet="Users" />
       <End Role="Projects" EntitySet="Projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectTaskTypeManagers_User_ManagerID" Association="Self.FK_ProjectTaskTypeManagers_User_ManagerID">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="ProjectTaskTypeManagers" EntitySet="ProjectTaskTypeManagers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectTaskTypeManagers_UserManagingCompanysID" Association="Self.FK_ProjectTaskTypeManagers_UserManagingCompanysID">
+      <End Role="Companys" EntitySet="Companys" />
+      <End Role="ProjectTaskTypeManagers" EntitySet="ProjectTaskTypeManagers" />
     </AssociationSet>
     <AssociationSet Name="FK_Rolls_SuperRoles" Association="Self.FK_Rolls_SuperRoles">
       <End Role="CompanyRoles" EntitySet="CompanyRoles" />
