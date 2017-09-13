@@ -346,6 +346,7 @@
     <Content Include="Scripts\MyAjaxRequest.js" />
     <Content Include="Scripts\PageScripts\About\About.js" />
     <Content Include="Scripts\PageScripts\DashBoard\DashBoard.js" />
+    <Content Include="Scripts\PageScripts\Projects\Index.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\TypeScriptOutput\BasicVectors.js" />
@@ -373,7 +374,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Content\PageCss\Dashboard\ProjectBoxCSS.css" />
+    <Content Include="Content\PageCss\BoxCSS.css" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Home\Help.cshtml" />

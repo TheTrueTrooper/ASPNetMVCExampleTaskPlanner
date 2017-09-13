@@ -1,0 +1,47 @@
+﻿/*WritersSigniture
+//Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)
+//Date Writen: June 23,2017
+//Project Goal: Make a cloud based app to aid in project management 
+//File Goal: To style a specific element in a page for data display (and test bundles)
+//Link: https://github.com/TheTrueTrooper/AngelASPExtentions
+//Sources: 
+//  {
+//  Name: NA
+//  Writer/Publisher: NA
+//  Link: NA
+//  }
+*/
+.MyBox {
+    background-color:lightgray;
+    border-radius: 25px;
+    padding: 20px;
+}
+
+.ScrollBox {
+    word-wrap:break-word; 
+    overflow:scroll;
+    height:80%;
+    background-color:darkgray;
+}
+
+.MyProjectBox {
+    background-color:lightgray;
+    border-radius: 25px;
+    padding: 20px;
+}
+
+.MyProjectBox {
+    background-color:lightgray;
+    border-radius: 25px;
+    padding: 20px;
+}
+
+.MyProjectBox:hover{
+    filter: brightness(105%);
+    text-decoration:none;
+}
+
+a:hover{
+    text-decoration:none;
+}
+

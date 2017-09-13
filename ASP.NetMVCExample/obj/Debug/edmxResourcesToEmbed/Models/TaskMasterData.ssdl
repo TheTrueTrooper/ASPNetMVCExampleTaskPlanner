@@ -530,6 +530,7 @@
     <Parameter Name="Description" Type="nvarchar" Mode="In" />
     <Parameter Name="StartDate" Type="datetime" Mode="In" />
     <Parameter Name="EndDate" Type="datetime" Mode="In" />
+    <Parameter Name="OutID" Type="int" Mode="InOut" />
     <Parameter Name="ErrorMessage" Type="char" Mode="InOut" />
   </Function>
   <Function Name="CreateThePasswordResset" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -623,6 +624,9 @@
     <Parameter Name="Password" Type="nvarchar" Mode="In" />
     <Parameter Name="IDOut" Type="int" Mode="InOut" />
     <Parameter Name="ChecksOut" Type="bit" Mode="InOut" />
+  </Function>
+  <Function Name="SelectProjectByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
   </Function>
   <Function Name="SelectTheUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ID" Type="int" Mode="In" />

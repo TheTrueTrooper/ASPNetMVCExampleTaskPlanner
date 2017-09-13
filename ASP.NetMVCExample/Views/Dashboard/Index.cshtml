@@ -15,14 +15,12 @@
 
     ViewBag.Title = "Index";
 
-    Html.AddToRenderScriptBundles("~/bundles/MomentJS");
-    Html.AddToRenderStyleBundles("~/Content/Project");
+    Html.AddToRenderStyleBundles("~/Content/All");
     //build the string so we can drop the end for use with Angularjs Templating. Added benifit of single call once for reuse to improve performance.
     string url = Url.Action("", "Project", new { ID = "f" });
     url = url.Remove(url.Count() - 1, 1);
 }
 @Scripts.Render("~/Scripts/PageScripts/DashBoard/DashBoard.js")
-@Styles.Render("~/Content/PageCss/Dashboard/ProjectBoxCSS.css")
 <div class="row" id="TopInfo">
     <div class="col-lg-4">
         <h2>Profile Dashboard</h2>
@@ -47,8 +45,10 @@
     </div>
     <div class="col-lg-8" style="word-wrap:break-word; overflow:hidden;">
         <h2>News Feed</h2>
-        <div class="MyBox" style="word-wrap:break-word; overflow:scroll;">
-            
+        <div class="MyBox" style="word-wrap:break-word; overflow:hidden;">
+            <div class="ScrollBox" style="height:100%;">
+
+            </div>
         </div>
     </div>
 </div>

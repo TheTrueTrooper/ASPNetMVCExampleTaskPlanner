@@ -38,5 +38,5 @@ CREATE TABLE [dbo].[Projects]
 	CONSTRAINT [FK_Projects_ProjectTaskTypeManagersID] FOREIGN KEY ([ProjectTaskTypeManagersID]) REFERENCES [ProjectTaskTypeManagers]([ProjectTaskTypeManagersID]),
 
 	CONSTRAINT [CK_Projects_PostalCode] CHECK (PostalCode like '[A-Z][0-9][A-Z][0-9][A-Z][0-9]'), 
-    CONSTRAINT [CK_Projects_EndDate] CHECK (EndDate < StartDate or EndDate is NULL)
+    CONSTRAINT [CK_Projects_EndDate] CHECK (EndDate > StartDate or EndDate is NULL)
 )

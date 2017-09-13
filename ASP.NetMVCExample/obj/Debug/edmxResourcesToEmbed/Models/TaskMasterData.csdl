@@ -144,6 +144,7 @@
       <Parameter Name="Description" Mode="In" Type="String" />
       <Parameter Name="StartDate" Mode="In" Type="DateTime" />
       <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+      <Parameter Name="OutID" Mode="InOut" Type="Int32" />
       <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
     </FunctionImport>
     <FunctionImport Name="CreateThePasswordResset" ReturnType="Collection(Boolean)">
@@ -279,6 +280,9 @@
     <FunctionImport Name="ValidateSession" ReturnType="Collection(Boolean)">
       <Parameter Name="UserID" Mode="In" Type="Int32" />
       <Parameter Name="Code" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SelectProjectByID" ReturnType="Collection(MVCTaskMasterAppDataModel.SelectProjectByID_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="CompanyRoles">
@@ -883,5 +887,32 @@
     <Property Type="String" Name="Description" Nullable="false" MaxLength="250" />
     <Property Type="DateTime" Name="StartDate" Nullable="false" Precision="23" />
     <Property Type="DateTime" Name="EndDate" Nullable="false" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="SelectProjectByID_Result">
+    <Property Type="Int32" Name="ProjectID" Nullable="false" />
+    <Property Type="String" Name="ProjectName" Nullable="false" MaxLength="70" />
+    <Property Type="String" Name="ProjectAddress" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="ProjectCity" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="ProjectProvince" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="ProjectCountry" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="ProjectPostalCode" Nullable="false" MaxLength="10" />
+    <Property Type="DateTime" Name="ProjectStartDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="ProjectEndDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="ProjectEndDate1" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="ProjectActualStartDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="ProjectActualEndDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="ProjectDescription" Nullable="false" MaxLength="250" />
+    <Property Type="DateTime" Name="ProjectCreationDate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="ManagerID" Nullable="true" />
+    <Property Type="Binary" Name="ManagerPicture" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="ManagerFirstName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ManagerMiddleInitial" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ManagerLastName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ManagerHomePhone" Nullable="true" MaxLength="11" />
+    <Property Type="String" Name="ManagerWorkPhone" Nullable="true" MaxLength="11" />
+    <Property Type="String" Name="ManagerCellPhone" Nullable="true" MaxLength="11" />
+    <Property Type="Int32" Name="CompanyID" Nullable="true" />
+    <Property Type="String" Name="CompanyName" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="CompanySite" Nullable="true" MaxLength="40" />
   </ComplexType>
 </Schema>

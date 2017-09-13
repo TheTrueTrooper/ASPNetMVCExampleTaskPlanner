@@ -37,17 +37,17 @@ namespace ASP.NetMVCExample
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
-                        "~/Scripts/angular.js"));
-
             // my scriptBundles
             // libs
-            bundles.Add(new ScriptBundle("~/bundles/MomentJS").Include("~/Scripts/Moment.js"));
+            bundles.Add(new ScriptBundle("~/bundles/Lib")
+                .Include("~/Scripts/Moment.js")
+                .Include("~/Scripts/angular.js"));
             //per page 
-            //bundles.Add(new ScriptBundle("~/bundles/About").IncludeDirectory("~/Scripts/PageScripts/About/", "*.js"));
             bundles.Add(new ScriptBundle("~/bundles/About").Include("~/Scripts/PageScripts/About/*.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/DashBoard").Include("~/Scripts/PageScripts/DashBoard/*.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/Projects").Include("~/Scripts/PageScripts/Projects/*.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
@@ -67,7 +67,9 @@ namespace ASP.NetMVCExample
             //libs
 
             //per page
-            bundles.Add(new StyleBundle("~/Content/Project").IncludeDirectory("~/Content/PageCss/Dashboard/", "*.css"));
+            bundles.Add(new StyleBundle("~/Content/All").Include("~/Content/PageCss/*.css",
+                "~/Content/bootstrap.css",
+                "~/Content/site.css"));
         }
     }
 }

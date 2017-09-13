@@ -242,5 +242,36 @@
     <FunctionImportMapping FunctionImportName="UpdateTheUserChangePassword" FunctionName="MVCTaskMasterAppDataModel.Store.UpdateTheUserChangePassword" />
     <FunctionImportMapping FunctionImportName="UpdateTheUserInfo" FunctionName="MVCTaskMasterAppDataModel.Store.UpdateTheUserInfo" />
     <FunctionImportMapping FunctionImportName="ValidateSession" FunctionName="MVCTaskMasterAppDataModel.Store.ValidateSession" />
+    <FunctionImportMapping FunctionImportName="SelectProjectByID" FunctionName="MVCTaskMasterAppDataModel.Store.SelectProjectByID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCTaskMasterAppDataModel.SelectProjectByID_Result">
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+          <ScalarProperty Name="ProjectAddress" ColumnName="ProjectAddress" />
+          <ScalarProperty Name="ProjectCity" ColumnName="ProjectCity" />
+          <ScalarProperty Name="ProjectProvince" ColumnName="ProjectProvince" />
+          <ScalarProperty Name="ProjectCountry" ColumnName="ProjectCountry" />
+          <ScalarProperty Name="ProjectPostalCode" ColumnName="ProjectPostalCode" />
+          <ScalarProperty Name="ProjectStartDate" ColumnName="ProjectStartDate" />
+          <ScalarProperty Name="ProjectEndDate" ColumnName="ProjectEndDate" />
+          <ScalarProperty Name="ProjectEndDate1" ColumnName="ProjectEndDate1" />
+          <ScalarProperty Name="ProjectActualStartDate" ColumnName="ProjectActualStartDate" />
+          <ScalarProperty Name="ProjectActualEndDate" ColumnName="ProjectActualEndDate" />
+          <ScalarProperty Name="ProjectDescription" ColumnName="ProjectDescription" />
+          <ScalarProperty Name="ProjectCreationDate" ColumnName="ProjectCreationDate" />
+          <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+          <ScalarProperty Name="ManagerPicture" ColumnName="ManagerPicture" />
+          <ScalarProperty Name="ManagerFirstName" ColumnName="ManagerFirstName" />
+          <ScalarProperty Name="ManagerMiddleInitial" ColumnName="ManagerMiddleInitial" />
+          <ScalarProperty Name="ManagerLastName" ColumnName="ManagerLastName" />
+          <ScalarProperty Name="ManagerHomePhone" ColumnName="ManagerHomePhone" />
+          <ScalarProperty Name="ManagerWorkPhone" ColumnName="ManagerWorkPhone" />
+          <ScalarProperty Name="ManagerCellPhone" ColumnName="ManagerCellPhone" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="CompanySite" ColumnName="CompanySite" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

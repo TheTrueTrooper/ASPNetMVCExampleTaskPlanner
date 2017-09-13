@@ -148,7 +148,8 @@ insert into Projects(
     [Province], 
     [City], 
     [Description], 
-    [StartDate])
-	values ('Test 3', 2013, '8140', 'T6X1A5', 'Canada', 'Alberta', 'Edmonton', 'This is a test cvzxv xzvcxzvc  xzvxzcv xcv cxv cxz vxcv xczv xvxc vcx vxzc 312432 3243214 321421  xz dsfdv', GETDATE())
+    [StartDate],
+	[EndDate])
+	values ('Test 3', 2013, '8140', 'T6X1A5', 'Canada', 'Alberta', 'Edmonton', 'This is a test cvzxv xzvcxzvc  xzvxzcv xcv cxv cxz vxcv xczv xvxc vcx vxzc 312432 3243214 321421  xz dsfdv', GETDATE(), DATEADD(hour, 1, GETDATE()))
 
 	select * from Projects

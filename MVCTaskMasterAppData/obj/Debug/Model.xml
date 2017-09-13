@@ -463,7 +463,7 @@
 					<Element Type="SqlIndexedColumnSpecification">
 						<Relationship Name="Column">
 							<Entry>
-								<References Name="[dbo].[Projects].[ProjectID]" />
+								<References Name="[dbo].[ProjectTaskTypeManagers].[ProjectTaskTypeManagersID]" />
 							</Entry>
 						</Relationship>
 					</Element>
@@ -471,7 +471,7 @@
 			</Relationship>
 			<Relationship Name="DefiningTable">
 				<Entry>
-					<References Name="[dbo].[Projects]" />
+					<References Name="[dbo].[ProjectTaskTypeManagers]" />
 				</Entry>
 			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="28" />
@@ -482,7 +482,7 @@
 					<Element Type="SqlIndexedColumnSpecification">
 						<Relationship Name="Column">
 							<Entry>
-								<References Name="[dbo].[ProjectTaskTypeManagers].[ProjectTaskTypeManagersID]" />
+								<References Name="[dbo].[Projects].[ProjectID]" />
 							</Entry>
 						</Relationship>
 					</Element>
@@ -490,7 +490,7 @@
 			</Relationship>
 			<Relationship Name="DefiningTable">
 				<Entry>
-					<References Name="[dbo].[ProjectTaskTypeManagers]" />
+					<References Name="[dbo].[Projects]" />
 				</Entry>
 			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="29" />
@@ -814,7 +814,7 @@
 		</Element>
 		<Element Type="SqlCheckConstraint" Name="[dbo].[CK_Projects_EndDate]">
 			<Property Name="CheckExpressionScript">
-				<Value><![CDATA[EndDate < StartDate or EndDate is NULL]]></Value>
+				<Value><![CDATA[EndDate > StartDate or EndDate is NULL]]></Value>
 			</Property>
 			<Relationship Name="CheckExpressionDependencies">
 				<Entry>
@@ -5297,7 +5297,7 @@ RETURN 0]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="28" />
+						<AttachedAnnotation Disambiguator="29" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -5573,7 +5573,7 @@ RETURN 0]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="29" />
+						<AttachedAnnotation Disambiguator="28" />
 					</Element>
 				</Entry>
 				<Entry>

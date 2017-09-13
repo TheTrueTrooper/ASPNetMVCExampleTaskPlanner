@@ -11,20 +11,24 @@
     //  }*@
 @model ASP.NetMVCExample.Models.SelectProjectByID_Result
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = Model.ProjectName + "#" + Model.ProjectID;
+    ViewBag.NgApp = "NGProjectsIndex";
 }
 <div>
     <h2>@Html.Raw(Model.ProjectName + "#" + Model.ProjectID)</h2>
-    <ul class="nav nav-tabs">
-        <li id="OverViewTab" class="active">Over View</li>
-        <li id="TaskCellViewTab">Task Cell View</li>
-        <li id="GanttChartViewTab">Gantt Chart View</li>
-        <li id="PerkChartViewTab">Perk Chart View</li>
-    </ul>
-    <div id="OverViewBody">
-        <hr3>Over View</hr3>
-        <div class="row">
-            <h2>Profile Dashboard</h2>
+    <div id="TabTabs">
+        <ul class="nav nav-tabs">
+            <li id="OverViewTab" class="active" onclick="">Over View</li>
+            <li id="TaskCellViewTab" onclick="">Task Cell View</li>
+            <li id="GanttChartViewTab" onclick="">Gantt Chart View</li>
+            <li id="PerkChartViewTab" onclick="">Perk Chart View</li>
+        </ul>
+    </div>
+    <div id="TabBodies">
+        <div id="OverViewBody">
+            <hr3>Over View</hr3>
+            <div class="row">
+                <h2>Profile Dashboard</h2>
                 <div class="MyBox" style="word-wrap:break-word; overflow:hidden;">
                     <h3>Profile Overview</h3>
                     <p class="text-info" style="word-wrap:break-word; overflow:hidden;">
@@ -41,19 +45,20 @@
             </div>
             <div class="col-lg-8" style="word-wrap:break-word; overflow:hidden;">
                 <h2>News Feed</h2>
-                <div class="MyBox" style="word-wrap:break-word; overflow:scroll;">
-
+                <div class="">
+                    <div style="word-wrap:break-word; overflow:scroll;">
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div id="TaskCellViewBody" hidden>
-        <hr3>Task Cell View</hr3>
-    </div>
-    <div id="GanttChartViewBody" hidden>
-        <hr3>Gantt Chart View</hr3>
-    </div>
-    <div id="PerkChartViewBody" hidden>
-        <hr3>Perk Chart View</hr3>
+        <div id="TaskCellViewBody" hidden>
+            <hr3>Task Cell View</hr3>
+        </div>
+        <div id="GanttChartViewBody" hidden>
+            <hr3>Gantt Chart View</hr3>
+        </div>
+        <div id="PerkChartViewBody" hidden>
+            <hr3>Perk Chart View</hr3>
+        </div>
     </div>
 </div>
