@@ -1,6 +1,6 @@
 # ASP.NetMVC-razor-Example-TaskPlanner
 Using ASP.NET MVC with razor I am creating a task manager site to show case my Model View Control skills and build on them.
-<pre>
+<span>
 Introduction 
 I recently started this project to both demonstrate and build on my ability to develop cloud applications. I see this project both as a point for learning, development, and show casing my skills. The project is primarily C# ASP.NET Core/MVC a cloud. The project is an amalgamation of technologies/approaches in reality and will be listed here.
 I)	Technologies
@@ -53,4 +53,4 @@ The Solution
 This is what my application would like to remove from the table. By taking the data from the beginning to end and placing it on a cloud that can be accessed by everyone (within reason abstraction of certain things is still good) we cut down on these issues. 
 More often than not in the planning step we make gantt charts that identify the critical routes for work (tasks). Often these can be assigned to a profession and a group that handles it. If Task A for the plumbers finishes why not notify the Task B concrete finisher party automatically using the management’s confirmation step. Using the groupings responsible for the task abstract the data to who needs it, or just leave it visible for transparency.
 And while we are busy interconnecting this data why not allow for communication up the chain as well. For instance the plumber will take longer he posts to a virtual board rooms wall and notifies them of it with the reason. All invested parities would probably like to know why it is late and how late will it be. If this is critical issue now we all actively join a virtual board room with voice and go over the problem for a solution together.
-</pre>
+</span>
