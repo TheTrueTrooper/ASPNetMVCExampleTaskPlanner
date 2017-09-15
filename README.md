@@ -3,7 +3,7 @@ Using ASP.NET MVC with razor I am creating a task manager site to show case my M
 
 <h3>Introduction</h3> 
 <p>I recently started this project to both demonstrate and build on my ability to develop cloud applications. I see this project both as a point for learning, development, and show casing my skills. The project is primarily C# ASP.NET Core/MVC a cloud. The project is an amalgamation of technologies/approaches in reality and will be listed here.<br/>
-I)	Technologies<br/>
+&nbsp;I)	Technologies<br/>
     1)	C# 6.0 including the .NET Core framework, Lambdas, Attributes, and LINQS can be observed through most of the project. This   can be sub categorized. <br/>
         i)	ASP.NET Core/MVC Models are used for serving data located in any file in the “Models” folder.<br/>
         ii)	ASP.NET Core/MVC Views are used for rendering html located in any file in the “Views” folder.<br/>
