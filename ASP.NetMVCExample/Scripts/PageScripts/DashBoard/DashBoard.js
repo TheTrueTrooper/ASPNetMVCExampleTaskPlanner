@@ -13,7 +13,7 @@
 */
 angular.module("NGDashBoard", [])
     //make a service that can be used to get the stuff
-.service("ProjectsService", function ($http)
+.service("ProjectsGetterService", function ($http)
 {
     return {
         GetProjects: function ()
@@ -22,9 +22,9 @@ angular.module("NGDashBoard", [])
         }
     }
 })
-.controller("ProjectList", function ($scope, $interval , ProjectsService)
+.controller("ProjectList", function ($scope, $interval, ProjectsGetterService)
 {
-    ProjectsService.GetProjects().then(function (result)
+    ProjectsGetterService.GetProjects().then(function (result)
     {
         $scope.projects = result.data;
         $scope.projects.forEach(function (Item)
@@ -39,35 +39,31 @@ angular.module("NGDashBoard", [])
     $scope.wait = $interval(function ()
     {
         //do for projects.
-            var SetAtSize = 0;
-            var ElementArray = $.makeArray($("#Projects").children())
-            ElementArray.forEach(function (Item)
-            {
-                var Height = $(Item.childNodes[1].childNodes[1]).height();
-                if (Height > SetAtSize)
-                    SetAtSize = Height;
-            });
-            ElementArray.forEach(function (Item)
-            {
-                $(Item.childNodes[1].childNodes[1]).height(SetAtSize);
-            });
+        var SetAtSize = 0;
+        var ElementArray = $.makeArray($("#Projects").children())
+        ElementArray.forEach(function (Item)
+        {
+            var Height = $(Item.childNodes[1].childNodes[1]).height();
+            if (Height > SetAtSize)
+                SetAtSize = Height;
+        });
+        ElementArray.forEach(function (Item)
+        {
+            $(Item.childNodes[1].childNodes[1]).height(SetAtSize);
+        });
 
-            SetAtSize = 0;
-            ElementArray = $.makeArray($("#TopInfo").children())
-            ElementArray.forEach(function (Item)
-            {
-                var Height = $(Item.childNodes[3]).height();
-                if (Height > SetAtSize)
-                    SetAtSize = Height;
-            });
-            ElementArray.forEach(function (Item)
-            {
-                $(Item.childNodes[3]).height(SetAtSize);
-            });
+        SetAtSize = 0;
+        ElementArray = $.makeArray($("#TopInfo").children())
+        ElementArray.forEach(function (Item)
+        {
+            var Height = $(Item.childNodes[3]).height();
+            if (Height > SetAtSize)
+                SetAtSize = Height;
+        });
+        ElementArray.forEach(function (Item)
+        {
+            $(Item.childNodes[3]).height(SetAtSize);
+        });
 
-       }, 200);
-})
-
-
-
-
+    }, 200);
+});

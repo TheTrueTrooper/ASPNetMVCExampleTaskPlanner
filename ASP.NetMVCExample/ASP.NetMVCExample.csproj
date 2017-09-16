@@ -318,6 +318,7 @@
       <LastGenOutput>TaskMasterData.cs</LastGenOutput>
     </Content>
     <Content Include="MyNotesReadMe.txt" />
+    <Content Include="Scripts\angular-route.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -395,6 +396,10 @@
     <Content Include="Scripts\TypeScriptOutput\graph.js.map" />
     <Content Include="Views\Project\Index.cshtml" />
     <Content Include="Views\Project\CreateProject.cshtml" />
+    <Content Include="Views\Project\_AJSV_Index_OverView.cshtml" />
+    <Content Include="Views\Project\_AJSV_Index_TaskCellView.cshtml" />
+    <Content Include="Views\Project\_AJSV_Index_GanttChartView.cshtml" />
+    <Content Include="Views\Project\_AJSV_Index_PerkChartView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\ManageCompany\" />

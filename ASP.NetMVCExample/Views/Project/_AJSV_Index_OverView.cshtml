@@ -1,0 +1,41 @@
+﻿@*  //Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)
+    //Date Writen: Sep 14,2017
+    //Project Goal: Make a cloud based app to aid in project management
+    //File Goal: To make a view to for OverView (A Index SubView for a AngularJS View)
+    //Link: https://github.com/TheTrueTrooper/AngelASPExtentions
+    //Sources/References:
+    //  {
+    //  Name: ASP.net
+    //  Writer/Publisher: Microsoft
+    //  Link: https://www.asp.net/
+    //  }*@
+@*@model ASP.NetMVCExample.Models.SelectProjectByID_Result*@
+@{ 
+
+}
+<div id="OverViewBody">
+    <hr3>Over View</hr3>
+    <div class="row">
+        <h2>Profile Dashboard</h2>
+        <div class="MyBox" style="word-wrap:break-word; overflow:hidden;">
+            <h3>Profile Overview</h3>
+            <p class="text-info" style="word-wrap:break-word; overflow:hidden;">
+                @*<img src="data:image;base64,@Convert.ToBase64String(Model.ManagerPicture)" class="img-thumbnail" width="140" height="140" />
+                <br /> User ID #: @((int)Session["SessionUserID"])
+                <br />First Name: @Model.ManagerFirstName,
+                @Html.Raw("<br />Middle Name: " + @Model.ManagerMiddleInitial + ",")
+                <br />Last Name: @Model.ManagerLastName
+                @Html.Raw(Model.ManagerWorkPhone != null ? ",<br />Work Phone: " + Model.ManagerWorkPhone.Insert(3, "-").Insert(7, "-") : "")
+                @Html.Raw(Model.ManagerCellPhone != null ? ",<br />Cell Phone: " + Model.ManagerCellPhone.Insert(3, "-").Insert(7, "-") : "")
+                @Html.Raw(Model.ManagerHomePhone != null ? ",<br />Home Phone: " + Model.ManagerHomePhone.Insert(3, "-").Insert(7, "-") : "")*@
+            </p>
+        </div>
+    </div>
+    <div class="col-lg-8" style="word-wrap:break-word; overflow:hidden;">
+        <h2>News Feed</h2>
+        <div class="">
+            <div style="word-wrap:break-word; overflow:scroll;">
+            </div>
+        </div>
+    </div>
+</div>

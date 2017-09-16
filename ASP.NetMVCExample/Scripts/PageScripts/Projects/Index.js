@@ -11,11 +11,59 @@
 //  Link: NA
 //  }
 */
-function OverViewTabClick()
+angular.module("NGProjectsIndex", ["ngRoute"])
+.config(function ($routeProvider, $rootScope)
 {
-    $(".Active").removeAttr("Class");
-    $("#OverViewTab").addClass("Active");
-    $(".TabBodies >").attr("hidden","true");
-}
+    $rootScope.RouteURL = $("#RootURLData").val;
+    var AngularViewVar = $rootScope.RouteURL + "?AngularView=";
+    $routeProvider
+        .when($rootScope.RouteURL + "/OverView",
+        {
+            templateUrl: AngularViewVar + "OverView",
+            controller: "OverViewController"
+        })
+        .when($rootScope.RouteURL + "/TaskCellView",
+        {
+            templateUrl: AngularViewVar + "TaskCellView",
+            controller: "TaskCellViewController"
+        })
+        ($rootScope.RouteURL + "/GanttChartView",
+        {
+            templateUrl: AngularViewVar + "GanttChartView",
+            controller: "GanttChartViewController"
+        })
+        .when($rootScope.RouteURL + "/PerkChartView",
+        {
+            templateUrl: AngularViewVar + "PerkChartView",
+            controller: "PerkChartViewController"
+        });
+})
+.service("ProjectsGetterService", function ($http)
+{
+    return {
+        GetProjects: function ()
+        {
+            return $http.get("/UtilitiesAPI/ProjectData", { responseType: "json" })
+        },
+        GetTasks: function ()
+        {
+            return $http.get("/UtilitiesAPI/ProjectTasksData", { responseType: "json" })
+        }
+    }
+})
+.controller("OverViewController", function ()
+{
 
-angular.module("NGProjectsIndex", [])
+})
+.controller("TaskCellViewController", function ()
+{
+
+})
+.controller("GanttChartViewController", function ()
+{
+
+})
+.controller("PerkChartViewController", function ()
+{
+
+});

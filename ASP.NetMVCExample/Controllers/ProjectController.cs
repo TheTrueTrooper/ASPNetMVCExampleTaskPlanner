@@ -36,7 +36,24 @@ namespace ASP.NetMVCExample.Controllers
             return View(Project);
         }
 
-        
+        public ActionResult Index(string AngularView)
+        {
+            switch(AngularView)
+            {
+                case "OverView":
+                    return View("_AJSV_Index_OverView");
+                case "TaskCellView":
+                    return View("_AJSV_Index_TaskCellView");
+                case "GanttChartView":
+                    return View("_AJSV_Index_GanttChartView");
+                case "PerkChartView":
+                    return View("_AJSV_Index_PerkChartView");
+                default:
+                    return View("FriendlyErr");
+            }
+        }
+
+
         public ActionResult CreateProject(CreateProject ProjectToCreate)
         {
             List<SelectListItem> UserList = new List<SelectListItem>{ new SelectListItem { Text = "Me", Value = ((int)Session["SessionUserID"]).ToString() } };

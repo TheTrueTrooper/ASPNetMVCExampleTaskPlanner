@@ -40,34 +40,65 @@ USE [$(DatabaseName)];
 
 
 GO
-PRINT N'Dropping [dbo].[CK_Projects_EndDate]...';
+PRINT N'Creating [dbo].[SessionsCleaner]...';
 
 
 GO
-ALTER TABLE [dbo].[Projects] DROP CONSTRAINT [CK_Projects_EndDate];
+--	  Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)
+--    Date Writen: Sep 14, 2017
+--    Project Goal: Make a cloud based app to aid in project management
+--    File Goal: To Create a table to aid in the verif of accounts that is a normalized drop away 
+--    Link: https://github.com/TheTrueTrooper/AngelASPExtentions
+--    Sources/References:
+--      {
+--      Name: NA
+--      Writer/Publisher: NA
+--      Link: NA
+--      }
+CREATE TRIGGER [SessionsCleaner]
+	ON [dbo].[Sessions]
+	FOR insert, delete, update
+	AS
+	BEGIN
+	  delete from [Sessions] where DATEADD(hour, 1, TimeLastValidated) < GETDATE()
+	END
+GO
+PRINT N'Altering [dbo].[CreateTheSession]...';
 
 
 GO
-PRINT N'Creating [dbo].[CK_Projects_EndDate]...';
-
-
-GO
-ALTER TABLE [dbo].[Projects] WITH NOCHECK
-    ADD CONSTRAINT [CK_Projects_EndDate] CHECK (EndDate > StartDate or EndDate is NULL);
-
-
-GO
-PRINT N'Checking existing data against newly created constraints';
-
-
-GO
-USE [$(DatabaseName)];
-
-
-GO
-ALTER TABLE [dbo].[Projects] WITH CHECK CHECK CONSTRAINT [CK_Projects_EndDate];
-
-
+--	  Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)
+--    Date Writen: June 23,2017
+--    Project Goal: Make a cloud based app to aid in project management
+--    File Goal: 
+--    Link: https://github.com/TheTrueTrooper/AngelASPExtentions
+--    Sources/References:
+--      {
+--      Name: ASP.net
+--      Writer/Publisher: Microsoft
+--      Link: https://www.asp.net/
+--      }
+ALTER PROCEDURE [dbo].[CreateTheSession]
+	@UserID int,
+	@Code char(28)
+AS
+	if not exists(select UserID from Users where UserID = @UserID)
+		return -1;
+	if @Code is null and Len(@Code) < 70
+		return -2;
+	if exists(select UserID from [Sessions] where UserID = UserID)
+	begin
+		update [Sessions]
+		set Code = @Code,
+		TimeLastValidated = GETDATE()
+		where UserID = @UserID
+	end
+	else 
+	begin 
+	insert into [Sessions] (UserID, Code)
+	values (@UserID, @Code)
+	end
+RETURN 0
 GO
 PRINT N'Update complete.';
 

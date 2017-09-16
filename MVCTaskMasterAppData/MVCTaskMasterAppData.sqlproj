@@ -82,6 +82,10 @@
     <Folder Include="Scripts\Functions" />
     <Folder Include="Scripts\StoredProce\PasswordResset" />
     <Folder Include="Scripts\StoredProce\Project" />
+    <Folder Include="Scripts\Triggers" />
+    <Folder Include="Scripts\Triggers\Sessions" />
+    <Folder Include="Scripts\Views" />
+    <Folder Include="Scripts\Triggers\Users" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Scripts\Tables\CompanyRoles.sql" />
@@ -131,6 +135,8 @@
     <Build Include="Scripts\StoredProce\Project\CreateProject.sql" />
     <Build Include="Scripts\Tables\ProjectTaskTypeManagers.sql" />
     <Build Include="Scripts\StoredProce\Project\SelectProjectByID.sql" />
+    <Build Include="Scripts\Triggers\Users\UsersCascadingDelete.sql" />
+    <Build Include="Scripts\Triggers\Sessions\SessionsCleaner.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\Util\Scripts\ErrorTablesReBuildScript.sql" />

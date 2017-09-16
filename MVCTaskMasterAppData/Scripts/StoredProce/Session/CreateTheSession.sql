@@ -1,7 +1,7 @@
 ﻿--	  Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)
 --    Date Writen: June 23,2017
 --    Project Goal: Make a cloud based app to aid in project management
---    File Goal: 
+--    File Goal: To sign in on a machine and ensure only on sign in per loction as best as posible
 --    Link: https://github.com/TheTrueTrooper/AngelASPExtentions
 --    Sources/References:
 --      {
@@ -20,7 +20,8 @@ AS
 	if exists(select UserID from [Sessions] where UserID = UserID)
 	begin
 		update [Sessions]
-		set Code = @Code
+		set Code = @Code,
+		TimeLastValidated = GETDATE()
 		where UserID = @UserID
 	end
 	else 

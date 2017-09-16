@@ -38,7 +38,7 @@ namespace ASP.NetMVCExample.SMTPHelpers
         public string Host = null;
         public string Account = null;
         public string Password = null;
-        public int? Port = null; //465 
+        public int? Port = null; 
 
     }
 
@@ -49,52 +49,127 @@ namespace ASP.NetMVCExample.SMTPHelpers
     {
         public static SMTPClientLoadOpt ReadContentAsSMTPClientLoadOpt(this XmlReader Loader)
         {
-            SMTPClientLoadOpt Return = new SMTPClientLoadOpt();
-            while (Loader.Read())
+            SMTPClientLoadOpt Return = null;
+            bool InIt = false;
+
+            do
             {
                 switch (Loader.NodeType)
                 {
+                    //look for all the nodes and grab them
                     case XmlNodeType.Element:
                         switch (Loader.Name)
                         {
+                            case "SMTPClientLoadOpt":
+                                if (Return != null) // to avoid Ambugis throw if we've seen one
+                                {
+                                    IXmlLineInfo xmlInfo = Loader as IXmlLineInfo;
+                                    throw new XmlException("SMTPClientLoadOpt found already. File can not contain mulitple SMTPClientLoadOpt nodes.", new Exception("SMTPClientLoadOpt found already. File can not contain mulitple SMTPClientLoadOpt nodes."), xmlInfo.LineNumber, xmlInfo.LinePosition);
+                                }
+                                Return = new SMTPClientLoadOpt();
+                                InIt = true;
+                                break;
                             case "Host":
-                                Return.Host = Loader.ReadElementContentAsString();
+                                if (InIt)//if we are not in the the node skip : avoid Ambugis
+                                {
+                                    if (Return.Host != null)
+                                    {
+                                        IXmlLineInfo xmlInfo = Loader as IXmlLineInfo;
+                                        throw new XmlException("Host already found making this line ambiguous.", new Exception("Host already found making this line ambiguous."), xmlInfo.LineNumber, xmlInfo.LinePosition);
+                                    }
+                                    Return.Host = Loader.ReadElementContentAsString();
+                                }
                                 break;
                             case "Port":
-                                Return.Port = Loader.ReadElementContentAsInt();
+                                if (InIt)
+                                {
+                                    if (Return.Port != null)
+                                    {
+                                        IXmlLineInfo xmlInfo = Loader as IXmlLineInfo;
+                                        throw new XmlException("Port already found making this line ambiguous.", new Exception("Port already found making this line ambiguous."), xmlInfo.LineNumber, xmlInfo.LinePosition);
+                                    }
+                                    Return.Port = Loader.ReadElementContentAsInt();
+                                }
                                 break;
                             case "DefaultFrom":
-                                Return.DefaultFrom = new MailAddress(Loader.ReadElementContentAsString());
+                                if (InIt)
+                                {
+                                    if (Return.DefaultFrom != null)
+                                    {
+                                        IXmlLineInfo xmlInfo = Loader as IXmlLineInfo;
+                                        throw new XmlException("DefaultFrom already found making this line ambiguous.", new Exception("DefaultFrom already found making this line ambiguous."), xmlInfo.LineNumber, xmlInfo.LinePosition);
+                                    }
+                                    Return.DefaultFrom = new MailAddress(Loader.ReadElementContentAsString());
+                                }
                                 break;
                             case "Account":
-                                Return.Account = Loader.ReadElementContentAsString();
+                                if (InIt)
+                                {
+                                    if (Return.Account != null)
+                                    {
+                                        IXmlLineInfo xmlInfo = Loader as IXmlLineInfo;
+                                        throw new XmlException("Account already found making this line ambiguous.", new Exception("Account already found making this line ambiguous."), xmlInfo.LineNumber, xmlInfo.LinePosition);
+                                    }
+                                    Return.Account = Loader.ReadElementContentAsString();
+                                }
                                 break;
                             case "Password":
-                                Return.Password = Loader.ReadElementContentAsString();
+                                if (InIt)
+                                { 
+                                    if (Return.Password != null)
+                                    {
+                                        IXmlLineInfo xmlInfo = Loader as IXmlLineInfo;
+                                        throw new XmlException("Password already found making this line ambiguous.", new Exception("Password already found making this line ambiguous."), xmlInfo.LineNumber, xmlInfo.LinePosition);
+                                    }
+                                    Return.Password = Loader.ReadElementContentAsString();
+                                }
+                                break;
+                            default:
+                                if (InIt) // to avoid bad shit kill it if we find a bad node and in it
+                                {
+                                    IXmlLineInfo xmlInfo = Loader as IXmlLineInfo;
+                                    throw new XmlException("Unexpected node found.", new Exception("SMTPClientLoadOpt found already. File can not contain mulitple SMTPClientLoadOpt nodes."), xmlInfo.LineNumber, xmlInfo.LinePosition);
+                                }
                                 break;
                         }
                         break;
+                        //if we find the  end node do some checkes
                     case XmlNodeType.EndElement:
                         if (Loader.Name == "SMTPClientLoadOpt")
                         {
-                            if (Return.Account == null || Return.DefaultFrom == null || Return.Host == null || Return.Password == null || Return.Port == null)
+                            //throw if we find the end first.
+                            if (Return == null)
                             {
-                                string returnMSG = "";
-                                returnMSG += Return.Account == null ? "Account, " : "";
-                                returnMSG += Return.DefaultFrom == null ? "DefaultFrom, " : "";
-                                returnMSG += Return.Host == null ? "Host, " : "";
-                                returnMSG += Return.Password == null ? "Password, " : "";
-                                returnMSG += Return.Port == null ? "Port " : "";
-                                returnMSG += "nodes were not found in SMTPClientLoadOpt befor its end";
-                                throw new Exception(returnMSG);
+                                IXmlLineInfo xmlInfo = Loader as IXmlLineInfo;
+                                throw new XmlException("SMTPClientLoadOpt end found before start", new Exception("SMTPClientLoadOpt found already. File can not contain mulitple SMTPClientLoadOpt nodes."), xmlInfo.LineNumber, xmlInfo.LinePosition);
                             }
-                            else
-                                return Return;
+                            //Throw on incomplete data
+                            else if (Return.Account == null || Return.DefaultFrom == null || Return.Host == null || Return.Password == null || Return.Port == null)
+                            {
+                                IXmlLineInfo xmlInfo = Loader as IXmlLineInfo;
+                                string returnMSG = "";
+                                returnMSG += Return.Account == null ? " Account " : "";
+                                returnMSG += Return.DefaultFrom == null ? " DefaultFrom " : "";
+                                returnMSG += Return.Host == null ? " Host " : "";
+                                returnMSG += Return.Password == null ? " Password " : "";
+                                returnMSG += Return.Port == null ? " Port " : "";
+                                returnMSG += "nodes were not found in SMTPClientLoadOpt before its end";
+                                throw new XmlException(returnMSG, new Exception("SMTPClientLoadOpt found already. File can not contain mulitple SMTPClientLoadOpt nodes."), xmlInfo.LineNumber, xmlInfo.LinePosition);
+                            }
+                            else if (InIt)
+                                InIt = false;
                         }
                         break;
                 }
             }
-            throw new Exception("unexpected end config file found before end of SMTPClientLoadOpt");
+            while (Loader.Read());
+
+            if (!InIt && Return != null)
+                return Return;
+            {
+                IXmlLineInfo xmlInfo = Loader as IXmlLineInfo;
+                throw new XmlException("unexpected end config file found before end of SMTPClientLoadOpt", new Exception("SMTPClientLoadOpt found already. File can not contain mulitple SMTPClientLoadOpt nodes."), xmlInfo.LineNumber, xmlInfo.LinePosition);
+            }
         }
     }
     #endregion
@@ -165,13 +240,22 @@ namespace ASP.NetMVCExample.SMTPHelpers
             using (XmlReader Loader = XmlReader.Create(File.OpenRead(SetFileName)))
             {
                 // Read The File Till we find the node or the end of the file
-                while (Loader.Read() && Opts == null)
+                try
                 {
-                    if (Loader.NodeType == XmlNodeType.Element && Loader.Name == "SMTPClientLoadOpt")
-                    {
-                        Opts = Loader.ReadContentAsSMTPClientLoadOpt();
-                    }
+                    Opts = Loader.ReadContentAsSMTPClientLoadOpt();
                 }
+                catch(XmlException e)
+                {
+                    Loader.Close();//ensure a file close any way
+                    throw e; // and throw it out again
+                }
+                catch (Exception e)
+                {
+                    Loader.Close();//ensure a file close any way
+                    throw e; // and throw it out again
+                }
+
+                Loader.Close();
             }
 
             // of we made it to the end of the file with out making a Options thats a problem
@@ -206,7 +290,7 @@ namespace ASP.NetMVCExample.SMTPHelpers
             MailAddress MAF;
             try
             {
-                MAF = new MailAddress(From);
+                MAF = From != null ? new MailAddress(From) : DefaultFrom;
             }
             catch (Exception e)
             {
@@ -230,6 +314,7 @@ namespace ASP.NetMVCExample.SMTPHelpers
         /// <param name="MSGEncoding">The Messages encoding Default = Client.MSGEncoding (null will do this for you)</param>
         public void SendMessage(string To, string Subject, string Message, string[] CC = null, MailPriority MailPriority = MailPriority.Normal, bool IsHTML = true, DeliveryNotificationOptions DeliveryNotificationOptions = DeliveryNotificationOptions.None, MailAddress From = null, Encoding MSGEncoding = null)
         {
+            //the system expects a list but often its easier than that with a single person for each so add the person to a an array and leverage the array call
             SendMessage(new string[] { To }, Subject, Message, CC, MailPriority, IsHTML, DeliveryNotificationOptions, From, MSGEncoding);
         }
 
@@ -247,9 +332,11 @@ namespace ASP.NetMVCExample.SMTPHelpers
         /// <param name="MSGEncoding">The Messages encoding Default = Client.MSGEncoding (null will do this for you)</param>
         public void SendMessage(string[] To, string Subject, string Message, string[] CC = null, MailPriority MailPriority = MailPriority.Normal, bool IsHTML = true, DeliveryNotificationOptions DeliveryNotificationOptions = DeliveryNotificationOptions.None, MailAddress From = null, Encoding MSGEncoding = null)
         {
+            //the system expects a list but often its easier to give an array of strings so add the person to a list and check if stings are valid
             List<MailAddress> ToList = new List<MailAddress>();
             List<MailAddress> CCList = new List<MailAddress>();
 
+            //if any thing is bad just throw
             if (To == null)
                 throw new ArgumentNullException("To is null");
 
@@ -259,6 +346,7 @@ namespace ASP.NetMVCExample.SMTPHelpers
             if (Message == null)
                 throw new ArgumentNullException("To is null");
 
+            //try building a list and throw if any one is not a valid email the count should give us the index if it fails as the count will stay at the last count
             foreach (string s in To)
             {
                 try
@@ -270,8 +358,8 @@ namespace ASP.NetMVCExample.SMTPHelpers
                     throw new Exception(s + " was not a valid Email in To emails on index " + ToList.Count, e);
                 }
             }
-
-            if(CC != null)
+            //try building a list and throw if any one is not a valid email the count should give us the index if it fails as the count will stay at the last count
+            if (CC != null)
             {
 
                 foreach (string s in CC)
@@ -286,7 +374,7 @@ namespace ASP.NetMVCExample.SMTPHelpers
                     }
                 }
             }
-
+            //leverage the earlier vers
             SendMessage(ToList.ToArray(), Subject, Message, CCList.ToArray(), MailPriority, IsHTML, DeliveryNotificationOptions, From, MSGEncoding);
         }
 
@@ -313,7 +401,7 @@ namespace ASP.NetMVCExample.SMTPHelpers
             if (Message == null)
                 throw new ArgumentNullException("To is null");
 
-            // well compose and send a message
+            // we'll compose and send a message
             using (MailMessage MSG = new MailMessage())
             {
                 MSG.BodyEncoding = MSGEncoding ?? DefaultEncoding;
@@ -324,6 +412,7 @@ namespace ASP.NetMVCExample.SMTPHelpers
                 MSG.From = From ?? DefaultFrom;
                 MSG.DeliveryNotificationOptions = DeliveryNotificationOptions;
 
+                //build a list of Mail tos and CC if that is available
                 foreach (MailAddress MA in To)
                     MSG.To.Add(MA);
 
@@ -331,6 +420,7 @@ namespace ASP.NetMVCExample.SMTPHelpers
                     foreach (MailAddress MA in CC)
                         MSG.CC.Add(MA);
 
+                //send the message
                 Client.Send(MSG);
             }
         }
