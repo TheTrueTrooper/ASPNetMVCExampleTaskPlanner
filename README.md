@@ -24,7 +24,7 @@ Using ASP.NET MVC with razor I am creating a task manager site to show case my M
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    13)	The project uses PLSQL in the MVCTaskMasterAppData project. <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;II)	Approaches<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    1)	This project makes use at its base a ASP.NET Core and MVC approach. Most of the project is built this way.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    2)	This project makes use of a stored procedure database first approach. The <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    2)	This project makes use of a database first approach. The ASP.NetMVC-razor-Example-TaskPlanner project has the database with triggers, tables, stored procedures, views, and scripts.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    3)	This project makes use of a Typescript approach for complicated JavaScript Problems. This can be seen in the "src" folder<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    4)	This project makes use for certain pages some API architecture though they are not truly restful as they leverage a state (signed in?). This is mostly seen in tandem with AngularJS calls from the "Controllers/UtilitiesAPIController.cs" file .<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    5)	This project makes use for certain pages AngularJS’s MVVM approach.<br/>
