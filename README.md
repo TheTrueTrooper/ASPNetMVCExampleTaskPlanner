@@ -20,14 +20,15 @@ Using ASP.NET MVC with razor I am creating a task manager site to show case my M
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    9)	Project makes heavy use of my AngelASPExtentions library for ASP.NET. found at https://github.com/TheTrueTrooper/AngelASPExtentions. In this project there are custom attributes for data annotations, custom extensions for strings; files; images; byte arrays; controllers; HtmlHelper, Custom Results, and a Razor hack to template to a string for emails.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    10)	Project as makes use of the MS C# System.Security.Cryptography library for salting and hashing in the _HelpersAndExtens\SecurityHelper.cs file<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    11)	It MS C# System.Net/System.Net.Mail in the ASP.NET Core for email in the “_HelpersAndExtens\SMTPHelper.cs” file <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    12)	The Project makes use of the Entity Framework (C#) in the “Models\TaskMasterData.edmx” file. This Is how I access my database from a (DB First approach with stored procedures)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    13)	The Project uses PLSQL in the MVCTaskMasterAppData project. <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    12)	The project makes use of the Entity Framework (C#) in the “Models\TaskMasterData.edmx” file. This Is how I access my database from a (DB First approach with stored procedures)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    13)	The project uses PLSQL in the MVCTaskMasterAppData project. <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;II)	Approaches<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    1)	This project makes use at its base a ASP.NET Core and MVC approach.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    2)	This project makes use of a stored procedure database first approach.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    3)	This Project makes use of a Typescript approach for complicated JavaScript Problems.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    4)	This Project makes use for certain pages some APIs though they are not truly restful as they leverage a state (signed in?). This is mostly seen in tandem with Angular<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    5)	This Project makes use for certain pages AngularJS’s MVVM approach.</p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    1)	This project makes use at its base a ASP.NET Core and MVC approach. Most of the project is built this way.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    2)	This project makes use of a stored procedure database first approach. The <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    3)	This project makes use of a Typescript approach for complicated JavaScript Problems. This can be seen in the "src" folder<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    4)	This project makes use for certain pages some API architecture though they are not truly restful as they leverage a state (signed in?). This is mostly seen in tandem with AngularJS calls from the "Controllers/UtilitiesAPIController.cs" file .<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    5)	This project makes use for certain pages AngularJS’s MVVM approach.</p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    6)  This project would like to use a GraphQL architecture rather than API architecture. I will probably make a Controller for this. 
 
 <h3>Why</h3>  
 
