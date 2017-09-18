@@ -40,14 +40,14 @@ USE [$(DatabaseName)];
 
 
 GO
-PRINT N'Creating [dbo].[SessionsCleaner]...';
+PRINT N'Altering [dbo].[SessionsCleaner]...';
 
 
 GO
 --	  Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)
 --    Date Writen: Sep 14, 2017
 --    Project Goal: Make a cloud based app to aid in project management
---    File Goal: To Create a table to aid in the verif of accounts that is a normalized drop away 
+--    File Goal: To Clean out over due signins and keepa a cleaner table
 --    Link: https://github.com/TheTrueTrooper/AngelASPExtentions
 --    Sources/References:
 --      {
@@ -55,7 +55,7 @@ GO
 --      Writer/Publisher: NA
 --      Link: NA
 --      }
-CREATE TRIGGER [SessionsCleaner]
+ALTER TRIGGER [SessionsCleaner]
 	ON [dbo].[Sessions]
 	FOR insert, delete, update
 	AS
@@ -70,7 +70,7 @@ GO
 --	  Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)
 --    Date Writen: June 23,2017
 --    Project Goal: Make a cloud based app to aid in project management
---    File Goal: 
+--    File Goal: To sign in on a machine and ensure only on sign in per loction as best as posible
 --    Link: https://github.com/TheTrueTrooper/AngelASPExtentions
 --    Sources/References:
 --      {
@@ -98,6 +98,68 @@ AS
 	insert into [Sessions] (UserID, Code)
 	values (@UserID, @Code)
 	end
+RETURN 0
+GO
+PRINT N'Altering [dbo].[DeleteTheSession]...';
+
+
+GO
+--	  Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)
+--    Date Writen: June 23,2017
+--    Project Goal: Make a cloud based app to aid in project management
+--    File Goal: To Delete or close a session
+--    Link: https://github.com/TheTrueTrooper/AngelASPExtentions
+--    Sources/References:
+--      {
+--      Name: ASP.net
+--      Writer/Publisher: Microsoft
+--      Link: https://www.asp.net/
+--      }
+ALTER PROCEDURE [dbo].[DeleteTheSession]
+	@SessionID int
+AS
+	delete from [Sessions] where @SessionID = UserID
+RETURN 0
+GO
+PRINT N'Altering [dbo].[SelectProjectByID]...';
+
+
+GO
+--	  Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)
+--    Date Writen: Augest 30, 2017
+--    Project Goal: Make a cloud based app to aid in project management
+--    File Goal: Allow the view of all of the top data of a project
+--    Link: https://github.com/TheTrueTrooper/AngelASPExtentions
+--    Sources/References:
+--      {
+--      Name: ASP.net
+--      Writer/Publisher: Microsoft
+--      Link: https://www.asp.net/
+--      }
+ALTER PROCEDURE [dbo].[SelectProjectByID]
+	@ID int = 0
+AS
+	SELECT P.ProjectID, P.ProjectName, P.Address as ProjectAddress, P.City as ProjectCity, P.Province as ProjectProvince, P.Country as ProjectCountry, 
+	P.PostalCode as ProjectPostalCode, P.StartDate as ProjectStartDate, P.EndDate as ProjectEndDate, 
+	P.ActualStartDate as ProjectActualStartDate, P.ActualEndDate as ProjectActualEndDate, P.Description as ProjectDescription, 
+	P.CreationDate as ProjectCreationDate,
+	U.UserID as ManagerID, U.Picture as ManagerPicture, U.FirstName as ManagerFirstName, U.MiddleInitial as ManagerMiddleInitial, 
+	U.LastName as ManagerLastName, U.HomePhone as ManagerHomePhone, U.WorkPhone as ManagerWorkPhone, U.CellPhone as ManagerCellPhone,
+	C.CompanyID, C.CompanyName, C.CompanySite
+	from Projects as P left join Users as U on P.ManagerID = U.UserID left join Companys as C on P.CompanyID = C.CompanyID 
+	where ProjectID = @ID
+RETURN 0
+GO
+PRINT N'Creating [dbo].[SelectProjectByID_Light]...';
+
+
+GO
+CREATE PROCEDURE [dbo].[SelectProjectByID_Light]
+	@ID int = 0
+AS
+	SELECT P.ProjectID, P.ProjectName
+	from Projects as P
+	where ProjectID = @ID
 RETURN 0
 GO
 PRINT N'Update complete.';

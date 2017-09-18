@@ -1,4 +1,7 @@
-﻿/* WritersSigniture
+﻿/// <reference path="../../AngLib-StringExtentions.js" />
+/// <reference path="../../AngLib-StringExtentions.js" />
+/// <reference path="../../AngLib-StringExtentions.js" />
+/* WritersSigniture
 //Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)
 //Date Writen: Sep 12,2017
 //Project Goal: Make a cloud based app to aid in project management 
@@ -11,59 +14,105 @@
 //  Link: NA
 //  }
 */
-angular.module("NGProjectsIndex", ["ngRoute"])
-.config(function ($routeProvider, $rootScope)
+
+function ChangeActiveTab(Tab)
 {
-    $rootScope.RouteURL = $("#RootURLData").val;
-    var AngularViewVar = $rootScope.RouteURL + "?AngularView=";
+    $(".active").removeClass("active");
+    $("#" + Tab).addClass("active");
+}
+
+var ID;
+
+angular.module("NGProjectsIndex", ["ngRoute"])
+.config(["$routeProvider", function ($routeProvider)
+{
+    ID = $("[ProjectID]").attr("ProjectID");
+
     $routeProvider
-        .when($rootScope.RouteURL + "/OverView",
+        .when("/OverView",
         {
-            templateUrl: AngularViewVar + "OverView",
+            templateUrl: "http://localhost:62740/Project/IndexSubPage?AngularView=OverView",
             controller: "OverViewController"
         })
-        .when($rootScope.RouteURL + "/TaskCellView",
+        .when("/TaskCellView",
         {
-            templateUrl: AngularViewVar + "TaskCellView",
+            templateUrl: "http://localhost:62740/Project/IndexSubPage?AngularView=TaskCellView",
             controller: "TaskCellViewController"
         })
-        ($rootScope.RouteURL + "/GanttChartView",
+        .when("/GanttChartView",
         {
-            templateUrl: AngularViewVar + "GanttChartView",
+            templateUrl: "http://localhost:62740/Project/IndexSubPage?AngularView=GanttChartView",
             controller: "GanttChartViewController"
         })
-        .when($rootScope.RouteURL + "/PerkChartView",
+        .when("/PerkChartView",
         {
-            templateUrl: AngularViewVar + "PerkChartView",
+            templateUrl: "http://localhost:62740/Project/IndexSubPage?AngularView=PerkChartView",
             controller: "PerkChartViewController"
-        });
-})
+        })
+}])
+//.run(function()
+//{
+//})
 .service("ProjectsGetterService", function ($http)
 {
     return {
-        GetProjects: function ()
+        GetProjectOverview: function (ID)
         {
-            return $http.get("/UtilitiesAPI/ProjectData", { responseType: "json" })
+            return $http.get("http://localhost:62740/UtilitiesAPI/ProjectData?ID=" + ID, { responseType: "json" });
         },
-        GetTasks: function ()
+        GetProjectTasks: function (ID)
         {
-            return $http.get("/UtilitiesAPI/ProjectTasksData", { responseType: "json" })
+            return $http.get("http://localhost:62740/UtilitiesAPI/ProjectTasksData?ID=" + ID, { responseType: "json" });
         }
     }
 })
-.controller("OverViewController", function ()
+.controller("OverViewController", function ($scope, $sce, ProjectsGetterService)
 {
+    ChangeActiveTab("OverViewTab");
+
+    ProjectsGetterService.GetProjectOverview(ID).then(function (result)
+    {
+        $scope.project = result.data;
+        // avoid the sanitizer messing with data we will cheat here.
+        $("#ManagerPicture").attr("src", "data:image;base64," + $scope.project.ManagerPicture)
+        //for droping the space away if data is null and format if not null
+        $scope.project.ManagerMiddleInitialIsNull = $scope.project.ManagerMiddleInitial !== null;
+        $scope.project.ManagerMiddleInitial = $scope.project.ManagerMiddleInitial !== null ? "Middle Name: " + $scope.project.ManagerMiddleInitial : "";
+
+        $scope.project.ManagerWorkPhoneIsNull = $scope.project.ManagerWorkPhone !== null;
+        $scope.project.ManagerWorkPhone = $scope.project.ManagerWorkPhone !== null ? "Work Phone: " + $scope.project.ManagerWorkPhone.Insert(3, "-").Insert(7, "-") : "";
+
+        $scope.project.ManagerCellPhoneIsNull = $scope.project.ManagerCellPhone !== null;
+        $scope.project.ManagerCellPhone = $scope.project.ManagerCellPhone !== null ? "Cell Phone: " + $scope.project.ManagerCellPhone.Insert(3, "-").Insert(7, "-") : "";
+
+        $scope.project.ManagerHomePhoneIsNull = $scope.project.ManagerHomePhone !== null;
+        $scope.project.ManagerHomePhone = $scope.project.ManagerHomePhone !== null ? "Home Phone: " + $scope.project.ManagerHomePhone.Insert(3, "-").Insert(7, "-") : "";
+    });
 
 })
-.controller("TaskCellViewController", function ()
+.controller("TaskCellViewController", function ($scope, ProjectsGetterService)
 {
+    ChangeActiveTab("TaskCellViewTab");
 
+    //ProjectsGetterService.GetProjectTasks(ID).then(function (result){});
 })
-.controller("GanttChartViewController", function ()
+.controller("GanttChartViewController", function ($scope, ProjectsGetterService)
 {
+    ChangeActiveTab("GanttChartViewTab");
 
+    //ProjectsGetterService.GetProjectTasks(ID).then(function (result){});
 })
-.controller("PerkChartViewController", function ()
+.controller("PerkChartViewController", function ($scope, ProjectsGetterService)
 {
+    ChangeActiveTab("PerkChartViewTab");
 
+    //ProjectsGetterService.GetProjectTasks(ID).then(function (result){});
+})
+.filter('ArrayToBase64String', function ()
+{
+    return function (buffer)
+    {
+
+    };
 });
+

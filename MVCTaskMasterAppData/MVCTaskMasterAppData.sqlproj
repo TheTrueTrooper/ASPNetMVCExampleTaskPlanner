@@ -137,6 +137,7 @@
     <Build Include="Scripts\StoredProce\Project\SelectProjectByID.sql" />
     <Build Include="Scripts\Triggers\Users\UsersCascadingDelete.sql" />
     <Build Include="Scripts\Triggers\Sessions\SessionsCleaner.sql" />
+    <Build Include="Scripts\StoredProce\Project\SelectProjectByID_Light.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\Util\Scripts\ErrorTablesReBuildScript.sql" />

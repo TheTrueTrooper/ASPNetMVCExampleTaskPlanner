@@ -1094,7 +1094,7 @@
             <Parameter Name="Code" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SelectProjectByID" ReturnType="Collection(MVCTaskMasterAppDataModel.SelectProjectByID_Result)">
-            <Parameter Name="ID" Mode="In" Type="Int32" />
+          <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="CompanyRoles">
@@ -1710,7 +1710,6 @@
           <Property Type="String" Name="ProjectPostalCode" Nullable="false" MaxLength="10" />
           <Property Type="DateTime" Name="ProjectStartDate" Nullable="false" Precision="23" />
           <Property Type="DateTime" Name="ProjectEndDate" Nullable="false" Precision="23" />
-          <Property Type="DateTime" Name="ProjectEndDate1" Nullable="false" Precision="23" />
           <Property Type="DateTime" Name="ProjectActualStartDate" Nullable="true" Precision="23" />
           <Property Type="DateTime" Name="ProjectActualEndDate" Nullable="true" Precision="23" />
           <Property Type="String" Name="ProjectDescription" Nullable="false" MaxLength="250" />
@@ -1986,7 +1985,6 @@
                 <ScalarProperty Name="ProjectPostalCode" ColumnName="ProjectPostalCode" />
                 <ScalarProperty Name="ProjectStartDate" ColumnName="ProjectStartDate" />
                 <ScalarProperty Name="ProjectEndDate" ColumnName="ProjectEndDate" />
-                <ScalarProperty Name="ProjectEndDate1" ColumnName="ProjectEndDate1" />
                 <ScalarProperty Name="ProjectActualStartDate" ColumnName="ProjectActualStartDate" />
                 <ScalarProperty Name="ProjectActualEndDate" ColumnName="ProjectActualEndDate" />
                 <ScalarProperty Name="ProjectDescription" ColumnName="ProjectDescription" />

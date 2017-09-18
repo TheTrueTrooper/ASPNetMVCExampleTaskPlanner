@@ -11,15 +11,20 @@
 //  Link: https://www.asp.net/
 //  }
 #endregion
+using AngelASPExtentions.ExtraExtentions;
+using AngelASPExtentions.ExtraExtentions.ImageExtentions;
 using ASP.NetMVCExample._Helpers;
 using ASP.NetMVCExample.Models;
+using ASP.NetMVCExample.Models.ProjectView;
 using ASP.NetMVCExample.SecurityValidation;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
+using System.Drawing;
 using System.Linq;
 using System.Net;
+using System.Web.Hosting;
 using System.Web.Mvc;
 
 
@@ -55,7 +60,7 @@ namespace ASP.NetMVCExample.Controllers
         /// <returns></returns>
         [AcceptVerbs("Get", "Post")]
         public JsonResult GetUsersProjectData()
-        {
+        {   //this make it technix not a true api but for security this is my thought.
             if (Session["SessionUserID"] == null)
                 return Json(@"Access Denied", JsonRequestBehavior.AllowGet);
 
@@ -90,7 +95,12 @@ namespace ASP.NetMVCExample.Controllers
             using (ObjectResult<SelectProjectByID_Result> TempResults = DB.SelectProjectByID(ID))
                 ProjectData = TempResults.First();
 
-            return Json(ProjectData, JsonRequestBehavior.AllowGet);
+            if (ProjectData.ManagerPicture == null)
+                ProjectData.ManagerPicture = new Bitmap(HostingEnvironment.MapPath("~/Images/NoProfilePicPic.jpg")).ToByteArray();
+
+            Project_IndexView_ViewOverViewAsSubView Return = new Project_IndexView_ViewOverViewAsSubView(ProjectData);
+
+            return Json(Return, JsonRequestBehavior.AllowGet);
         }
 
     }

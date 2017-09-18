@@ -22,7 +22,6 @@ namespace ASP.NetMVCExample.Models
         public string ProjectPostalCode { get; set; }
         public System.DateTime ProjectStartDate { get; set; }
         public System.DateTime ProjectEndDate { get; set; }
-        public System.DateTime ProjectEndDate1 { get; set; }
         public Nullable<System.DateTime> ProjectActualStartDate { get; set; }
         public Nullable<System.DateTime> ProjectActualEndDate { get; set; }
         public string ProjectDescription { get; set; }

@@ -12,6 +12,7 @@
 //  }
 #endregion
 using AngelASPExtentions.ExtraExtentions;
+using AngelASPExtentions.ExtraExtentions.ImageExtentions;
 using ASP.NetMVCExample._Helpers;
 using ASP.NetMVCExample.Models;
 using ASP.NetMVCExample.SecurityValidation;

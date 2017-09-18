@@ -57,3 +57,5 @@ C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample.Tests\bin\Debug\Syst
 C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample.Tests\obj\Debug\ASP.NetMVCExample.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample.Tests\obj\Debug\ASP.NetMVCExample.Tests.dll
 C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample.Tests\obj\Debug\ASP.NetMVCExample.Tests.pdb
+C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample.Tests\bin\Debug\AngelASPExtentions.dll
+C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample.Tests\bin\Debug\AngelASPExtentions.pdb

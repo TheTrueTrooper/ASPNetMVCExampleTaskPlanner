@@ -1,6 +1,6 @@
 ﻿#region WritersSigniture
 //Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)
-//Date Writen: June 23,2017
+//Date Writen: Sep 1,2017
 //Project Goal: Make a cloud based app to aid in project management 
 //File Goal: To help control the calls relating companies
 //Link: https://github.com/TheTrueTrooper/AngelASPExtentions
@@ -36,7 +36,7 @@ namespace ASP.NetMVCExample.Controllers
             return View(Project);
         }
 
-        public ActionResult Index(string AngularView)
+        public ActionResult IndexSubPage(string AngularView)
         {
             switch(AngularView)
             {

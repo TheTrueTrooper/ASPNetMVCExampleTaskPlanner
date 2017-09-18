@@ -226,6 +226,7 @@
       <DependentUpon>TaskMasterData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProjectView\CreateProject.cs" />
+    <Compile Include="Models\ProjectView\Project_IndexView_ViewOverViewAsSubView.cs" />
     <Compile Include="Models\SearchView\SearchCompany.cs" />
     <Compile Include="Models\SearchView\SearchUsers.cs" />
     <Compile Include="Models\SelectProjectByID_Result.cs">
@@ -318,6 +319,9 @@
       <LastGenOutput>TaskMasterData.cs</LastGenOutput>
     </Content>
     <Content Include="MyNotesReadMe.txt" />
+    <Content Include="Scripts\AngLib-StringExtentions.js" />
+    <Content Include="Scripts\angular-sanitize.js" />
+    <Content Include="Scripts\angular-MyModLib.js" />
     <Content Include="Scripts\angular-route.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\bootstrap.js" />

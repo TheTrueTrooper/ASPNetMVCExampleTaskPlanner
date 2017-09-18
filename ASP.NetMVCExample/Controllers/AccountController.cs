@@ -37,7 +37,7 @@ namespace ASP.NetMVCExample.Controllers
     public class AccountController : Controller
     {
         /// <summary>
-        /// const for the salt length, picked 20 iff the top of my head. due to array contruction it turn into 24 spaces but thats ok
+        /// const for the salt length, picked 20 iff the top of my head. due to array contruction it turn into 24 (multiple of 8) spaces but thats ok
         /// </summary>
         const int CodeLengths = 20;
         /// <summary>
@@ -47,11 +47,20 @@ namespace ASP.NetMVCExample.Controllers
 
         SMTPClient SMTPClient = SharedStarter.GetSMTP();
 
+        /// <summary>
+        /// Sends an email using the Angel overloaded templating. and smtp client
+        /// note: while makeing view Forms, CSS, and JS do not work on most emails. So inline CSS and no JS is perfered.
+        /// </summary>
+        /// <param name="ToEmail">Who are we sending it to</param>
+        /// <param name="Subject">What is the subject</param>
+        /// <param name="View">The view that we wish to use</param>
+        /// <param name="Model">The Model with data we are using for templating</param>
         [NonAction]
         void SendEmail(string ToEmail, string Subject, string View, object Model = null)
         {
+            //template with razor html out to a string
             string EmailTempOut = this.GetRazorTemplateAsString(View, Model);
-
+            //send that sting out to the email
             SMTPClient.SendMessage(ToEmail, Subject, EmailTempOut);
         }
 
@@ -241,7 +250,10 @@ namespace ASP.NetMVCExample.Controllers
             return View();
         }
 
-
+        /// <summary>
+        /// logs out and kills session to restrict
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Logout()
         {
             Session.Abandon();

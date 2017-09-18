@@ -1773,11 +1773,11 @@ RETURN 0]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="CreateOffset" Value="394" />
-				<Property Name="Length" Value="882" />
+				<Property Name="CreateOffset" Value="475" />
+				<Property Name="Length" Value="963" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="--&#x9;  Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)&#xD;&#xA;--    Date Writen: June 23,2017&#xD;&#xA;--    Project Goal: Make a cloud based app to aid in project management&#xD;&#xA;--    File Goal: &#xD;&#xA;--    Link: https://github.com/TheTrueTrooper/AngelASPExtentions&#xD;&#xA;--    Sources/References:&#xD;&#xA;--      {&#xD;&#xA;--      Name: ASP.net&#xD;&#xA;--      Writer/Publisher: Microsoft&#xD;&#xA;--      Link: https://www.asp.net/&#xD;&#xA;--      }&#xD;&#xA;CREATE PROCEDURE [dbo].[CreateTheSession]&#xD;&#xA;&#x9;@UserID int,&#xD;&#xA;&#x9;@Code char(28)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="--&#x9;  Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)&#xD;&#xA;--    Date Writen: June 23,2017&#xD;&#xA;--    Project Goal: Make a cloud based app to aid in project management&#xD;&#xA;--    File Goal: To sign in on a machine and ensure only on sign in per loction as best as posible&#xD;&#xA;--    Link: https://github.com/TheTrueTrooper/AngelASPExtentions&#xD;&#xA;--    Sources/References:&#xD;&#xA;--      {&#xD;&#xA;--      Name: ASP.net&#xD;&#xA;--      Writer/Publisher: Microsoft&#xD;&#xA;--      Link: https://www.asp.net/&#xD;&#xA;--      }&#xD;&#xA;CREATE PROCEDURE [dbo].[CreateTheSession]&#xD;&#xA;&#x9;@UserID int,&#xD;&#xA;&#x9;@Code char(28)&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[DeleteTheCompany]">
@@ -2054,11 +2054,11 @@ RETURN 0]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="CreateOffset" Value="394" />
-				<Property Name="Length" Value="517" />
+				<Property Name="CreateOffset" Value="422" />
+				<Property Name="Length" Value="545" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="--&#x9;  Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)&#xD;&#xA;--    Date Writen: June 23,2017&#xD;&#xA;--    Project Goal: Make a cloud based app to aid in project management&#xD;&#xA;--    File Goal: &#xD;&#xA;--    Link: https://github.com/TheTrueTrooper/AngelASPExtentions&#xD;&#xA;--    Sources/References:&#xD;&#xA;--      {&#xD;&#xA;--      Name: ASP.net&#xD;&#xA;--      Writer/Publisher: Microsoft&#xD;&#xA;--      Link: https://www.asp.net/&#xD;&#xA;--      }&#xD;&#xA;CREATE PROCEDURE [dbo].[DeleteTheSession]&#xD;&#xA;&#x9;@SessionID int&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="--&#x9;  Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)&#xD;&#xA;--    Date Writen: June 23,2017&#xD;&#xA;--    Project Goal: Make a cloud based app to aid in project management&#xD;&#xA;--    File Goal: To Delete or close a session&#xD;&#xA;--    Link: https://github.com/TheTrueTrooper/AngelASPExtentions&#xD;&#xA;--    Sources/References:&#xD;&#xA;--      {&#xD;&#xA;--      Name: ASP.net&#xD;&#xA;--      Writer/Publisher: Microsoft&#xD;&#xA;--      Link: https://www.asp.net/&#xD;&#xA;--      }&#xD;&#xA;CREATE PROCEDURE [dbo].[DeleteTheSession]&#xD;&#xA;&#x9;@SessionID int&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[DeleteTheUser]">
@@ -5639,7 +5639,7 @@ RETURN 0]]></Value>
 			<Property Name="BodyScript">
 				<Value><![CDATA[
 	SELECT P.ProjectID, P.ProjectName, P.Address as ProjectAddress, P.City as ProjectCity, P.Province as ProjectProvince, P.Country as ProjectCountry, 
-	P.PostalCode as ProjectPostalCode, P.StartDate as ProjectStartDate, P.EndDate as ProjectEndDate, P.EndDate as ProjectEndDate, 
+	P.PostalCode as ProjectPostalCode, P.StartDate as ProjectStartDate, P.EndDate as ProjectEndDate, 
 	P.ActualStartDate as ProjectActualStartDate, P.ActualEndDate as ProjectActualEndDate, P.Description as ProjectDescription, 
 	P.CreationDate as ProjectCreationDate,
 	U.UserID as ManagerID, U.Picture as ManagerPicture, U.FirstName as ManagerFirstName, U.MiddleInitial as ManagerMiddleInitial, 
@@ -5775,10 +5775,68 @@ RETURN 0]]></Value>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
 				<Property Name="CreateOffset" Value="447" />
-				<Property Name="Length" Value="1414" />
+				<Property Name="Length" Value="1385" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="--&#x9;  Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)&#xD;&#xA;--    Date Writen: Augest 30, 2017&#xD;&#xA;--    Project Goal: Make a cloud based app to aid in project management&#xD;&#xA;--    File Goal: Allow the view of all of the top data of a project&#xD;&#xA;--    Link: https://github.com/TheTrueTrooper/AngelASPExtentions&#xD;&#xA;--    Sources/References:&#xD;&#xA;--      {&#xD;&#xA;--      Name: ASP.net&#xD;&#xA;--      Writer/Publisher: Microsoft&#xD;&#xA;--      Link: https://www.asp.net/&#xD;&#xA;--      }&#xD;&#xA;CREATE PROCEDURE [dbo].[SelectProjectByID]&#xD;&#xA;&#x9;@ID int = 0&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[SelectProjectByID_Light]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	SELECT P.ProjectID, P.ProjectName
+	from Projects as P
+	where ProjectID = @ID
+RETURN 0]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Projects]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Projects].[ProjectID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Projects].[ProjectName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Projects].[ProjectID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SelectProjectByID_Light].[@ID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SelectProjectByID_Light].[@ID]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA[0]]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="157" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SelectProjectByID_Light]&#xD;&#xA;&#x9;@ID int = 0&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[SelectTheUser]">
@@ -6162,11 +6220,11 @@ RETURN 0]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="CreateOffset" Value="445" />
-				<Property Name="Length" Value="628" />
+				<Property Name="CreateOffset" Value="419" />
+				<Property Name="Length" Value="602" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="--&#x9;  Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)&#xD;&#xA;--    Date Writen: Sep 14, 2017&#xD;&#xA;--    Project Goal: Make a cloud based app to aid in project management&#xD;&#xA;--    File Goal: To Create a table to aid in the verif of accounts that is a normalized drop away &#xD;&#xA;--    Link: https://github.com/TheTrueTrooper/AngelASPExtentions&#xD;&#xA;--    Sources/References:&#xD;&#xA;--      {&#xD;&#xA;--      Name: NA&#xD;&#xA;--      Writer/Publisher: NA&#xD;&#xA;--      Link: NA&#xD;&#xA;--      }&#xD;&#xA;CREATE TRIGGER [SessionsCleaner]&#xD;&#xA;&#x9;ON [dbo].[Sessions]&#xD;&#xA;&#x9;FOR insert, delete, update&#xD;&#xA;&#x9;AS" />
+				<Property Name="HeaderContents" Value="--&#x9;  Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)&#xD;&#xA;--    Date Writen: Sep 14, 2017&#xD;&#xA;--    Project Goal: Make a cloud based app to aid in project management&#xD;&#xA;--    File Goal: To Clean out over due signins and keepa a cleaner table&#xD;&#xA;--    Link: https://github.com/TheTrueTrooper/AngelASPExtentions&#xD;&#xA;--    Sources/References:&#xD;&#xA;--      {&#xD;&#xA;--      Name: NA&#xD;&#xA;--      Writer/Publisher: NA&#xD;&#xA;--      Link: NA&#xD;&#xA;--      }&#xD;&#xA;CREATE TRIGGER [SessionsCleaner]&#xD;&#xA;&#x9;ON [dbo].[Sessions]&#xD;&#xA;&#x9;FOR insert, delete, update&#xD;&#xA;&#x9;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[TaskLinkers]">

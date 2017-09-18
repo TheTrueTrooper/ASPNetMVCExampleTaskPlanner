@@ -41,7 +41,11 @@ namespace ASP.NetMVCExample
             // libs
             bundles.Add(new ScriptBundle("~/bundles/Lib")
                 .Include("~/Scripts/Moment.js")
-                .Include("~/Scripts/angular.js"));
+                .Include("~/Scripts/angular.js")
+                .Include("~/Scripts/angular-route.js")
+                .Include("~/Scripts/angular-sanitize.js")
+                .Include("~/Scripts/angular-MyModLib.js")
+                .Include("~/Scripts/AngLib-StringExtentions.js"));
             //per page 
             bundles.Add(new ScriptBundle("~/bundles/About").Include("~/Scripts/PageScripts/About/*.js"));
 
@@ -51,11 +55,11 @@ namespace ASP.NetMVCExample
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
+            bundles.Add(new ScriptBundle("~/bundles/modernizr")
+                .Include("~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap")
+                .Include("~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

@@ -254,7 +254,6 @@
           <ScalarProperty Name="ProjectPostalCode" ColumnName="ProjectPostalCode" />
           <ScalarProperty Name="ProjectStartDate" ColumnName="ProjectStartDate" />
           <ScalarProperty Name="ProjectEndDate" ColumnName="ProjectEndDate" />
-          <ScalarProperty Name="ProjectEndDate1" ColumnName="ProjectEndDate1" />
           <ScalarProperty Name="ProjectActualStartDate" ColumnName="ProjectActualStartDate" />
           <ScalarProperty Name="ProjectActualEndDate" ColumnName="ProjectActualEndDate" />
           <ScalarProperty Name="ProjectDescription" ColumnName="ProjectDescription" />

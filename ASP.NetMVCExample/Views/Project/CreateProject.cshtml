@@ -15,11 +15,11 @@
     ViewBag.Title = "CreateProject";
 
 }
-<script>
+@*<script>
     //creates the illus that min is a class 
     var NowLocal = moment();
     $(".MinDateNow").attr({ min: NowLocal })
-</script>
+</script>*@
 
 <h2>CreateProject</h2>
 @using (Html.BeginForm("CreateProject", "Project", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))

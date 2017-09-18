@@ -13,7 +13,7 @@ CREATE PROCEDURE [dbo].[SelectProjectByID]
 	@ID int = 0
 AS
 	SELECT P.ProjectID, P.ProjectName, P.Address as ProjectAddress, P.City as ProjectCity, P.Province as ProjectProvince, P.Country as ProjectCountry, 
-	P.PostalCode as ProjectPostalCode, P.StartDate as ProjectStartDate, P.EndDate as ProjectEndDate, P.EndDate as ProjectEndDate, 
+	P.PostalCode as ProjectPostalCode, P.StartDate as ProjectStartDate, P.EndDate as ProjectEndDate, 
 	P.ActualStartDate as ProjectActualStartDate, P.ActualEndDate as ProjectActualEndDate, P.Description as ProjectDescription, 
 	P.CreationDate as ProjectCreationDate,
 	U.UserID as ManagerID, U.Picture as ManagerPicture, U.FirstName as ManagerFirstName, U.MiddleInitial as ManagerMiddleInitial, 

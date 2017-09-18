@@ -13,17 +13,18 @@
 @{
     ViewBag.Title = Model.ProjectName + "#" + Model.ProjectID;
     ViewBag.NgApp = "NGProjectsIndex";
-    ViewBag.RootPath = Html.MakeFullURLActionLink("Index", null, false);
+    Html.AddToRenderScriptBundles("~/Scripts/PageScripts/Projects/Index.js");
+    //string RootPath = Html.MakeFullURLActionLink("IndexSubPage", null, false);
 }
-@Html.Hidden("RootURLData", (string)ViewBag.RootPath , new { ID = "RootURLData", ProjectID = Model.ProjectID } );
-<div ng-controller="FooBar">
-    <h2>@Html.Raw(Model.ProjectName + "#" + Model.ProjectID)</h2>
+<script src="~/Scripts/PageScripts/Projects/Index.js"></script>
+<div>
+    <h2 ProjectID="@Model.ProjectID">@Html.Raw(Model.ProjectName + "#" + Model.ProjectID)</h2>
     <div id="MainTabs">
-        <ul class="nav nav-tabs">
-            <li id="OverViewTab" class="active" onclick="">Over View</li>
-            <li id="TaskCellViewTab" onclick="">Task Cell View</li>
-            <li id="GanttChartViewTab" onclick="">Gantt Chart View</li>
-            <li id="PerkChartViewTab" onclick="">Perk Chart View</li>
+        <ul class="nav nav-tabs nav-justified">
+            <li id="OverViewTab" class="active"><a href="#!OverView">Over View</a></li>
+            <li id="TaskCellViewTab"><a href="#!TaskCellView">Task Cell View</a></li>
+            <li id="GanttChartViewTab"><a href="#!GanttChartView">Gantt Chart View</a></li>
+            <li id="PerkChartViewTab"><a href="#!PerkChartView">Perk Chart View</a></li>
         </ul>
     </div>
     <div ng-view>
