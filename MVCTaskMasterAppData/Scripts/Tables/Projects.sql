@@ -30,6 +30,12 @@ CREATE TABLE [dbo].[Projects]
 	[ActualStartDate] DateTime NULL, 
     [ActualEndDate] DateTime NULL,
 
+	[TaskManagersCanEdit] BIT DEFAULT 0,
+	[TaskManagersCanPost] BIT DEFAULT 1,
+	[TaskManagersCanDeletePost] BIT DEFAULT 0,
+	[TaskManagersCanDeleteFile] BIT DEFAULT 0,
+	[TaskManagersCanUploadFile] BIT DEFAULT 1,
+
 	--time that the project was opened utc
     [CreationDate] DateTime NOT NULL DEFAULT GETDATE(), 
 

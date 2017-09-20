@@ -26,6 +26,17 @@ namespace ASP.NetMVCExample.Models
         public string RoleName { get; set; }
         public Nullable<int> SuperRole { get; set; }
         public bool Admin { get; set; }
+        public bool CanPostToCompanyProjects { get; set; }
+        public bool CanDeletePostCompanyProjects { get; set; }
+        public bool CanEditCompanyProjects { get; set; }
+        public bool CanViewComapnyProjects { get; set; }
+        public bool CanDeleteCompanyProjectFile { get; set; }
+        public bool CanUploadCompanyProjectFile { get; set; }
+        public bool CanViewCompanyOfficeEmpl { get; set; }
+        public bool CanEditCompanyOffices { get; set; }
+        public bool CanEditCompanyEmpl { get; set; }
+        public bool CanEditCompanyPage { get; set; }
+        public bool Owner { get; set; }
     
         public virtual Companys Companys { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

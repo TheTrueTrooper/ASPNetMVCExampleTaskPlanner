@@ -18,6 +18,7 @@ using System.Web;
 using System.Web.Mvc;
 using ASP.NetMVCExample.SecurityValidation;
 using ASP.NetMVCExample.Models.ProjectView;
+using ASP.NetMVCExample.Models._SecurityOptions;
 using ASP.NetMVCExample.Models;
 using System.Data.Entity.Core.Objects;
 
@@ -27,7 +28,9 @@ namespace ASP.NetMVCExample.Controllers
     public class ProjectController : Controller
     {
         MVCTaskMasterAppDataEntities2 DB = new MVCTaskMasterAppDataEntities2();
+
         // GET: Project
+        [DBFSPAuthorize(DBFSPAuthorizeAttribute.SecurityType.Project)]
         public ActionResult Index(int ID)
         {
             SelectProjectByID_Result Project = null;
@@ -56,12 +59,22 @@ namespace ASP.NetMVCExample.Controllers
 
         public ActionResult CreateProject(CreateProject ProjectToCreate)
         {
+            string ErrorMessage = "";
+            ObjectParameter ErrorMessageParameter = new ObjectParameter("ErrorMessage", ErrorMessage);
+
+            int ID = 0;
+            ObjectParameter IDParameter = new ObjectParameter("ErrorMessage", ID);
+
             List<SelectListItem> UserList = new List<SelectListItem>{ new SelectListItem { Text = "Me", Value = ((int)Session["SessionUserID"]).ToString() } };
             ViewBag.UserList = UserList;
             ProjectToCreate.StartDate = DateTime.Now;
             if (ModelState.IsValid)
             {
-                 
+                DB.CreateProject(ProjectToCreate.ProjectName, ProjectToCreate.CompanyID, 
+                    ProjectToCreate.ManagerID, ProjectToCreate.Address, ProjectToCreate.PostalCode,
+                    ProjectToCreate.Country, ProjectToCreate.ProjectName, ProjectToCreate.City,
+                    ProjectToCreate.Description, ProjectToCreate.StartDate, ProjectToCreate.EndDate, 
+                    ErrorMessageParameter, IDParameter);
             }
             return View();
         }

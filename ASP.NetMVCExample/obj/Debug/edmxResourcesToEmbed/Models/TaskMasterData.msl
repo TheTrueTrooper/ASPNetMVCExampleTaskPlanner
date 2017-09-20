@@ -4,6 +4,17 @@
     <EntitySetMapping Name="CompanyRoles">
       <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.CompanyRoles">
         <MappingFragment StoreEntitySet="CompanyRoles">
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="CanEditCompanyPage" ColumnName="CanEditCompanyPage" />
+          <ScalarProperty Name="CanEditCompanyEmpl" ColumnName="CanEditCompanyEmpl" />
+          <ScalarProperty Name="CanEditCompanyOffices" ColumnName="CanEditCompanyOffices" />
+          <ScalarProperty Name="CanViewCompanyOfficeEmpl" ColumnName="CanViewCompanyOfficeEmpl" />
+          <ScalarProperty Name="CanUploadCompanyProjectFile" ColumnName="CanUploadCompanyProjectFile" />
+          <ScalarProperty Name="CanDeleteCompanyProjectFile" ColumnName="CanDeleteCompanyProjectFile" />
+          <ScalarProperty Name="CanViewComapnyProjects" ColumnName="CanViewComapnyProjects" />
+          <ScalarProperty Name="CanEditCompanyProjects" ColumnName="CanEditCompanyProjects" />
+          <ScalarProperty Name="CanDeletePostCompanyProjects" ColumnName="CanDeletePostCompanyProjects" />
+          <ScalarProperty Name="CanPostToCompanyProjects" ColumnName="CanPostToCompanyProjects" />
           <ScalarProperty Name="Admin" ColumnName="Admin" />
           <ScalarProperty Name="SuperRole" ColumnName="SuperRole" />
           <ScalarProperty Name="RoleName" ColumnName="RoleName" />
@@ -77,6 +88,11 @@
     <EntitySetMapping Name="Projects">
       <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.Projects">
         <MappingFragment StoreEntitySet="Projects">
+          <ScalarProperty Name="TaskManagersCanUploadFile" ColumnName="TaskManagersCanUploadFile" />
+          <ScalarProperty Name="TaskManagersCanDeleteFile" ColumnName="TaskManagersCanDeleteFile" />
+          <ScalarProperty Name="TaskManagersCanDeletePost" ColumnName="TaskManagersCanDeletePost" />
+          <ScalarProperty Name="TaskManagersCanPost" ColumnName="TaskManagersCanPost" />
+          <ScalarProperty Name="TaskManagersCanEdit" ColumnName="TaskManagersCanEdit" />
           <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
           <ScalarProperty Name="ActualEndDate" ColumnName="ActualEndDate" />
           <ScalarProperty Name="ActualStartDate" ColumnName="ActualStartDate" />
@@ -269,6 +285,28 @@
           <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
           <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
           <ScalarProperty Name="CompanySite" ColumnName="CompanySite" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SelectProjectByID_Light" FunctionName="MVCTaskMasterAppDataModel.Store.SelectProjectByID_Light">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCTaskMasterAppDataModel.SelectProjectByID_Light_Result">
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ValidateWithProjectViewPriv" FunctionName="MVCTaskMasterAppDataModel.Store.ValidateWithProjectViewPriv">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCTaskMasterAppDataModel.ValidateWithProjectViewPriv_Result">
+          <ScalarProperty Name="Valid" ColumnName="Valid" />
+          <ScalarProperty Name="CanViewProject" ColumnName="CanViewProject" />
+          <ScalarProperty Name="CanPostToProject" ColumnName="CanPostToProject" />
+          <ScalarProperty Name="CanDeleteProjectPost" ColumnName="CanDeleteProjectPost" />
+          <ScalarProperty Name="CanUpLoadToFile" ColumnName="CanUpLoadToFile" />
+          <ScalarProperty Name="CanDeleteProjectFile" ColumnName="CanDeleteProjectFile" />
+          <ScalarProperty Name="CanEditProject" ColumnName="CanEditProject" />
+          <ScalarProperty Name="FullProjectAdmin" ColumnName="FullProjectAdmin" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

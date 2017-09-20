@@ -8,7 +8,18 @@
     <Property Name="CompanyID" Type="int" Nullable="false" />
     <Property Name="RoleName" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="SuperRole" Type="int" />
+    <Property Name="CanPostToCompanyProjects" Type="bit" Nullable="false" />
+    <Property Name="CanDeletePostCompanyProjects" Type="bit" Nullable="false" />
+    <Property Name="CanEditCompanyProjects" Type="bit" Nullable="false" />
+    <Property Name="CanViewComapnyProjects" Type="bit" Nullable="false" />
+    <Property Name="CanDeleteCompanyProjectFile" Type="bit" Nullable="false" />
+    <Property Name="CanUploadCompanyProjectFile" Type="bit" Nullable="false" />
+    <Property Name="CanViewCompanyOfficeEmpl" Type="bit" Nullable="false" />
+    <Property Name="CanEditCompanyOffices" Type="bit" Nullable="false" />
+    <Property Name="CanEditCompanyEmpl" Type="bit" Nullable="false" />
+    <Property Name="CanEditCompanyPage" Type="bit" Nullable="false" />
     <Property Name="Admin" Type="bit" Nullable="false" />
+    <Property Name="Owner" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Companys">
     <Key>
@@ -86,6 +97,11 @@
     <Property Name="EndDate" Type="datetime" Nullable="false" />
     <Property Name="ActualStartDate" Type="datetime" />
     <Property Name="ActualEndDate" Type="datetime" />
+    <Property Name="TaskManagersCanEdit" Type="bit" />
+    <Property Name="TaskManagersCanPost" Type="bit" />
+    <Property Name="TaskManagersCanDeletePost" Type="bit" />
+    <Property Name="TaskManagersCanDeleteFile" Type="bit" />
+    <Property Name="TaskManagersCanUploadFile" Type="bit" />
     <Property Name="CreationDate" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="ProjectTaskTypeManagers">
@@ -628,6 +644,9 @@
   <Function Name="SelectProjectByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ID" Type="int" Mode="In" />
   </Function>
+  <Function Name="SelectProjectByID_Light" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+  </Function>
   <Function Name="SelectTheUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ID" Type="int" Mode="In" />
     <Parameter Name="ErrorMessage" Type="char" Mode="InOut" />
@@ -669,6 +688,11 @@
   <Function Name="ValidateSession" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="UserID" Type="int" Mode="In" />
     <Parameter Name="Code" Type="char" Mode="In" />
+  </Function>
+  <Function Name="ValidateWithProjectViewPriv" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="int" Mode="In" />
+    <Parameter Name="Code" Type="char" Mode="In" />
+    <Parameter Name="ProjectID" Type="int" Mode="In" />
   </Function>
   <EntityContainer Name="MVCTaskMasterAppDataModelStoreContainer">
     <EntitySet Name="CompanyRoles" EntityType="Self.CompanyRoles" Schema="dbo" store:Type="Tables" />

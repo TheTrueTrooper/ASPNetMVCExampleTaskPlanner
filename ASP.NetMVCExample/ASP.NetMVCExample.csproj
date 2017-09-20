@@ -229,6 +229,9 @@
     <Compile Include="Models\ProjectView\Project_IndexView_ViewOverViewAsSubView.cs" />
     <Compile Include="Models\SearchView\SearchCompany.cs" />
     <Compile Include="Models\SearchView\SearchUsers.cs" />
+    <Compile Include="Models\SelectProjectByID_Light_Result.cs">
+      <DependentUpon>TaskMasterData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SelectProjectByID_Result.cs">
       <DependentUpon>TaskMasterData.tt</DependentUpon>
     </Compile>
@@ -263,6 +266,10 @@
     <Compile Include="Models\UserValidations.cs">
       <DependentUpon>TaskMasterData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ValidateWithProjectViewPriv_Result.cs">
+      <DependentUpon>TaskMasterData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\_SecurityOptions\ProjectPrivages.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

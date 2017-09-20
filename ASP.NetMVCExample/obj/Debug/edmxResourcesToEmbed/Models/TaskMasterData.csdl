@@ -284,6 +284,14 @@
     <FunctionImport Name="SelectProjectByID" ReturnType="Collection(MVCTaskMasterAppDataModel.SelectProjectByID_Result)">
       <Parameter Name="ID" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="SelectProjectByID_Light" ReturnType="Collection(MVCTaskMasterAppDataModel.SelectProjectByID_Light_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ValidateWithProjectViewPriv" ReturnType="Collection(MVCTaskMasterAppDataModel.ValidateWithProjectViewPriv_Result)">
+      <Parameter Name="UserID" Mode="In" Type="Int32" />
+      <Parameter Name="Code" Mode="In" Type="String" />
+      <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="CompanyRoles">
     <Key>
@@ -298,6 +306,17 @@
     <NavigationProperty Name="CompanyWorkers" Relationship="MVCTaskMasterAppDataModel.FK_CompanyWorkers_Rolls" FromRole="CompanyRoles" ToRole="CompanyWorkers" />
     <NavigationProperty Name="CompanyRoles1" Relationship="MVCTaskMasterAppDataModel.FK_Rolls_SuperRoles" FromRole="CompanyRoles" ToRole="CompanyRoles1" />
     <NavigationProperty Name="CompanyRoles2" Relationship="MVCTaskMasterAppDataModel.FK_Rolls_SuperRoles" FromRole="CompanyRoles1" ToRole="CompanyRoles" />
+    <Property Name="CanPostToCompanyProjects" Type="Boolean" Nullable="false" />
+    <Property Name="CanDeletePostCompanyProjects" Type="Boolean" Nullable="false" />
+    <Property Name="CanEditCompanyProjects" Type="Boolean" Nullable="false" />
+    <Property Name="CanViewComapnyProjects" Type="Boolean" Nullable="false" />
+    <Property Name="CanDeleteCompanyProjectFile" Type="Boolean" Nullable="false" />
+    <Property Name="CanUploadCompanyProjectFile" Type="Boolean" Nullable="false" />
+    <Property Name="CanViewCompanyOfficeEmpl" Type="Boolean" Nullable="false" />
+    <Property Name="CanEditCompanyOffices" Type="Boolean" Nullable="false" />
+    <Property Name="CanEditCompanyEmpl" Type="Boolean" Nullable="false" />
+    <Property Name="CanEditCompanyPage" Type="Boolean" Nullable="false" />
+    <Property Name="Owner" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="Companys">
     <Key>
@@ -406,6 +425,11 @@
     <NavigationProperty Name="ProjectTaskTypeManagers" Relationship="MVCTaskMasterAppDataModel.FK_Projects_ProjectTaskTypeManagersID" FromRole="Projects" ToRole="ProjectTaskTypeManagers" />
     <NavigationProperty Name="Users" Relationship="MVCTaskMasterAppDataModel.FK_Projects_User_PManager" FromRole="Projects" ToRole="Users" />
     <NavigationProperty Name="Tasks" Relationship="MVCTaskMasterAppDataModel.FK_Tasks_Projects" FromRole="Projects" ToRole="Tasks" />
+    <Property Name="TaskManagersCanEdit" Type="Boolean" />
+    <Property Name="TaskManagersCanPost" Type="Boolean" />
+    <Property Name="TaskManagersCanDeletePost" Type="Boolean" />
+    <Property Name="TaskManagersCanDeleteFile" Type="Boolean" />
+    <Property Name="TaskManagersCanUploadFile" Type="Boolean" />
   </EntityType>
   <EntityType Name="ProjectTaskTypeManagers">
     <Key>
@@ -913,5 +937,19 @@
     <Property Type="Int32" Name="CompanyID" Nullable="true" />
     <Property Type="String" Name="CompanyName" Nullable="true" MaxLength="30" />
     <Property Type="String" Name="CompanySite" Nullable="true" MaxLength="40" />
+  </ComplexType>
+  <ComplexType Name="SelectProjectByID_Light_Result">
+    <Property Type="Int32" Name="ProjectID" Nullable="false" />
+    <Property Type="String" Name="ProjectName" Nullable="false" MaxLength="70" />
+  </ComplexType>
+  <ComplexType Name="ValidateWithProjectViewPriv_Result">
+    <Property Type="Boolean" Name="Valid" Nullable="true" />
+    <Property Type="Boolean" Name="CanViewProject" Nullable="true" />
+    <Property Type="Boolean" Name="CanPostToProject" Nullable="true" />
+    <Property Type="Boolean" Name="CanDeleteProjectPost" Nullable="true" />
+    <Property Type="Boolean" Name="CanUpLoadToFile" Nullable="true" />
+    <Property Type="Boolean" Name="CanDeleteProjectFile" Nullable="true" />
+    <Property Type="Boolean" Name="CanEditProject" Nullable="true" />
+    <Property Type="Boolean" Name="FullProjectAdmin" Nullable="true" />
   </ComplexType>
 </Schema>

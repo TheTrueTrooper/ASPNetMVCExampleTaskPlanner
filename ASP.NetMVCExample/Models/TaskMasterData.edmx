@@ -13,7 +13,18 @@
           <Property Name="CompanyID" Type="int" Nullable="false" />
           <Property Name="RoleName" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="SuperRole" Type="int" />
+          <Property Name="CanPostToCompanyProjects" Type="bit" Nullable="false" />
+          <Property Name="CanDeletePostCompanyProjects" Type="bit" Nullable="false" />
+          <Property Name="CanEditCompanyProjects" Type="bit" Nullable="false" />
+          <Property Name="CanViewComapnyProjects" Type="bit" Nullable="false" />
+          <Property Name="CanDeleteCompanyProjectFile" Type="bit" Nullable="false" />
+          <Property Name="CanUploadCompanyProjectFile" Type="bit" Nullable="false" />
+          <Property Name="CanViewCompanyOfficeEmpl" Type="bit" Nullable="false" />
+          <Property Name="CanEditCompanyOffices" Type="bit" Nullable="false" />
+          <Property Name="CanEditCompanyEmpl" Type="bit" Nullable="false" />
+          <Property Name="CanEditCompanyPage" Type="bit" Nullable="false" />
           <Property Name="Admin" Type="bit" Nullable="false" />
+          <Property Name="Owner" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Companys">
           <Key>
@@ -91,6 +102,11 @@
           <Property Name="EndDate" Type="datetime" Nullable="false" />
           <Property Name="ActualStartDate" Type="datetime" />
           <Property Name="ActualEndDate" Type="datetime" />
+          <Property Name="TaskManagersCanEdit" Type="bit" />
+          <Property Name="TaskManagersCanPost" Type="bit" />
+          <Property Name="TaskManagersCanDeletePost" Type="bit" />
+          <Property Name="TaskManagersCanDeleteFile" Type="bit" />
+          <Property Name="TaskManagersCanUploadFile" Type="bit" />
           <Property Name="CreationDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="ProjectTaskTypeManagers">
@@ -633,6 +649,9 @@
         <Function Name="SelectProjectByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID" Type="int" Mode="In" />
         </Function>
+        <Function Name="SelectProjectByID_Light" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
         <Function Name="SelectTheUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID" Type="int" Mode="In" />
           <Parameter Name="ErrorMessage" Type="char" Mode="InOut" />
@@ -674,6 +693,11 @@
         <Function Name="ValidateSession" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserID" Type="int" Mode="In" />
           <Parameter Name="Code" Type="char" Mode="In" />
+        </Function>
+        <Function Name="ValidateWithProjectViewPriv" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="int" Mode="In" />
+          <Parameter Name="Code" Type="char" Mode="In" />
+          <Parameter Name="ProjectID" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="MVCTaskMasterAppDataModelStoreContainer">
           <EntitySet Name="CompanyRoles" EntityType="Self.CompanyRoles" Schema="dbo" store:Type="Tables" />
@@ -1096,6 +1120,14 @@
           <FunctionImport Name="SelectProjectByID" ReturnType="Collection(MVCTaskMasterAppDataModel.SelectProjectByID_Result)">
           <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="SelectProjectByID_Light" ReturnType="Collection(MVCTaskMasterAppDataModel.SelectProjectByID_Light_Result)">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ValidateWithProjectViewPriv" ReturnType="Collection(MVCTaskMasterAppDataModel.ValidateWithProjectViewPriv_Result)">
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+            <Parameter Name="Code" Mode="In" Type="String" />
+            <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="CompanyRoles">
           <Key>
@@ -1110,6 +1142,17 @@
           <NavigationProperty Name="CompanyWorkers" Relationship="MVCTaskMasterAppDataModel.FK_CompanyWorkers_Rolls" FromRole="CompanyRoles" ToRole="CompanyWorkers" />
           <NavigationProperty Name="CompanyRoles1" Relationship="MVCTaskMasterAppDataModel.FK_Rolls_SuperRoles" FromRole="CompanyRoles" ToRole="CompanyRoles1" />
           <NavigationProperty Name="CompanyRoles2" Relationship="MVCTaskMasterAppDataModel.FK_Rolls_SuperRoles" FromRole="CompanyRoles1" ToRole="CompanyRoles" />
+          <Property Name="CanPostToCompanyProjects" Type="Boolean" Nullable="false" />
+          <Property Name="CanDeletePostCompanyProjects" Type="Boolean" Nullable="false" />
+          <Property Name="CanEditCompanyProjects" Type="Boolean" Nullable="false" />
+          <Property Name="CanViewComapnyProjects" Type="Boolean" Nullable="false" />
+          <Property Name="CanDeleteCompanyProjectFile" Type="Boolean" Nullable="false" />
+          <Property Name="CanUploadCompanyProjectFile" Type="Boolean" Nullable="false" />
+          <Property Name="CanViewCompanyOfficeEmpl" Type="Boolean" Nullable="false" />
+          <Property Name="CanEditCompanyOffices" Type="Boolean" Nullable="false" />
+          <Property Name="CanEditCompanyEmpl" Type="Boolean" Nullable="false" />
+          <Property Name="CanEditCompanyPage" Type="Boolean" Nullable="false" />
+          <Property Name="Owner" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Companys">
           <Key>
@@ -1218,6 +1261,11 @@
           <NavigationProperty Name="ProjectTaskTypeManagers" Relationship="MVCTaskMasterAppDataModel.FK_Projects_ProjectTaskTypeManagersID" FromRole="Projects" ToRole="ProjectTaskTypeManagers" />
           <NavigationProperty Name="Users" Relationship="MVCTaskMasterAppDataModel.FK_Projects_User_PManager" FromRole="Projects" ToRole="Users" />
           <NavigationProperty Name="Tasks" Relationship="MVCTaskMasterAppDataModel.FK_Tasks_Projects" FromRole="Projects" ToRole="Tasks" />
+          <Property Name="TaskManagersCanEdit" Type="Boolean" />
+          <Property Name="TaskManagersCanPost" Type="Boolean" />
+          <Property Name="TaskManagersCanDeletePost" Type="Boolean" />
+          <Property Name="TaskManagersCanDeleteFile" Type="Boolean" />
+          <Property Name="TaskManagersCanUploadFile" Type="Boolean" />
         </EntityType>
         <EntityType Name="ProjectTaskTypeManagers">
           <Key>
@@ -1726,6 +1774,20 @@
           <Property Type="String" Name="CompanyName" Nullable="true" MaxLength="30" />
           <Property Type="String" Name="CompanySite" Nullable="true" MaxLength="40" />
         </ComplexType>
+        <ComplexType Name="SelectProjectByID_Light_Result">
+          <Property Type="Int32" Name="ProjectID" Nullable="false" />
+          <Property Type="String" Name="ProjectName" Nullable="false" MaxLength="70" />
+        </ComplexType>
+        <ComplexType Name="ValidateWithProjectViewPriv_Result">
+          <Property Type="Boolean" Name="Valid" Nullable="true" />
+          <Property Type="Boolean" Name="CanViewProject" Nullable="true" />
+          <Property Type="Boolean" Name="CanPostToProject" Nullable="true" />
+          <Property Type="Boolean" Name="CanDeleteProjectPost" Nullable="true" />
+          <Property Type="Boolean" Name="CanUpLoadToFile" Nullable="true" />
+          <Property Type="Boolean" Name="CanDeleteProjectFile" Nullable="true" />
+          <Property Type="Boolean" Name="CanEditProject" Nullable="true" />
+          <Property Type="Boolean" Name="FullProjectAdmin" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1735,6 +1797,17 @@
           <EntitySetMapping Name="CompanyRoles">
             <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.CompanyRoles">
               <MappingFragment StoreEntitySet="CompanyRoles">
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="CanEditCompanyPage" ColumnName="CanEditCompanyPage" />
+                <ScalarProperty Name="CanEditCompanyEmpl" ColumnName="CanEditCompanyEmpl" />
+                <ScalarProperty Name="CanEditCompanyOffices" ColumnName="CanEditCompanyOffices" />
+                <ScalarProperty Name="CanViewCompanyOfficeEmpl" ColumnName="CanViewCompanyOfficeEmpl" />
+                <ScalarProperty Name="CanUploadCompanyProjectFile" ColumnName="CanUploadCompanyProjectFile" />
+                <ScalarProperty Name="CanDeleteCompanyProjectFile" ColumnName="CanDeleteCompanyProjectFile" />
+                <ScalarProperty Name="CanViewComapnyProjects" ColumnName="CanViewComapnyProjects" />
+                <ScalarProperty Name="CanEditCompanyProjects" ColumnName="CanEditCompanyProjects" />
+                <ScalarProperty Name="CanDeletePostCompanyProjects" ColumnName="CanDeletePostCompanyProjects" />
+                <ScalarProperty Name="CanPostToCompanyProjects" ColumnName="CanPostToCompanyProjects" />
                 <ScalarProperty Name="Admin" ColumnName="Admin" />
                 <ScalarProperty Name="SuperRole" ColumnName="SuperRole" />
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
@@ -1808,6 +1881,11 @@
           <EntitySetMapping Name="Projects">
             <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.Projects">
               <MappingFragment StoreEntitySet="Projects">
+                <ScalarProperty Name="TaskManagersCanUploadFile" ColumnName="TaskManagersCanUploadFile" />
+                <ScalarProperty Name="TaskManagersCanDeleteFile" ColumnName="TaskManagersCanDeleteFile" />
+                <ScalarProperty Name="TaskManagersCanDeletePost" ColumnName="TaskManagersCanDeletePost" />
+                <ScalarProperty Name="TaskManagersCanPost" ColumnName="TaskManagersCanPost" />
+                <ScalarProperty Name="TaskManagersCanEdit" ColumnName="TaskManagersCanEdit" />
                 <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
                 <ScalarProperty Name="ActualEndDate" ColumnName="ActualEndDate" />
                 <ScalarProperty Name="ActualStartDate" ColumnName="ActualStartDate" />
@@ -2000,6 +2078,28 @@
                 <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
                 <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
                 <ScalarProperty Name="CompanySite" ColumnName="CompanySite" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SelectProjectByID_Light" FunctionName="MVCTaskMasterAppDataModel.Store.SelectProjectByID_Light">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCTaskMasterAppDataModel.SelectProjectByID_Light_Result">
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ValidateWithProjectViewPriv" FunctionName="MVCTaskMasterAppDataModel.Store.ValidateWithProjectViewPriv">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCTaskMasterAppDataModel.ValidateWithProjectViewPriv_Result">
+                <ScalarProperty Name="Valid" ColumnName="Valid" />
+                <ScalarProperty Name="CanViewProject" ColumnName="CanViewProject" />
+                <ScalarProperty Name="CanPostToProject" ColumnName="CanPostToProject" />
+                <ScalarProperty Name="CanDeleteProjectPost" ColumnName="CanDeleteProjectPost" />
+                <ScalarProperty Name="CanUpLoadToFile" ColumnName="CanUpLoadToFile" />
+                <ScalarProperty Name="CanDeleteProjectFile" ColumnName="CanDeleteProjectFile" />
+                <ScalarProperty Name="CanEditProject" ColumnName="CanEditProject" />
+                <ScalarProperty Name="FullProjectAdmin" ColumnName="FullProjectAdmin" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

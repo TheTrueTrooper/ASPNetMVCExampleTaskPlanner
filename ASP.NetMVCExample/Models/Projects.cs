@@ -38,6 +38,11 @@ namespace ASP.NetMVCExample.Models
         public Nullable<System.DateTime> ActualStartDate { get; set; }
         public Nullable<System.DateTime> ActualEndDate { get; set; }
         public System.DateTime CreationDate { get; set; }
+        public Nullable<bool> TaskManagersCanEdit { get; set; }
+        public Nullable<bool> TaskManagersCanPost { get; set; }
+        public Nullable<bool> TaskManagersCanDeletePost { get; set; }
+        public Nullable<bool> TaskManagersCanDeleteFile { get; set; }
+        public Nullable<bool> TaskManagersCanUploadFile { get; set; }
     
         public virtual Companys Companys { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
