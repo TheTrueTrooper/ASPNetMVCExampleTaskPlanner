@@ -139,6 +139,7 @@
     <Build Include="Scripts\Triggers\Sessions\SessionsCleaner.sql" />
     <Build Include="Scripts\StoredProce\Project\SelectProjectByID_Light.sql" />
     <Build Include="Scripts\StoredProce\Session\ValidateWithProjectViewPriv.sql" />
+    <Build Include="Scripts\StoredProce\Session\ValidateWithCompanyViewPriv.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\Util\Scripts\ErrorTablesReBuildScript.sql" />

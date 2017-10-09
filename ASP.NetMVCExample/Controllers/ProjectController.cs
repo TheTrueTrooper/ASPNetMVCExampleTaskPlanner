@@ -21,6 +21,7 @@ using ASP.NetMVCExample.Models.ProjectView;
 using ASP.NetMVCExample.Models._SecurityOptions;
 using ASP.NetMVCExample.Models;
 using System.Data.Entity.Core.Objects;
+using System.Reflection;
 
 namespace ASP.NetMVCExample.Controllers
 {
@@ -29,14 +30,38 @@ namespace ASP.NetMVCExample.Controllers
     {
         MVCTaskMasterAppDataEntities2 DB = new MVCTaskMasterAppDataEntities2();
 
+        [NonAction]
+        ProjectPrivages GetProjectPriv(int ItemID)
+        {
+            int ID = (int)Session["SessionUserID"]; //Simply validate code agenst session
+            string Code = (string)Session["SessionCode"];
+
+            ProjectPrivages ProjectPriv = new ProjectPrivages();
+
+            using (MVCTaskMasterAppDataEntities2 DB = new MVCTaskMasterAppDataEntities2())
+            using (ObjectResult<ValidateWithProjectViewPriv_Result> Result = DB.ValidateWithProjectViewPriv(ID, Code, ItemID))
+                ProjectPriv.In(Result.First());
+
+            return ProjectPriv;
+        }
+
         // GET: Project
-        [DBFSPAuthorize(DBFSPAuthorizeAttribute.SecurityType.Project)]
+        [DBFSPAuthorize]
         public ActionResult Index(int ID)
         {
-            SelectProjectByID_Result Project = null;
-            using (ObjectResult<SelectProjectByID_Result> Result = DB.SelectProjectByID(ID))
-                Project = Result.First();
-            return View(Project);
+            ProjectPrivages PP = GetProjectPriv(ID);
+
+            if (PP.CanView)
+            {
+                ViewBag.Priv = PP;
+
+                SelectProjectByID_Result Project = null;
+                using (ObjectResult<SelectProjectByID_Result> Result = DB.SelectProjectByID(ID))
+                    Project = Result.First();
+                return View(Project);
+            }
+
+            return RedirectToAction("Index", "Dashboard");
         }
 
         public ActionResult IndexSubPage(string AngularView)

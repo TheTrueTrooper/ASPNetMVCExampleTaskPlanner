@@ -73,31 +73,31 @@ AS
 		 if exists(select ManagerID from @Table where 
 		 ManagerID = @UserID 
 		 or (ProjectTaskTypeManagersID = @UserID and TaskManagersCanPost = 1)
-		 or (WorkerID = @UserID and (CanViewComapnyProjects = 1 or [Admin] = 1 or [Owner]= 1)))
+		 or (WorkerID = @UserID and (CanPostToCompanyProjects = 1 or [Admin] = 1 or [Owner]= 1)))
 			set @CanPost =  1;
 
 		if exists(select ManagerID from @Table where 
 		 ManagerID = @UserID 
 		 or (ProjectTaskTypeManagersID = @UserID and TaskManagersCanDeletePost = 1)
-		 or (WorkerID = @UserID and (CanViewComapnyProjects = 1 or [Admin] = 1 or [Owner]= 1)))
+		 or (WorkerID = @UserID and (CanDeletePostCompanyProjects = 1 or [Admin] = 1 or [Owner]= 1)))
 			set @CanDeletePost =  1;
 
 		if exists(select ManagerID from @Table where 
 		 ManagerID = @UserID 
 		 or (ProjectTaskTypeManagersID = @UserID and TaskManagersCanUploadFile = 1)
-		 or (WorkerID = @UserID and (CanViewComapnyProjects = 1 or [Admin] = 1 or [Owner]= 1)))
+		 or (WorkerID = @UserID and (CanUploadCompanyProjectFile = 1 or [Admin] = 1 or [Owner]= 1)))
 			set @CanUploadFile =  1;
 
 		if exists(select ManagerID from @Table where 
 		 ManagerID = @UserID 
 		 or (ProjectTaskTypeManagersID = @UserID and TaskManagersCanDeleteFile = 1)
-		 or (WorkerID = @UserID and (CanViewComapnyProjects = 1 or [Admin] = 1 or [Owner]= 1)))
+		 or (WorkerID = @UserID and (CanDeleteCompanyProjectFile = 1 or [Admin] = 1 or [Owner]= 1)))
 			set @CanDeleteFile =  1;
 
 		if exists(select ManagerID from @Table where 
 		 ManagerID = @UserID 
 		 or (ProjectTaskTypeManagersID = @UserID and TaskManagersCanEdit = 1)
-		 or (WorkerID = @UserID and (CanViewComapnyProjects = 1 or [Admin] = 1 or [Owner]= 1)))
+		 or (WorkerID = @UserID and (CanEditCompanyProjects = 1 or [Admin] = 1 or [Owner]= 1)))
 			set @CanEdit =  1;
 
 		if exists(select ManagerID from @Table where 

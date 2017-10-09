@@ -269,6 +269,7 @@
     <Compile Include="Models\ValidateWithProjectViewPriv_Result.cs">
       <DependentUpon>TaskMasterData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\_SecurityOptions\BasePrivages.cs" />
     <Compile Include="Models\_SecurityOptions\ProjectPrivages.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

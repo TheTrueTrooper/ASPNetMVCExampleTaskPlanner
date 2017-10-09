@@ -6,10 +6,8 @@ using ASP.NetMVCExample.Models;
 
 namespace ASP.NetMVCExample.Models._SecurityOptions
 {
-    public class ProjectPrivages
+    public class ProjectPrivages : BasePrivages
     { 
-        public bool Valid { get; set; }
-        public bool CanViewProject { get; set; }
         public bool CanPostToProject { get; set; }
         public bool CanDeleteProjectPost { get; set; }
         public bool CanUpLoadToFile { get; set; }
@@ -20,7 +18,7 @@ namespace ASP.NetMVCExample.Models._SecurityOptions
         public ProjectPrivages()
         {
             Valid = false;
-            CanViewProject = false;
+            CanView = false;
             CanPostToProject = false;
             CanDeleteProjectPost = false;
             CanUpLoadToFile = false;
@@ -32,7 +30,7 @@ namespace ASP.NetMVCExample.Models._SecurityOptions
         public void In(ValidateWithProjectViewPriv_Result MakeFrom)
         {
             Valid = MakeFrom.Valid.Value;
-            CanViewProject = MakeFrom.CanViewProject.Value;
+            CanView = MakeFrom.CanViewProject.Value;
             CanPostToProject = MakeFrom.CanPostToProject.Value;
             CanDeleteProjectPost = MakeFrom.CanDeleteProjectPost.Value;
             CanUpLoadToFile = MakeFrom.CanDeleteProjectFile.Value;
