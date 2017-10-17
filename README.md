@@ -1,6 +1,5 @@
 # ASP.NetMVC-razor-Example-TaskPlanner
 Using ASP.NET MVC with razor I am creating a task manager site to show case my Model View Control skills and build on them.
-<img src="/TheTrueTrooper/ASP.NetMVC-razor-Example-TaskPlanner/blob/master/PicturesForGit/LandingBootstrapMobileResizing.png?raw=true" alt="LandingBootstrapMobileResizing.png">
 <h3>Introduction</h3> 
 <p>I recently started this project to both demonstrate and build on my ability to develop cloud applications. I see this project both as a point for learning, development, and show casing my skills. The project is primarily C# ASP.NET Core/MVC a cloud. The project is an amalgamation of technologies/approaches in reality and will be listed here.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;I)	Technologies<br/>
