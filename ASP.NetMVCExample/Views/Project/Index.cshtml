@@ -11,11 +11,18 @@
     //  }*@
 @model ASP.NetMVCExample.Models.SelectProjectByID_Result
 @{
+    string ProjectPrivages = ViewBag.Priv as string;
+
     ViewBag.Title = Model.ProjectName + "#" + Model.ProjectID;
     ViewBag.NgApp = "NGProjectsIndex";
     Html.AddToRenderScriptBundles("~/Scripts/PageScripts/Projects/Index.js");
     //string RootPath = Html.MakeFullURLActionLink("IndexSubPage", null, false);
 }
+@Html.Hidden("ProjectPrivages", ProjectPrivages, new { ID = ProjectPrivages })
+<script src="~/Scripts/require.js"></script>
+<script src="~/Scripts/3DJS.js"></script>
+<script src="~/Scripts/TypeScriptOutput/Code/graph.js"></script>
+<script src="~/Scripts/TypeScriptOutput/Code/Testing/TestGraph.js"></script>
 <script src="~/Scripts/PageScripts/Projects/Index.js"></script>
 <div>
     <h2 ProjectID="@Model.ProjectID">@Html.Raw(Model.ProjectName + "#" + Model.ProjectID)</h2>

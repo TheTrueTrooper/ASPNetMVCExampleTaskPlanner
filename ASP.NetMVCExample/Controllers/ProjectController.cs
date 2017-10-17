@@ -22,6 +22,7 @@ using ASP.NetMVCExample.Models._SecurityOptions;
 using ASP.NetMVCExample.Models;
 using System.Data.Entity.Core.Objects;
 using System.Reflection;
+using AngelASPExtentions.ASPMVCControllerExtentions;
 
 namespace ASP.NetMVCExample.Controllers
 {
@@ -53,7 +54,7 @@ namespace ASP.NetMVCExample.Controllers
 
             if (PP.CanView)
             {
-                ViewBag.Priv = PP;
+                ViewBag.Priv = this.GetJsonAsString(PP);
 
                 SelectProjectByID_Result Project = null;
                 using (ObjectResult<SelectProjectByID_Result> Result = DB.SelectProjectByID(ID))

@@ -43,7 +43,7 @@
     <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
     <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
     <TypeScriptOutFile />
-    <TypeScriptOutDir>C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\Scripts\TypeScriptOutput</TypeScriptOutDir>
+    <TypeScriptOutDir>C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\Scripts\TypeScriptOutput\Code</TypeScriptOutDir>
     <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
     <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
     <TypeScriptSourceMap>True</TypeScriptSourceMap>
@@ -327,6 +327,8 @@
       <LastGenOutput>TaskMasterData.cs</LastGenOutput>
     </Content>
     <Content Include="MyNotesReadMe.txt" />
+    <Content Include="Scripts\3DJS.js" />
+    <Content Include="Scripts\3DJS.min.js" />
     <Content Include="Scripts\AngLib-StringExtentions.js" />
     <Content Include="Scripts\angular-sanitize.js" />
     <Content Include="Scripts\angular-MyModLib.js" />
@@ -362,10 +364,11 @@
     <Content Include="Scripts\PageScripts\Projects\Index.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\TypeScriptOutput\BasicVectors.js" />
-    <Content Include="Scripts\TypeScriptOutput\Gant.js" />
-    <Content Include="Scripts\TypeScriptOutput\graph.js" />
-    <Content Include="Scripts\TypeScriptOutput\TimeManagementContainers.js" />
+    <Content Include="Scripts\TypeScriptOutput\Code\BasicVectors.js" />
+    <Content Include="Scripts\TypeScriptOutput\Code\Gant.js" />
+    <Content Include="Scripts\TypeScriptOutput\Code\graph.js" />
+    <Content Include="Scripts\TypeScriptOutput\Code\Testing\TestGraph.js" />
+    <Content Include="Scripts\TypeScriptOutput\Code\TimeManagementContainers.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -398,22 +401,25 @@
     <Content Include="Views\Account\PasswordResetStep1.cshtml" />
     <Content Include="Views\Account\PasswordResetStep2.cshtml" />
     <Content Include="Views\Shared\FriendlyErr.cshtml" />
-    <Content Include="Scripts\TypeScriptOutput\Gant.js.map" />
+    <Content Include="Scripts\TypeScriptOutput\Code\Gant.js.map" />
     <Content Include="Views\Account\PasswordResetEmailTemplate.cshtml" />
     <Content Include="Views\Shared\_EmailLayout.cshtml" />
     <None Include="PrivateServerOptions.Config" />
     <Content Include="Views\Account\PasswordResetCheckYourEmail.cshtml" />
-    <Content Include="Scripts\TypeScriptOutput\TimeManagementContainers.js.map" />
-    <Content Include="Scripts\TypeScriptOutput\BasicVectors.js.map" />
-    <Content Include="Scripts\TypeScriptOutput\graph.js.map" />
+    <Content Include="Scripts\TypeScriptOutput\Code\TimeManagementContainers.js.map" />
+    <Content Include="Scripts\TypeScriptOutput\Code\BasicVectors.js.map" />
+    <Content Include="Scripts\TypeScriptOutput\Code\graph.js.map" />
     <Content Include="Views\Project\Index.cshtml" />
     <Content Include="Views\Project\CreateProject.cshtml" />
     <Content Include="Views\Project\_AJSV_Index_OverView.cshtml" />
     <Content Include="Views\Project\_AJSV_Index_TaskCellView.cshtml" />
     <Content Include="Views\Project\_AJSV_Index_GanttChartView.cshtml" />
     <Content Include="Views\Project\_AJSV_Index_PerkChartView.cshtml" />
+    <Content Include="Scripts\TypeScriptOutput\Code\Testing\TestGraph.js.map" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="src\Code\" />
+    <Folder Include="src\TypeDeffs\" />
     <Folder Include="Views\ManageCompany\" />
   </ItemGroup>
   <ItemGroup>
@@ -427,13 +433,6 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="src\Code\BasicVectors.ts" />
-    <TypeScriptCompile Include="src\Code\Gant.ts" />
-    <TypeScriptCompile Include="src\Code\Graph.ts" />
-    <TypeScriptCompile Include="src\Code\TimeManagementContainers.ts" />
-    <TypeScriptCompile Include="src\TypeDeffs\Moment.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\AngelASPExtentions\AngelASPExtentions\AngelASPExtentions.csproj">

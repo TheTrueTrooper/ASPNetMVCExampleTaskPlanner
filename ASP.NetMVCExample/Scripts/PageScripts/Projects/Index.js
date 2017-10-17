@@ -1,7 +1,4 @@
-﻿/// <reference path="../../AngLib-StringExtentions.js" />
-/// <reference path="../../AngLib-StringExtentions.js" />
-/// <reference path="../../AngLib-StringExtentions.js" />
-/* WritersSigniture
+﻿/* WritersSigniture
 //Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)
 //Date Writen: Sep 12,2017
 //Project Goal: Make a cloud based app to aid in project management 
@@ -99,7 +96,7 @@ angular.module("NGProjectsIndex", ["ngRoute"])
 .controller("GanttChartViewController", function ($scope, ProjectsGetterService)
 {
     ChangeActiveTab("GanttChartViewTab");
-
+    $scope.Canvas = new TestGraph("#chart");
     //ProjectsGetterService.GetProjectTasks(ID).then(function (result){});
 })
 .controller("PerkChartViewController", function ($scope, ProjectsGetterService)

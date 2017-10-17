@@ -11,10 +11,10 @@
 //  Link: https://www.typescriptlang.org/
 //  }
 */
-import * as MoDate from "../typedeffs/moment.d.ts";
-import * as Graphing from "../Code/Graph.ts";
-import * as TimeManagementContainers from "../Code/TimeManagementContainers.ts";
-import * as BasicVectors from "../Code/BasicVectors.ts";
+import * as MoDate from "../typedeffs/moment";
+import * as Graphing from "../Code/Graph";
+import * as TimeManagementContainers from "../Code/TimeManagementContainers";
+import * as BasicVectors from "../Code/BasicVectors";
 
 export module GantGraphing
 {
@@ -44,7 +44,7 @@ export module GantGraphing
             this._VirtualRender = this.OverloadRender;
         }
         
-        OverloadRender(Canvas: SVGSVGElement): void
+        OverloadRender(Canvas): void
         {
             //Render all lines
 
@@ -64,7 +64,7 @@ export module GantGraphing
         //the Gant linkers to draw from
         public _Chains: GantLinker[];
 
-        public constructor(Canvas: SVGSVGElement)
+        public constructor(Canvas)
         {
             super(Canvas);
             //set some draw values

@@ -11,7 +11,7 @@
 --      }
 CREATE TRIGGER [SessionsCleaner]
 	ON [dbo].[Sessions]
-	FOR insert, delete, update
+	After insert, delete, update
 	AS
 	BEGIN
 	  delete from [Sessions] where DATEADD(hour, 1, TimeLastValidated) < GETDATE()
