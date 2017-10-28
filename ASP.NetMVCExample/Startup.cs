@@ -9,6 +9,7 @@ namespace ASP.NetMVCExample
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            ConfigurationSignalR(app);
         }
     }
 }

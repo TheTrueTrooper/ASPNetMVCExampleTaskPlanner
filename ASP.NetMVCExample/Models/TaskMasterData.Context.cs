@@ -537,5 +537,23 @@ namespace ASP.NetMVCExample.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidateWithProjectViewPriv_Result>("ValidateWithProjectViewPriv", userIDParameter, codeParameter, projectIDParameter);
         }
+    
+        public virtual ObjectResult<SelectLinkerByTaskID_Result> SelectLinkerByTaskID(Nullable<int> iD)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectLinkerByTaskID_Result>("SelectLinkerByTaskID", iDParameter);
+        }
+    
+        public virtual ObjectResult<SelectTasksByProjectID_Result> SelectTasksByProjectID(Nullable<int> iD)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectTasksByProjectID_Result>("SelectTasksByProjectID", iDParameter);
+        }
     }
 }

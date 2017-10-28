@@ -59,7 +59,7 @@ angular.module("NGProjectsIndex", ["ngRoute"])
         },
         GetProjectTasks: function (ID)
         {
-            return $http.get("http://localhost:62740/UtilitiesAPI/ProjectTasksData?ID=" + ID, { responseType: "json" });
+            return $http.get("http://localhost:62740/UtilitiesAPI/ProjectsTaskData?ID=" + ID, { responseType: "json" });
         }
     }
 })
@@ -96,8 +96,11 @@ angular.module("NGProjectsIndex", ["ngRoute"])
 .controller("GanttChartViewController", function ($scope, ProjectsGetterService)
 {
     ChangeActiveTab("GanttChartViewTab");
-    $scope.Canvas = new TestGraph("#chart");
-    //ProjectsGetterService.GetProjectTasks(ID).then(function (result){});
+    ProjectsGetterService.GetProjectTasks(ID).then(function (result)
+    { 
+        $scope.project.tasks = result.data;
+        $scope.Canvas = new Gantt("#CanvasBox", $scope.project.tasks);
+    });
 })
 .controller("PerkChartViewController", function ($scope, ProjectsGetterService)
 {

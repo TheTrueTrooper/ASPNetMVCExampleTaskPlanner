@@ -49,7 +49,7 @@ namespace ASP.NetMVCExample.Controllers
             {
                 return Json("The email has been used already", JsonRequestBehavior.AllowGet);
             }
-
+            
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
@@ -100,6 +100,18 @@ namespace ASP.NetMVCExample.Controllers
 
             Project_IndexView_ViewOverViewAsSubView Return = new Project_IndexView_ViewOverViewAsSubView(ProjectData);
 
+            return Json(Return, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// A severside Getter for a Project's tasks
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        [AcceptVerbs("Get", "Post")]
+        public JsonResult ProjectsTaskData(int ID)
+        {
+            Project_IndexView_ViewGanttPerkViewAsSubView Return = new Project_IndexView_ViewGanttPerkViewAsSubView(DB, ID);
             return Json(Return, JsonRequestBehavior.AllowGet);
         }
 

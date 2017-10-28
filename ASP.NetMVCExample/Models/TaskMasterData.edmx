@@ -646,10 +646,16 @@
           <Parameter Name="IDOut" Type="int" Mode="InOut" />
           <Parameter Name="ChecksOut" Type="bit" Mode="InOut" />
         </Function>
+        <Function Name="SelectLinkerByTaskID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
         <Function Name="SelectProjectByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID" Type="int" Mode="In" />
         </Function>
         <Function Name="SelectProjectByID_Light" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SelectTasksByProjectID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID" Type="int" Mode="In" />
         </Function>
         <Function Name="SelectTheUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -1121,12 +1127,18 @@
           <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SelectProjectByID_Light" ReturnType="Collection(MVCTaskMasterAppDataModel.SelectProjectByID_Light_Result)">
-            <Parameter Name="ID" Mode="In" Type="Int32" />
+          <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ValidateWithProjectViewPriv" ReturnType="Collection(MVCTaskMasterAppDataModel.ValidateWithProjectViewPriv_Result)">
             <Parameter Name="UserID" Mode="In" Type="Int32" />
             <Parameter Name="Code" Mode="In" Type="String" />
             <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SelectLinkerByTaskID" ReturnType="Collection(MVCTaskMasterAppDataModel.SelectLinkerByTaskID_Result)">
+          <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SelectTasksByProjectID" ReturnType="Collection(MVCTaskMasterAppDataModel.SelectTasksByProjectID_Result)">
+          <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="CompanyRoles">
@@ -1788,6 +1800,21 @@
           <Property Type="Boolean" Name="CanEditProject" Nullable="true" />
           <Property Type="Boolean" Name="FullProjectAdmin" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="SelectLinkerByTaskID_Result">
+          <Property Type="Int32" Name="linkerID" Nullable="false" />
+          <Property Type="Int32" Name="NextTaskID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SelectTasksByProjectID_Result">
+          <Property Type="Int32" Name="TaskID" Nullable="false" />
+          <Property Type="Int32" Name="SubContractorID" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="TaskTypeID" Nullable="false" />
+          <Property Type="DateTime" Name="StartDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="EndDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ActualStartDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ActualEndDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="false" Precision="23" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2100,6 +2127,29 @@
                 <ScalarProperty Name="CanDeleteProjectFile" ColumnName="CanDeleteProjectFile" />
                 <ScalarProperty Name="CanEditProject" ColumnName="CanEditProject" />
                 <ScalarProperty Name="FullProjectAdmin" ColumnName="FullProjectAdmin" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SelectLinkerByTaskID" FunctionName="MVCTaskMasterAppDataModel.Store.SelectLinkerByTaskID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCTaskMasterAppDataModel.SelectLinkerByTaskID_Result">
+                <ScalarProperty Name="linkerID" ColumnName="linkerID" />
+                <ScalarProperty Name="NextTaskID" ColumnName="NextTaskID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SelectTasksByProjectID" FunctionName="MVCTaskMasterAppDataModel.Store.SelectTasksByProjectID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCTaskMasterAppDataModel.SelectTasksByProjectID_Result">
+                <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+                <ScalarProperty Name="SubContractorID" ColumnName="SubContractorID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="TaskTypeID" ColumnName="TaskTypeID" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="ActualStartDate" ColumnName="ActualStartDate" />
+                <ScalarProperty Name="ActualEndDate" ColumnName="ActualEndDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
