@@ -3,7 +3,3 @@ C:\Users\Angelo\Desktop\ASP.NetMVCExample\MVCTaskMasterAppData\bin\Debug\MVCTask
 C:\Users\Angelo\Desktop\ASP.NetMVCExample\MVCTaskMasterAppData\bin\Debug\MVCTaskMasterAppData.pdb
 C:\Users\Angelo\Desktop\ASP.NetMVCExample\MVCTaskMasterAppData\obj\Debug\MVCTaskMasterAppData.dll
 C:\Users\Angelo\Desktop\ASP.NetMVCExample\MVCTaskMasterAppData\obj\Debug\MVCTaskMasterAppData.pdb
-C:\Users\Angelo\Desktop\ASP.NetMVCExample\MVCTaskMasterAppData\obj\Debug\Model.xml
-C:\Users\Angelo\Desktop\ASP.NetMVCExample\MVCTaskMasterAppData\obj\Debug\refactor.xml
-C:\Users\Angelo\Desktop\ASP.NetMVCExample\MVCTaskMasterAppData\obj\Debug\postdeploy.sql
-C:\Users\Angelo\Desktop\ASP.NetMVCExample\MVCTaskMasterAppData\obj\Debug\predeploy.sql

@@ -310,5 +310,28 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SelectLinkerByTaskID" FunctionName="MVCTaskMasterAppDataModel.Store.SelectLinkerByTaskID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCTaskMasterAppDataModel.SelectLinkerByTaskID_Result">
+          <ScalarProperty Name="linkerID" ColumnName="linkerID" />
+          <ScalarProperty Name="NextTaskID" ColumnName="NextTaskID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SelectTasksByProjectID" FunctionName="MVCTaskMasterAppDataModel.Store.SelectTasksByProjectID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCTaskMasterAppDataModel.SelectTasksByProjectID_Result">
+          <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+          <ScalarProperty Name="SubContractorID" ColumnName="SubContractorID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="TaskTypeID" ColumnName="TaskTypeID" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="ActualStartDate" ColumnName="ActualStartDate" />
+          <ScalarProperty Name="ActualEndDate" ColumnName="ActualEndDate" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

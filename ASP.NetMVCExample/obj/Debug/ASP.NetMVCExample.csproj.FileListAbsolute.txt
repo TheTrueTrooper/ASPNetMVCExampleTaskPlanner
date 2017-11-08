@@ -77,3 +77,7 @@ C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\bin\AngelASPExtentio
 C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\bin\AngelASPExtentions.pdb
 C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\obj\Debug\ASP.NetMVCExample.Properties.Resources.resources
 C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\obj\Debug\ASP.NetMVCExample.csproj.GenerateResource.Cache
+C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\bin\Microsoft.AspNet.SignalR.SystemWeb.xml

@@ -292,6 +292,12 @@
       <Parameter Name="Code" Mode="In" Type="String" />
       <Parameter Name="ProjectID" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="SelectLinkerByTaskID" ReturnType="Collection(MVCTaskMasterAppDataModel.SelectLinkerByTaskID_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SelectTasksByProjectID" ReturnType="Collection(MVCTaskMasterAppDataModel.SelectTasksByProjectID_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="CompanyRoles">
     <Key>
@@ -951,5 +957,20 @@
     <Property Type="Boolean" Name="CanDeleteProjectFile" Nullable="true" />
     <Property Type="Boolean" Name="CanEditProject" Nullable="true" />
     <Property Type="Boolean" Name="FullProjectAdmin" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SelectLinkerByTaskID_Result">
+    <Property Type="Int32" Name="linkerID" Nullable="false" />
+    <Property Type="Int32" Name="NextTaskID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SelectTasksByProjectID_Result">
+    <Property Type="Int32" Name="TaskID" Nullable="false" />
+    <Property Type="Int32" Name="SubContractorID" Nullable="false" />
+    <Property Type="String" Name="Description" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="TaskTypeID" Nullable="false" />
+    <Property Type="DateTime" Name="StartDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="EndDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="ActualStartDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="ActualEndDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="CreationDate" Nullable="false" Precision="23" />
   </ComplexType>
 </Schema>

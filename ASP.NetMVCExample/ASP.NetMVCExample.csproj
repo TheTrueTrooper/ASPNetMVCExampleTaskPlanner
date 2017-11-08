@@ -208,7 +208,7 @@
     <Compile Include="Controllers\ManageCompanyController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\UtilitiesAPIController.cs" />
-    <Compile Include="Hubs\GanttEdit.cs" />
+    <Compile Include="Hubs\ProjectEditHub.cs" />
     <Compile Include="Models\CompanyRoles.cs">
       <DependentUpon>TaskMasterData.tt</DependentUpon>
     </Compile>
@@ -236,8 +236,7 @@
       <DependentUpon>TaskMasterData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProjectView\CreateProject.cs" />
-    <Compile Include="Models\ProjectView\Project_IndexView_ViewGanttPerkViewAsSubView.cs" />
-    <Compile Include="Models\ProjectView\Project_IndexView_ViewOverViewAsSubView.cs" />
+    <Compile Include="Models\ProjectView\Project_Tasks_And_Links.cs" />
     <Compile Include="Models\SearchView\SearchCompany.cs" />
     <Compile Include="Models\SearchView\SearchUsers.cs" />
     <Compile Include="Models\SelectLinkerByTaskID_Result.cs">
@@ -288,7 +287,8 @@
     </Compile>
     <Compile Include="Models\_SecurityOptions\BasePrivages.cs" />
     <Compile Include="Models\_SecurityOptions\ProjectPrivages.cs" />
-    <Compile Include="Models\__HubModels\Users.cs" />
+    <Compile Include="Models\__HubModels\HubSessions.cs" />
+    <Compile Include="Models\__HubModels\ProjectHubSessions.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

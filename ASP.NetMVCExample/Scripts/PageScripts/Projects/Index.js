@@ -12,6 +12,7 @@
 //  }
 */
 
+
 function ChangeActiveTab(Tab)
 {
     $(".active").removeClass("active");
@@ -21,6 +22,10 @@ function ChangeActiveTab(Tab)
 var ID;
 
 angular.module("NGProjectsIndex", ["ngRoute"])
+.value("$", $)
+.run(function ()
+{
+})
 .config(["$routeProvider", function ($routeProvider)
 {
     ID = $("[ProjectID]").attr("ProjectID");
@@ -47,9 +52,21 @@ angular.module("NGProjectsIndex", ["ngRoute"])
             controller: "PerkChartViewController"
         })
 }])
-//.run(function()
-//{
-//})
+.factory("socketService", function ($, $rootScope)
+{
+    var hub = null
+    return {
+        initialize: function ()
+        {
+            connection = $.hubConnection();
+            this.hub = connection.createHubProxy("ganttEditHub");
+            this.hub.on("onInItDone", function (Data)
+            {
+                $rootScope.Data = Data
+            })
+        }
+    }
+})
 .service("ProjectsGetterService", function ($http)
 {
     return {
