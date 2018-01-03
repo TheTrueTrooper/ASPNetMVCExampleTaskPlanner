@@ -53,3 +53,23 @@ So wouldn’t it be nice if using the framing work we set up in the planning ste
 <p>&nbsp;&nbsp;&nbsp;&nbsp;More often than not in the planning step we make gantt charts that identify the critical routes for work (tasks). Often these can be assigned to a profession and a group that handles it. If Task A for the plumbers finishes why not notify the Task B concrete finisher party automatically using the management’s confirmation step. Using the groupings responsible for the task abstract the data to who needs it, or just leave it visible for transparency.</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;And while we are busy interconnecting this data why not allow for communication up the chain as well. For instance the plumber will take longer he posts to a virtual board rooms wall and notifies them of it with the reason. All invested parities would probably like to know why it is late and how late will it be. If this is critical issue now we all actively join a virtual board room with voice and go over the problem for a solution together.</p>
 </span>
+<span>
+I have been working on a project as a show case for my self in my spare time. I have been the the primary author for a some time now. It has been full of technical challenges and design challenges. 
+
+These challenges included what kind of technologies to use. This is only to name a few challenges in the technical design. How one should interact with the server its self and how these should be secured.  To how the data should be presented and related.
+
+To start with I chose C#  and the ASP.NET MVC as a server language as it provided a excellent extendable business logic platform to build off of. This Technology also had many great Microsoft supported libraries and with Mono could run on nearly any platform. It also provided a great link to the hardware while keeping the code easy to write and read. To add to this the languages reflection added greatly to re-usability and scripting of code and extra extend-ability with out extra libraries.
+ 
+The to Present the data ASP.NET MVC had built in a great Razor HTML template engine for the severs side as a basis for a server View rendering, but it would need more for responsive controls. To bridge this gap I used JavaScript libraries like AngularJS, JQuery, JQueryUI, and JQuery Validate where I thought appropriate. I also built some utility API's to allow this library to be better served by the server on need basis.  To actually display some of the the data I used 3djs to Draw Gantts and Charts that are to be interactive when done.
+
+All of this would need security. ASP.NET MVC provides a great session device to use, but by its self it was vulnerable. So I used the C# security library to salt and hash passwords. I further reinforced my security by providing a security key similar to OAuth, but internally or the user to use in place of a password. This had the added benefit of faster secure session authentication. I then Posted It back to the database to check ageist.
+
+I wanted The documents interactions to be fairly fast but minimal data loss. So I'm building an API with SignalR web sockets. The Plan is to move the concrete interactions on to the API and have the less concrete ones on the sockets asynchronously. Any fully validated changes would be posted to the server on an API. While two people could make and see changes at the same time. This would benefit to save state data for minimal data loss on sessions timeouts and would also keep data relations clean. 
+
+I also need a way to reset passwords. This needed to be tied to anchor like a email. So I did just that; however, I also wanted It to be abstracted almost entirely from the user. So I opted for a get request from an email so that it would work from any browser using a temporary one use code. This get request would then immediately post back to the server via HTML and JavaScript fall back. The post back would allow the server to populate hidden fields to use in another page to post back for the full reset against the code. 
+
+For data storage I went with MS/PL SQL for a professional data keeping. The Technology integrates near seamlessly with with ASP.NET and Entity Frameworks. The data base also provides great support for views, queries, selects, triggers, indexing, and other standard database tools. I also tried to keep data normalized and saleable.
+
+Although there were many challenges planning, research, and adaptability have made the project an overall success. I provided my self with a challenging scope and continue to push it. It provides a fun way me to grow and developer my skills as a developer.
+</span>
+
