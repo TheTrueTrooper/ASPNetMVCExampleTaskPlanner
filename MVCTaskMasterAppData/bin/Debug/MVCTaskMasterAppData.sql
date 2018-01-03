@@ -15,8 +15,8 @@ SET NUMERIC_ROUNDABORT OFF;
 GO
 :setvar DatabaseName "MVCTaskMasterAppData"
 :setvar DefaultFilePrefix "MVCTaskMasterAppData"
-:setvar DefaultDataPath "C:\Users\Angelo\AppData\Local\Microsoft\VisualStudio\SSDT\ASP.NetMVCExample"
-:setvar DefaultLogPath "C:\Users\Angelo\AppData\Local\Microsoft\VisualStudio\SSDT\ASP.NetMVCExample"
+:setvar DefaultDataPath "C:\Users\Angelo''s Tower PC\AppData\Local\Microsoft\VisualStudio\SSDT\ASP.NetMVCExample"
+:setvar DefaultLogPath "C:\Users\Angelo''s Tower PC\AppData\Local\Microsoft\VisualStudio\SSDT\ASP.NetMVCExample"
 
 GO
 :on error exit
@@ -37,6 +37,134 @@ IF N'$(__IsSqlCmdEnabled)' NOT LIKE N'True'
 
 GO
 USE [$(DatabaseName)];
+
+
+GO
+PRINT N'Altering [dbo].[Users]...';
+
+
+GO
+ALTER TABLE [dbo].[Users] ALTER COLUMN [Picture] VARBINARY (16) NULL;
+
+
+GO
+PRINT N'Refreshing [dbo].[CreateProject]...';
+
+
+GO
+EXECUTE sp_refreshsqlmodule N'[dbo].[CreateProject]';
+
+
+GO
+PRINT N'Refreshing [dbo].[CreateTask]...';
+
+
+GO
+EXECUTE sp_refreshsqlmodule N'[dbo].[CreateTask]';
+
+
+GO
+PRINT N'Refreshing [dbo].[CreateThePasswordResset]...';
+
+
+GO
+EXECUTE sp_refreshsqlmodule N'[dbo].[CreateThePasswordResset]';
+
+
+GO
+PRINT N'Refreshing [dbo].[CreateTheSession]...';
+
+
+GO
+EXECUTE sp_refreshsqlmodule N'[dbo].[CreateTheSession]';
+
+
+GO
+PRINT N'Refreshing [dbo].[DeleteTheUser]...';
+
+
+GO
+EXECUTE sp_refreshsqlmodule N'[dbo].[DeleteTheUser]';
+
+
+GO
+PRINT N'Refreshing [dbo].[DoPasswordResset]...';
+
+
+GO
+EXECUTE sp_refreshsqlmodule N'[dbo].[DoPasswordResset]';
+
+
+GO
+PRINT N'Refreshing [dbo].[GetTheSalt]...';
+
+
+GO
+EXECUTE sp_refreshsqlmodule N'[dbo].[GetTheSalt]';
+
+
+GO
+PRINT N'Refreshing [dbo].[InsertNewUser]...';
+
+
+GO
+EXECUTE sp_refreshsqlmodule N'[dbo].[InsertNewUser]';
+
+
+GO
+PRINT N'Refreshing [dbo].[IsEmailUsed]...';
+
+
+GO
+EXECUTE sp_refreshsqlmodule N'[dbo].[IsEmailUsed]';
+
+
+GO
+PRINT N'Refreshing [dbo].[PasswordCheck]...';
+
+
+GO
+EXECUTE sp_refreshsqlmodule N'[dbo].[PasswordCheck]';
+
+
+GO
+PRINT N'Refreshing [dbo].[SelectProjectByID]...';
+
+
+GO
+EXECUTE sp_refreshsqlmodule N'[dbo].[SelectProjectByID]';
+
+
+GO
+PRINT N'Refreshing [dbo].[SelectTheUser]...';
+
+
+GO
+EXECUTE sp_refreshsqlmodule N'[dbo].[SelectTheUser]';
+
+
+GO
+PRINT N'Refreshing [dbo].[SelectUserProjects]...';
+
+
+GO
+EXECUTE sp_refreshsqlmodule N'[dbo].[SelectUserProjects]';
+
+
+GO
+PRINT N'Refreshing [dbo].[UpdateTheUserChangePassword]...';
+
+
+GO
+EXECUTE sp_refreshsqlmodule N'[dbo].[UpdateTheUserChangePassword]';
+
+
+GO
+PRINT N'Refreshing [dbo].[UpdateTheUserInfo]...';
+
+
+GO
+EXECUTE sp_refreshsqlmodule N'[dbo].[UpdateTheUserInfo]';
 
 
 GO

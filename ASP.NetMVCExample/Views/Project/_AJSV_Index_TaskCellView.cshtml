@@ -14,4 +14,64 @@
     Layout = null;
 }
 <div id="TaskViewBody">
+    <div id="ViewCells">
+        <table class="table-striped table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>Previous Tasks</th>
+                    <th>Description</th>
+                    <th>Sub Contractor</th>
+                    <th>Task Type</th>
+                    <th>Expected Start Date</th>
+                    <th>Expected End Date</th>
+                    <th>Expected Duration</th>
+                    <th>Actual Start Date</th>
+                    <th>Actual End Date</th>
+                    <th>Actual Duration</th>
+                    <th>Task Creation Date</th>
+                    <th>Next Tasks</th>
+                </tr>
+            </thead>
+            @*<tr ng-repeat="Task in Tasks">
+                <td><input type="text" value="{{Task.NextTask}}"/></td>
+                <td><input type="text" value="{{Task.Description}}"/></td>
+                <td><input type="text" value="{{Task.SubContractorID}}" /></td>
+                <td><input type="text" value="{{Task.TaskTypeID}}"/></td>
+                <td>Not Implmented Yet</td>
+                <td>Not Implmented Yet</td>
+                <td><input type="text" value="{{Task.Duration}}"/></td>
+                <td>{{Task.ActualStartDate}}</td>
+                <td>{{Task.ActualEndDate}}</td>
+                <td>{{Task.ActualDuration}}</td>
+                <td><input type="text" value="{{Task.PrevTask}}"/></td>
+            </tr>*@
+        </table>
+    </div>
+
+    <form action="">
+        <div class="row" style="width:100%">
+            <div class="col-sm-2">
+                <input type="text" class="form-control" placeholder="Previous Tasks" style="width:100%">
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" placeholder="Description" style="width:100%">
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" placeholder="Optional TaskTypeID" style="width:100%">
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" placeholder="Optional Subcontractor" style="width:100%">
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" placeholder="Expected Duration in Days" style="width:100%">
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" placeholder="Next Tasks" style="width:100%">
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-default" style="width:100%">Create New Task</button>
+        </div>
+    </form>
 </div>
+

@@ -23,14 +23,28 @@ using ASP.NetMVCExample.Models;
 using System.Data.Entity.Core.Objects;
 using System.Reflection;
 using AngelASPExtentions.ASPMVCControllerExtentions;
+using System.Globalization;
+using AngelASPExtentions.ExtraExtentions.Strings;
+using System.Threading;
 
 namespace ASP.NetMVCExample.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [DBFSPAuthorize]
     public class ProjectController : Controller
     {
+        /// <summary>
+        /// 
+        /// </summary>
         MVCTaskMasterAppDataEntities2 DB = new MVCTaskMasterAppDataEntities2();
 
+        /// <summary>
+        /// Gets the proPrivs
+        /// </summary>
+        /// <param name="ItemID">The Project you are tring to access</param>
+        /// <returns></returns>
         [NonAction]
         ProjectPrivages GetProjectPriv(int ItemID)
         {
@@ -39,7 +53,6 @@ namespace ASP.NetMVCExample.Controllers
 
             ProjectPrivages ProjectPriv = new ProjectPrivages();
 
-            using (MVCTaskMasterAppDataEntities2 DB = new MVCTaskMasterAppDataEntities2())
             using (ObjectResult<ValidateWithProjectViewPriv_Result> Result = DB.ValidateWithProjectViewPriv(ID, Code, ItemID))
                 ProjectPriv.In(Result.First());
 
@@ -47,6 +60,11 @@ namespace ASP.NetMVCExample.Controllers
         }
 
         // GET: Project
+        /// <summary>
+        /// Gets a Project interface page
+        /// </summary>
+        /// <param name="ID">THe Projects ID</param>
+        /// <returns>the Page if the Project if you have Privs</returns>
         [DBFSPAuthorize]
         public ActionResult Index(int ID)
         {
@@ -85,22 +103,47 @@ namespace ASP.NetMVCExample.Controllers
 
         public ActionResult CreateProject(CreateProject ProjectToCreate)
         {
+            string[] formats = { "dd/MM/yyyy", "dd/M/yyyy", "d/M/yyyy", "d/MM/yyyy",
+                    "dd/MM/yy", "dd/M/yy", "d/M/yy", "d/MM/yy"};
+
             string ErrorMessage = "";
             ObjectParameter ErrorMessageParameter = new ObjectParameter("ErrorMessage", ErrorMessage);
 
             int ID = 0;
-            ObjectParameter IDParameter = new ObjectParameter("ErrorMessage", ID);
+            ObjectParameter IDParameter = new ObjectParameter("OutID", ID);
 
             List<SelectListItem> UserList = new List<SelectListItem>{ new SelectListItem { Text = "Me", Value = ((int)Session["SessionUserID"]).ToString() } };
             ViewBag.UserList = UserList;
-            ProjectToCreate.StartDate = DateTime.Now;
-            if (ModelState.IsValid)
+
+            bool EndSuccess = false, StartSuccess = false;
+
+            if (!ProjectToCreate.StartDateIn.IsNullEmptyOrWhiteSpace())
             {
-                DB.CreateProject(ProjectToCreate.ProjectName, ProjectToCreate.CompanyID, 
+                DateTime StartDate;
+                StartSuccess = DateTime.TryParseExact(ProjectToCreate.StartDateIn, formats, System.Globalization.CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out StartDate);
+                ViewBag.StartSuccess = StartSuccess;
+                ProjectToCreate.StartDate = StartDate;
+            }
+
+            if (!ProjectToCreate.StartDateIn.IsNullEmptyOrWhiteSpace())
+            {
+                DateTime EndDate;
+                EndSuccess = DateTime.TryParseExact(ProjectToCreate.EndDateIn, formats, System.Globalization.CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out EndDate);
+                ViewBag.EndSuccess = EndSuccess;
+                ProjectToCreate.EndDate = EndDate;
+            }
+
+
+            if (ModelState.IsValid && StartSuccess && EndSuccess)
+            {
+                 DB.CreateProject(ProjectToCreate.ProjectName, ProjectToCreate.CompanyID, 
                     ProjectToCreate.ManagerID, ProjectToCreate.Address, ProjectToCreate.PostalCode,
-                    ProjectToCreate.Country, ProjectToCreate.ProjectName, ProjectToCreate.City,
+                    ProjectToCreate.Country, ProjectToCreate.Province, ProjectToCreate.City,
                     ProjectToCreate.Description, ProjectToCreate.StartDate, ProjectToCreate.EndDate, 
                     ErrorMessageParameter, IDParameter);
+
+                if(ErrorMessage.IsNullEmptyOrWhiteSpace())
+                    return RedirectToAction("Index", "Project", new { ID = IDParameter.Value});
             }
             return View();
         }

@@ -37,12 +37,12 @@ namespace ASP.NetMVCExample.Models
         public virtual DbSet<Projects> Projects { get; set; }
         public virtual DbSet<ProjectTaskTypeManagers> ProjectTaskTypeManagers { get; set; }
         public virtual DbSet<Sessions> Sessions { get; set; }
-        public virtual DbSet<TaskLinkers> TaskLinkers { get; set; }
-        public virtual DbSet<Tasks> Tasks { get; set; }
         public virtual DbSet<TaskTypes> TaskTypes { get; set; }
         public virtual DbSet<UserPasswordResset> UserPasswordResset { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<UserValidations> UserValidations { get; set; }
+        public virtual DbSet<TaskLinkers> TaskLinkers { get; set; }
+        public virtual DbSet<Tasks> Tasks { get; set; }
     
         public virtual int CreateProject(string projectName, Nullable<int> companyID, Nullable<int> managerID, string address, string postalCode, string country, string province, string city, string description, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, ObjectParameter outID, ObjectParameter errorMessage)
         {
@@ -554,6 +554,31 @@ namespace ASP.NetMVCExample.Models
                 new ObjectParameter("ID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectTasksByProjectID_Result>("SelectTasksByProjectID", iDParameter);
+        }
+    
+        public virtual int CreateTask(Nullable<int> subContractorID, Nullable<int> taskTypeID, Nullable<int> projectID, string description, Nullable<long> durationTicks, ObjectParameter outID, ObjectParameter errorMessage)
+        {
+            var subContractorIDParameter = subContractorID.HasValue ?
+                new ObjectParameter("SubContractorID", subContractorID) :
+                new ObjectParameter("SubContractorID", typeof(int));
+    
+            var taskTypeIDParameter = taskTypeID.HasValue ?
+                new ObjectParameter("TaskTypeID", taskTypeID) :
+                new ObjectParameter("TaskTypeID", typeof(int));
+    
+            var projectIDParameter = projectID.HasValue ?
+                new ObjectParameter("ProjectID", projectID) :
+                new ObjectParameter("ProjectID", typeof(int));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("Description", description) :
+                new ObjectParameter("Description", typeof(string));
+    
+            var durationTicksParameter = durationTicks.HasValue ?
+                new ObjectParameter("DurationTicks", durationTicks) :
+                new ObjectParameter("DurationTicks", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CreateTask", subContractorIDParameter, taskTypeIDParameter, projectIDParameter, descriptionParameter, durationTicksParameter, outID, errorMessage);
         }
     }
 }

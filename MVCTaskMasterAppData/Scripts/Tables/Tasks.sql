@@ -12,13 +12,12 @@
 CREATE TABLE [dbo].[Tasks]
 (
 	[TaskID] INT IDENTITY(1,1) NOT NULL PRIMARY KEY, 
-	[SubContractorID] INT NOT NULL,
-	[TaskTypeID] INT NOT NULL,
+	[SubContractorID] INT NULL,
+	[TaskTypeID] INT NULL,
 	[ProjectID] INT NOT NULL,
-    [Description] NVARCHAR(250) NULL, 
+    [Description] NVARCHAR(250) NOT NULL, 
 
-    [StartDate] DateTime NOT NULL, 
-    [EndDate] DateTime NULL, 
+	[DurationTicks] bigint not null default 0,
 
 	[ActualStartDate] DateTime NULL, 
     [ActualEndDate] DateTime NULL,
@@ -30,6 +29,4 @@ CREATE TABLE [dbo].[Tasks]
 	CONSTRAINT [FK_Projects_SubContractorID] FOREIGN KEY ([SubContractorID]) REFERENCES [Companys]([CompanyID]),
     CONSTRAINT [FK_Tasks_Projects] FOREIGN KEY ([ProjectID]) REFERENCES [Projects]([ProjectID]), 
     CONSTRAINT [FK_Tasks_TaskTypes] FOREIGN KEY ([TaskTypeID]) REFERENCES [TaskTypes]([TaskTypeID]),
-
-	CONSTRAINT [CK_Tasks_EndDate] CHECK (EndDate < StartDate or EndDate is NULL)
 )

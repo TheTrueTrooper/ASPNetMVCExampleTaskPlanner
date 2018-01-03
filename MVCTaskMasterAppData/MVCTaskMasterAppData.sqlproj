@@ -88,6 +88,7 @@
     <Folder Include="Scripts\Triggers\Users" />
     <Folder Include="Scripts\StoredProce\Tasks" />
     <Folder Include="Scripts\StoredProce\TaskLinkers" />
+    <Folder Include="Scripts\Triggers\UsersUserAddressBooks" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Scripts\Tables\CompanyRoles.sql" />
@@ -144,6 +145,11 @@
     <Build Include="Scripts\StoredProce\Session\ValidateWithCompanyViewPriv.sql" />
     <Build Include="Scripts\StoredProce\Tasks\SelectTasksByProjectID.sql" />
     <Build Include="Scripts\StoredProce\TaskLinkers\SelectLinkerByTaskID.sql" />
+    <Build Include="Scripts\StoredProce\Tasks\CreateTask.sql" />
+    <Build Include="Scripts\Tables\UsersUserAddressBooks.sql" />
+    <Build Include="Scripts\Tables\UsersCompanyAddressBooks.sql" />
+    <Build Include="Scripts\Tables\CompanysCompanyAddressBooks.sql" />
+    <Build Include="Scripts\Triggers\UsersUserAddressBooks\UsersUserAddressBooks_TriggerCheck_OwersID_Not_OthersID.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\Util\Scripts\ErrorTablesReBuildScript.sql" />

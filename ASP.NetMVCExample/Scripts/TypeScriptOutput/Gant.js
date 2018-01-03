@@ -1,33 +1,41 @@
 "use strict";
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
 var Graphing = require("../Code/Graph");
 var TimeManagementContainers = require("../Code/TimeManagementContainers");
 var BasicVectors = require("../Code/BasicVectors");
 var GantGraphing;
 (function (GantGraphing) {
     // an extention of the task to allow specfic gant rendering of the data
-    var GantTask = (function (_super) {
+    var GantTask = /** @class */ (function (_super) {
         __extends(GantTask, _super);
         function GantTask(name, StartDate, EndDate) {
-            _super.call(this, name, StartDate, EndDate);
+            var _this = _super.call(this, name, StartDate, EndDate) || this;
             //after a basic build set the overload accordingly
-            this._VirtualRender = this.OverloadRender;
+            _this._VirtualRender = _this.OverloadRender;
+            return _this;
         }
         GantTask.prototype.OverloadRender = function (Canvas) {
         };
         return GantTask;
     }(TimeManagementContainers.Task));
     // an extention of the linker to allow specfic gant rendering of the data
-    var GantLinker = (function (_super) {
+    var GantLinker = /** @class */ (function (_super) {
         __extends(GantLinker, _super);
         function GantLinker(StartTask, EndTask) {
-            _super.call(this, StartTask, EndTask);
+            var _this = _super.call(this, StartTask, EndTask) || this;
             //after a basic build set the overload accordingly
-            this._VirtualRender = this.OverloadRender;
+            _this._VirtualRender = _this.OverloadRender;
+            return _this;
         }
         GantLinker.prototype.OverloadRender = function (Canvas) {
             //Render all lines
@@ -38,15 +46,16 @@ var GantGraphing;
         return GantLinker;
     }(TimeManagementContainers.Linker));
     //a class for drawing the gant chart using the Graphing.Graph base
-    var GantChart = (function (_super) {
+    var GantChart = /** @class */ (function (_super) {
         __extends(GantChart, _super);
         function GantChart(Canvas) {
-            _super.call(this, Canvas);
+            var _this = _super.call(this, Canvas) || this;
             //set some draw values
-            this._AxisTickScale = new BasicVectors.Vector2D(5, 1);
-            this._UnitPxScale = new BasicVectors.Vector2D(50, 50);
+            _this._AxisTickScale = new BasicVectors.Vector2D(5, 1);
+            _this._UnitPxScale = new BasicVectors.Vector2D(50, 50);
             //after a basic build set the overload accordingly
-            this._VirtalRender = this.OverloadRender;
+            _this._VirtalRender = _this.OverloadRender;
+            return _this;
         }
         //the Over load render
         GantChart.prototype.OverloadRender = function () {

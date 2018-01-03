@@ -25,7 +25,7 @@ CREATE TABLE [dbo].[Projects]
     [Description] NVARCHAR(250) NOT NULL, 
 
     [StartDate] DateTime NOT NULL, 
-    [EndDate] DateTime NOT NULL, 
+    [EndDate] DateTime NULL, 
 
 	[ActualStartDate] DateTime NULL, 
     [ActualEndDate] DateTime NULL,

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Web;
@@ -13,19 +14,61 @@ namespace ASP.NetMVCExample.Models.ProjectView
     /// </summary>
     public class ProjectTasks
     {
+
         public int ChainNumber { get; set; }
         public int NumberInChain { get; set; }
+        [Required]
         public int TaskID { get; set; }
-        public int SubContractorID { get; set; }
+        public Nullable<int> SubContractorID { get; set; }
+        [Required]
         public string Description { get; set; }
+        [Required]
         public int TaskTypeID { get; set; }
-        public Nullable<System.DateTime> StartDate { get; set; }
-        public Nullable<System.DateTime> EndDate { get; set; }
+        //public System.DateTime ExpectedStartDate
+        //{
+        //    get
+        //    {
+
+        //    }
+        //}
+        //public System.DateTime ExpectedEndDate
+        //{
+        //    get
+        //    {
+
+        //    }
+        //}
+        public System.TimeSpan ExpectedDuration { get; set; }
         public Nullable<System.DateTime> ActualStartDate { get; set; }
         public Nullable<System.DateTime> ActualEndDate { get; set; }
+        public System.TimeSpan ActualDuration
+        {
+            get
+            {
+                //If we have a start date start using it to calculate agenst the end date. If not well we have not even started so the actual durration must be 0.
+                return new TimeSpan(ActualStartDate == null || ActualStartDate.HasValue 
+                    //If the end date has been used apply it agnst start. if not assume now. 
+                    ? (ActualEndDate == null || ActualEndDate.HasValue 
+                        ? ActualEndDate.Value.Ticks - ActualStartDate.Value.Ticks 
+                        : DateTime.UtcNow.Ticks - ActualStartDate.Value.Ticks) 
+                    : 0);
+            }
+        }
+        [Required]
         public System.DateTime CreationDate { get; set; }
+        [Required]
         public List<int> NextTask { get; set; }
+        [Required]
         public List<int> PrevTask { get; set; }
+
+        /// <summary>
+        /// basic constructor
+        /// </summary>
+        public ProjectTasks()
+        {
+
+        }
+
         /// <summary>
         /// we build a data set from the object
         /// </summary>
@@ -36,10 +79,7 @@ namespace ASP.NetMVCExample.Models.ProjectView
             SubContractorID = Result.SubContractorID;
             Description = Result.Description;
             TaskTypeID = Result.TaskTypeID;
-            StartDate = Result.StartDate;
-            EndDate = Result.EndDate;
-            ActualStartDate = Result.ActualStartDate;
-            ActualEndDate = Result.ActualEndDate;
+            ExpectedDuration = new System.TimeSpan(Result.DurationTicks);
             CreationDate = Result.CreationDate;
             NextTask = new List<int>();
             PrevTask = new List<int>();
@@ -62,7 +102,6 @@ namespace ASP.NetMVCExample.Models.ProjectView
         {
             PrevTask.Add(ID);
         }
-
     }
 
 

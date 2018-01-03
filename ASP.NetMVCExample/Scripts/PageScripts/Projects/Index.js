@@ -58,12 +58,23 @@ angular.module("NGProjectsIndex", ["ngRoute"])
     return {
         initialize: function ()
         {
-            connection = $.hubConnection();
-            this.hub = connection.createHubProxy("ganttEditHub");
-            this.hub.on("onInItDone", function (Data)
-            {
+            this.connection = $.connection.hubConnection();
+            this.connection.qs = sessionStorage;
+            this.hub = this.connection.createHubProxy("ganttEditHub");
+            this.hub.on("onInItDone", function (Data) {
                 $rootScope.Data = Data
-            })
+            });
+            this.connection.start()
+                .done(function () { console.log('Now connected, connection ID=' + this.connection.id); })
+                .fail(function () { console.log('Could not connect'); });
+        },
+        ServerCall: function (MethodName, Object)
+        {
+            this.hub.invoke(MethodName, Object).done(function () {
+                console.log('Invocation of ' + MethodName + ' succeeded');
+            }).fail(function (error) {
+                console.log('Invocation of  ' + MethodName + '  failed. Error: ' + error);
+            });
         }
     }
 })
@@ -110,7 +121,7 @@ angular.module("NGProjectsIndex", ["ngRoute"])
 
     //ProjectsGetterService.GetProjectTasks(ID).then(function (result){});
 })
-.controller("GanttChartViewController", function ($scope, ProjectsGetterService)
+.controller("GanttChartViewController", function ($scope, ProjectsGetterService, socketService)
 {
     ChangeActiveTab("GanttChartViewTab");
     ProjectsGetterService.GetProjectTasks(ID).then(function (result)

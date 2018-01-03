@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 /* WritersSigniture
 //Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)
 //Date Writen: June 23,2017
@@ -14,7 +15,7 @@
 */
 var MoDate = require("../typedeffs/moment");
 //A class that encapulates a Task
-var Task = (function () {
+var Task = /** @class */ (function () {
     //constructor used to make a task from a set of moments and a name
     function Task(name, StartDate, EndDate) {
         this._TaskName = name;
@@ -34,7 +35,7 @@ var Task = (function () {
 }());
 exports.Task = Task;
 //a class that encaplates a Realational connection between tasks
-var Linker = (function () {
+var Linker = /** @class */ (function () {
     //a simple constructor used to make taskLinkers from a set of tasks
     function Linker(StartTask, EndTask) {
         this._StartTask = StartTask;

@@ -26,7 +26,8 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>2.5</TypeScriptToolsVersion>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,7 +44,7 @@
     <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
     <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
     <TypeScriptOutFile />
-    <TypeScriptOutDir>C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\Scripts\TypeScriptOutput\Code</TypeScriptOutDir>
+    <TypeScriptOutDir>C:\Users\Angelo's Tower PC\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\Scripts\TypeScriptOutput</TypeScriptOutDir>
     <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
     <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
     <TypeScriptSourceMap>True</TypeScriptSourceMap>
@@ -59,6 +60,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.AspNet.SignalR.Client, Version=2.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Client.2.2.2\lib\net45\Microsoft.AspNet.SignalR.Client.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.2\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
       <Private>True</Private>
@@ -206,6 +210,7 @@
     <Compile Include="Controllers\AccountManagementController.cs" />
     <Compile Include="Controllers\FindController.cs" />
     <Compile Include="Controllers\ManageCompanyController.cs" />
+    <Compile Include="Controllers\ProjectAPIController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\UtilitiesAPIController.cs" />
     <Compile Include="Hubs\ProjectEditHub.cs" />
@@ -236,7 +241,9 @@
       <DependentUpon>TaskMasterData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProjectView\CreateProject.cs" />
+    <Compile Include="Models\ProjectView\Project_IndexView_ViewOverViewAsSubView.cs" />
     <Compile Include="Models\ProjectView\Project_Tasks_And_Links.cs" />
+    <Compile Include="Models\ProjectView\CreateTask.cs" />
     <Compile Include="Models\SearchView\SearchCompany.cs" />
     <Compile Include="Models\SearchView\SearchUsers.cs" />
     <Compile Include="Models\SelectLinkerByTaskID_Result.cs">
@@ -385,11 +392,6 @@
     <Content Include="Scripts\PageScripts\Projects\PerkChart.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\TypeScriptOutput\Code\BasicVectors.js" />
-    <Content Include="Scripts\TypeScriptOutput\Code\Gant.js" />
-    <Content Include="Scripts\TypeScriptOutput\Code\graph.js" />
-    <Content Include="Scripts\TypeScriptOutput\Code\Testing\TestGraph.js" />
-    <Content Include="Scripts\TypeScriptOutput\Code\TimeManagementContainers.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -422,24 +424,21 @@
     <Content Include="Views\Account\PasswordResetStep1.cshtml" />
     <Content Include="Views\Account\PasswordResetStep2.cshtml" />
     <Content Include="Views\Shared\FriendlyErr.cshtml" />
-    <Content Include="Scripts\TypeScriptOutput\Code\Gant.js.map" />
     <Content Include="Views\Account\PasswordResetEmailTemplate.cshtml" />
     <Content Include="Views\Shared\_EmailLayout.cshtml" />
     <None Include="PrivateServerOptions.Config" />
     <Content Include="Views\Account\PasswordResetCheckYourEmail.cshtml" />
-    <Content Include="Scripts\TypeScriptOutput\Code\TimeManagementContainers.js.map" />
-    <Content Include="Scripts\TypeScriptOutput\Code\BasicVectors.js.map" />
-    <Content Include="Scripts\TypeScriptOutput\Code\graph.js.map" />
     <Content Include="Views\Project\Index.cshtml" />
     <Content Include="Views\Project\CreateProject.cshtml" />
     <Content Include="Views\Project\_AJSV_Index_OverView.cshtml" />
     <Content Include="Views\Project\_AJSV_Index_TaskCellView.cshtml" />
     <Content Include="Views\Project\_AJSV_Index_GanttChartView.cshtml" />
     <Content Include="Views\Project\_AJSV_Index_PerkChartView.cshtml" />
-    <Content Include="Scripts\TypeScriptOutput\Code\Testing\TestGraph.js.map" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Scripts\TypeScriptOutput\Code\Testing\" />
     <Folder Include="Views\ManageCompany\" />
+    <Folder Include="Views\ProjectAPI\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

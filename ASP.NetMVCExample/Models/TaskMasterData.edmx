@@ -99,7 +99,7 @@
           <Property Name="City" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="StartDate" Type="datetime" Nullable="false" />
-          <Property Name="EndDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" />
           <Property Name="ActualStartDate" Type="datetime" />
           <Property Name="ActualEndDate" Type="datetime" />
           <Property Name="TaskManagersCanEdit" Type="bit" />
@@ -139,12 +139,11 @@
             <PropertyRef Name="TaskID" />
           </Key>
           <Property Name="TaskID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SubContractorID" Type="int" Nullable="false" />
-          <Property Name="TaskTypeID" Type="int" Nullable="false" />
+          <Property Name="SubContractorID" Type="int" />
+          <Property Name="TaskTypeID" Type="int" />
           <Property Name="ProjectID" Type="int" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="250" />
-          <Property Name="StartDate" Type="datetime" Nullable="false" />
-          <Property Name="EndDate" Type="datetime" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="DurationTicks" Type="bigint" Nullable="false" />
           <Property Name="ActualStartDate" Type="datetime" />
           <Property Name="ActualEndDate" Type="datetime" />
           <Property Name="CreationDate" Type="datetime" Nullable="false" />
@@ -384,7 +383,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Projects_SubContractorID">
-          <End Role="Companys" Type="Self.Companys" Multiplicity="1" />
+          <End Role="Companys" Type="Self.Companys" Multiplicity="0..1" />
           <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Companys">
@@ -492,7 +491,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Tasks_TaskTypes">
-          <End Role="TaskTypes" Type="Self.TaskTypes" Multiplicity="1" />
+          <End Role="TaskTypes" Type="Self.TaskTypes" Multiplicity="0..1" />
           <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TaskTypes">
@@ -551,6 +550,15 @@
           <Parameter Name="Description" Type="nvarchar" Mode="In" />
           <Parameter Name="StartDate" Type="datetime" Mode="In" />
           <Parameter Name="EndDate" Type="datetime" Mode="In" />
+          <Parameter Name="OutID" Type="int" Mode="InOut" />
+          <Parameter Name="ErrorMessage" Type="char" Mode="InOut" />
+        </Function>
+        <Function Name="CreateTask" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SubContractorID" Type="int" Mode="In" />
+          <Parameter Name="TaskTypeID" Type="int" Mode="In" />
+          <Parameter Name="ProjectID" Type="int" Mode="In" />
+          <Parameter Name="Description" Type="nvarchar" Mode="In" />
+          <Parameter Name="DurationTicks" Type="bigint" Mode="In" />
           <Parameter Name="OutID" Type="int" Mode="InOut" />
           <Parameter Name="ErrorMessage" Type="char" Mode="InOut" />
         </Function>
@@ -852,8 +860,6 @@
           <EntitySet Name="Projects" EntityType="MVCTaskMasterAppDataModel.Projects" />
           <EntitySet Name="ProjectTaskTypeManagers" EntityType="MVCTaskMasterAppDataModel.ProjectTaskTypeManagers" />
           <EntitySet Name="Sessions" EntityType="MVCTaskMasterAppDataModel.Sessions" />
-          <EntitySet Name="TaskLinkers" EntityType="MVCTaskMasterAppDataModel.TaskLinkers" />
-          <EntitySet Name="Tasks" EntityType="MVCTaskMasterAppDataModel.Tasks" />
           <EntitySet Name="TaskTypes" EntityType="MVCTaskMasterAppDataModel.TaskTypes" />
           <EntitySet Name="UserPasswordResset" EntityType="MVCTaskMasterAppDataModel.UserPasswordResset" />
           <EntitySet Name="Users" EntityType="MVCTaskMasterAppDataModel.Users" />
@@ -885,10 +891,6 @@
           <AssociationSet Name="FK_Projects_Company" Association="MVCTaskMasterAppDataModel.FK_Projects_Company">
             <End Role="Companys" EntitySet="Companys" />
             <End Role="Projects" EntitySet="Projects" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Projects_SubContractorID" Association="MVCTaskMasterAppDataModel.FK_Projects_SubContractorID">
-            <End Role="Companys" EntitySet="Companys" />
-            <End Role="Tasks" EntitySet="Tasks" />
           </AssociationSet>
           <AssociationSet Name="FK_ProjectTaskTypeManagers_UserManagingCompanysID" Association="MVCTaskMasterAppDataModel.FK_ProjectTaskTypeManagers_UserManagingCompanysID">
             <End Role="Companys" EntitySet="Companys" />
@@ -942,10 +944,6 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Projects" EntitySet="Projects" />
           </AssociationSet>
-          <AssociationSet Name="FK_Tasks_Projects" Association="MVCTaskMasterAppDataModel.FK_Tasks_Projects">
-            <End Role="Projects" EntitySet="Projects" />
-            <End Role="Tasks" EntitySet="Tasks" />
-          </AssociationSet>
           <AssociationSet Name="FK_ProjectTaskTypeManagers_User_ManagerID" Association="MVCTaskMasterAppDataModel.FK_ProjectTaskTypeManagers_User_ManagerID">
             <End Role="Users" EntitySet="Users" />
             <End Role="ProjectTaskTypeManagers" EntitySet="ProjectTaskTypeManagers" />
@@ -953,18 +951,6 @@
           <AssociationSet Name="FK_Sessions_Users" Association="MVCTaskMasterAppDataModel.FK_Sessions_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Sessions" EntitySet="Sessions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TaskLinkers_Tasks_Next" Association="MVCTaskMasterAppDataModel.FK_TaskLinkers_Tasks_Next">
-            <End Role="Tasks" EntitySet="Tasks" />
-            <End Role="TaskLinkers" EntitySet="TaskLinkers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TaskLinkers_Tasks_Owner" Association="MVCTaskMasterAppDataModel.FK_TaskLinkers_Tasks_Owner">
-            <End Role="Tasks" EntitySet="Tasks" />
-            <End Role="TaskLinkers" EntitySet="TaskLinkers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Tasks_TaskTypes" Association="MVCTaskMasterAppDataModel.FK_Tasks_TaskTypes">
-            <End Role="TaskTypes" EntitySet="TaskTypes" />
-            <End Role="Tasks" EntitySet="Tasks" />
           </AssociationSet>
           <AssociationSet Name="FK_UserPasswordResset_Users" Association="MVCTaskMasterAppDataModel.FK_UserPasswordResset_Users">
             <End Role="Users" EntitySet="Users" />
@@ -1140,6 +1126,37 @@
           <FunctionImport Name="SelectTasksByProjectID" ReturnType="Collection(MVCTaskMasterAppDataModel.SelectTasksByProjectID_Result)">
           <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="TaskLinkers" EntityType="MVCTaskMasterAppDataModel.TaskLinkers" />
+          <EntitySet Name="Tasks" EntityType="MVCTaskMasterAppDataModel.Tasks" />
+          <AssociationSet Name="FK_Projects_SubContractorID" Association="MVCTaskMasterAppDataModel.FK_Projects_SubContractorID">
+            <End Role="Companys" EntitySet="Companys" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tasks_Projects" Association="MVCTaskMasterAppDataModel.FK_Tasks_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskLinkers_Tasks_Next" Association="MVCTaskMasterAppDataModel.FK_TaskLinkers_Tasks_Next">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="TaskLinkers" EntitySet="TaskLinkers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskLinkers_Tasks_Owner" Association="MVCTaskMasterAppDataModel.FK_TaskLinkers_Tasks_Owner">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="TaskLinkers" EntitySet="TaskLinkers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tasks_TaskTypes" Association="MVCTaskMasterAppDataModel.FK_Tasks_TaskTypes">
+            <End Role="TaskTypes" EntitySet="TaskTypes" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <FunctionImport Name="CreateTask">
+            <Parameter Name="SubContractorID" Mode="In" Type="Int32" />
+            <Parameter Name="TaskTypeID" Mode="In" Type="Int32" />
+            <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="DurationTicks" Mode="In" Type="Int64" />
+            <Parameter Name="OutID" Mode="InOut" Type="Int32" />
+            <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="CompanyRoles">
           <Key>
@@ -1179,9 +1196,9 @@
           <NavigationProperty Name="Messages" Relationship="MVCTaskMasterAppDataModel.FK_Messages_CompanyGroupID" FromRole="Companys" ToRole="Messages" />
           <NavigationProperty Name="Offices" Relationship="MVCTaskMasterAppDataModel.FK_Offices_Company" FromRole="Companys" ToRole="Offices" />
           <NavigationProperty Name="Projects" Relationship="MVCTaskMasterAppDataModel.FK_Projects_Company" FromRole="Companys" ToRole="Projects" />
-          <NavigationProperty Name="Tasks" Relationship="MVCTaskMasterAppDataModel.FK_Projects_SubContractorID" FromRole="Companys" ToRole="Tasks" />
           <NavigationProperty Name="ProjectTaskTypeManagers" Relationship="MVCTaskMasterAppDataModel.FK_ProjectTaskTypeManagers_UserManagingCompanysID" FromRole="Companys" ToRole="ProjectTaskTypeManagers" />
           <NavigationProperty Name="TaskTypes" Relationship="MVCTaskMasterAppDataModel.FK_TaskTypes_Companys" FromRole="Companys" ToRole="TaskTypes" />
+          <NavigationProperty Name="Tasks" Relationship="MVCTaskMasterAppDataModel.FK_Projects_SubContractorID" FromRole="Companys" ToRole="Tasks" />
         </EntityType>
         <EntityType Name="CompanyWorkers">
           <Key>
@@ -1263,7 +1280,7 @@
           <Property Name="City" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
           <Property Name="ActualStartDate" Type="DateTime" Precision="3" />
           <Property Name="ActualEndDate" Type="DateTime" Precision="3" />
           <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
@@ -1272,12 +1289,12 @@
           <NavigationProperty Name="ProjectFiles" Relationship="MVCTaskMasterAppDataModel.FK_ProjectFiles_Projects" FromRole="Projects" ToRole="ProjectFiles" />
           <NavigationProperty Name="ProjectTaskTypeManagers" Relationship="MVCTaskMasterAppDataModel.FK_Projects_ProjectTaskTypeManagersID" FromRole="Projects" ToRole="ProjectTaskTypeManagers" />
           <NavigationProperty Name="Users" Relationship="MVCTaskMasterAppDataModel.FK_Projects_User_PManager" FromRole="Projects" ToRole="Users" />
-          <NavigationProperty Name="Tasks" Relationship="MVCTaskMasterAppDataModel.FK_Tasks_Projects" FromRole="Projects" ToRole="Tasks" />
           <Property Name="TaskManagersCanEdit" Type="Boolean" />
           <Property Name="TaskManagersCanPost" Type="Boolean" />
           <Property Name="TaskManagersCanDeletePost" Type="Boolean" />
           <Property Name="TaskManagersCanDeleteFile" Type="Boolean" />
           <Property Name="TaskManagersCanUploadFile" Type="Boolean" />
+          <NavigationProperty Name="Tasks" Relationship="MVCTaskMasterAppDataModel.FK_Tasks_Projects" FromRole="Projects" ToRole="Tasks" />
         </EntityType>
         <EntityType Name="ProjectTaskTypeManagers">
           <Key>
@@ -1299,36 +1316,6 @@
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="TimeLastValidated" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Users" Relationship="MVCTaskMasterAppDataModel.FK_Sessions_Users" FromRole="Sessions" ToRole="Users" />
-        </EntityType>
-        <EntityType Name="TaskLinkers">
-          <Key>
-            <PropertyRef Name="linkerID" />
-          </Key>
-          <Property Name="linkerID" Type="Int32" Nullable="false" />
-          <Property Name="TaskID" Type="Int32" Nullable="false" />
-          <Property Name="NextTaskID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Tasks" Relationship="MVCTaskMasterAppDataModel.FK_TaskLinkers_Tasks_Next" FromRole="TaskLinkers" ToRole="Tasks" />
-          <NavigationProperty Name="Tasks1" Relationship="MVCTaskMasterAppDataModel.FK_TaskLinkers_Tasks_Owner" FromRole="TaskLinkers" ToRole="Tasks" />
-        </EntityType>
-        <EntityType Name="Tasks">
-          <Key>
-            <PropertyRef Name="TaskID" />
-          </Key>
-          <Property Name="TaskID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SubContractorID" Type="Int32" Nullable="false" />
-          <Property Name="TaskTypeID" Type="Int32" Nullable="false" />
-          <Property Name="ProjectID" Type="Int32" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="EndDate" Type="DateTime" Precision="3" />
-          <Property Name="ActualStartDate" Type="DateTime" Precision="3" />
-          <Property Name="ActualEndDate" Type="DateTime" Precision="3" />
-          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Companys" Relationship="MVCTaskMasterAppDataModel.FK_Projects_SubContractorID" FromRole="Tasks" ToRole="Companys" />
-          <NavigationProperty Name="Projects" Relationship="MVCTaskMasterAppDataModel.FK_Tasks_Projects" FromRole="Tasks" ToRole="Projects" />
-          <NavigationProperty Name="TaskLinkers" Relationship="MVCTaskMasterAppDataModel.FK_TaskLinkers_Tasks_Next" FromRole="Tasks" ToRole="TaskLinkers" />
-          <NavigationProperty Name="TaskLinkers1" Relationship="MVCTaskMasterAppDataModel.FK_TaskLinkers_Tasks_Owner" FromRole="Tasks" ToRole="TaskLinkers" />
-          <NavigationProperty Name="TaskTypes" Relationship="MVCTaskMasterAppDataModel.FK_Tasks_TaskTypes" FromRole="Tasks" ToRole="TaskTypes" />
         </EntityType>
         <EntityType Name="TaskTypes">
           <Key>
@@ -1466,18 +1453,6 @@
             </Principal>
             <Dependent Role="Projects">
               <PropertyRef Name="CompanyID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Projects_SubContractorID">
-          <End Type="MVCTaskMasterAppDataModel.Companys" Role="Companys" Multiplicity="1" />
-          <End Type="MVCTaskMasterAppDataModel.Tasks" Role="Tasks" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Companys">
-              <PropertyRef Name="CompanyID" />
-            </Principal>
-            <Dependent Role="Tasks">
-              <PropertyRef Name="SubContractorID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1637,18 +1612,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Tasks_Projects">
-          <End Type="MVCTaskMasterAppDataModel.Projects" Role="Projects" Multiplicity="1" />
-          <End Type="MVCTaskMasterAppDataModel.Tasks" Role="Tasks" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Projects">
-              <PropertyRef Name="ProjectID" />
-            </Principal>
-            <Dependent Role="Tasks">
-              <PropertyRef Name="ProjectID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ProjectTaskTypeManagers_User_ManagerID">
           <End Type="MVCTaskMasterAppDataModel.Users" Role="Users" Multiplicity="0..1" />
           <End Type="MVCTaskMasterAppDataModel.ProjectTaskTypeManagers" Role="ProjectTaskTypeManagers" Multiplicity="*" />
@@ -1670,42 +1633,6 @@
             </Principal>
             <Dependent Role="Sessions">
               <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TaskLinkers_Tasks_Next">
-          <End Type="MVCTaskMasterAppDataModel.Tasks" Role="Tasks" Multiplicity="1" />
-          <End Type="MVCTaskMasterAppDataModel.TaskLinkers" Role="TaskLinkers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tasks">
-              <PropertyRef Name="TaskID" />
-            </Principal>
-            <Dependent Role="TaskLinkers">
-              <PropertyRef Name="NextTaskID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TaskLinkers_Tasks_Owner">
-          <End Type="MVCTaskMasterAppDataModel.Tasks" Role="Tasks" Multiplicity="1" />
-          <End Type="MVCTaskMasterAppDataModel.TaskLinkers" Role="TaskLinkers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tasks">
-              <PropertyRef Name="TaskID" />
-            </Principal>
-            <Dependent Role="TaskLinkers">
-              <PropertyRef Name="TaskID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Tasks_TaskTypes">
-          <End Type="MVCTaskMasterAppDataModel.TaskTypes" Role="TaskTypes" Multiplicity="1" />
-          <End Type="MVCTaskMasterAppDataModel.Tasks" Role="Tasks" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TaskTypes">
-              <PropertyRef Name="TaskTypeID" />
-            </Principal>
-            <Dependent Role="Tasks">
-              <PropertyRef Name="TaskTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1758,7 +1685,7 @@
           <Property Type="String" Name="City" Nullable="false" MaxLength="10" />
           <Property Type="String" Name="Description" Nullable="false" MaxLength="250" />
           <Property Type="DateTime" Name="StartDate" Nullable="false" Precision="23" />
-          <Property Type="DateTime" Name="EndDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="EndDate" Nullable="true" Precision="23" />
         </ComplexType>
         <ComplexType Name="SelectProjectByID_Result">
           <Property Type="Int32" Name="ProjectID" Nullable="false" />
@@ -1769,7 +1696,7 @@
           <Property Type="String" Name="ProjectCountry" Nullable="false" MaxLength="10" />
           <Property Type="String" Name="ProjectPostalCode" Nullable="false" MaxLength="10" />
           <Property Type="DateTime" Name="ProjectStartDate" Nullable="false" Precision="23" />
-          <Property Type="DateTime" Name="ProjectEndDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="ProjectEndDate" Nullable="true" Precision="23" />
           <Property Type="DateTime" Name="ProjectActualStartDate" Nullable="true" Precision="23" />
           <Property Type="DateTime" Name="ProjectActualEndDate" Nullable="true" Precision="23" />
           <Property Type="String" Name="ProjectDescription" Nullable="false" MaxLength="250" />
@@ -1806,15 +1733,103 @@
         </ComplexType>
         <ComplexType Name="SelectTasksByProjectID_Result">
           <Property Type="Int32" Name="TaskID" Nullable="false" />
-          <Property Type="Int32" Name="SubContractorID" Nullable="false" />
+          <Property Type="Int32" Name="SubContractorID" Nullable="true" />
           <Property Type="String" Name="Description" Nullable="true" MaxLength="250" />
           <Property Type="Int32" Name="TaskTypeID" Nullable="false" />
-          <Property Type="DateTime" Name="StartDate" Nullable="false" Precision="23" />
-          <Property Type="DateTime" Name="EndDate" Nullable="true" Precision="23" />
           <Property Type="DateTime" Name="ActualStartDate" Nullable="true" Precision="23" />
           <Property Type="DateTime" Name="ActualEndDate" Nullable="true" Precision="23" />
           <Property Type="DateTime" Name="CreationDate" Nullable="false" Precision="23" />
+          <Property Type="Int64" Name="DurationTicks" Nullable="false" />
         </ComplexType>
+        <EntityType Name="TaskLinkers">
+          <Key>
+            <PropertyRef Name="linkerID" />
+          </Key>
+          <Property Name="linkerID" Type="Int32" Nullable="false" />
+          <Property Name="TaskID" Type="Int32" Nullable="false" />
+          <Property Name="NextTaskID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tasks" Relationship="MVCTaskMasterAppDataModel.FK_TaskLinkers_Tasks_Next" FromRole="TaskLinkers" ToRole="Tasks" />
+          <NavigationProperty Name="Tasks1" Relationship="MVCTaskMasterAppDataModel.FK_TaskLinkers_Tasks_Owner" FromRole="TaskLinkers" ToRole="Tasks" />
+        </EntityType>
+        <EntityType Name="Tasks">
+          <Key>
+            <PropertyRef Name="TaskID" />
+          </Key>
+          <Property Name="TaskID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubContractorID" Type="Int32" />
+          <Property Name="TaskTypeID" Type="Int32" />
+          <Property Name="ProjectID" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DurationTicks" Type="Int64" Nullable="false" />
+          <Property Name="ActualStartDate" Type="DateTime" Precision="3" />
+          <Property Name="ActualEndDate" Type="DateTime" Precision="3" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Companys" Relationship="MVCTaskMasterAppDataModel.FK_Projects_SubContractorID" FromRole="Tasks" ToRole="Companys" />
+          <NavigationProperty Name="Projects" Relationship="MVCTaskMasterAppDataModel.FK_Tasks_Projects" FromRole="Tasks" ToRole="Projects" />
+          <NavigationProperty Name="TaskLinkers" Relationship="MVCTaskMasterAppDataModel.FK_TaskLinkers_Tasks_Next" FromRole="Tasks" ToRole="TaskLinkers" />
+          <NavigationProperty Name="TaskLinkers1" Relationship="MVCTaskMasterAppDataModel.FK_TaskLinkers_Tasks_Owner" FromRole="Tasks" ToRole="TaskLinkers" />
+          <NavigationProperty Name="TaskTypes" Relationship="MVCTaskMasterAppDataModel.FK_Tasks_TaskTypes" FromRole="Tasks" ToRole="TaskTypes" />
+        </EntityType>
+        <Association Name="FK_Projects_SubContractorID">
+          <End Type="MVCTaskMasterAppDataModel.Companys" Role="Companys" Multiplicity="0..1" />
+          <End Type="MVCTaskMasterAppDataModel.Tasks" Role="Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companys">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="SubContractorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tasks_Projects">
+          <End Type="MVCTaskMasterAppDataModel.Projects" Role="Projects" Multiplicity="1" />
+          <End Type="MVCTaskMasterAppDataModel.Tasks" Role="Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskLinkers_Tasks_Next">
+          <End Type="MVCTaskMasterAppDataModel.Tasks" Role="Tasks" Multiplicity="1" />
+          <End Type="MVCTaskMasterAppDataModel.TaskLinkers" Role="TaskLinkers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="TaskID" />
+            </Principal>
+            <Dependent Role="TaskLinkers">
+              <PropertyRef Name="NextTaskID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskLinkers_Tasks_Owner">
+          <End Type="MVCTaskMasterAppDataModel.Tasks" Role="Tasks" Multiplicity="1" />
+          <End Type="MVCTaskMasterAppDataModel.TaskLinkers" Role="TaskLinkers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="TaskID" />
+            </Principal>
+            <Dependent Role="TaskLinkers">
+              <PropertyRef Name="TaskID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tasks_TaskTypes">
+          <End Type="MVCTaskMasterAppDataModel.TaskTypes" Role="TaskTypes" Multiplicity="0..1" />
+          <End Type="MVCTaskMasterAppDataModel.Tasks" Role="Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskTypes">
+              <PropertyRef Name="TaskTypeID" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="TaskTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1948,31 +1963,6 @@
                 <ScalarProperty Name="TimeLastValidated" ColumnName="TimeLastValidated" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TaskLinkers">
-            <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.TaskLinkers">
-              <MappingFragment StoreEntitySet="TaskLinkers">
-                <ScalarProperty Name="NextTaskID" ColumnName="NextTaskID" />
-                <ScalarProperty Name="TaskID" ColumnName="TaskID" />
-                <ScalarProperty Name="linkerID" ColumnName="linkerID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Tasks">
-            <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.Tasks">
-              <MappingFragment StoreEntitySet="Tasks">
-                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
-                <ScalarProperty Name="ActualEndDate" ColumnName="ActualEndDate" />
-                <ScalarProperty Name="ActualStartDate" ColumnName="ActualStartDate" />
-                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
-                <ScalarProperty Name="TaskTypeID" ColumnName="TaskTypeID" />
-                <ScalarProperty Name="SubContractorID" ColumnName="SubContractorID" />
-                <ScalarProperty Name="TaskID" ColumnName="TaskID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2145,14 +2135,38 @@
                 <ScalarProperty Name="SubContractorID" ColumnName="SubContractorID" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="TaskTypeID" ColumnName="TaskTypeID" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
                 <ScalarProperty Name="ActualStartDate" ColumnName="ActualStartDate" />
                 <ScalarProperty Name="ActualEndDate" ColumnName="ActualEndDate" />
                 <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="DurationTicks" ColumnName="DurationTicks" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="TaskLinkers">
+            <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.TaskLinkers">
+              <MappingFragment StoreEntitySet="TaskLinkers">
+                <ScalarProperty Name="NextTaskID" ColumnName="NextTaskID" />
+                <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+                <ScalarProperty Name="linkerID" ColumnName="linkerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tasks">
+            <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.Tasks">
+              <MappingFragment StoreEntitySet="Tasks">
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ActualEndDate" ColumnName="ActualEndDate" />
+                <ScalarProperty Name="ActualStartDate" ColumnName="ActualStartDate" />
+                <ScalarProperty Name="DurationTicks" ColumnName="DurationTicks" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="TaskTypeID" ColumnName="TaskTypeID" />
+                <ScalarProperty Name="SubContractorID" ColumnName="SubContractorID" />
+                <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CreateTask" FunctionName="MVCTaskMasterAppDataModel.Store.CreateTask" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -1,3 +1,4 @@
+"use strict";
 /* WritersSigniture
 //Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)
 //Date Writen: June 23,2017
@@ -11,8 +12,8 @@
 //  Link: https://www.typescriptlang.org/
 //  }
 */
-"use strict";
-var Vector2D = (function () {
+Object.defineProperty(exports, "__esModule", { value: true });
+var Vector2D = /** @class */ (function () {
     //Constructs a 2D vector X is the horizontal location Y is the Vertical location
     function Vector2D(X, Y) {
         this.X = X;

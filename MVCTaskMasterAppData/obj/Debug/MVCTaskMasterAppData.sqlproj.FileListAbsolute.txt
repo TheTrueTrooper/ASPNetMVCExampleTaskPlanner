@@ -3,3 +3,12 @@ C:\Users\Angelo\Desktop\ASP.NetMVCExample\MVCTaskMasterAppData\bin\Debug\MVCTask
 C:\Users\Angelo\Desktop\ASP.NetMVCExample\MVCTaskMasterAppData\bin\Debug\MVCTaskMasterAppData.pdb
 C:\Users\Angelo\Desktop\ASP.NetMVCExample\MVCTaskMasterAppData\obj\Debug\MVCTaskMasterAppData.dll
 C:\Users\Angelo\Desktop\ASP.NetMVCExample\MVCTaskMasterAppData\obj\Debug\MVCTaskMasterAppData.pdb
+C:\Users\Angelo's Tower PC\Desktop\ASP.NetMVCExample\MVCTaskMasterAppData\bin\Debug\MVCTaskMasterAppData.dacpac
+C:\Users\Angelo's Tower PC\Desktop\ASP.NetMVCExample\MVCTaskMasterAppData\bin\Debug\MVCTaskMasterAppData.dll
+C:\Users\Angelo's Tower PC\Desktop\ASP.NetMVCExample\MVCTaskMasterAppData\bin\Debug\MVCTaskMasterAppData.pdb
+C:\Users\Angelo's Tower PC\Desktop\ASP.NetMVCExample\MVCTaskMasterAppData\obj\Debug\MVCTaskMasterAppData.dll
+C:\Users\Angelo's Tower PC\Desktop\ASP.NetMVCExample\MVCTaskMasterAppData\obj\Debug\MVCTaskMasterAppData.pdb
+C:\Users\Angelo's Tower PC\Desktop\ASP.NetMVCExample\MVCTaskMasterAppData\obj\Debug\Model.xml
+C:\Users\Angelo's Tower PC\Desktop\ASP.NetMVCExample\MVCTaskMasterAppData\obj\Debug\refactor.xml
+C:\Users\Angelo's Tower PC\Desktop\ASP.NetMVCExample\MVCTaskMasterAppData\obj\Debug\postdeploy.sql
+C:\Users\Angelo's Tower PC\Desktop\ASP.NetMVCExample\MVCTaskMasterAppData\obj\Debug\predeploy.sql

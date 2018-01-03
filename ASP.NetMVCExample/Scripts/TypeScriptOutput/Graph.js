@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 /* WritersSigniture
 //Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)
 //Date Writen: June 23,2017
@@ -16,7 +17,7 @@ var BasicVectors = require("../Code/BasicVectors");
 var js3D = require("../TypeDeffs/3Djs");
 var Graphing;
 (function (Graphing) {
-    var Graph = (function () {
+    var Graph = /** @class */ (function () {
         function Graph(finder) {
             // should it render on any change
             this._RerenderOnChange = true;

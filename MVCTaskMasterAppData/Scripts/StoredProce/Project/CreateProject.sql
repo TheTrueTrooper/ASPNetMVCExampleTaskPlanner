@@ -23,6 +23,7 @@ CREATE PROCEDURE [dbo].[CreateProject]
 
     @StartDate DateTime, 
     @EndDate DateTime, 
+
 	@OutID Int output,
 	@ErrorMessage char(100) output 
 AS
@@ -32,7 +33,7 @@ AS
 			@ErrorOperation tinyint = 2
 
 	-- check if company exists
-	if exists(select [CompanyID] from Companys where [CompanyID] = @CompanyID)
+	if not exists(select [CompanyID] from Companys where [CompanyID] = @CompanyID) and @CompanyID is not null
 		begin
 			set @TempError = @@ERROR
 			set @ErrorMessage = 'Error Company does not exist'
@@ -41,8 +42,8 @@ AS
 			return @MyTempError
 		end
 
-	-- check if company exists
-	if exists(select UserID from Users where UserID = @ManagerID)
+	-- check if manager exists
+	if not exists(select UserID from Users where UserID = @ManagerID)
 		begin
 			set @TempError = @@ERROR
 			set @ErrorMessage = 'Error User corralated to Manager does not exist'
@@ -62,7 +63,7 @@ AS
 		end
 
 	-- check end date must be null or be after the date
-	if not(@EndDate is null or @EndDate is null)
+	if not(@StartDate is null or @EndDate is null or @EndDate >= @StartDate)
 		begin
 			set @TempError = @@ERROR
 			set @ErrorMessage = 'Entered EndDate must be null or be after the StartDate is left'

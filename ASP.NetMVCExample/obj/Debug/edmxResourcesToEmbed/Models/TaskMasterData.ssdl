@@ -94,7 +94,7 @@
     <Property Name="City" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="Description" Type="nvarchar" MaxLength="250" Nullable="false" />
     <Property Name="StartDate" Type="datetime" Nullable="false" />
-    <Property Name="EndDate" Type="datetime" Nullable="false" />
+    <Property Name="EndDate" Type="datetime" />
     <Property Name="ActualStartDate" Type="datetime" />
     <Property Name="ActualEndDate" Type="datetime" />
     <Property Name="TaskManagersCanEdit" Type="bit" />
@@ -134,12 +134,11 @@
       <PropertyRef Name="TaskID" />
     </Key>
     <Property Name="TaskID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="SubContractorID" Type="int" Nullable="false" />
-    <Property Name="TaskTypeID" Type="int" Nullable="false" />
+    <Property Name="SubContractorID" Type="int" />
+    <Property Name="TaskTypeID" Type="int" />
     <Property Name="ProjectID" Type="int" Nullable="false" />
-    <Property Name="Description" Type="nvarchar" MaxLength="250" />
-    <Property Name="StartDate" Type="datetime" Nullable="false" />
-    <Property Name="EndDate" Type="datetime" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="DurationTicks" Type="bigint" Nullable="false" />
     <Property Name="ActualStartDate" Type="datetime" />
     <Property Name="ActualEndDate" Type="datetime" />
     <Property Name="CreationDate" Type="datetime" Nullable="false" />
@@ -379,7 +378,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Projects_SubContractorID">
-    <End Role="Companys" Type="Self.Companys" Multiplicity="1" />
+    <End Role="Companys" Type="Self.Companys" Multiplicity="0..1" />
     <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Companys">
@@ -487,7 +486,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Tasks_TaskTypes">
-    <End Role="TaskTypes" Type="Self.TaskTypes" Multiplicity="1" />
+    <End Role="TaskTypes" Type="Self.TaskTypes" Multiplicity="0..1" />
     <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="TaskTypes">
@@ -546,6 +545,15 @@
     <Parameter Name="Description" Type="nvarchar" Mode="In" />
     <Parameter Name="StartDate" Type="datetime" Mode="In" />
     <Parameter Name="EndDate" Type="datetime" Mode="In" />
+    <Parameter Name="OutID" Type="int" Mode="InOut" />
+    <Parameter Name="ErrorMessage" Type="char" Mode="InOut" />
+  </Function>
+  <Function Name="CreateTask" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubContractorID" Type="int" Mode="In" />
+    <Parameter Name="TaskTypeID" Type="int" Mode="In" />
+    <Parameter Name="ProjectID" Type="int" Mode="In" />
+    <Parameter Name="Description" Type="nvarchar" Mode="In" />
+    <Parameter Name="DurationTicks" Type="bigint" Mode="In" />
     <Parameter Name="OutID" Type="int" Mode="InOut" />
     <Parameter Name="ErrorMessage" Type="char" Mode="InOut" />
   </Function>
