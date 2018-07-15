@@ -168,3 +168,6 @@ C:\Users\Angelo's Tower PC\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\bin\Micro
 C:\Users\Angelo's Tower PC\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Angelo's Tower PC\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\bin\Microsoft.AspNet.SignalR.Client.dll
 C:\Users\Angelo's Tower PC\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\bin\Microsoft.AspNet.SignalR.Client.xml
+C:\Users\Angelo's Tower PC\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\bin\NAudio.dll
+C:\Users\Angelo's Tower PC\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\bin\NAudio.xml
+C:\Users\Angelo's Tower PC\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\obj\Debug\ASP.NetMVCExample.csproj.CopyComplete

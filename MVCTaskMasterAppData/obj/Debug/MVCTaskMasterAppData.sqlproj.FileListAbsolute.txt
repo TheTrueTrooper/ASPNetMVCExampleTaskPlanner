@@ -12,3 +12,4 @@ C:\Users\Angelo's Tower PC\Desktop\ASP.NetMVCExample\MVCTaskMasterAppData\obj\De
 C:\Users\Angelo's Tower PC\Desktop\ASP.NetMVCExample\MVCTaskMasterAppData\obj\Debug\refactor.xml
 C:\Users\Angelo's Tower PC\Desktop\ASP.NetMVCExample\MVCTaskMasterAppData\obj\Debug\postdeploy.sql
 C:\Users\Angelo's Tower PC\Desktop\ASP.NetMVCExample\MVCTaskMasterAppData\obj\Debug\predeploy.sql
+C:\Users\Angelo's Tower PC\Desktop\ASP.NetMVCExample\MVCTaskMasterAppData\obj\Debug\MVCTaskMasterAppData.sqlprojResolveAssemblyReference.cache

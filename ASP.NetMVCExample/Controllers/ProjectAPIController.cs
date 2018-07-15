@@ -59,7 +59,7 @@ namespace ASP.NetMVCExample.Controllers
         /// <param name="ID"></param>
         /// <returns></returns>
         [AcceptVerbs("Post")]
-        public JsonResult ProjectsTaskData(CreateTask Task)
+        public JsonResult ProjectsCreateTask(CreateTask Task)
         {
 
             string ErrorMessage = "";
@@ -70,7 +70,7 @@ namespace ASP.NetMVCExample.Controllers
 
             if (ModelState.IsValid)
             {
-                DB.CreateTask(Task.SubContractorID, Task.TaskTypeID, Task.ProjectID, Task.Description, Task.ActualDurationAsTicks, IDParameter, ErrorMessageParameter);
+                //DB.CreateTask(Task.SubContractorID, Task.TaskTypeID, Task.ProjectID, Task.Description, Task.ActualDurationAsTicks, IDParameter, ErrorMessageParameter);
                 return Json("Success", JsonRequestBehavior.AllowGet);
             }
             return Json("Failed", JsonRequestBehavior.AllowGet);

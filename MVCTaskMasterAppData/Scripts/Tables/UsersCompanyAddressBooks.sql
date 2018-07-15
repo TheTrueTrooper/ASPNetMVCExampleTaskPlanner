@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[UsersCompanyAddressBooks]
 (
-	OwersID INT NOT NULL PRIMARY KEY,
+	OwersID INT NOT NULL,
 	CompanyID INT NOT NULL,
 	Affiliated bit NOT NULL Default 0,
 	Verified bit NOT NULL Default 0,

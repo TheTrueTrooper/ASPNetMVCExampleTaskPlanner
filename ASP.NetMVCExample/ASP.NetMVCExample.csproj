@@ -26,7 +26,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <TypeScriptToolsVersion>2.5</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>2.6</TypeScriptToolsVersion>
     <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -76,6 +76,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NAudio, Version=1.8.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.1.8.4\lib\net35\NAudio.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -213,11 +216,15 @@
     <Compile Include="Controllers\ProjectAPIController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\UtilitiesAPIController.cs" />
+    <Compile Include="Controllers\VoiceRoomController.cs" />
     <Compile Include="Hubs\ProjectEditHub.cs" />
     <Compile Include="Models\CompanyRoles.cs">
       <DependentUpon>TaskMasterData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Companys.cs">
+      <DependentUpon>TaskMasterData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CompanysCompanyAddressBooks.cs">
       <DependentUpon>TaskMasterData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CompanyWorkers.cs">
@@ -247,6 +254,12 @@
     <Compile Include="Models\SearchView\SearchCompany.cs" />
     <Compile Include="Models\SearchView\SearchUsers.cs" />
     <Compile Include="Models\SelectLinkerByTaskID_Result.cs">
+      <DependentUpon>TaskMasterData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SelectLinkersByNextTask_Result.cs">
+      <DependentUpon>TaskMasterData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SelectLinkersByTask_Result.cs">
       <DependentUpon>TaskMasterData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SelectProjectByID_Light_Result.cs">
@@ -280,6 +293,12 @@
       <DependentUpon>TaskMasterData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Users.cs">
+      <DependentUpon>TaskMasterData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UsersCompanyAddressBooks.cs">
+      <DependentUpon>TaskMasterData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UsersUserAddressBooks.cs">
       <DependentUpon>TaskMasterData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UsersView\UserPasswordReset.cs" />

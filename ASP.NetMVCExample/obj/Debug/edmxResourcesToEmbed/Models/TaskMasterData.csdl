@@ -307,6 +307,45 @@
       <Parameter Name="OutID" Mode="InOut" Type="Int32" />
       <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
     </FunctionImport>
+    <EntitySet Name="CompanysCompanyAddressBooks" EntityType="MVCTaskMasterAppDataModel.CompanysCompanyAddressBooks" />
+    <EntitySet Name="UsersCompanyAddressBooks" EntityType="MVCTaskMasterAppDataModel.UsersCompanyAddressBooks" />
+    <EntitySet Name="UsersUserAddressBooks" EntityType="MVCTaskMasterAppDataModel.UsersUserAddressBooks" />
+    <AssociationSet Name="FK_CompanysCompanyAddressBooks_Companys" Association="MVCTaskMasterAppDataModel.FK_CompanysCompanyAddressBooks_Companys">
+      <End Role="Companys" EntitySet="Companys" />
+      <End Role="CompanysCompanyAddressBooks" EntitySet="CompanysCompanyAddressBooks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersCompanyAddressBooks_Companys" Association="MVCTaskMasterAppDataModel.FK_UsersCompanyAddressBooks_Companys">
+      <End Role="Companys" EntitySet="Companys" />
+      <End Role="UsersCompanyAddressBooks" EntitySet="UsersCompanyAddressBooks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CompanysCompanyAddressBooks_Users" Association="MVCTaskMasterAppDataModel.FK_CompanysCompanyAddressBooks_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="CompanysCompanyAddressBooks" EntitySet="CompanysCompanyAddressBooks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersCompanyAddressBooks_Users" Association="MVCTaskMasterAppDataModel.FK_UsersCompanyAddressBooks_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersCompanyAddressBooks" EntitySet="UsersCompanyAddressBooks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersUserAddressBooks_Users_Others" Association="MVCTaskMasterAppDataModel.FK_UsersUserAddressBooks_Users_Others">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersUserAddressBooks" EntitySet="UsersUserAddressBooks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersUserAddressBooks_Users_Owners" Association="MVCTaskMasterAppDataModel.FK_UsersUserAddressBooks_Users_Owners">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersUserAddressBooks" EntitySet="UsersUserAddressBooks" />
+    </AssociationSet>
+    <FunctionImport Name="CreateTaskLink">
+      <Parameter Name="TaskID" Mode="In" Type="Int32" />
+      <Parameter Name="NextTaskID" Mode="In" Type="Int32" />
+      <Parameter Name="OutID" Mode="InOut" Type="Int32" />
+      <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SelectLinkersByNextTask" ReturnType="Collection(MVCTaskMasterAppDataModel.SelectLinkersByNextTask_Result)">
+      <Parameter Name="TaskID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SelectLinkersByTask" ReturnType="Collection(MVCTaskMasterAppDataModel.SelectLinkersByTask_Result)">
+      <Parameter Name="TaskID" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="CompanyRoles">
     <Key>
@@ -349,6 +388,8 @@
     <NavigationProperty Name="ProjectTaskTypeManagers" Relationship="MVCTaskMasterAppDataModel.FK_ProjectTaskTypeManagers_UserManagingCompanysID" FromRole="Companys" ToRole="ProjectTaskTypeManagers" />
     <NavigationProperty Name="TaskTypes" Relationship="MVCTaskMasterAppDataModel.FK_TaskTypes_Companys" FromRole="Companys" ToRole="TaskTypes" />
     <NavigationProperty Name="Tasks" Relationship="MVCTaskMasterAppDataModel.FK_Projects_SubContractorID" FromRole="Companys" ToRole="Tasks" />
+    <NavigationProperty Name="CompanysCompanyAddressBooks" Relationship="MVCTaskMasterAppDataModel.FK_CompanysCompanyAddressBooks_Companys" FromRole="Companys" ToRole="CompanysCompanyAddressBooks" />
+    <NavigationProperty Name="UsersCompanyAddressBooks" Relationship="MVCTaskMasterAppDataModel.FK_UsersCompanyAddressBooks_Companys" FromRole="Companys" ToRole="UsersCompanyAddressBooks" />
   </EntityType>
   <EntityType Name="CompanyWorkers">
     <Key>
@@ -501,7 +542,7 @@
     <Property Name="HomePhone" Type="String" Nullable="false" MaxLength="11" FixedLength="true" Unicode="false" />
     <Property Name="CellPhone" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
     <Property Name="WorkPhone" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
-    <Property Name="Picture" Type="Binary" MaxLength="12" FixedLength="false" />
+    <Property Name="Picture" Type="Binary" MaxLength="16" FixedLength="false" />
     <Property Name="Bio" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
     <Property Name="PortfollURL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="CompanyWorkers" Relationship="MVCTaskMasterAppDataModel.FK_CompanyWorkers_Users" FromRole="Users" ToRole="CompanyWorkers" />
@@ -512,6 +553,10 @@
     <NavigationProperty Name="Sessions" Relationship="MVCTaskMasterAppDataModel.FK_Sessions_Users" FromRole="Users" ToRole="Sessions" />
     <NavigationProperty Name="UserPasswordResset" Relationship="MVCTaskMasterAppDataModel.FK_UserPasswordResset_Users" FromRole="Users" ToRole="UserPasswordResset" />
     <NavigationProperty Name="UserValidations" Relationship="MVCTaskMasterAppDataModel.FK_UserValidations_Users" FromRole="Users" ToRole="UserValidations" />
+    <NavigationProperty Name="CompanysCompanyAddressBooks" Relationship="MVCTaskMasterAppDataModel.FK_CompanysCompanyAddressBooks_Users" FromRole="Users" ToRole="CompanysCompanyAddressBooks" />
+    <NavigationProperty Name="UsersCompanyAddressBooks" Relationship="MVCTaskMasterAppDataModel.FK_UsersCompanyAddressBooks_Users" FromRole="Users" ToRole="UsersCompanyAddressBooks" />
+    <NavigationProperty Name="UsersUserAddressBooks" Relationship="MVCTaskMasterAppDataModel.FK_UsersUserAddressBooks_Users_Others" FromRole="Users" ToRole="UsersUserAddressBooks" />
+    <NavigationProperty Name="UsersUserAddressBooks1" Relationship="MVCTaskMasterAppDataModel.FK_UsersUserAddressBooks_Users_Owners" FromRole="Users" ToRole="UsersUserAddressBooks" />
   </EntityType>
   <EntityType Name="UserValidations">
     <Key>
@@ -980,4 +1025,122 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="CompanysCompanyAddressBooks">
+    <Key>
+      <PropertyRef Name="OwersID" />
+      <PropertyRef Name="UsersID" />
+    </Key>
+    <Property Name="OwersID" Type="Int32" Nullable="false" />
+    <Property Name="UsersID" Type="Int32" Nullable="false" />
+    <Property Name="Affiliated" Type="Boolean" Nullable="false" />
+    <Property Name="Verified" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Companys" Relationship="MVCTaskMasterAppDataModel.FK_CompanysCompanyAddressBooks_Companys" FromRole="CompanysCompanyAddressBooks" ToRole="Companys" />
+    <NavigationProperty Name="Users" Relationship="MVCTaskMasterAppDataModel.FK_CompanysCompanyAddressBooks_Users" FromRole="CompanysCompanyAddressBooks" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="UsersCompanyAddressBooks">
+    <Key>
+      <PropertyRef Name="OwersID" />
+      <PropertyRef Name="CompanyID" />
+    </Key>
+    <Property Name="OwersID" Type="Int32" Nullable="false" />
+    <Property Name="CompanyID" Type="Int32" Nullable="false" />
+    <Property Name="Affiliated" Type="Boolean" Nullable="false" />
+    <Property Name="Verified" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Companys" Relationship="MVCTaskMasterAppDataModel.FK_UsersCompanyAddressBooks_Companys" FromRole="UsersCompanyAddressBooks" ToRole="Companys" />
+    <NavigationProperty Name="Users" Relationship="MVCTaskMasterAppDataModel.FK_UsersCompanyAddressBooks_Users" FromRole="UsersCompanyAddressBooks" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="UsersUserAddressBooks">
+    <Key>
+      <PropertyRef Name="OwersID" />
+      <PropertyRef Name="OthersID" />
+    </Key>
+    <Property Name="OwersID" Type="Int32" Nullable="false" />
+    <Property Name="OthersID" Type="Int32" Nullable="false" />
+    <Property Name="Friend" Type="Boolean" Nullable="false" />
+    <Property Name="Verified" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="MVCTaskMasterAppDataModel.FK_UsersUserAddressBooks_Users_Others" FromRole="UsersUserAddressBooks" ToRole="Users" />
+    <NavigationProperty Name="Users1" Relationship="MVCTaskMasterAppDataModel.FK_UsersUserAddressBooks_Users_Owners" FromRole="UsersUserAddressBooks" ToRole="Users" />
+  </EntityType>
+  <Association Name="FK_CompanysCompanyAddressBooks_Companys">
+    <End Type="MVCTaskMasterAppDataModel.Companys" Role="Companys" Multiplicity="1" />
+    <End Type="MVCTaskMasterAppDataModel.CompanysCompanyAddressBooks" Role="CompanysCompanyAddressBooks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companys">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="CompanysCompanyAddressBooks">
+        <PropertyRef Name="OwersID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersCompanyAddressBooks_Companys">
+    <End Type="MVCTaskMasterAppDataModel.Companys" Role="Companys" Multiplicity="1" />
+    <End Type="MVCTaskMasterAppDataModel.UsersCompanyAddressBooks" Role="UsersCompanyAddressBooks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companys">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="UsersCompanyAddressBooks">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CompanysCompanyAddressBooks_Users">
+    <End Type="MVCTaskMasterAppDataModel.Users" Role="Users" Multiplicity="1" />
+    <End Type="MVCTaskMasterAppDataModel.CompanysCompanyAddressBooks" Role="CompanysCompanyAddressBooks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="CompanysCompanyAddressBooks">
+        <PropertyRef Name="UsersID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersCompanyAddressBooks_Users">
+    <End Type="MVCTaskMasterAppDataModel.Users" Role="Users" Multiplicity="1" />
+    <End Type="MVCTaskMasterAppDataModel.UsersCompanyAddressBooks" Role="UsersCompanyAddressBooks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UsersCompanyAddressBooks">
+        <PropertyRef Name="OwersID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersUserAddressBooks_Users_Others">
+    <End Type="MVCTaskMasterAppDataModel.Users" Role="Users" Multiplicity="1" />
+    <End Type="MVCTaskMasterAppDataModel.UsersUserAddressBooks" Role="UsersUserAddressBooks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UsersUserAddressBooks">
+        <PropertyRef Name="OthersID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersUserAddressBooks_Users_Owners">
+    <End Type="MVCTaskMasterAppDataModel.Users" Role="Users" Multiplicity="1" />
+    <End Type="MVCTaskMasterAppDataModel.UsersUserAddressBooks" Role="UsersUserAddressBooks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UsersUserAddressBooks">
+        <PropertyRef Name="OwersID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="SelectLinkersByNextTask_Result">
+    <Property Type="Int32" Name="LinkerID" Nullable="false" />
+    <Property Type="Int32" Name="TaskID" Nullable="false" />
+    <Property Type="Int32" Name="NextTaskID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SelectLinkersByTask_Result">
+    <Property Type="Int32" Name="LinkerID" Nullable="false" />
+    <Property Type="Int32" Name="TaskID" Nullable="false" />
+    <Property Type="Int32" Name="NextTaskID" Nullable="false" />
+  </ComplexType>
 </Schema>

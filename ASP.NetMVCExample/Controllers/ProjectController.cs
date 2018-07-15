@@ -103,8 +103,7 @@ namespace ASP.NetMVCExample.Controllers
 
         public ActionResult CreateProject(CreateProject ProjectToCreate)
         {
-            string[] formats = { "dd/MM/yyyy", "dd/M/yyyy", "d/M/yyyy", "d/MM/yyyy",
-                    "dd/MM/yy", "dd/M/yy", "d/M/yy", "d/MM/yy"};
+            string[] formats = { "yyyy/MM/dd hh:mm tt" };
 
             string ErrorMessage = "";
             ObjectParameter ErrorMessageParameter = new ObjectParameter("ErrorMessage", ErrorMessage);
@@ -112,7 +111,7 @@ namespace ASP.NetMVCExample.Controllers
             int ID = 0;
             ObjectParameter IDParameter = new ObjectParameter("OutID", ID);
 
-            List<SelectListItem> UserList = new List<SelectListItem>{ new SelectListItem { Text = "Me", Value = ((int)Session["SessionUserID"]).ToString() } };
+            List<SelectListItem> UserList = new List<SelectListItem>{ new SelectListItem { Text = "My Own Project", Value = ((int)Session["SessionUserID"]).ToString() } };
             ViewBag.UserList = UserList;
 
             bool EndSuccess = false, StartSuccess = false;
@@ -128,7 +127,7 @@ namespace ASP.NetMVCExample.Controllers
             if (!ProjectToCreate.StartDateIn.IsNullEmptyOrWhiteSpace())
             {
                 DateTime EndDate;
-                EndSuccess = DateTime.TryParseExact(ProjectToCreate.EndDateIn, formats, System.Globalization.CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out EndDate);
+                EndSuccess = DateTime.TryParseExact(ProjectToCreate.EndDateIn, formats, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out EndDate);
                 ViewBag.EndSuccess = EndSuccess;
                 ProjectToCreate.EndDate = EndDate;
             }

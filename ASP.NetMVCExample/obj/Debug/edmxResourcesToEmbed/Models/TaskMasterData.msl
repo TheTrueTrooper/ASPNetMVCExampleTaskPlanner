@@ -332,5 +332,54 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="CreateTask" FunctionName="MVCTaskMasterAppDataModel.Store.CreateTask" />
+    <EntitySetMapping Name="CompanysCompanyAddressBooks">
+      <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.CompanysCompanyAddressBooks">
+        <MappingFragment StoreEntitySet="CompanysCompanyAddressBooks">
+          <ScalarProperty Name="Verified" ColumnName="Verified" />
+          <ScalarProperty Name="Affiliated" ColumnName="Affiliated" />
+          <ScalarProperty Name="UsersID" ColumnName="UsersID" />
+          <ScalarProperty Name="OwersID" ColumnName="OwersID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsersCompanyAddressBooks">
+      <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.UsersCompanyAddressBooks">
+        <MappingFragment StoreEntitySet="UsersCompanyAddressBooks">
+          <ScalarProperty Name="Verified" ColumnName="Verified" />
+          <ScalarProperty Name="Affiliated" ColumnName="Affiliated" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="OwersID" ColumnName="OwersID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsersUserAddressBooks">
+      <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.UsersUserAddressBooks">
+        <MappingFragment StoreEntitySet="UsersUserAddressBooks">
+          <ScalarProperty Name="Verified" ColumnName="Verified" />
+          <ScalarProperty Name="Friend" ColumnName="Friend" />
+          <ScalarProperty Name="OthersID" ColumnName="OthersID" />
+          <ScalarProperty Name="OwersID" ColumnName="OwersID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CreateTaskLink" FunctionName="MVCTaskMasterAppDataModel.Store.CreateTaskLink" />
+    <FunctionImportMapping FunctionImportName="SelectLinkersByNextTask" FunctionName="MVCTaskMasterAppDataModel.Store.SelectLinkersByNextTask">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCTaskMasterAppDataModel.SelectLinkersByNextTask_Result">
+          <ScalarProperty Name="LinkerID" ColumnName="LinkerID" />
+          <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+          <ScalarProperty Name="NextTaskID" ColumnName="NextTaskID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SelectLinkersByTask" FunctionName="MVCTaskMasterAppDataModel.Store.SelectLinkersByTask">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCTaskMasterAppDataModel.SelectLinkersByTask_Result">
+          <ScalarProperty Name="LinkerID" ColumnName="LinkerID" />
+          <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+          <ScalarProperty Name="NextTaskID" ColumnName="NextTaskID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

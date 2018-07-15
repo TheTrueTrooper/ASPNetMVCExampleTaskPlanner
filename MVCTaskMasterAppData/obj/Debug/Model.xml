@@ -444,6 +444,102 @@
 			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="29" />
 		</Element>
+		<Element Type="SqlDefaultConstraint">
+			<Property Name="DefaultExpressionScript">
+				<Value><![CDATA[0]]></Value>
+			</Property>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[CompanysCompanyAddressBooks]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForColumn">
+				<Entry>
+					<References Name="[dbo].[CompanysCompanyAddressBooks].[Affiliated]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="30" />
+		</Element>
+		<Element Type="SqlDefaultConstraint">
+			<Property Name="DefaultExpressionScript">
+				<Value><![CDATA[0]]></Value>
+			</Property>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[CompanysCompanyAddressBooks]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForColumn">
+				<Entry>
+					<References Name="[dbo].[CompanysCompanyAddressBooks].[Verified]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="31" />
+		</Element>
+		<Element Type="SqlDefaultConstraint">
+			<Property Name="DefaultExpressionScript">
+				<Value><![CDATA[0]]></Value>
+			</Property>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[UsersCompanyAddressBooks]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForColumn">
+				<Entry>
+					<References Name="[dbo].[UsersCompanyAddressBooks].[Affiliated]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="32" />
+		</Element>
+		<Element Type="SqlDefaultConstraint">
+			<Property Name="DefaultExpressionScript">
+				<Value><![CDATA[0]]></Value>
+			</Property>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[UsersCompanyAddressBooks]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForColumn">
+				<Entry>
+					<References Name="[dbo].[UsersCompanyAddressBooks].[Verified]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="33" />
+		</Element>
+		<Element Type="SqlDefaultConstraint">
+			<Property Name="DefaultExpressionScript">
+				<Value><![CDATA[0]]></Value>
+			</Property>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[UsersUserAddressBooks]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForColumn">
+				<Entry>
+					<References Name="[dbo].[UsersUserAddressBooks].[Friend]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="34" />
+		</Element>
+		<Element Type="SqlDefaultConstraint">
+			<Property Name="DefaultExpressionScript">
+				<Value><![CDATA[0]]></Value>
+			</Property>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[UsersUserAddressBooks]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForColumn">
+				<Entry>
+					<References Name="[dbo].[UsersUserAddressBooks].[Verified]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="35" />
+		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
 				<Entry>
@@ -461,7 +557,7 @@
 					<References Name="[dbo].[OperationTypes]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="30" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="36" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -480,7 +576,7 @@
 					<References Name="[dbo].[MYTableList]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="31" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="37" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -499,254 +595,7 @@
 					<References Name="[dbo].[ErrorTable]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="32" />
-		</Element>
-		<Element Type="SqlPrimaryKeyConstraint">
-			<Relationship Name="ColumnSpecifications">
-				<Entry>
-					<Element Type="SqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
-								<References Name="[dbo].[TaskTypes].[TaskTypeID]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[TaskTypes]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="33" />
-		</Element>
-		<Element Type="SqlPrimaryKeyConstraint">
-			<Relationship Name="ColumnSpecifications">
-				<Entry>
-					<Element Type="SqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
-								<References Name="[dbo].[Tasks].[TaskID]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[Tasks]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="34" />
-		</Element>
-		<Element Type="SqlPrimaryKeyConstraint">
-			<Relationship Name="ColumnSpecifications">
-				<Entry>
-					<Element Type="SqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
-								<References Name="[dbo].[Projects].[ProjectID]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[Projects]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="35" />
-		</Element>
-		<Element Type="SqlPrimaryKeyConstraint">
-			<Relationship Name="ColumnSpecifications">
-				<Entry>
-					<Element Type="SqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
-								<References Name="[dbo].[ProjectFiles].[FileID]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[ProjectFiles]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="36" />
-		</Element>
-		<Element Type="SqlPrimaryKeyConstraint">
-			<Relationship Name="ColumnSpecifications">
-				<Entry>
-					<Element Type="SqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
-								<References Name="[dbo].[Offices].[OfficeID]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[Offices]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="37" />
-		</Element>
-		<Element Type="SqlPrimaryKeyConstraint">
-			<Relationship Name="ColumnSpecifications">
-				<Entry>
-					<Element Type="SqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
-								<References Name="[dbo].[Messages].[MessageID]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[Messages]" />
-				</Entry>
-			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="38" />
-		</Element>
-		<Element Type="SqlPrimaryKeyConstraint">
-			<Relationship Name="ColumnSpecifications">
-				<Entry>
-					<Element Type="SqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
-								<References Name="[dbo].[Companys].[CompanyID]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[Companys]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="39" />
-		</Element>
-		<Element Type="SqlPrimaryKeyConstraint">
-			<Relationship Name="ColumnSpecifications">
-				<Entry>
-					<Element Type="SqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
-								<References Name="[dbo].[CompanyRoles].[RoleID]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[CompanyRoles]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="40" />
-		</Element>
-		<Element Type="SqlPrimaryKeyConstraint">
-			<Relationship Name="ColumnSpecifications">
-				<Entry>
-					<Element Type="SqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
-								<References Name="[dbo].[UserValidations].[UserID]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[UserValidations]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="41" />
-		</Element>
-		<Element Type="SqlPrimaryKeyConstraint">
-			<Relationship Name="ColumnSpecifications">
-				<Entry>
-					<Element Type="SqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
-								<References Name="[dbo].[TaskLinkers].[linkerID]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[TaskLinkers]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="42" />
-		</Element>
-		<Element Type="SqlPrimaryKeyConstraint">
-			<Relationship Name="ColumnSpecifications">
-				<Entry>
-					<Element Type="SqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
-								<References Name="[dbo].[UserPasswordResset].[UserID]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[UserPasswordResset]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="43" />
-		</Element>
-		<Element Type="SqlPrimaryKeyConstraint">
-			<Relationship Name="ColumnSpecifications">
-				<Entry>
-					<Element Type="SqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
-								<References Name="[dbo].[Sessions].[UserID]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[Sessions]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="44" />
-		</Element>
-		<Element Type="SqlPrimaryKeyConstraint">
-			<Relationship Name="ColumnSpecifications">
-				<Entry>
-					<Element Type="SqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
-								<References Name="[dbo].[ProjectTaskTypeManagers].[ProjectTaskTypeManagersID]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[ProjectTaskTypeManagers]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="45" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -765,7 +614,338 @@
 					<References Name="[dbo].[Users]" />
 				</Entry>
 			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="39" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[TaskTypes].[TaskTypeID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[TaskTypes]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="40" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[Tasks].[TaskID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[Tasks]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="41" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[Projects].[ProjectID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[Projects]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="42" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[ProjectFiles].[FileID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[ProjectFiles]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="43" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[Offices].[OfficeID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[Offices]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="44" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[Messages].[MessageID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[Messages]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="45" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[Companys].[CompanyID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[Companys]" />
+				</Entry>
+			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="46" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[CompanyRoles].[RoleID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[CompanyRoles]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="47" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[UserValidations].[UserID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[UserValidations]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="48" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[TaskLinkers].[linkerID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[TaskLinkers]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="49" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[UserPasswordResset].[UserID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[UserPasswordResset]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="50" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[Sessions].[UserID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[Sessions]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="51" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[ProjectTaskTypeManagers].[ProjectTaskTypeManagersID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[ProjectTaskTypeManagers]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="52" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[CompanysCompanyAddressBooks].[OwersID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[CompanysCompanyAddressBooks].[UsersID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[CompanysCompanyAddressBooks]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="53" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[UsersCompanyAddressBooks].[OwersID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[UsersCompanyAddressBooks].[CompanyID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[UsersCompanyAddressBooks]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="54" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[UsersUserAddressBooks].[OwersID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[UsersUserAddressBooks].[OthersID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[UsersUserAddressBooks]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="55" />
 		</Element>
 		<Element Type="SqlRoleMembership">
 			<Relationship Name="Member">
@@ -852,7 +1032,7 @@
 					<References Name="[dbo].[CompanyRoles]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="47" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="56" />
 		</Element>
 		<Element Type="SqlUniqueConstraint" Name="[dbo].[AK_CompanyWorkers_Comp_CompanyIDUserIDRoleID]">
 			<Relationship Name="ColumnSpecifications">
@@ -898,7 +1078,7 @@
 					<References Name="[dbo].[CompanyWorkers]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="48" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="57" />
 		</Element>
 		<Element Type="SqlUniqueConstraint" Name="[dbo].[AK_MYTableList_Name]">
 			<Relationship Name="ColumnSpecifications">
@@ -917,7 +1097,7 @@
 					<References Name="[dbo].[MYTableList]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="49" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="58" />
 		</Element>
 		<Element Type="SqlUniqueConstraint" Name="[dbo].[AK_OperationType_OperationType]">
 			<Relationship Name="ColumnSpecifications">
@@ -936,7 +1116,7 @@
 					<References Name="[dbo].[OperationTypes]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="50" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="59" />
 		</Element>
 		<Element Type="SqlUniqueConstraint" Name="[dbo].[AK_TaskLinkers_Tasks_OwnerNext]">
 			<Relationship Name="ColumnSpecifications">
@@ -964,7 +1144,7 @@
 					<References Name="[dbo].[TaskLinkers]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="51" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="60" />
 		</Element>
 		<Element Type="SqlUniqueConstraint" Name="[dbo].[AK_Users_Email]">
 			<Relationship Name="ColumnSpecifications">
@@ -983,7 +1163,7 @@
 					<References Name="[dbo].[Users]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="52" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="61" />
 		</Element>
 		<Element Type="SqlCheckConstraint" Name="[dbo].[CK_Companys_CompanyName]">
 			<Property Name="CheckExpressionScript">
@@ -999,7 +1179,7 @@
 					<References Name="[dbo].[Companys]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="53" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="62" />
 		</Element>
 		<Element Type="SqlCheckConstraint" Name="[dbo].[CK_Companys_RoleName]">
 			<Property Name="CheckExpressionScript">
@@ -1015,7 +1195,7 @@
 					<References Name="[dbo].[CompanyRoles]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="54" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="63" />
 		</Element>
 		<Element Type="SqlCheckConstraint" Name="[dbo].[CK_Messages_ProjectsGroupID_And_TaskTypesGroupID_MustBeSetTogether]">
 			<Property Name="CheckExpressionScript">
@@ -1034,7 +1214,7 @@
 					<References Name="[dbo].[Messages]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="55" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="64" />
 		</Element>
 		<Element Type="SqlCheckConstraint" Name="[dbo].[CK_Offices_Fax]">
 			<Property Name="CheckExpressionScript">
@@ -1050,7 +1230,7 @@
 					<References Name="[dbo].[Offices]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="56" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="65" />
 		</Element>
 		<Element Type="SqlCheckConstraint" Name="[dbo].[CK_Offices_Phone]">
 			<Property Name="CheckExpressionScript">
@@ -1066,7 +1246,7 @@
 					<References Name="[dbo].[Offices]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="57" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="66" />
 		</Element>
 		<Element Type="SqlCheckConstraint" Name="[dbo].[CK_Offices_PostalCode]">
 			<Property Name="CheckExpressionScript">
@@ -1082,7 +1262,7 @@
 					<References Name="[dbo].[Offices]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="58" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="67" />
 		</Element>
 		<Element Type="SqlCheckConstraint" Name="[dbo].[CK_Projects_EndDate]">
 			<Property Name="CheckExpressionScript">
@@ -1101,7 +1281,7 @@
 					<References Name="[dbo].[Projects]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="59" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="68" />
 		</Element>
 		<Element Type="SqlCheckConstraint" Name="[dbo].[CK_Projects_PostalCode]">
 			<Property Name="CheckExpressionScript">
@@ -1117,7 +1297,7 @@
 					<References Name="[dbo].[Projects]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="60" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="69" />
 		</Element>
 		<Element Type="SqlCheckConstraint" Name="[dbo].[CK_TaskLinkers_TaskNext]">
 			<Property Name="CheckExpressionScript">
@@ -1136,7 +1316,7 @@
 					<References Name="[dbo].[TaskLinkers]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="61" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="70" />
 		</Element>
 		<Element Type="SqlCheckConstraint" Name="[dbo].[CK_Users_Email]">
 			<Property Name="CheckExpressionScript">
@@ -1152,7 +1332,7 @@
 					<References Name="[dbo].[Users]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="62" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="71" />
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[CompanyRoles]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -1172,7 +1352,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="40" />
+						<AttachedAnnotation Disambiguator="47" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -1433,10 +1613,10 @@
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="63" />
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="64" />
-			<AttachedAnnotation Disambiguator="47" />
-			<AttachedAnnotation Disambiguator="54" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="72" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="73" />
+			<AttachedAnnotation Disambiguator="56" />
+			<AttachedAnnotation Disambiguator="63" />
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[Companys]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -1456,7 +1636,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="39" />
+						<AttachedAnnotation Disambiguator="46" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -1514,7 +1694,86 @@
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
+			<AttachedAnnotation Disambiguator="62" />
+		</Element>
+		<Element Type="SqlTable" Name="[dbo].[CompanysCompanyAddressBooks]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[CompanysCompanyAddressBooks].[OwersID]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[CompanysCompanyAddressBooks].[UsersID]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[CompanysCompanyAddressBooks].[Affiliated]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bit]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+						<AttachedAnnotation Disambiguator="30" />
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[CompanysCompanyAddressBooks].[Verified]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bit]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+						<AttachedAnnotation Disambiguator="31" />
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
 			<AttachedAnnotation Disambiguator="53" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="74" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="75" />
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[CompanyWorkers]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -1606,12 +1865,12 @@
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="65" />
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="66" />
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="67" />
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="68" />
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="69" />
-			<AttachedAnnotation Disambiguator="48" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="76" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="77" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="78" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="79" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="80" />
+			<AttachedAnnotation Disambiguator="57" />
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[CreateProject]">
 			<Property Name="BodyScript">
@@ -2058,6 +2317,7 @@ RETURN 0]]></Value>
 			return @MyTempError
 		end
 
+
 	insert into Tasks 
 	(SubContractorID, TaskTypeID, ProjectID, [Description], DurationTicks) 
 	values
@@ -2273,10 +2533,162 @@ RETURN 0
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="2920" />
+				<Property Name="Length" Value="2922" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[CreateTask]&#xD;&#xA;&#x9;@SubContractorID int,&#xD;&#xA;&#x9;@TaskTypeID int,&#xD;&#xA;&#x9;@ProjectID int,&#xD;&#xA;&#x9;@Description NVARCHAR(250),&#xD;&#xA;&#x9;@DurationTicks bigint,&#xD;&#xA;&#x9;@OutID int output,&#xD;&#xA;&#x9;@ErrorMessage char(100) output &#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[CreateTaskLink]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	Declare @TempError int = 0,
+			@MyTempError int = 0,
+			@ErrorTable tinyint = 1,
+			@ErrorOperation tinyint = 2
+
+	if not exists(select TaskID from Tasks where TaskID = @TaskID)
+		begin
+			set @TempError = @@ERROR
+			set @ErrorMessage = 'Error Task does not exist'
+			set @MyTempError = -1
+			execute InsertErrorInfo  @ErrorMessage, @ErrorOperation, @ErrorTable, @TempError, @MyTempError
+			return @MyTempError
+		end
+
+	if not exists(select TaskID from Tasks where TaskID = @NextTaskID)
+		begin
+			set @TempError = @@ERROR
+			set @ErrorMessage = 'Error Next Task does not exist'
+			set @MyTempError = -2
+			execute InsertErrorInfo  @ErrorMessage, @ErrorOperation, @ErrorTable, @TempError, @MyTempError
+			return @MyTempError
+		end
+
+	insert into TaskLinkers
+		(TaskID, NextTaskID)
+	Values
+		(@TaskID, @NextTaskID)
+
+RETURN 0]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[tinyint]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[tinyint]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Tasks]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Tasks].[TaskID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CreateTaskLink].[@TaskID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CreateTaskLink].[@ErrorMessage]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[InsertErrorInfo]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CreateTaskLink].[@NextTaskID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[TaskLinkers]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[TaskLinkers].[TaskID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[TaskLinkers].[NextTaskID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CreateTaskLink].[@TaskID]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CreateTaskLink].[@NextTaskID]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CreateTaskLink].[@OutID]">
+						<Property Name="IsOutput" Value="True" />
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CreateTaskLink].[@ErrorMessage]">
+						<Property Name="IsOutput" Value="True" />
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="100" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[char]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="983" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[CreateTaskLink]&#xD;&#xA;&#x9;@TaskID int,&#xD;&#xA;&#x9;@NextTaskID int,&#xD;&#xA;&#x9;@OutID int output,&#xD;&#xA;&#x9;@ErrorMessage char(100) output &#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[CreateThePasswordResset]">
@@ -3220,7 +3632,7 @@ RETURN 0]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="32" />
+						<AttachedAnnotation Disambiguator="38" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -3327,8 +3739,8 @@ RETURN 0]]></Value>
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="70" />
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="71" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="81" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="82" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_CompanyRoles_Companys]">
 			<Relationship Name="Columns">
@@ -3351,7 +3763,53 @@ RETURN 0]]></Value>
 					<References Name="[dbo].[Companys]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="64" />
+			<AttachedAnnotation Disambiguator="73" />
+		</Element>
+		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_CompanysCompanyAddressBooks_Companys]">
+			<Relationship Name="Columns">
+				<Entry>
+					<References Name="[dbo].[CompanysCompanyAddressBooks].[OwersID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[CompanysCompanyAddressBooks]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignColumns">
+				<Entry>
+					<References Name="[dbo].[Companys].[CompanyID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignTable">
+				<Entry>
+					<References Name="[dbo].[Companys]" />
+				</Entry>
+			</Relationship>
+			<AttachedAnnotation Disambiguator="74" />
+		</Element>
+		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_CompanysCompanyAddressBooks_Users]">
+			<Relationship Name="Columns">
+				<Entry>
+					<References Name="[dbo].[CompanysCompanyAddressBooks].[UsersID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[CompanysCompanyAddressBooks]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignColumns">
+				<Entry>
+					<References Name="[dbo].[Users].[UserID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignTable">
+				<Entry>
+					<References Name="[dbo].[Users]" />
+				</Entry>
+			</Relationship>
+			<AttachedAnnotation Disambiguator="75" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_CompanyWorkers_Company]">
 			<Relationship Name="Columns">
@@ -3374,7 +3832,7 @@ RETURN 0]]></Value>
 					<References Name="[dbo].[Companys]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="66" />
+			<AttachedAnnotation Disambiguator="77" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_CompanyWorkers_Offices]">
 			<Relationship Name="Columns">
@@ -3397,7 +3855,7 @@ RETURN 0]]></Value>
 					<References Name="[dbo].[Offices]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="68" />
+			<AttachedAnnotation Disambiguator="79" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_CompanyWorkers_Rolls]">
 			<Relationship Name="Columns">
@@ -3420,7 +3878,7 @@ RETURN 0]]></Value>
 					<References Name="[dbo].[CompanyRoles]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="67" />
+			<AttachedAnnotation Disambiguator="78" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_CompanyWorkers_Users]">
 			<Relationship Name="Columns">
@@ -3443,7 +3901,7 @@ RETURN 0]]></Value>
 					<References Name="[dbo].[Users]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="65" />
+			<AttachedAnnotation Disambiguator="76" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_ErrorTable_MYTables]">
 			<Relationship Name="Columns">
@@ -3466,7 +3924,7 @@ RETURN 0]]></Value>
 					<References Name="[dbo].[OperationTypes]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="70" />
+			<AttachedAnnotation Disambiguator="81" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_ErrorTable_OperationTypes]">
 			<Relationship Name="Columns">
@@ -3489,7 +3947,7 @@ RETURN 0]]></Value>
 					<References Name="[dbo].[MYTableList]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="71" />
+			<AttachedAnnotation Disambiguator="82" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_Messages_CompanyGroupID]">
 			<Relationship Name="Columns">
@@ -3512,7 +3970,7 @@ RETURN 0]]></Value>
 					<References Name="[dbo].[Companys]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="72" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="83" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_Messages_DirectToID]">
 			<Relationship Name="Columns">
@@ -3535,7 +3993,7 @@ RETURN 0]]></Value>
 					<References Name="[dbo].[Users]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="73" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="84" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_Messages_OfficeGroupID]">
 			<Relationship Name="Columns">
@@ -3558,7 +4016,7 @@ RETURN 0]]></Value>
 					<References Name="[dbo].[Offices]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="74" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="85" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_Messages_ProjectsGroupID]">
 			<Relationship Name="Columns">
@@ -3581,7 +4039,7 @@ RETURN 0]]></Value>
 					<References Name="[dbo].[Projects]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="75" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="86" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_Messages_ReplyToID]">
 			<Relationship Name="Columns">
@@ -3604,7 +4062,7 @@ RETURN 0]]></Value>
 					<References Name="[dbo].[Messages]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="76" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="87" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_Messages_TaskTypesGroupID]">
 			<Relationship Name="Columns">
@@ -3627,7 +4085,7 @@ RETURN 0]]></Value>
 					<References Name="[dbo].[TaskTypes]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="77" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="88" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_Messages_Users]">
 			<Relationship Name="Columns">
@@ -3650,7 +4108,7 @@ RETURN 0]]></Value>
 					<References Name="[dbo].[Users]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="78" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="89" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_Offices_Company]">
 			<Relationship Name="Columns">
@@ -3673,7 +4131,7 @@ RETURN 0]]></Value>
 					<References Name="[dbo].[Companys]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="79" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="90" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_ProjectFiles_Projects]">
 			<Relationship Name="Columns">
@@ -3696,7 +4154,7 @@ RETURN 0]]></Value>
 					<References Name="[dbo].[Projects]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="80" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="91" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_Projects_Company]">
 			<Relationship Name="Columns">
@@ -3719,7 +4177,7 @@ RETURN 0]]></Value>
 					<References Name="[dbo].[Companys]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="81" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="92" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_Projects_ProjectTaskTypeManagersID]">
 			<Relationship Name="Columns">
@@ -3742,7 +4200,7 @@ RETURN 0]]></Value>
 					<References Name="[dbo].[ProjectTaskTypeManagers]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="82" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="93" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_Projects_SubContractorID]">
 			<Relationship Name="Columns">
@@ -3765,7 +4223,7 @@ RETURN 0]]></Value>
 					<References Name="[dbo].[Companys]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="83" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="94" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_Projects_User_PManager]">
 			<Relationship Name="Columns">
@@ -3788,7 +4246,7 @@ RETURN 0]]></Value>
 					<References Name="[dbo].[Users]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="84" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="95" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_ProjectTaskTypeManagers_User_ManagerID]">
 			<Relationship Name="Columns">
@@ -3811,7 +4269,7 @@ RETURN 0]]></Value>
 					<References Name="[dbo].[Users]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="85" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="96" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_ProjectTaskTypeManagers_UserManagingCompanysID]">
 			<Relationship Name="Columns">
@@ -3834,7 +4292,7 @@ RETURN 0]]></Value>
 					<References Name="[dbo].[Companys]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="86" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="97" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_Rolls_SuperRoles]">
 			<Relationship Name="Columns">
@@ -3857,7 +4315,7 @@ RETURN 0]]></Value>
 					<References Name="[dbo].[CompanyRoles]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="63" />
+			<AttachedAnnotation Disambiguator="72" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_Sessions_Users]">
 			<Relationship Name="Columns">
@@ -3880,7 +4338,7 @@ RETURN 0]]></Value>
 					<References Name="[dbo].[Users]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="87" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="98" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_TaskLinkers_Tasks_Next]">
 			<Relationship Name="Columns">
@@ -3903,7 +4361,7 @@ RETURN 0]]></Value>
 					<References Name="[dbo].[Tasks]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="88" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="99" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_TaskLinkers_Tasks_Owner]">
 			<Relationship Name="Columns">
@@ -3926,7 +4384,7 @@ RETURN 0]]></Value>
 					<References Name="[dbo].[Tasks]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="89" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="100" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_Tasks_Projects]">
 			<Relationship Name="Columns">
@@ -3949,7 +4407,7 @@ RETURN 0]]></Value>
 					<References Name="[dbo].[Projects]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="90" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="101" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_Tasks_TaskTypes]">
 			<Relationship Name="Columns">
@@ -3972,7 +4430,7 @@ RETURN 0]]></Value>
 					<References Name="[dbo].[TaskTypes]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="91" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="102" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_TaskTypes_Companys]">
 			<Relationship Name="Columns">
@@ -3995,7 +4453,7 @@ RETURN 0]]></Value>
 					<References Name="[dbo].[Companys]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="92" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="103" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_UserPasswordResset_Users]">
 			<Relationship Name="Columns">
@@ -4018,7 +4476,99 @@ RETURN 0]]></Value>
 					<References Name="[dbo].[Users]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="93" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="104" />
+		</Element>
+		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_UsersCompanyAddressBooks_Companys]">
+			<Relationship Name="Columns">
+				<Entry>
+					<References Name="[dbo].[UsersCompanyAddressBooks].[CompanyID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[UsersCompanyAddressBooks]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignColumns">
+				<Entry>
+					<References Name="[dbo].[Companys].[CompanyID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignTable">
+				<Entry>
+					<References Name="[dbo].[Companys]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="105" />
+		</Element>
+		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_UsersCompanyAddressBooks_Users]">
+			<Relationship Name="Columns">
+				<Entry>
+					<References Name="[dbo].[UsersCompanyAddressBooks].[OwersID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[UsersCompanyAddressBooks]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignColumns">
+				<Entry>
+					<References Name="[dbo].[Users].[UserID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignTable">
+				<Entry>
+					<References Name="[dbo].[Users]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="106" />
+		</Element>
+		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_UsersUserAddressBooks_Users_Others]">
+			<Relationship Name="Columns">
+				<Entry>
+					<References Name="[dbo].[UsersUserAddressBooks].[OthersID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[UsersUserAddressBooks]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignColumns">
+				<Entry>
+					<References Name="[dbo].[Users].[UserID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignTable">
+				<Entry>
+					<References Name="[dbo].[Users]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="107" />
+		</Element>
+		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_UsersUserAddressBooks_Users_Owners]">
+			<Relationship Name="Columns">
+				<Entry>
+					<References Name="[dbo].[UsersUserAddressBooks].[OwersID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[UsersUserAddressBooks]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignColumns">
+				<Entry>
+					<References Name="[dbo].[Users].[UserID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignTable">
+				<Entry>
+					<References Name="[dbo].[Users]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="108" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_UserValidations_Users]">
 			<Relationship Name="Columns">
@@ -4041,7 +4591,7 @@ RETURN 0]]></Value>
 					<References Name="[dbo].[Users]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="94" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="109" />
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[GetTheSalt]">
 			<Property Name="BodyScript">
@@ -5372,7 +5922,7 @@ RETURN 0]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="38" />
+						<AttachedAnnotation Disambiguator="45" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -5520,14 +6070,14 @@ RETURN 0]]></Value>
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="78" />
-			<AttachedAnnotation Disambiguator="73" />
-			<AttachedAnnotation Disambiguator="76" />
-			<AttachedAnnotation Disambiguator="75" />
-			<AttachedAnnotation Disambiguator="77" />
-			<AttachedAnnotation Disambiguator="72" />
-			<AttachedAnnotation Disambiguator="74" />
-			<AttachedAnnotation Disambiguator="55" />
+			<AttachedAnnotation Disambiguator="89" />
+			<AttachedAnnotation Disambiguator="84" />
+			<AttachedAnnotation Disambiguator="87" />
+			<AttachedAnnotation Disambiguator="86" />
+			<AttachedAnnotation Disambiguator="88" />
+			<AttachedAnnotation Disambiguator="83" />
+			<AttachedAnnotation Disambiguator="85" />
+			<AttachedAnnotation Disambiguator="64" />
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[MYTableList]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -5547,7 +6097,7 @@ RETURN 0]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="31" />
+						<AttachedAnnotation Disambiguator="37" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -5573,7 +6123,7 @@ RETURN 0]]></Value>
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="49" />
+			<AttachedAnnotation Disambiguator="58" />
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[Offices]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -5752,11 +6302,11 @@ RETURN 0]]></Value>
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="37" />
-			<AttachedAnnotation Disambiguator="79" />
-			<AttachedAnnotation Disambiguator="57" />
-			<AttachedAnnotation Disambiguator="56" />
-			<AttachedAnnotation Disambiguator="58" />
+			<AttachedAnnotation Disambiguator="44" />
+			<AttachedAnnotation Disambiguator="90" />
+			<AttachedAnnotation Disambiguator="66" />
+			<AttachedAnnotation Disambiguator="65" />
+			<AttachedAnnotation Disambiguator="67" />
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[OperationTypes]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -5776,7 +6326,7 @@ RETURN 0]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="30" />
+						<AttachedAnnotation Disambiguator="36" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -5802,7 +6352,7 @@ RETURN 0]]></Value>
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="50" />
+			<AttachedAnnotation Disambiguator="59" />
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[PasswordCheck]">
 			<Property Name="BodyScript">
@@ -5938,7 +6488,7 @@ RETURN 0]]></Value>
 					<References Name="[dbo].[CompanyWorkers]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="69" />
+			<AttachedAnnotation Disambiguator="80" />
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[ProjectFiles]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -5958,7 +6508,7 @@ RETURN 0]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="36" />
+						<AttachedAnnotation Disambiguator="43" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -6000,7 +6550,7 @@ RETURN 0]]></Value>
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="80" />
+			<AttachedAnnotation Disambiguator="91" />
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[Projects]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -6020,7 +6570,7 @@ RETURN 0]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="35" />
+						<AttachedAnnotation Disambiguator="42" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -6352,11 +6902,11 @@ RETURN 0]]></Value>
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="81" />
-			<AttachedAnnotation Disambiguator="84" />
-			<AttachedAnnotation Disambiguator="82" />
-			<AttachedAnnotation Disambiguator="60" />
-			<AttachedAnnotation Disambiguator="59" />
+			<AttachedAnnotation Disambiguator="92" />
+			<AttachedAnnotation Disambiguator="95" />
+			<AttachedAnnotation Disambiguator="93" />
+			<AttachedAnnotation Disambiguator="69" />
+			<AttachedAnnotation Disambiguator="68" />
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[ProjectTaskTypeManagers]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -6375,7 +6925,7 @@ RETURN 0]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="45" />
+						<AttachedAnnotation Disambiguator="52" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -6430,13 +6980,13 @@ RETURN 0]]></Value>
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="85" />
-			<AttachedAnnotation Disambiguator="86" />
+			<AttachedAnnotation Disambiguator="96" />
+			<AttachedAnnotation Disambiguator="97" />
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[SelectLinkerByTaskID]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[
-	SELECT [linkerID], [NextTaskID]  from TaskLinkers 
+	SELECT LinkerID, TaskID, NextTaskID from TaskLinkers 
 	where TaskID = @ID
 RETURN 0]]></Value>
 			</Property>
@@ -6449,10 +6999,10 @@ RETURN 0]]></Value>
 					<References Name="[dbo].[TaskLinkers].[linkerID]" />
 				</Entry>
 				<Entry>
-					<References Name="[dbo].[TaskLinkers].[NextTaskID]" />
+					<References Name="[dbo].[TaskLinkers].[TaskID]" />
 				</Entry>
 				<Entry>
-					<References Name="[dbo].[TaskLinkers].[TaskID]" />
+					<References Name="[dbo].[TaskLinkers].[NextTaskID]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[SelectLinkerByTaskID].[@ID]" />
@@ -6484,10 +7034,116 @@ RETURN 0]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="147" />
+				<Property Name="Length" Value="150" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SelectLinkerByTaskID]&#xD;&#xA;&#x9;@ID int = 0&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[SelectLinkersByNextTask]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	SELECT LinkerID, TaskID, NextTaskID from TaskLinkers where TaskID = @TaskID
+RETURN 0]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[TaskLinkers]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[TaskLinkers].[linkerID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[TaskLinkers].[TaskID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[TaskLinkers].[NextTaskID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SelectLinkersByNextTask].[@TaskID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SelectLinkersByNextTask].[@TaskID]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="154" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SelectLinkersByNextTask]&#xD;&#xA;&#x9;@TaskID int&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[SelectLinkersByTask]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	SELECT LinkerID, TaskID, NextTaskID from TaskLinkers where NextTaskID = @TaskID
+RETURN 0]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[TaskLinkers]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[TaskLinkers].[linkerID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[TaskLinkers].[TaskID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[TaskLinkers].[NextTaskID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SelectLinkersByTask].[@TaskID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SelectLinkersByTask].[@TaskID]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="154" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SelectLinkersByTask]&#xD;&#xA;&#x9;@TaskID int&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[SelectProjectByID]">
@@ -7098,7 +7754,7 @@ RETURN 0]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="44" />
+						<AttachedAnnotation Disambiguator="51" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -7124,7 +7780,7 @@ RETURN 0]]></Value>
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="87" />
+			<AttachedAnnotation Disambiguator="98" />
 		</Element>
 		<Element Type="SqlDmlTrigger" Name="[dbo].[SessionsCleaner]">
 			<Property Name="IsInsertTrigger" Value="True" />
@@ -7176,7 +7832,7 @@ RETURN 0]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="42" />
+						<AttachedAnnotation Disambiguator="49" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -7217,10 +7873,10 @@ RETURN 0]]></Value>
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="89" />
-			<AttachedAnnotation Disambiguator="88" />
-			<AttachedAnnotation Disambiguator="51" />
-			<AttachedAnnotation Disambiguator="61" />
+			<AttachedAnnotation Disambiguator="100" />
+			<AttachedAnnotation Disambiguator="99" />
+			<AttachedAnnotation Disambiguator="60" />
+			<AttachedAnnotation Disambiguator="70" />
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[Tasks]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -7240,7 +7896,7 @@ RETURN 0]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="34" />
+						<AttachedAnnotation Disambiguator="41" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -7376,9 +8032,9 @@ RETURN 0]]></Value>
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="83" />
-			<AttachedAnnotation Disambiguator="90" />
-			<AttachedAnnotation Disambiguator="91" />
+			<AttachedAnnotation Disambiguator="94" />
+			<AttachedAnnotation Disambiguator="101" />
+			<AttachedAnnotation Disambiguator="102" />
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[TaskTypes]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -7398,7 +8054,7 @@ RETURN 0]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="33" />
+						<AttachedAnnotation Disambiguator="40" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -7440,7 +8096,7 @@ RETURN 0]]></Value>
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="92" />
+			<AttachedAnnotation Disambiguator="103" />
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[UpdateTheCompany]">
 			<Property Name="BodyScript">
@@ -8342,7 +8998,7 @@ RETURN 0]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="43" />
+						<AttachedAnnotation Disambiguator="50" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -8368,7 +9024,7 @@ RETURN 0]]></Value>
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="93" />
+			<AttachedAnnotation Disambiguator="104" />
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[Users]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -8388,7 +9044,7 @@ RETURN 0]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="46" />
+						<AttachedAnnotation Disambiguator="39" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -8595,8 +9251,210 @@ RETURN 0]]></Value>
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="62" />
-			<AttachedAnnotation Disambiguator="52" />
+			<AttachedAnnotation Disambiguator="71" />
+			<AttachedAnnotation Disambiguator="61" />
+		</Element>
+		<Element Type="SqlTable" Name="[dbo].[UsersCompanyAddressBooks]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[UsersCompanyAddressBooks].[OwersID]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[UsersCompanyAddressBooks].[CompanyID]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[UsersCompanyAddressBooks].[Affiliated]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bit]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+						<AttachedAnnotation Disambiguator="32" />
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[UsersCompanyAddressBooks].[Verified]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bit]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+						<AttachedAnnotation Disambiguator="33" />
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<AttachedAnnotation Disambiguator="54" />
+			<AttachedAnnotation Disambiguator="105" />
+			<AttachedAnnotation Disambiguator="106" />
+		</Element>
+		<Element Type="SqlTable" Name="[dbo].[UsersUserAddressBooks]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[UsersUserAddressBooks].[OwersID]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[UsersUserAddressBooks].[OthersID]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[UsersUserAddressBooks].[Friend]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bit]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+						<AttachedAnnotation Disambiguator="34" />
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[UsersUserAddressBooks].[Verified]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bit]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+						<AttachedAnnotation Disambiguator="55" />
+						<AttachedAnnotation Disambiguator="35" />
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<AttachedAnnotation Disambiguator="107" />
+			<AttachedAnnotation Disambiguator="108" />
+		</Element>
+		<Element Type="SqlDmlTrigger" Name="[dbo].[UsersUserAddressBooks_TriggerCheck_OwersID_Not_OthersID]">
+			<Property Name="IsInsertTrigger" Value="True" />
+			<Property Name="IsUpdateTrigger" Value="True" />
+			<Property Name="SqlTriggerType" Value="1" />
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	BEGIN
+		declare @OwnerID int, @OthersID int
+		select @OthersID = OthersID, @OwnerID = OwersID from inserted
+
+		if(@OwnerID = @OthersID)
+		begin
+			raiserror('OwnerID cannot be equal to OthersID', 547, 0)
+			rollback --do the transact roll back of tranact sql
+		end
+	END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[UsersUserAddressBooks].[OthersID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[UsersUserAddressBooks].[OwersID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parent">
+				<Entry>
+					<References Name="[dbo].[UsersUserAddressBooks]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="414" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE TRIGGER [UsersUserAddressBooks_TriggerCheck_OwersID_Not_OthersID]&#xD;&#xA;&#x9;ON [dbo].[UsersUserAddressBooks]&#xD;&#xA;&#x9;FOR INSERT, UPDATE&#xD;&#xA;&#x9;AS" />
+			</Annotation>
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[UserValidations]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -8632,7 +9490,7 @@ RETURN 0]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="41" />
+						<AttachedAnnotation Disambiguator="48" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -8658,7 +9516,7 @@ RETURN 0]]></Value>
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="94" />
+			<AttachedAnnotation Disambiguator="109" />
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[ValidateSession]">
 			<Property Name="BodyScript">

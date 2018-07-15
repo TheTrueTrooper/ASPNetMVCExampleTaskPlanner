@@ -62,6 +62,7 @@ AS
 			return @MyTempError
 		end
 
+
 	insert into Tasks 
 	(SubContractorID, TaskTypeID, ProjectID, [Description], DurationTicks) 
 	values

@@ -11,6 +11,8 @@
 //  Link: NA
 //  }
 */
+
+
 angular.module("NGDashBoard", [])
     //make a service that can be used to get the stuff
 .service("ProjectsGetterService", function ($http)
@@ -18,12 +20,13 @@ angular.module("NGDashBoard", [])
     return {
         GetProjects: function ()
         {
-            return $http.get("/UtilitiesAPI/GetUsersProjectData", { responseType: "json" })
+            return $http.get("/UtilitiesAPI/GetUsersProjectData", { responseType: "json" });
         }
     }
 })
 .controller("ProjectList", function ($scope, $interval, ProjectsGetterService)
 {
+
     ProjectsGetterService.GetProjects().then(function (result)
     {
         $scope.projects = result.data;
@@ -47,8 +50,10 @@ angular.module("NGDashBoard", [])
             if (Height > SetAtSize)
                 SetAtSize = Height;
         });
+        SetAtSize += 40;
         ElementArray.forEach(function (Item)
         {
+            $(Item.childNodes[1].childNodes[1].childNodes[0]).height(SetAtSize);
             $(Item.childNodes[1].childNodes[1]).height(SetAtSize);
         });
 

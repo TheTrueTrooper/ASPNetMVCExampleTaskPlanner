@@ -49,6 +49,15 @@
         <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_TaskLinkers_Tasks_Next" />
         <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_TaskLinkers_Tasks_Owner" />
         <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_Tasks_TaskTypes" />
+        <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.CompanysCompanyAddressBooks" Width="1.5" PointX="8" PointY="12.875" />
+        <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.UsersCompanyAddressBooks" Width="1.5" PointX="8" PointY="15.875" />
+        <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.UsersUserAddressBooks" Width="1.5" PointX="3" PointY="20.75" />
+        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_CompanysCompanyAddressBooks_Companys" />
+        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_UsersCompanyAddressBooks_Companys" />
+        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_CompanysCompanyAddressBooks_Users" />
+        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_UsersCompanyAddressBooks_Users" />
+        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_UsersUserAddressBooks_Users_Others" />
+        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_UsersUserAddressBooks_Users_Owners" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

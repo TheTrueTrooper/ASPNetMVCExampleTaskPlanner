@@ -9,6 +9,6 @@
 		if(@OwnerID = @OthersID)
 		begin
 			raiserror('OwnerID cannot be equal to OthersID', 547, 0)
-			rollback
+			rollback --do the transact roll back of tranact sql
 		end
 	END
