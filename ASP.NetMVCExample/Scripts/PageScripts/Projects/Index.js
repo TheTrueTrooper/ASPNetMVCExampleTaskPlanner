@@ -120,76 +120,97 @@ angular.module("NGProjectsIndex", ["ngRoute", "ngSanitize"])
 {
     ChangeActiveTab("TaskCellViewTab");
 
-    $scope.PrintListAsOptions = function (AllItems, LinkedItems) {
+    $scope.PrintListAsOptions = function (AllItems, Task) {
         var str = "";
         AllItems.forEach(function (Item) {
             //if (LinkedItems.includes(Item.TaskID))
             //    str += "<option selected value=\"" + Item.TaskID + "\">" + Item.TaskID + "</option>\n";
             //else
-            str += "<option value=\"" + Item.TaskID + "\">" + Item.TaskID + "</option>\n";
-            
+            if (Item.TaskID !== Task.TaskID)
+                str += "<option value=\"" + Item.TaskID + "\">" + Item.TaskID + "</option>\n";
+
         });
 
         return $sce.trustAsHtml(str);
-    }
+    };
 
-    Array.prototype.except = function (val) {
+    ///Takes one array and finds the values unique to the caller vs the input
+    Array.prototype.except = function (val, bIgnoreWarrning = true) {
         var Return = [];
         if (!Array.isArray(val))
-            throw new Error('Value passed to Except must be an array.');
+        {
+            val = [val];
+            if (!bIgnoreWarrning)
+                Console.log("Warrning you have passed a non array to an array except ")
+        }
         for (var x = 0; x < this.length; x++) {
-            var bIsFound = false
+            var bIsFound = false;
             for (var y = 0; y < val.length; y++) {
-                if (this[x] == val[y]) {
+                if (this[x] === val[y]) {
                     bIsFound = true;
                     break;
                 }
             }
             if (!bIsFound)
-                Return.push(this[x])
+                Return.push(this[x]);
         }
         return Return;
     }; 
 
-    Array.prototype.RemoveValue = function (val) {
-        var Return = [];
+    Array.prototype.pushUnique = function (val) {
+        var bIsFound = false;
         for (var x = 0; x < this.length; x++) {
-
-            if (this[x] != val)
-                Return.push(this[x])
+            if (this[x] === val) {
+                bIsFound = true;
+                break;
+            }
         }
-        return Return;
+        if (!bIsFound)
+            this.push(val);
+    }; 
+
+    Array.prototype.removeValue = function (val) {
+        for (var x = 0; x < this.length; x++) {
+            if (this[x] === val)
+            {
+                this.splice(x, 1);
+            }
+        }
     };
 
     $scope.ChangeNextTasks = function (Task) {
+        //Find all of the changes in the next task
         var Changes = {
             AddedTasks: Task.NextTask.except(Task.LastNextTask),
             RemovedTasks: Task.LastNextTask.except(Task.NextTask)
         };
-
+        //Set our old state so we can find the changes again later
+        Task.LastNextTask = Task.NextTask;
+        //find and update all of the tasks that need to be updated and up date them
         Changes.AddedTasks.forEach(function (x) {
-            $scope.Tasks[parseInt(x)].PrevTask.push(x)
-            $scope.Tasks[parseInt(x)].PrevTask.push(x)
+            $scope.Tasks[parseInt(x) - 1].PrevTask.pushUnique(Task.TaskID);
+            $scope.Tasks[parseInt(x) - 1].LastPrevTask.pushUnique(Task.TaskID);
         });
-        Changes.AddedTasks.forEach(function (x) {
-            $scope.Tasks[parseInt(x)].LastNextTask = $scope.Tasks[parseInt(x)].PrevTask.RemoveValue(x)
-            $scope.Tasks[parseInt(x)].LastNextTask = $scope.Tasks[parseInt(x)].PrevTask.RemoveValue(x)
+        Changes.RemovedTasks.forEach(function (x) {
+            $scope.Tasks[parseInt(x) - 1].PrevTask.removeValue(Task.TaskID);
+            $scope.Tasks[parseInt(x) - 1].LastPrevTask.removeValue(Task.TaskID);
         });
     };
 
     $scope.ChangePrevTasks = function (Task) {
+        // clone of above but with the op Targets
         var Changes = {
-            AddedTasks: Task.NextTask.except(Task.LastNextTask),
-            RemovedTasks: Task.LastNextTask.except(Task.NextTask)
+            AddedTasks: Task.PrevTask.except(Task.LastPrevTask),
+            RemovedTasks: Task.LastPrevTask.except(Task.PrevTask)
         };
-
+        Task.LastPrevTask = Task.PrevTask;
         Changes.AddedTasks.forEach(function (x) {
-            $scope.Tasks[parseInt(x)].LastNextTask.push(x)
-            $scope.Tasks[parseInt(x)].NextTask.push(x)
+            $scope.Tasks[parseInt(x) - 1].NextTask.pushUnique(Task.TaskID);
+            $scope.Tasks[parseInt(x) - 1].LastNextTask.pushUnique(Task.TaskID);
         });
-        Changes.AddedTasks.forEach(function (x) {
-            $scope.Tasks[parseInt(x)].LastNextTask = $scope.Tasks[parseInt(x)].LastNextTask.RemoveValue(x)
-            $scope.Tasks[parseInt(x)].LastNextTask = $scope.Tasks[parseInt(x)].NextTask.RemoveValue(x)
+        Changes.RemovedTasks.forEach(function (x) {
+            $scope.Tasks[parseInt(x) - 1].NextTask.removeValue(Task.TaskID);
+            $scope.Tasks[parseInt(x) - 1].LastNextTask.removeValue(Task.TaskID);
         });
 
     };
@@ -198,7 +219,7 @@ angular.module("NGProjectsIndex", ["ngRoute", "ngSanitize"])
     {
         var OutPut = "";
         input.forEach(function (Item) {
-            OutPut += Item + ", "
+            OutPut += Item + ", ";
         });
         if (OutPut.length > 0)
             OutPut = OutPut.slice(0, OutPut.length -2);
@@ -208,8 +229,8 @@ angular.module("NGProjectsIndex", ["ngRoute", "ngSanitize"])
     $scope.Tasks =
         [{
             TaskID: 1,
-            NextTask: [1, 2 , 3, 5, 6],
-            LastNextTask: [1, 2, 3, 5, 6],
+            NextTask: [],//[1, 2 , 3, 5, 6],
+            LastNextTask: [],//[1, 2, 3, 5, 6],
             Description: "stuff",
             SubContractorID: 1,
             TaskTypeID: 1,
@@ -218,13 +239,13 @@ angular.module("NGProjectsIndex", ["ngRoute", "ngSanitize"])
             ActualEndDate: "Jan 6",
             ActualDuration: "6 Days",
             TaskCreationDate: "err",
-            PrevTask: [1, 2, 3, 5, 6],
-            LastPrevTask: [1, 2, 3, 5, 6]
+            PrevTask: [],//[1, 2, 3, 5, 6],
+            LastPrevTask: []//[1, 2, 3, 5, 6]
         },
         {
             TaskID: 2,
-            NextTask: [1, 2, 3],
-            LastNextTask: [1,2,3],
+            NextTask: [],//[1, 2, 3],
+            LastNextTask: [],//[1,2,3],
             Description: "stuff",
             SubContractorID: 1,
             TaskTypeID: 1,
@@ -233,13 +254,13 @@ angular.module("NGProjectsIndex", ["ngRoute", "ngSanitize"])
             ActualEndDate: "Jan 6",
             ActualDuration: "6 Days",
             TaskCreationDate: "err",
-            PrevTask: [1, 2, 3],
-            LastPrevTask: [1, 2, 3]
+            PrevTask: [],//[1, 2, 3],
+            LastPrevTask: []//[1, 2, 3]
         },
         {
             TaskID: 3,
-            NextTask: [1, 2, 3],
-            LastNextTask: [1, 2, 3],
+            NextTask: [],//[1, 2, 3],
+            LastNextTask: [],//[1, 2, 3],
             Description: "stuff",
             SubContractorID: 1,
             TaskTypeID: 1,
@@ -248,13 +269,13 @@ angular.module("NGProjectsIndex", ["ngRoute", "ngSanitize"])
             ActualEndDate: "Jan 6",
             ActualDuration: "6 Days",
             TaskCreationDate: "err",
-            PrevTask: [1, 2, 3],
-            LastPrevTask: [1, 2, 3]
+            PrevTask: [],//[1, 2, 3],
+            LastPrevTask: []//[1, 2, 3]
         },
         {
             TaskID: 4,
-            NextTask: [1, 2, 3],
-            LastNextTask: [1, 2, 3],
+            NextTask: [],//[1, 2, 3],
+            LastNextTask: [],//[1, 2, 3],
             Description: "stuff",
             SubContractorID: 1,
             TaskTypeID: 1,
@@ -263,13 +284,13 @@ angular.module("NGProjectsIndex", ["ngRoute", "ngSanitize"])
             ActualEndDate: "Jan 6",
             ActualDuration: "6 Days",
             TaskCreationDate: "err",
-            PrevTask: [1, 2, 3],
-            LastPrevTask: [1, 2, 3]
+            PrevTask: [],//[1, 2, 3],
+            LastPrevTask: []//[1, 2, 3]
         },
         {
             TaskID: 5,
-            NextTask: [1, 2, 3],
-            LastNextTask: [1, 2, 3],
+            NextTask: [],//[1, 2, 3],
+            LastNextTask: [],//[1, 2, 3],
             Description: "stuff",
             SubContractorID: 1,
             TaskTypeID: 1,
@@ -278,13 +299,13 @@ angular.module("NGProjectsIndex", ["ngRoute", "ngSanitize"])
             ActualEndDate: "Jan 6",
             ActualDuration: "6 Days",
             TaskCreationDate: "err",
-            PrevTask: [1, 2, 3],
-            LastPrevTask: [1, 2, 3]
+            PrevTask: [],//[1, 2, 3],
+            LastPrevTask: []//[1, 2, 3]
         },
         {
             TaskID: 6,
-            NextTask: [1, 2, 3],
-            LastNextTask: [1, 2, 3],
+            NextTask: [],//[1, 2, 3],
+            LastNextTask: [],//[1, 2, 3],
             Description: "stuff",
             SubContractorID: 1,
             TaskTypeID: 1,
@@ -293,13 +314,13 @@ angular.module("NGProjectsIndex", ["ngRoute", "ngSanitize"])
             ActualEndDate: "Jan 6",
             ActualDuration: "6 Days",
             TaskCreationDate: "err",
-            PrevTask: [1, 2, 3],
-            LastPrevTask: [1, 2, 3]
+            PrevTask: [],//[1, 2, 3],
+            LastPrevTask: []//[1, 2, 3]
         },
         {
             TaskID: 7,
-            NextTask: [1, 2, 3],
-            LastNextTask: [1, 2, 3],
+            NextTask: [],//[1, 2, 3],
+            LastNextTask: [],//[1, 2, 3],
             Description: "stuff",
             SubContractorID: 1,
             TaskTypeID: 1,
@@ -308,8 +329,8 @@ angular.module("NGProjectsIndex", ["ngRoute", "ngSanitize"])
             ActualEndDate: "Jan 6",
             ActualDuration: "6 Days",
             TaskCreationDate: "err",
-            PrevTask: [1, 2, 3],
-            LastPrevTask: [1, 2, 3]
+            PrevTask: [],//[1, 2, 3],
+            LastPrevTask: []//[1, 2, 3]
         }
         ];
 })

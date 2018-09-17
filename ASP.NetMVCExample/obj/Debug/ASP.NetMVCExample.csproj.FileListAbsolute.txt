@@ -81,7 +81,6 @@ C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\bin\Microsoft.AspNet
 C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
 C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\bin\Microsoft.AspNet.SignalR.Core.xml
 C:\Users\Angelo\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
-C:\Users\Angelo's Tower PC\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\obj\Debug\ASP.NetMVCExample.csprojResolveAssemblyReference.cache
 C:\Users\Angelo's Tower PC\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\obj\Debug\ASP.NetMVCExample.Properties.Resources.resources
 C:\Users\Angelo's Tower PC\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\obj\Debug\ASP.NetMVCExample.csproj.GenerateResource.Cache
 C:\Users\Angelo's Tower PC\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\obj\Debug\ASP.NetMVCExample.dll
@@ -170,4 +169,5 @@ C:\Users\Angelo's Tower PC\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\bin\Micro
 C:\Users\Angelo's Tower PC\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\bin\Microsoft.AspNet.SignalR.Client.xml
 C:\Users\Angelo's Tower PC\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\bin\NAudio.dll
 C:\Users\Angelo's Tower PC\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\bin\NAudio.xml
+C:\Users\Angelo's Tower PC\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\obj\Debug\ASP.NetMVCExample.csprojAssemblyReference.cache
 C:\Users\Angelo's Tower PC\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\obj\Debug\ASP.NetMVCExample.csproj.CopyComplete
