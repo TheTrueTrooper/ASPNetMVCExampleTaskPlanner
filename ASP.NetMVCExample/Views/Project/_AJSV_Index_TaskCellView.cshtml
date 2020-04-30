@@ -9,9 +9,104 @@
     //  Writer/Publisher: Microsoft
     //  Link: https://www.asp.net/
     //  }*@
-@*@model ASP.NetMVCExample.Models.SelectProjectByID_Result*@
+@model ASP.NetMVCExample.Models.ProjectView.CreateTask
 @{
     Layout = null;
 }
 <div id="TaskViewBody">
+    <div id="ViewCells">
+        <table class="table-striped table-hover table-bordered">
+            <thead class="text-center">
+                <tr>
+                    <th>Prev Tasks</th>
+                    <th>Description</th>
+                    <th>Sub Contractor</th>
+                    <th>Task Type</th>
+                    <th>Expected Start Date</th>
+                    <th>Expected End Date</th>
+                    <th>Expected Duration</th>
+                    <th>Actual Start Date</th>
+                    <th>Actual End Date</th>
+                    <th>Actual Duration</th>
+                    <th>Task Creation Date</th>
+                    <th>Next Tasks</th>
+                </tr>
+            </thead>
+            <tr ng-repeat="Task in Tasks">
+                <td>
+                    <a class="ToolWidget">
+                        <div>
+                            <span ng-bind="PrintList(Task.PrevTask)"></span>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="glyphicon glyphicon-chevron-left"></i>
+                                </span>
+                                <span class="input-group-addon">
+                                    <select multiple ng-change="ChangePrevTasks(Task)" ng-model="Task.PrevTask" ng-bind-html="PrintListAsOptions(Tasks, Task.PrevTask)"></select>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                </td>
+                <td>{{Task.Description}}</td>
+                <td>{{Task.SubContractorID}}</td>
+                <td>{{Task.TaskTypeID}}</td>
+                <td>Not Implmented Yet</td>
+                <td>Not Implmented Yet</td>
+                <td>{{Task.Duration}}</td>
+                <td>{{Task.ActualStartDate}}</td>
+                <td>{{Task.ActualEndDate}}</td>
+                <td>{{Task.ActualDuration}}</td>
+                <td>{{Task.TaskCreationDate}}</td>
+                <td>
+                    <a class="ToolWidget">
+                        <div style="width:100%; min-height:1em;">
+                            <span ng-bind="PrintList(Task.NextTask)"></span>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <select multiple ng-change="ChangeNextTasks(Task)" ng-model="Task.NextTask" ng-bind-html="PrintListAsOptions(Tasks, Task)"></select>
+                                </span>
+                                <span class="input-group-addon">
+                                    <i class="glyphicon glyphicon-chevron-right"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <hr />
+    <form action="">
+        <div class="row" style="width:100%">
+            <div class="col-sm-4">
+                <h5>Optional TaskTypeID</h5>
+            </div>
+            <div class="col-sm-4">
+                <h5>Optional Subcontractor</h5>
+            </div>
+            <div class="col-sm-4">
+                <h5>Expected Duration</h5>
+            </div>
+        </div>
+        <div class="row" style="width:100%">
+            <div class="col-sm-4">
+                <input type="text" class="form-control" placeholder="Optional TaskType ID" style="width:100%">
+            </div>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" placeholder="Optional Subcontractor" style="width:100%">
+            </div>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" placeholder="Expected Duration in Days" style="width:100%">
+            </div>
+        </div>
+        <div>
+            <div style="width:100%">
+                <h5>Description</h5>
+                @Html.TextAreaFor(m => m.Description, new { @class = "form-control", style = "width:100%; min-width:100%" })
+            </div>
+            <br />
+            <button type="submit" class="btn btn-default" style="width:100%">Create New Task</button>
+        </div>
+    </form>
 </div>

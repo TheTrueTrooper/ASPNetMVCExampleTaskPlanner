@@ -156,3 +156,26 @@ insert into Projects(
 	GETDATE(), DATEADD(hour, 1, GETDATE()))
 
 	select * from Projects
+
+	execute SelectTasksByProjectID 1
+
+	drop proc SelectTasksByProjectID
+
+	go
+	CREATE PROCEDURE [dbo].[SelectTasksByProjectID]
+	@ID int = 0
+AS
+	SELECT TaskID, SubContractorID, [Description], TaskTypeID, DurationTicks,
+	ActualStartDate, ActualEndDate, CreationDate
+	from Tasks 
+	where ProjectID = @ID
+RETURN 0
+go
+ select * from Tasks
+	execute dbo.SelectTasksByProjectID 0
+
+	 select * from ErrorTable
+
+	 select UserID from Users where UserID = 1
+
+	 

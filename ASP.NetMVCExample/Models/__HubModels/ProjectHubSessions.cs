@@ -12,11 +12,11 @@ namespace ASP.NetMVCExample.Models.__HubModels
         public int ProjectID { get; private set; }
         public Project_Tasks_And_Links ProjectTasks;
         public SelectProjectByID_Result ProjectOverView;
+        public Dictionary<int, ProjectTasks> UnSavedTasks = new Dictionary<int, ProjectView.ProjectTasks>();
 
         public ProjectHubSessions(int ProjectID, dynamic Session, string ConnectionID)
         {
             this.ProjectID = ProjectID;
-
             using (MVCTaskMasterAppDataEntities2 DB = new MVCTaskMasterAppDataEntities2())
             {
                 using (ObjectResult<SelectProjectByID_Result> oj = DB.SelectProjectByID(ProjectID))

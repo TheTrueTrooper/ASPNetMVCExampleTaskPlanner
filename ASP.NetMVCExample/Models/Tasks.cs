@@ -22,12 +22,11 @@ namespace ASP.NetMVCExample.Models
         }
     
         public int TaskID { get; set; }
-        public int SubContractorID { get; set; }
-        public int TaskTypeID { get; set; }
+        public Nullable<int> SubContractorID { get; set; }
+        public Nullable<int> TaskTypeID { get; set; }
         public int ProjectID { get; set; }
         public string Description { get; set; }
-        public System.DateTime StartDate { get; set; }
-        public Nullable<System.DateTime> EndDate { get; set; }
+        public long DurationTicks { get; set; }
         public Nullable<System.DateTime> ActualStartDate { get; set; }
         public Nullable<System.DateTime> ActualEndDate { get; set; }
         public System.DateTime CreationDate { get; set; }

@@ -142,12 +142,21 @@ namespace ASP.NetMVCExample.Controllers
             return View(LoginAttempt);
         }
 
+        /// <summary>
+        /// Pulls up the register page on blanked out new run
+        /// </summary>
+        /// <returns></returns>
         [AllowAnonymous]
         public ActionResult Register()
         {
             return View();
         }
 
+        /// <summary>
+        /// Gabs your data and sees if the data is good to register with.
+        /// </summary>
+        /// <param name="Registy"></param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -177,6 +186,10 @@ namespace ASP.NetMVCExample.Controllers
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [AllowAnonymous]
         public ActionResult PasswordReset()
         {

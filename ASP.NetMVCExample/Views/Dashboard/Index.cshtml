@@ -57,22 +57,25 @@
     <hr4>Your Projects</hr4>
     <div ng-controller="ProjectList" class="row" id="Projects">
         <div ng-repeat="project in projects" class="col-sm-4" style="word-wrap:break-word; overflow:hidden;">
-            <a href="@url{{project.ProjectID}}">
-                <div class="MyProjectBox">
-                    <h3 style="word-wrap:break-word;">{{project.ProjectName}}</h3>
-                    <p style="word-wrap:break-word;">
-                        Address: {{project.Address}}, {{project.City}}, {{project.Province}}, {{project.Country}}, {{project.PostalCode}}<br />
-                        For: {{project.CompanyName}}<br />
-                        From<br />
-                        StartDate: {{project.StartDate}}<br />
-                        EndDate: {{project.EndDate}}<br />
-                        Description:<br />
-                        {{project.Description}}
-                    </p>
-                </div>
-            </a>
+            <div class="MyProjectBoxBuffer">
+                <a href="@url{{project.ProjectID}}">
+                    <div class="MyProjectBox">
+                        <h3 style="word-wrap:break-word;">{{project.ProjectName}}</h3>
+                        <p style="word-wrap:break-word;">
+                            Address: {{project.Address}}, {{project.City}}, {{project.Province}}, {{project.Country}}, {{project.PostalCode}}<br />
+                            For: {{project.CompanyName}}<br />
+                            From<br />
+                            StartDate: {{project.StartDate}}<br />
+                            EndDate: {{project.EndDate}}<br />
+                            Description:<br />
+                            {{project.Description}}
+                        </p>
+                    </div>
+
+                </a>
+            </div>
          </div>
-    </div>
+        </div>
     <hr />
     @Html.ActionLink("Add a new project", "CreateProject", "Project", new { }, new { Class = "btn btn-default" })
 </div>

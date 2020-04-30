@@ -24,13 +24,7 @@
     background-color:darkgray;
 }
 
-.MyProjectBox {
-    background-color:lightgray;
-    border-radius: 25px;
-    padding: 20px;
-}
-
-.MyProjectBox {
+.MyProjectBox{
     background-color:lightgray;
     border-radius: 25px;
     padding: 20px;
@@ -38,10 +32,33 @@
 
 .MyProjectBox:hover{
     filter: brightness(105%);
-    text-decoration:none;
+    display: inline-block;
+    text-decoration:none !important;
 }
 
-a:hover{
-    text-decoration:none;
+.ToolWidget {
+    text-decoration: none !important;
+    position: relative;
+    z-index: 20;
 }
 
+.ToolWidget {
+    position: relative;
+    z-index: 20;
+    overflow: visible;
+}
+
+.ToolWidget div div{
+    display:none;
+    background-color:aliceblue;
+    overflow:visible;
+    position:absolute;
+}
+
+.ToolWidget:hover {
+    z-index: 21;
+}
+
+.ToolWidget:hover div div{
+    display:block;
+}

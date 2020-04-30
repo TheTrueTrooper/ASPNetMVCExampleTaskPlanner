@@ -22,6 +22,10 @@ namespace ASP.NetMVCExample.Models
             this.Messages1 = new HashSet<Messages>();
             this.Projects = new HashSet<Projects>();
             this.ProjectTaskTypeManagers = new HashSet<ProjectTaskTypeManagers>();
+            this.CompanysCompanyAddressBooks = new HashSet<CompanysCompanyAddressBooks>();
+            this.UsersCompanyAddressBooks = new HashSet<UsersCompanyAddressBooks>();
+            this.UsersUserAddressBooks = new HashSet<UsersUserAddressBooks>();
+            this.UsersUserAddressBooks1 = new HashSet<UsersUserAddressBooks>();
         }
     
         public int UserID { get; set; }
@@ -51,5 +55,13 @@ namespace ASP.NetMVCExample.Models
         public virtual Sessions Sessions { get; set; }
         public virtual UserPasswordResset UserPasswordResset { get; set; }
         public virtual UserValidations UserValidations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CompanysCompanyAddressBooks> CompanysCompanyAddressBooks { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UsersCompanyAddressBooks> UsersCompanyAddressBooks { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UsersUserAddressBooks> UsersUserAddressBooks { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UsersUserAddressBooks> UsersUserAddressBooks1 { get; set; }
     }
 }

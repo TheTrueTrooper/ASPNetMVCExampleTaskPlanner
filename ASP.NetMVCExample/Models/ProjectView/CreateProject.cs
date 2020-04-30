@@ -40,9 +40,13 @@ namespace ASP.NetMVCExample.Models.ProjectView
         public string City { get; set; }
         [DisplayName("Description"), Required, MaxLength(250)]
         public string Description { get; set; }
-        [DisplayName("Start Date"), Required, DataType(DataType.DateTime), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+        [DisplayName("Start Date")]
+        public string StartDateIn { get; set; }
+        [DisplayName("Start Date"), DataType(DataType.DateTime), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime? StartDate { get; set; }
-        [DisplayName("End Date"), Required, DataType(DataType.DateTime), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+        [DisplayName("End Date")]
+        public string EndDateIn { get; set; }
+        [DisplayName("End Date"), DataType(DataType.DateTime), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime? EndDate { get; set; }
     }
 }

@@ -19,10 +19,12 @@
     //string RootPath = Html.MakeFullURLActionLink("IndexSubPage", null, false);
 }
 @Html.Hidden("ProjectPrivages", ProjectPrivages, new { ID = ProjectPrivages })
+<!--<script src="~/signalr/hubs"></script>-->
 <script src="~/Scripts/3DJS.js"></script>
 <script src="~/Scripts/PageScripts/Projects/PerkChart.js"></script>
 <script src="~/Scripts/PageScripts/Projects/GanttChart.js"></script>
 <script src="~/Scripts/PageScripts/Projects/Index.js"></script>
+<link href="~/Content/PageCss/BoxCSS.css" />
 <div>
     <h2 ProjectID="@Model.ProjectID">@Html.Raw(Model.ProjectName + "#" + Model.ProjectID)</h2>
     <div id="MainTabs">

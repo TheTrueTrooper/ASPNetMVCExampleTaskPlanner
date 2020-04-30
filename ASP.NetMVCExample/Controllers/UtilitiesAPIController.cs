@@ -77,43 +77,7 @@ namespace ASP.NetMVCExample.Controllers
             return Json(UsersProjectData, JsonRequestBehavior.AllowGet);
         }
 
-        /// <summary>
-        /// A severside Getter for a user's Projects that they are working on
-        /// </summary>
-        /// <param name="email"></param>
-        /// <returns></returns>
-        [AcceptVerbs("Get", "Post")]
-        public JsonResult ProjectData(int ID)
-        {
-            if (Session["SessionUserID"] == null)
-                return Json(@"Access Denied", JsonRequestBehavior.AllowGet);
-
-            string ErrorMessage = "";
-            ObjectParameter ErrorMessageParameter = new ObjectParameter("ErrorMessage", ErrorMessage);
-
-            SelectProjectByID_Result ProjectData;
-            using (ObjectResult<SelectProjectByID_Result> TempResults = DB.SelectProjectByID(ID))
-                ProjectData = TempResults.First();
-
-            if (ProjectData.ManagerPicture == null)
-                ProjectData.ManagerPicture = new Bitmap(HostingEnvironment.MapPath("~/Images/NoProfilePicPic.jpg")).ToByteArray();
-
-            Project_IndexView_ViewOverViewAsSubView Return = new Project_IndexView_ViewOverViewAsSubView(ProjectData);
-
-            return Json(Return, JsonRequestBehavior.AllowGet);
-        }
-
-        /// <summary>
-        /// A severside Getter for a Project's tasks
-        /// </summary>
-        /// <param name="email"></param>
-        /// <returns></returns>
-        [AcceptVerbs("Get", "Post")]
-        public JsonResult ProjectsTaskData(int ID)
-        {
-            Project_IndexView_ViewGanttPerkViewAsSubView Return = new Project_IndexView_ViewGanttPerkViewAsSubView(DB, ID);
-            return Json(Return, JsonRequestBehavior.AllowGet);
-        }
+        
 
     }
 }

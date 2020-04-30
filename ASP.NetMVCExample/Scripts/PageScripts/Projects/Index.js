@@ -21,10 +21,11 @@ function ChangeActiveTab(Tab)
 
 var ID;
 
-angular.module("NGProjectsIndex", ["ngRoute"])
+angular.module("NGProjectsIndex", ["ngRoute", "ngSanitize"])
 .value("$", $)
 .run(function ()
 {
+    ID = $();
 })
 .config(["$routeProvider", function ($routeProvider)
 {
@@ -54,18 +55,29 @@ angular.module("NGProjectsIndex", ["ngRoute"])
 }])
 .factory("socketService", function ($, $rootScope)
 {
-    var hub = null
-    return {
-        initialize: function ()
-        {
-            connection = $.hubConnection();
-            this.hub = connection.createHubProxy("ganttEditHub");
-            this.hub.on("onInItDone", function (Data)
-            {
-                $rootScope.Data = Data
-            })
-        }
-    }
+    //var hub = null
+    //return {
+    //    initialize: function ()
+    //    {
+    //        this.connection = $.connection.hubConnection();
+    //        this.connection.qs = sessionStorage;
+    //        this.hub = this.connection.createHubProxy("ganttEditHub");
+    //        this.hub.on("onInItDone", function (Data) {
+    //            $rootScope.Data = Data
+    //        });
+    //        this.connection.start()
+    //            .done(function () { console.log('Now connected, connection ID=' + this.connection.id); })
+    //            .fail(function () { console.log('Could not connect'); });
+    //    },
+    //    ServerCall: function (MethodName, Object)
+    //    {
+    //        this.hub.invoke(MethodName, Object).done(function () {
+    //            console.log('Invocation of ' + MethodName + ' succeeded');
+    //        }).fail(function (error) {
+    //            console.log('Invocation of  ' + MethodName + '  failed. Error: ' + error);
+    //        });
+    //    }
+    //}
 })
 .service("ProjectsGetterService", function ($http)
 {
@@ -104,13 +116,225 @@ angular.module("NGProjectsIndex", ["ngRoute"])
     });
 
 })
-.controller("TaskCellViewController", function ($scope, ProjectsGetterService)
+.controller("TaskCellViewController", function ($scope, $sce, ProjectsGetterService)
 {
     ChangeActiveTab("TaskCellViewTab");
 
-    //ProjectsGetterService.GetProjectTasks(ID).then(function (result){});
+    $scope.PrintListAsOptions = function (AllItems, Task) {
+        var str = "";
+        AllItems.forEach(function (Item) {
+            //if (LinkedItems.includes(Item.TaskID))
+            //    str += "<option selected value=\"" + Item.TaskID + "\">" + Item.TaskID + "</option>\n";
+            //else
+            if (Item.TaskID !== Task.TaskID)
+                str += "<option value=\"" + Item.TaskID + "\">" + Item.TaskID + "</option>\n";
+
+        });
+
+        return $sce.trustAsHtml(str);
+    };
+
+    ///Takes one array and finds the values unique to the caller vs the input
+    Array.prototype.except = function (val, bIgnoreWarrning = true) {
+        var Return = [];
+        if (!Array.isArray(val))
+        {
+            val = [val];
+            if (!bIgnoreWarrning)
+                Console.log("Warrning you have passed a non array to an array except ")
+        }
+        for (var x = 0; x < this.length; x++) {
+            var bIsFound = false;
+            for (var y = 0; y < val.length; y++) {
+                if (this[x] === val[y]) {
+                    bIsFound = true;
+                    break;
+                }
+            }
+            if (!bIsFound)
+                Return.push(this[x]);
+        }
+        return Return;
+    }; 
+
+    Array.prototype.pushUnique = function (val) {
+        var bIsFound = false;
+        for (var x = 0; x < this.length; x++) {
+            if (this[x] === val) {
+                bIsFound = true;
+                break;
+            }
+        }
+        if (!bIsFound)
+            this.push(val);
+    }; 
+
+    Array.prototype.removeValue = function (val) {
+        for (var x = 0; x < this.length; x++) {
+            if (this[x] === val)
+            {
+                this.splice(x, 1);
+            }
+        }
+    };
+
+    $scope.ChangeNextTasks = function (Task) {
+        //Find all of the changes in the next task
+        var Changes = {
+            AddedTasks: Task.NextTask.except(Task.LastNextTask),
+            RemovedTasks: Task.LastNextTask.except(Task.NextTask)
+        };
+        //Set our old state so we can find the changes again later
+        Task.LastNextTask = Task.NextTask;
+        //find and update all of the tasks that need to be updated and up date them
+        Changes.AddedTasks.forEach(function (x) {
+            $scope.Tasks[parseInt(x) - 1].PrevTask.pushUnique(Task.TaskID);
+            $scope.Tasks[parseInt(x) - 1].LastPrevTask.pushUnique(Task.TaskID);
+        });
+        Changes.RemovedTasks.forEach(function (x) {
+            $scope.Tasks[parseInt(x) - 1].PrevTask.removeValue(Task.TaskID);
+            $scope.Tasks[parseInt(x) - 1].LastPrevTask.removeValue(Task.TaskID);
+        });
+    };
+
+    $scope.ChangePrevTasks = function (Task) {
+        // clone of above but with the op Targets
+        var Changes = {
+            AddedTasks: Task.PrevTask.except(Task.LastPrevTask),
+            RemovedTasks: Task.LastPrevTask.except(Task.PrevTask)
+        };
+        Task.LastPrevTask = Task.PrevTask;
+        Changes.AddedTasks.forEach(function (x) {
+            $scope.Tasks[parseInt(x) - 1].NextTask.pushUnique(Task.TaskID);
+            $scope.Tasks[parseInt(x) - 1].LastNextTask.pushUnique(Task.TaskID);
+        });
+        Changes.RemovedTasks.forEach(function (x) {
+            $scope.Tasks[parseInt(x) - 1].NextTask.removeValue(Task.TaskID);
+            $scope.Tasks[parseInt(x) - 1].LastNextTask.removeValue(Task.TaskID);
+        });
+
+    };
+
+    $scope.PrintList = function (input)
+    {
+        var OutPut = "";
+        input.forEach(function (Item) {
+            OutPut += Item + ", ";
+        });
+        if (OutPut.length > 0)
+            OutPut = OutPut.slice(0, OutPut.length -2);
+        return OutPut;
+    };
+
+    $scope.Tasks =
+        [{
+            TaskID: 1,
+            NextTask: [],//[1, 2 , 3, 5, 6],
+            LastNextTask: [],//[1, 2, 3, 5, 6],
+            Description: "stuff",
+            SubContractorID: 1,
+            TaskTypeID: 1,
+            Duration: 1,
+            ActualStartDate: "Jan 6",
+            ActualEndDate: "Jan 6",
+            ActualDuration: "6 Days",
+            TaskCreationDate: "err",
+            PrevTask: [],//[1, 2, 3, 5, 6],
+            LastPrevTask: []//[1, 2, 3, 5, 6]
+        },
+        {
+            TaskID: 2,
+            NextTask: [],//[1, 2, 3],
+            LastNextTask: [],//[1,2,3],
+            Description: "stuff",
+            SubContractorID: 1,
+            TaskTypeID: 1,
+            Duration: 1,
+            ActualStartDate: "Jan 6",
+            ActualEndDate: "Jan 6",
+            ActualDuration: "6 Days",
+            TaskCreationDate: "err",
+            PrevTask: [],//[1, 2, 3],
+            LastPrevTask: []//[1, 2, 3]
+        },
+        {
+            TaskID: 3,
+            NextTask: [],//[1, 2, 3],
+            LastNextTask: [],//[1, 2, 3],
+            Description: "stuff",
+            SubContractorID: 1,
+            TaskTypeID: 1,
+            Duration: 1,
+            ActualStartDate: "Jan 6",
+            ActualEndDate: "Jan 6",
+            ActualDuration: "6 Days",
+            TaskCreationDate: "err",
+            PrevTask: [],//[1, 2, 3],
+            LastPrevTask: []//[1, 2, 3]
+        },
+        {
+            TaskID: 4,
+            NextTask: [],//[1, 2, 3],
+            LastNextTask: [],//[1, 2, 3],
+            Description: "stuff",
+            SubContractorID: 1,
+            TaskTypeID: 1,
+            Duration: 1,
+            ActualStartDate: "Jan 6",
+            ActualEndDate: "Jan 6",
+            ActualDuration: "6 Days",
+            TaskCreationDate: "err",
+            PrevTask: [],//[1, 2, 3],
+            LastPrevTask: []//[1, 2, 3]
+        },
+        {
+            TaskID: 5,
+            NextTask: [],//[1, 2, 3],
+            LastNextTask: [],//[1, 2, 3],
+            Description: "stuff",
+            SubContractorID: 1,
+            TaskTypeID: 1,
+            Duration: 1,
+            ActualStartDate: "Jan 6",
+            ActualEndDate: "Jan 6",
+            ActualDuration: "6 Days",
+            TaskCreationDate: "err",
+            PrevTask: [],//[1, 2, 3],
+            LastPrevTask: []//[1, 2, 3]
+        },
+        {
+            TaskID: 6,
+            NextTask: [],//[1, 2, 3],
+            LastNextTask: [],//[1, 2, 3],
+            Description: "stuff",
+            SubContractorID: 1,
+            TaskTypeID: 1,
+            Duration: 1,
+            ActualStartDate: "Jan 6",
+            ActualEndDate: "Jan 6",
+            ActualDuration: "6 Days",
+            TaskCreationDate: "err",
+            PrevTask: [],//[1, 2, 3],
+            LastPrevTask: []//[1, 2, 3]
+        },
+        {
+            TaskID: 7,
+            NextTask: [],//[1, 2, 3],
+            LastNextTask: [],//[1, 2, 3],
+            Description: "stuff",
+            SubContractorID: 1,
+            TaskTypeID: 1,
+            Duration: 1,
+            ActualStartDate: "Jan 6",
+            ActualEndDate: "Jan 6",
+            ActualDuration: "6 Days",
+            TaskCreationDate: "err",
+            PrevTask: [],//[1, 2, 3],
+            LastPrevTask: []//[1, 2, 3]
+        }
+        ];
 })
-.controller("GanttChartViewController", function ($scope, ProjectsGetterService)
+.controller("GanttChartViewController", function ($scope, ProjectsGetterService, socketService)
 {
     ChangeActiveTab("GanttChartViewTab");
     ProjectsGetterService.GetProjectTasks(ID).then(function (result)

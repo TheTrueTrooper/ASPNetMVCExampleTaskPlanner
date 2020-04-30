@@ -34,7 +34,7 @@ namespace ASP.NetMVCExample.Models
         public string City { get; set; }
         public string Description { get; set; }
         public System.DateTime StartDate { get; set; }
-        public System.DateTime EndDate { get; set; }
+        public Nullable<System.DateTime> EndDate { get; set; }
         public Nullable<System.DateTime> ActualStartDate { get; set; }
         public Nullable<System.DateTime> ActualEndDate { get; set; }
         public System.DateTime CreationDate { get; set; }

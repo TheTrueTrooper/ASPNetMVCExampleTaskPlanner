@@ -131,31 +131,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="TaskLinkers">
-      <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.TaskLinkers">
-        <MappingFragment StoreEntitySet="TaskLinkers">
-          <ScalarProperty Name="NextTaskID" ColumnName="NextTaskID" />
-          <ScalarProperty Name="TaskID" ColumnName="TaskID" />
-          <ScalarProperty Name="linkerID" ColumnName="linkerID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Tasks">
-      <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.Tasks">
-        <MappingFragment StoreEntitySet="Tasks">
-          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
-          <ScalarProperty Name="ActualEndDate" ColumnName="ActualEndDate" />
-          <ScalarProperty Name="ActualStartDate" ColumnName="ActualStartDate" />
-          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
-          <ScalarProperty Name="TaskTypeID" ColumnName="TaskTypeID" />
-          <ScalarProperty Name="SubContractorID" ColumnName="SubContractorID" />
-          <ScalarProperty Name="TaskID" ColumnName="TaskID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="TaskTypes">
       <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.TaskTypes">
         <MappingFragment StoreEntitySet="TaskTypes">
@@ -325,11 +300,84 @@
           <ScalarProperty Name="SubContractorID" ColumnName="SubContractorID" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="TaskTypeID" ColumnName="TaskTypeID" />
-          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
           <ScalarProperty Name="ActualStartDate" ColumnName="ActualStartDate" />
           <ScalarProperty Name="ActualEndDate" ColumnName="ActualEndDate" />
           <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="DurationTicks" ColumnName="DurationTicks" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="TaskLinkers">
+      <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.TaskLinkers">
+        <MappingFragment StoreEntitySet="TaskLinkers">
+          <ScalarProperty Name="NextTaskID" ColumnName="NextTaskID" />
+          <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+          <ScalarProperty Name="linkerID" ColumnName="linkerID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tasks">
+      <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.Tasks">
+        <MappingFragment StoreEntitySet="Tasks">
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="ActualEndDate" ColumnName="ActualEndDate" />
+          <ScalarProperty Name="ActualStartDate" ColumnName="ActualStartDate" />
+          <ScalarProperty Name="DurationTicks" ColumnName="DurationTicks" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+          <ScalarProperty Name="TaskTypeID" ColumnName="TaskTypeID" />
+          <ScalarProperty Name="SubContractorID" ColumnName="SubContractorID" />
+          <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CreateTask" FunctionName="MVCTaskMasterAppDataModel.Store.CreateTask" />
+    <EntitySetMapping Name="CompanysCompanyAddressBooks">
+      <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.CompanysCompanyAddressBooks">
+        <MappingFragment StoreEntitySet="CompanysCompanyAddressBooks">
+          <ScalarProperty Name="Verified" ColumnName="Verified" />
+          <ScalarProperty Name="Affiliated" ColumnName="Affiliated" />
+          <ScalarProperty Name="UsersID" ColumnName="UsersID" />
+          <ScalarProperty Name="OwersID" ColumnName="OwersID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsersCompanyAddressBooks">
+      <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.UsersCompanyAddressBooks">
+        <MappingFragment StoreEntitySet="UsersCompanyAddressBooks">
+          <ScalarProperty Name="Verified" ColumnName="Verified" />
+          <ScalarProperty Name="Affiliated" ColumnName="Affiliated" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="OwersID" ColumnName="OwersID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsersUserAddressBooks">
+      <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.UsersUserAddressBooks">
+        <MappingFragment StoreEntitySet="UsersUserAddressBooks">
+          <ScalarProperty Name="Verified" ColumnName="Verified" />
+          <ScalarProperty Name="Friend" ColumnName="Friend" />
+          <ScalarProperty Name="OthersID" ColumnName="OthersID" />
+          <ScalarProperty Name="OwersID" ColumnName="OwersID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CreateTaskLink" FunctionName="MVCTaskMasterAppDataModel.Store.CreateTaskLink" />
+    <FunctionImportMapping FunctionImportName="SelectLinkersByNextTask" FunctionName="MVCTaskMasterAppDataModel.Store.SelectLinkersByNextTask">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCTaskMasterAppDataModel.SelectLinkersByNextTask_Result">
+          <ScalarProperty Name="LinkerID" ColumnName="LinkerID" />
+          <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+          <ScalarProperty Name="NextTaskID" ColumnName="NextTaskID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SelectLinkersByTask" FunctionName="MVCTaskMasterAppDataModel.Store.SelectLinkersByTask">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCTaskMasterAppDataModel.SelectLinkersByTask_Result">
+          <ScalarProperty Name="LinkerID" ColumnName="LinkerID" />
+          <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+          <ScalarProperty Name="NextTaskID" ColumnName="NextTaskID" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

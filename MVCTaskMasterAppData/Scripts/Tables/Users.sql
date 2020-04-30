@@ -23,8 +23,8 @@ CREATE TABLE [dbo].[Users]
     [WorkPhone] CHAR(11) NULL,
 
 	--Profile stuff
-	--size is 2 tothe 12 - 1 = 4,096 - 1 bytes 
-    [Picture] VARBINARY(12) NULL, 
+	--size is 2 tothe 16 - 1 = 65,536 - 1 bytes 
+    [Picture] VARBINARY(16) NULL, 
     [Bio] NVARCHAR(250) NULL, 
 	[PortfollURL] NVARCHAR(100) NULL, 
 
