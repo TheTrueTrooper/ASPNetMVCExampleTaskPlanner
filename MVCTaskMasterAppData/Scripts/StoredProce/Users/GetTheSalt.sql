@@ -12,5 +12,5 @@
 CREATE PROCEDURE [dbo].[GetTheSalt]
 	@Email NVARCHAR(320)
 AS
-	SELECT Salt from Users where Email = @Email
+	SELECT Salt from Users as U join UserEmails as E on U.[PrimaryPersonalEmailID] = E.EmailID and U.UserID = E.UserID where [Email] = @Email
 return 0

@@ -151,11 +151,14 @@
     <Build Include="Scripts\Tables\CompanysCompanyAddressBooks.sql" />
     <Build Include="Scripts\Triggers\UsersUserAddressBooks\UsersUserAddressBooks_TriggerCheck_OwersID_Not_OthersID.sql" />
     <Build Include="Scripts\StoredProce\TaskLinkers\CreateTaskLink.sql" />
-    <Build Include="Scripts\StoredProce\TaskLinkers\SelectLinkersByTask.sql" />
+    <Build Include="Scripts\StoredProce\TaskLinkers\SelectLinker.sql" />
     <Build Include="Scripts\StoredProce\TaskLinkers\SelectLinkersByNextTask.sql" />
+    <Build Include="Scripts\Tables\UserPhoneNumbers.sql" />
+    <Build Include="Scripts\Tables\UserEmails.sql" />
+    <Build Include="Scripts\Triggers\Users\UsersUpdateAntiNullConstraint.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Scripts\Util\Scripts\ErrorTablesReBuildScript.sql" />
+    <PostDeploy Include="Scripts\Util\Scripts\ErrorTablesReBuildScript.sql" />
     <None Include="Scripts\Util\Scripts\ErrorTablesCleanScript.sql" />
     <None Include="Scripts\Util\Scripts\Permis.sql" />
     <None Include="TestingScript.sql" />

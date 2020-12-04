@@ -67,24 +67,10 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.HomePhone, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.PrimaryPhoneNumber, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.HomePhone, new { @class = "form-control" })<p class="text-info" style="font-size:xx-small"> Required *</p>
-            @Html.ValidationMessageFor(m => m.HomePhone, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.CellPhone, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.CellPhone, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.CellPhone, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.WorkPhone, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.WorkPhone, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.WorkPhone, "", new { @class = "text-danger" })
+            @Html.TextBoxFor(m => m.PrimaryPhoneNumber, new { @class = "form-control" })<p class="text-info" style="font-size:xx-small"> Required *</p>
+            @Html.ValidationMessageFor(m => m.PrimaryPhoneNumber, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">

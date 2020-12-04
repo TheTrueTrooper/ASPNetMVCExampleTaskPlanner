@@ -32,7 +32,7 @@ AS
 			@ErrorOperation tinyint = 2
 
 -- check if the email exists and we can delete it
-	if exists(select Email from Users where Email = @Email and @Password = [Password])
+	if exists(select Email from Users as U join UserEmails as E on U.[PrimaryPersonalEmailID] = E.EmailID and U.UserID = E.UserID where [Email] = @Email and @Password = [Password])
 		begin
 			set @TempError = @@ERROR
 			set @ErrorMessage = 'Error [Password] was wrong or [Email] does not exist'
@@ -40,11 +40,11 @@ AS
 			execute InsertErrorInfo  @ErrorMessage, @ErrorOperation, @ErrorTable, @TempError, @MyTempError
 			return @MyTempError
 		end
-
+	declare @UserID INT = (select top 1 U.UserID from Users as U join UserEmails as E on U.[PrimaryPersonalEmailID] = E.EmailID and U.UserID = E.UserID where [Email] = @Email)
 	delete from Users 
-	where Email = @Email
+	where @UserID = UserID
 	set @TempError = @@ERROR
-	if not exists (select FirstName from Users where @Email = Email)
+	if not exists (select top 1 U.UserID from Users as U join UserEmails as E on U.[PrimaryPersonalEmailID] = E.EmailID and U.UserID = E.UserID where [Email] = @Email)
 		begin
 			return 0
 		end

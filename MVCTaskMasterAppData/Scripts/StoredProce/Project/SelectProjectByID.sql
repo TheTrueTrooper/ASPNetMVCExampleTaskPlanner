@@ -17,7 +17,7 @@ AS
 	P.ActualStartDate as ProjectActualStartDate, P.ActualEndDate as ProjectActualEndDate, P.Description as ProjectDescription, 
 	P.CreationDate as ProjectCreationDate,
 	U.UserID as ManagerID, U.Picture as ManagerPicture, U.FirstName as ManagerFirstName, U.MiddleInitial as ManagerMiddleInitial, 
-	U.LastName as ManagerLastName, U.HomePhone as ManagerHomePhone, U.WorkPhone as ManagerWorkPhone, U.CellPhone as ManagerCellPhone,
+	U.LastName as ManagerLastName,
 	C.CompanyID, C.CompanyName, C.CompanySite
 	from Projects as P left join Users as U on P.ManagerID = U.UserID left join Companys as C on P.CompanyID = C.CompanyID 
 	where ProjectID = @ID

@@ -65,7 +65,6 @@ namespace ASP.NetMVCExample.Controllers
         /// </summary>
         /// <param name="ID">THe Projects ID</param>
         /// <returns>the Page if the Project if you have Privs</returns>
-        [DBFSPAuthorize]
         public ActionResult Index(int ID)
         {
             ProjectPrivages PP = GetProjectPriv(ID);
@@ -95,6 +94,8 @@ namespace ASP.NetMVCExample.Controllers
                     return View("_AJSV_Index_GanttChartView");
                 case "PerkChartView":
                     return View("_AJSV_Index_PerkChartView");
+                case "FileView":
+                    return View("_AJSV_Index_FileView");
                 default:
                     return View("FriendlyErr");
             }

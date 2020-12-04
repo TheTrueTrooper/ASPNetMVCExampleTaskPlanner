@@ -12,6 +12,10 @@
 //  }
 */
 
+function ToBase64Picture(byteArray) {
+    return btoa(String.fromCharCode.apply(null, byteArray));
+}
+
 
 function ChangeActiveTab(Tab)
 {
@@ -25,33 +29,32 @@ angular.module("NGProjectsIndex", ["ngRoute", "ngSanitize"])
 .value("$", $)
 .run(function ()
 {
-    ID = $();
+    ID = $("[ProjectID]").attr("ProjectID");
 })
 .config(["$routeProvider", function ($routeProvider)
 {
-    ID = $("[ProjectID]").attr("ProjectID");
 
     $routeProvider
         .when("/OverView",
-        {
-            templateUrl: "http://localhost:62740/Project/IndexSubPage?AngularView=OverView",
-            controller: "OverViewController"
-        })
+            {
+                templateUrl: "http://localhost:62740/Project/IndexSubPage?AngularView=OverView",
+                controller: "OverViewController"
+            })
         .when("/TaskCellView",
-        {
-            templateUrl: "http://localhost:62740/Project/IndexSubPage?AngularView=TaskCellView",
-            controller: "TaskCellViewController"
-        })
+            {
+                templateUrl: "http://localhost:62740/Project/IndexSubPage?AngularView=TaskCellView",
+                controller: "TaskCellViewController"
+            })
         .when("/GanttChartView",
-        {
-            templateUrl: "http://localhost:62740/Project/IndexSubPage?AngularView=GanttChartView",
-            controller: "GanttChartViewController"
-        })
+            {
+                templateUrl: "http://localhost:62740/Project/IndexSubPage?AngularView=GanttChartView",
+                controller: "GanttChartViewController"
+            })
         .when("/PerkChartView",
-        {
-            templateUrl: "http://localhost:62740/Project/IndexSubPage?AngularView=PerkChartView",
-            controller: "PerkChartViewController"
-        })
+            {
+                templateUrl: "http://localhost:62740/Project/IndexSubPage?AngularView=PerkChartView",
+                controller: "PerkChartViewController"
+            });
 }])
 .factory("socketService", function ($, $rootScope)
 {
@@ -82,15 +85,16 @@ angular.module("NGProjectsIndex", ["ngRoute", "ngSanitize"])
 .service("ProjectsGetterService", function ($http)
 {
     return {
-        GetProjectOverview: function (ID)
-        {
-            return $http.get("http://localhost:62740/UtilitiesAPI/ProjectData?ID=" + ID, { responseType: "json" });
+        GetProjectOverview: function (ID) {
+            return $http.get("http://localhost:62740/ProjectAPI/ProjectData?ID=" + ID, { responseType: "json" });
         },
-        GetProjectTasks: function (ID)
-        {
-            return $http.get("http://localhost:62740/UtilitiesAPI/ProjectsTaskData?ID=" + ID, { responseType: "json" });
+        GetProjectTasks: function (ID) {
+            return $http.get("http://localhost:62740/ProjectAPI/ProjectsTaskData?ID=" + ID, { responseType: "json" });
+        },
+        CreateNewProjectTask(Data) {
+            return $http.post("http://localhost:62740/ProjectAPI/ProjectsCreateTask" + ID, Data, { responseType: "json" });
         }
-    }
+    };
 })
 .controller("OverViewController", function ($scope, $sce, ProjectsGetterService)
 {
@@ -99,20 +103,21 @@ angular.module("NGProjectsIndex", ["ngRoute", "ngSanitize"])
     ProjectsGetterService.GetProjectOverview(ID).then(function (result)
     {
         $scope.project = result.data;
+
         // avoid the sanitizer messing with data we will cheat here.
-        $("#ManagerPicture").attr("src", "data:image;base64," + $scope.project.ManagerPicture)
+        $("#ManagerPicture").attr("src", "data:image;base64, " + ToBase64Picture($scope.project.ManagerPicture));
         //for droping the space away if data is null and format if not null
         $scope.project.ManagerMiddleInitialIsNull = $scope.project.ManagerMiddleInitial !== null;
         $scope.project.ManagerMiddleInitial = $scope.project.ManagerMiddleInitial !== null ? "Middle Name: " + $scope.project.ManagerMiddleInitial : "";
 
-        $scope.project.ManagerWorkPhoneIsNull = $scope.project.ManagerWorkPhone !== null;
-        $scope.project.ManagerWorkPhone = $scope.project.ManagerWorkPhone !== null ? "Work Phone: " + $scope.project.ManagerWorkPhone.Insert(3, "-").Insert(7, "-") : "";
+        //$scope.project.ManagerWorkPhoneIsNull = $scope.project.ManagerWorkPhone !== null;
+        //$scope.project.ManagerWorkPhone = $scope.project.ManagerWorkPhone !== null ? "Work Phone: " + $scope.project.ManagerWorkPhone.Insert(3, "-").Insert(7, "-") : "";
 
-        $scope.project.ManagerCellPhoneIsNull = $scope.project.ManagerCellPhone !== null;
-        $scope.project.ManagerCellPhone = $scope.project.ManagerCellPhone !== null ? "Cell Phone: " + $scope.project.ManagerCellPhone.Insert(3, "-").Insert(7, "-") : "";
+        //$scope.project.ManagerCellPhoneIsNull = $scope.project.ManagerCellPhone !== null;
+        //$scope.project.ManagerCellPhone = $scope.project.ManagerCellPhone !== null ? "Cell Phone: " + $scope.project.ManagerCellPhone.Insert(3, "-").Insert(7, "-") : "";
 
-        $scope.project.ManagerHomePhoneIsNull = $scope.project.ManagerHomePhone !== null;
-        $scope.project.ManagerHomePhone = $scope.project.ManagerHomePhone !== null ? "Home Phone: " + $scope.project.ManagerHomePhone.Insert(3, "-").Insert(7, "-") : "";
+        //$scope.project.ManagerHomePhoneIsNull = $scope.project.ManagerHomePhone !== null;
+        //$scope.project.ManagerHomePhone = $scope.project.ManagerHomePhone !== null ? "Home Phone: " + $scope.project.ManagerHomePhone.Insert(3, "-").Insert(7, "-") : "";
     });
 
 })
@@ -226,6 +231,17 @@ angular.module("NGProjectsIndex", ["ngRoute", "ngSanitize"])
         return OutPut;
     };
 
+    $scope.SubmitData = function ()
+    {
+        if ($("#CreateTaskForm").hasClass("ng-invalid"))
+        {
+            alert("invalid Number entered");
+            return;
+        }
+
+        return;
+    };
+
     $scope.Tasks =
         [{
             TaskID: 1,
@@ -334,14 +350,122 @@ angular.module("NGProjectsIndex", ["ngRoute", "ngSanitize"])
         }
         ];
 })
-.controller("GanttChartViewController", function ($scope, ProjectsGetterService, socketService)
+.controller("GanttChartViewController", function ($scope, ProjectsGetterService)
 {
     ChangeActiveTab("GanttChartViewTab");
-    ProjectsGetterService.GetProjectTasks(ID).then(function (result)
-    { 
-        $scope.project.tasks = result.data;
-        $scope.Canvas = new Gantt("#CanvasBox", $scope.project.tasks);
-    });
+    //ProjectsGetterService.GetProjectTasks(ID).then(function (result)
+    //{ 
+    //    $scope.project.tasks = result.data;
+    //    $scope.Canvas = new Gantt("#CanvasBox", $scope.project.tasks);
+    //});
+    $scope.Tasks =
+        [{
+            TaskID: 1,
+            NextTask: [2],//[1, 2 , 3, 5, 6],
+            LastNextTask: [],//[1, 2, 3, 5, 6],
+            Description: "stuff",
+            SubContractorID: 1,
+            TaskTypeID: 1,
+            Duration: 1,
+            ActualStartDate: "Jan 6",
+            ActualEndDate: "Jan 6",
+            ActualDuration: "6 Days",
+            TaskCreationDate: "err",
+            PrevTask: [],//[1, 2, 3, 5, 6],
+            LastPrevTask: []//[1, 2, 3, 5, 6]
+        },
+        {
+            TaskID: 2,
+            NextTask: [3],//[1, 2, 3],
+            LastNextTask: [],//[1,2,3],
+            Description: "stuff",
+            SubContractorID: 1,
+            TaskTypeID: 1,
+            Duration: 2,
+            ActualStartDate: "Jan 6",
+            ActualEndDate: "Jan 6",
+            ActualDuration: "6 Days",
+            TaskCreationDate: "err",
+            PrevTask: [1],//[1, 2, 3],
+            LastPrevTask: []//[1, 2, 3]
+        },
+        {
+            TaskID: 3,
+            NextTask: [4],//[1, 2, 3],
+            LastNextTask: [],//[1, 2, 3],
+            Description: "stuff",
+            SubContractorID: 1,
+            TaskTypeID: 1,
+            Duration: 3,
+            ActualStartDate: "Jan 6",
+            ActualEndDate: "Jan 6",
+            ActualDuration: "6 Days",
+            TaskCreationDate: "err",
+            PrevTask: [2, 7],//[1, 2, 3],
+            LastPrevTask: []//[1, 2, 3]
+        },
+        {
+            TaskID: 4,
+            NextTask: [],//[1, 2, 3],
+            LastNextTask: [],//[1, 2, 3],
+            Description: "stuff",
+            SubContractorID: 1,
+            TaskTypeID: 1,
+            Duration: 1,
+            ActualStartDate: "Jan 6",
+            ActualEndDate: "Jan 6",
+            ActualDuration: "6 Days",
+            TaskCreationDate: "err",
+            PrevTask: [],//[1, 2, 3],
+            LastPrevTask: []//[1, 2, 3]
+        },
+        {
+            TaskID: 5,
+            NextTask: [],//[1, 2, 3],
+            LastNextTask: [],//[1, 2, 3],
+            Description: "stuff",
+            SubContractorID: 1,
+            TaskTypeID: 1,
+            Duration: 1,
+            ActualStartDate: "Jan 6",
+            ActualEndDate: "Jan 6",
+            ActualDuration: "6 Days",
+            TaskCreationDate: "err",
+            PrevTask: [],//[1, 2, 3],
+            LastPrevTask: []//[1, 2, 3]
+        },
+        {
+            TaskID: 6,
+            NextTask: [],//[1, 2, 3],
+            LastNextTask: [],//[1, 2, 3],
+            Description: "stuff",
+            SubContractorID: 1,
+            TaskTypeID: 1,
+            Duration: 5,
+            ActualStartDate: "Jan 6",
+            ActualEndDate: "Jan 6",
+            ActualDuration: "6 Days",
+            TaskCreationDate: "err",
+            PrevTask: [],//[1, 2, 3],
+            LastPrevTask: []//[1, 2, 3]
+        },
+        {
+            TaskID: 7,
+            NextTask: [3],//[1, 2, 3],
+            LastNextTask: [],//[1, 2, 3],
+            Description: "stuff",
+            SubContractorID: 1,
+            TaskTypeID: 1,
+            Duration: 6,
+            ActualStartDate: "Jan 6",
+            ActualEndDate: "Jan 6",
+            ActualDuration: "6 Days",
+            TaskCreationDate: "err",
+            PrevTask: [],//[1, 2, 3],
+            LastPrevTask: []//[1, 2, 3]
+        }
+        ];
+    $scope.Canvas = new Gantt("#CanvasBox", $scope.Tasks);
 })
 .controller("PerkChartViewController", function ($scope, ProjectsGetterService)
 {

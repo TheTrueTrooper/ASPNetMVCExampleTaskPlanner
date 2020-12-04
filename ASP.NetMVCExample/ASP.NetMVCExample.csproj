@@ -218,35 +218,8 @@
     <Compile Include="Controllers\UtilitiesAPIController.cs" />
     <Compile Include="Controllers\VoiceRoomController.cs" />
     <Compile Include="Hubs\ProjectEditHub.cs" />
-    <Compile Include="Models\CompanyRoles.cs">
-      <DependentUpon>TaskMasterData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Companys.cs">
-      <DependentUpon>TaskMasterData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CompanysCompanyAddressBooks.cs">
-      <DependentUpon>TaskMasterData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CompanyWorkers.cs">
-      <DependentUpon>TaskMasterData.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\IdentityLogin.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Messages.cs">
-      <DependentUpon>TaskMasterData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Offices.cs">
-      <DependentUpon>TaskMasterData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ProjectFiles.cs">
-      <DependentUpon>TaskMasterData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Projects.cs">
-      <DependentUpon>TaskMasterData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ProjectTaskTypeManagers.cs">
-      <DependentUpon>TaskMasterData.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ProjectView\CreateProject.cs" />
     <Compile Include="Models\ProjectView\Project_IndexView_ViewOverViewAsSubView.cs" />
     <Compile Include="Models\ProjectView\Project_Tasks_And_Links.cs" />
@@ -260,6 +233,9 @@
       <DependentUpon>TaskMasterData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SelectLinkersByTask_Result.cs">
+      <DependentUpon>TaskMasterData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SelectLinker_Result.cs">
       <DependentUpon>TaskMasterData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SelectProjectByID_Light_Result.cs">
@@ -277,37 +253,10 @@
     <Compile Include="Models\SelectUserProjects_Result.cs">
       <DependentUpon>TaskMasterData.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Sessions.cs">
-      <DependentUpon>TaskMasterData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TaskLinkers.cs">
-      <DependentUpon>TaskMasterData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Tasks.cs">
-      <DependentUpon>TaskMasterData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TaskTypes.cs">
-      <DependentUpon>TaskMasterData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UserPasswordResset.cs">
-      <DependentUpon>TaskMasterData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Users.cs">
-      <DependentUpon>TaskMasterData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UsersCompanyAddressBooks.cs">
-      <DependentUpon>TaskMasterData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UsersUserAddressBooks.cs">
-      <DependentUpon>TaskMasterData.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\UsersView\UserPasswordReset.cs" />
     <Compile Include="Models\UsersView\UserChangePassword.cs" />
     <Compile Include="Models\UsersView\UserEditProfile.cs" />
     <Compile Include="Models\UsersView\UserProfile.cs" />
-    <Compile Include="Models\UserValidations.cs">
-      <DependentUpon>TaskMasterData.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ValidateWithProjectViewPriv_Result.cs">
       <DependentUpon>TaskMasterData.tt</DependentUpon>
     </Compile>
@@ -453,6 +402,7 @@
     <Content Include="Views\Project\_AJSV_Index_TaskCellView.cshtml" />
     <Content Include="Views\Project\_AJSV_Index_GanttChartView.cshtml" />
     <Content Include="Views\Project\_AJSV_Index_PerkChartView.cshtml" />
+    <Content Include="Views\Project\_AJSV_Index_FilesView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\TypeScriptOutput\Code\Testing\" />
@@ -472,12 +422,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\AngelASPExtentions\AngelASPExtentions\AngelASPExtentions.csproj">
-      <Project>{6d934664-f600-4b7d-8ff6-1ec49d290c04}</Project>
-      <Name>AngelASPExtentions</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -491,6 +435,12 @@
     <TypeScriptCompile Include="src\Code\TimeManagementContainers.ts" />
     <TypeScriptCompile Include="src\TypeDeffs\3Djs.d.ts" />
     <TypeScriptCompile Include="src\TypeDeffs\Moment.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\AngelASPMVCExtensions\AngelASPExtentions\AngelASPExtentions.csproj">
+      <Project>{6d934664-f600-4b7d-8ff6-1ec49d290c04}</Project>
+      <Name>AngelASPExtentions</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

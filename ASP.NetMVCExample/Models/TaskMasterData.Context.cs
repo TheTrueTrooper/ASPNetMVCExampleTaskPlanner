@@ -28,24 +28,6 @@ namespace ASP.NetMVCExample.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<CompanyRoles> CompanyRoles { get; set; }
-        public virtual DbSet<Companys> Companys { get; set; }
-        public virtual DbSet<CompanyWorkers> CompanyWorkers { get; set; }
-        public virtual DbSet<Messages> Messages { get; set; }
-        public virtual DbSet<Offices> Offices { get; set; }
-        public virtual DbSet<ProjectFiles> ProjectFiles { get; set; }
-        public virtual DbSet<Projects> Projects { get; set; }
-        public virtual DbSet<ProjectTaskTypeManagers> ProjectTaskTypeManagers { get; set; }
-        public virtual DbSet<Sessions> Sessions { get; set; }
-        public virtual DbSet<TaskTypes> TaskTypes { get; set; }
-        public virtual DbSet<UserPasswordResset> UserPasswordResset { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
-        public virtual DbSet<UserValidations> UserValidations { get; set; }
-        public virtual DbSet<TaskLinkers> TaskLinkers { get; set; }
-        public virtual DbSet<Tasks> Tasks { get; set; }
-        public virtual DbSet<CompanysCompanyAddressBooks> CompanysCompanyAddressBooks { get; set; }
-        public virtual DbSet<UsersCompanyAddressBooks> UsersCompanyAddressBooks { get; set; }
-        public virtual DbSet<UsersUserAddressBooks> UsersUserAddressBooks { get; set; }
     
         public virtual int CreateProject(string projectName, Nullable<int> companyID, Nullable<int> managerID, string address, string postalCode, string country, string province, string city, string description, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, ObjectParameter outID, ObjectParameter errorMessage)
         {
@@ -94,6 +76,44 @@ namespace ASP.NetMVCExample.Models
                 new ObjectParameter("EndDate", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CreateProject", projectNameParameter, companyIDParameter, managerIDParameter, addressParameter, postalCodeParameter, countryParameter, provinceParameter, cityParameter, descriptionParameter, startDateParameter, endDateParameter, outID, errorMessage);
+        }
+    
+        public virtual int CreateTask(Nullable<int> subContractorID, Nullable<int> taskTypeID, Nullable<int> projectID, string description, Nullable<long> durationTicks, ObjectParameter outID, ObjectParameter errorMessage)
+        {
+            var subContractorIDParameter = subContractorID.HasValue ?
+                new ObjectParameter("SubContractorID", subContractorID) :
+                new ObjectParameter("SubContractorID", typeof(int));
+    
+            var taskTypeIDParameter = taskTypeID.HasValue ?
+                new ObjectParameter("TaskTypeID", taskTypeID) :
+                new ObjectParameter("TaskTypeID", typeof(int));
+    
+            var projectIDParameter = projectID.HasValue ?
+                new ObjectParameter("ProjectID", projectID) :
+                new ObjectParameter("ProjectID", typeof(int));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("Description", description) :
+                new ObjectParameter("Description", typeof(string));
+    
+            var durationTicksParameter = durationTicks.HasValue ?
+                new ObjectParameter("DurationTicks", durationTicks) :
+                new ObjectParameter("DurationTicks", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CreateTask", subContractorIDParameter, taskTypeIDParameter, projectIDParameter, descriptionParameter, durationTicksParameter, outID, errorMessage);
+        }
+    
+        public virtual int CreateTaskLink(Nullable<int> taskID, Nullable<int> nextTaskID, ObjectParameter outID, ObjectParameter errorMessage)
+        {
+            var taskIDParameter = taskID.HasValue ?
+                new ObjectParameter("TaskID", taskID) :
+                new ObjectParameter("TaskID", typeof(int));
+    
+            var nextTaskIDParameter = nextTaskID.HasValue ?
+                new ObjectParameter("NextTaskID", nextTaskID) :
+                new ObjectParameter("NextTaskID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CreateTaskLink", taskIDParameter, nextTaskIDParameter, outID, errorMessage);
         }
     
         public virtual ObjectResult<Nullable<bool>> CreateThePasswordResset(string email, string code)
@@ -320,7 +340,7 @@ namespace ASP.NetMVCExample.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertNewRole", companyIDParameter, roleNameParameter, superRoleParameter, adminParameter, errorMessage);
         }
     
-        public virtual int InsertNewUser(string firstName, string middleInitial, string lastName, string email, string password, string salt, string homePhone, string cellPhone, string workPhone, ObjectParameter errorMessage)
+        public virtual int InsertNewUser(string firstName, string middleInitial, string lastName, string email, string password, string salt, string primaryPhoneNumber, ObjectParameter errorMessage)
         {
             var firstNameParameter = firstName != null ?
                 new ObjectParameter("FirstName", firstName) :
@@ -346,19 +366,11 @@ namespace ASP.NetMVCExample.Models
                 new ObjectParameter("Salt", salt) :
                 new ObjectParameter("Salt", typeof(string));
     
-            var homePhoneParameter = homePhone != null ?
-                new ObjectParameter("HomePhone", homePhone) :
-                new ObjectParameter("HomePhone", typeof(string));
+            var primaryPhoneNumberParameter = primaryPhoneNumber != null ?
+                new ObjectParameter("PrimaryPhoneNumber", primaryPhoneNumber) :
+                new ObjectParameter("PrimaryPhoneNumber", typeof(string));
     
-            var cellPhoneParameter = cellPhone != null ?
-                new ObjectParameter("CellPhone", cellPhone) :
-                new ObjectParameter("CellPhone", typeof(string));
-    
-            var workPhoneParameter = workPhone != null ?
-                new ObjectParameter("WorkPhone", workPhone) :
-                new ObjectParameter("WorkPhone", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertNewUser", firstNameParameter, middleInitialParameter, lastNameParameter, emailParameter, passwordParameter, saltParameter, homePhoneParameter, cellPhoneParameter, workPhoneParameter, errorMessage);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertNewUser", firstNameParameter, middleInitialParameter, lastNameParameter, emailParameter, passwordParameter, saltParameter, primaryPhoneNumberParameter, errorMessage);
         }
     
         public virtual ObjectResult<Nullable<bool>> IsEmailUsed(string email)
@@ -381,6 +393,69 @@ namespace ASP.NetMVCExample.Models
                 new ObjectParameter("Password", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PasswordCheck", emailParameter, passwordParameter, iDOut, checksOut);
+        }
+    
+        public virtual ObjectResult<SelectLinker_Result> SelectLinker(Nullable<int> linkerID)
+        {
+            var linkerIDParameter = linkerID.HasValue ?
+                new ObjectParameter("LinkerID", linkerID) :
+                new ObjectParameter("LinkerID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectLinker_Result>("SelectLinker", linkerIDParameter);
+        }
+    
+        public virtual ObjectResult<SelectLinkerByTaskID_Result> SelectLinkerByTaskID(Nullable<int> iD)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectLinkerByTaskID_Result>("SelectLinkerByTaskID", iDParameter);
+        }
+    
+        public virtual ObjectResult<SelectLinkersByNextTask_Result> SelectLinkersByNextTask(Nullable<int> taskID)
+        {
+            var taskIDParameter = taskID.HasValue ?
+                new ObjectParameter("TaskID", taskID) :
+                new ObjectParameter("TaskID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectLinkersByNextTask_Result>("SelectLinkersByNextTask", taskIDParameter);
+        }
+    
+        public virtual ObjectResult<SelectLinkersByTask_Result> SelectLinkersByTask(Nullable<int> taskID)
+        {
+            var taskIDParameter = taskID.HasValue ?
+                new ObjectParameter("TaskID", taskID) :
+                new ObjectParameter("TaskID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectLinkersByTask_Result>("SelectLinkersByTask", taskIDParameter);
+        }
+    
+        public virtual ObjectResult<SelectProjectByID_Result> SelectProjectByID(Nullable<int> iD)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectProjectByID_Result>("SelectProjectByID", iDParameter);
+        }
+    
+        public virtual ObjectResult<SelectProjectByID_Light_Result> SelectProjectByID_Light(Nullable<int> iD)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectProjectByID_Light_Result>("SelectProjectByID_Light", iDParameter);
+        }
+    
+        public virtual ObjectResult<SelectTasksByProjectID_Result> SelectTasksByProjectID(Nullable<int> iD)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectTasksByProjectID_Result>("SelectTasksByProjectID", iDParameter);
         }
     
         public virtual ObjectResult<SelectTheUser_Result> SelectTheUser(Nullable<int> iD, ObjectParameter errorMessage)
@@ -460,7 +535,7 @@ namespace ASP.NetMVCExample.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateTheUserChangePassword", userIDParameter, passwordParameter, newPasswordParameter, errorMessage);
         }
     
-        public virtual int UpdateTheUserInfo(Nullable<int> userID, string firstName, string middleInitial, string lastName, string homePhone, string cellPhone, string workPhone, ObjectParameter errorMessage)
+        public virtual int UpdateTheUserInfo(Nullable<int> userID, string firstName, string middleInitial, string lastName, ObjectParameter errorMessage)
         {
             var userIDParameter = userID.HasValue ?
                 new ObjectParameter("UserID", userID) :
@@ -478,19 +553,7 @@ namespace ASP.NetMVCExample.Models
                 new ObjectParameter("LastName", lastName) :
                 new ObjectParameter("LastName", typeof(string));
     
-            var homePhoneParameter = homePhone != null ?
-                new ObjectParameter("HomePhone", homePhone) :
-                new ObjectParameter("HomePhone", typeof(string));
-    
-            var cellPhoneParameter = cellPhone != null ?
-                new ObjectParameter("CellPhone", cellPhone) :
-                new ObjectParameter("CellPhone", typeof(string));
-    
-            var workPhoneParameter = workPhone != null ?
-                new ObjectParameter("WorkPhone", workPhone) :
-                new ObjectParameter("WorkPhone", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateTheUserInfo", userIDParameter, firstNameParameter, middleInitialParameter, lastNameParameter, homePhoneParameter, cellPhoneParameter, workPhoneParameter, errorMessage);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateTheUserInfo", userIDParameter, firstNameParameter, middleInitialParameter, lastNameParameter, errorMessage);
         }
     
         public virtual ObjectResult<Nullable<bool>> ValidateSession(Nullable<int> userID, string code)
@@ -504,24 +567,6 @@ namespace ASP.NetMVCExample.Models
                 new ObjectParameter("Code", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<bool>>("ValidateSession", userIDParameter, codeParameter);
-        }
-    
-        public virtual ObjectResult<SelectProjectByID_Result> SelectProjectByID(Nullable<int> iD)
-        {
-            var iDParameter = iD.HasValue ?
-                new ObjectParameter("ID", iD) :
-                new ObjectParameter("ID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectProjectByID_Result>("SelectProjectByID", iDParameter);
-        }
-    
-        public virtual ObjectResult<SelectProjectByID_Light_Result> SelectProjectByID_Light(Nullable<int> iD)
-        {
-            var iDParameter = iD.HasValue ?
-                new ObjectParameter("ID", iD) :
-                new ObjectParameter("ID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectProjectByID_Light_Result>("SelectProjectByID_Light", iDParameter);
         }
     
         public virtual ObjectResult<ValidateWithProjectViewPriv_Result> ValidateWithProjectViewPriv(Nullable<int> userID, string code, Nullable<int> projectID)
@@ -539,80 +584,6 @@ namespace ASP.NetMVCExample.Models
                 new ObjectParameter("ProjectID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidateWithProjectViewPriv_Result>("ValidateWithProjectViewPriv", userIDParameter, codeParameter, projectIDParameter);
-        }
-    
-        public virtual ObjectResult<SelectLinkerByTaskID_Result> SelectLinkerByTaskID(Nullable<int> iD)
-        {
-            var iDParameter = iD.HasValue ?
-                new ObjectParameter("ID", iD) :
-                new ObjectParameter("ID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectLinkerByTaskID_Result>("SelectLinkerByTaskID", iDParameter);
-        }
-    
-        public virtual ObjectResult<SelectTasksByProjectID_Result> SelectTasksByProjectID(Nullable<int> iD)
-        {
-            var iDParameter = iD.HasValue ?
-                new ObjectParameter("ID", iD) :
-                new ObjectParameter("ID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectTasksByProjectID_Result>("SelectTasksByProjectID", iDParameter);
-        }
-    
-        public virtual int CreateTask(Nullable<int> subContractorID, Nullable<int> taskTypeID, Nullable<int> projectID, string description, Nullable<long> durationTicks, ObjectParameter outID, ObjectParameter errorMessage)
-        {
-            var subContractorIDParameter = subContractorID.HasValue ?
-                new ObjectParameter("SubContractorID", subContractorID) :
-                new ObjectParameter("SubContractorID", typeof(int));
-    
-            var taskTypeIDParameter = taskTypeID.HasValue ?
-                new ObjectParameter("TaskTypeID", taskTypeID) :
-                new ObjectParameter("TaskTypeID", typeof(int));
-    
-            var projectIDParameter = projectID.HasValue ?
-                new ObjectParameter("ProjectID", projectID) :
-                new ObjectParameter("ProjectID", typeof(int));
-    
-            var descriptionParameter = description != null ?
-                new ObjectParameter("Description", description) :
-                new ObjectParameter("Description", typeof(string));
-    
-            var durationTicksParameter = durationTicks.HasValue ?
-                new ObjectParameter("DurationTicks", durationTicks) :
-                new ObjectParameter("DurationTicks", typeof(long));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CreateTask", subContractorIDParameter, taskTypeIDParameter, projectIDParameter, descriptionParameter, durationTicksParameter, outID, errorMessage);
-        }
-    
-        public virtual int CreateTaskLink(Nullable<int> taskID, Nullable<int> nextTaskID, ObjectParameter outID, ObjectParameter errorMessage)
-        {
-            var taskIDParameter = taskID.HasValue ?
-                new ObjectParameter("TaskID", taskID) :
-                new ObjectParameter("TaskID", typeof(int));
-    
-            var nextTaskIDParameter = nextTaskID.HasValue ?
-                new ObjectParameter("NextTaskID", nextTaskID) :
-                new ObjectParameter("NextTaskID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CreateTaskLink", taskIDParameter, nextTaskIDParameter, outID, errorMessage);
-        }
-    
-        public virtual ObjectResult<SelectLinkersByNextTask_Result> SelectLinkersByNextTask(Nullable<int> taskID)
-        {
-            var taskIDParameter = taskID.HasValue ?
-                new ObjectParameter("TaskID", taskID) :
-                new ObjectParameter("TaskID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectLinkersByNextTask_Result>("SelectLinkersByNextTask", taskIDParameter);
-        }
-    
-        public virtual ObjectResult<SelectLinkersByTask_Result> SelectLinkersByTask(Nullable<int> taskID)
-        {
-            var taskIDParameter = taskID.HasValue ?
-                new ObjectParameter("TaskID", taskID) :
-                new ObjectParameter("TaskID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectLinkersByTask_Result>("SelectLinkersByTask", taskIDParameter);
         }
     }
 }

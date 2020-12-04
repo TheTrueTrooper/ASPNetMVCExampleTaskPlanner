@@ -16,13 +16,13 @@ AS
 	declare @UserID int = null,
 	@Exists bit = 0
 
-	if not exists(select UserID from Users where Email = @Email)
+	if not exists(select E.EmailID from Users as U join UserEmails as E on U.[PrimaryPersonalEmailID] = E.EmailID and U.UserID = E.UserID where [Email] = @Email)
 	begin 
 		select @Exists
 		return -1;
 	end
 
-	set @UserID = (select top 1 UserID from Users where Email = @Email)
+	set @UserID = (select top 1 U.UserID from Users as U join UserEmails as E on U.[PrimaryPersonalEmailID] = E.EmailID and U.UserID = E.UserID where [Email] = @Email)
 	set @Exists = 1
 
 	if exists(select UserID from [UserPasswordResset] where UserID = UserID)

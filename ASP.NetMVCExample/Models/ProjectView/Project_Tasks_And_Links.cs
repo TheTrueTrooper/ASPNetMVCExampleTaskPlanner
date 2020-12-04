@@ -78,7 +78,7 @@ namespace ASP.NetMVCExample.Models.ProjectView
             TaskID = Result.TaskID;
             SubContractorID = Result.SubContractorID;
             Description = Result.Description;
-            TaskTypeID = Result.TaskTypeID;
+            TaskTypeID = Result.TaskTypeID.Value;
             ExpectedDuration = new System.TimeSpan(Result.DurationTicks);
             CreationDate = Result.CreationDate;
             NextTask = new List<int>();

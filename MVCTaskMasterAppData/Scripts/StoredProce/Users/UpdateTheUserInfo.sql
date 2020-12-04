@@ -19,10 +19,7 @@ CREATE PROCEDURE [dbo].[UpdateTheUserInfo]
 	@UserID int,
 	@FirstName NVARCHAR(20), 
     @MiddleInitial NCHAR(1), 
-    @LastName NVARCHAR(20), 
-    @HomePhone CHAR(14), 
-    @CellPhone CHAR(14), 
-    @WorkPhone CHAR(14),
+    @LastName NVARCHAR(20),
 	@ErrorMessage char(100) output
 AS
 	Declare @TempError int = 0,
@@ -40,46 +37,12 @@ AS
 			return @MyTempError
 		end
 
-
--- check if the phone is formated
-	if @WorkPhone is not null and @HomePhone not like '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'
-		begin
-			set @TempError = @@ERROR
-			set @ErrorMessage = 'Home Phone not correctly Formated' 
-			set @MyTempError = -2
-			execute InsertErrorInfo  @ErrorMessage, @ErrorOperation, @ErrorTable, @TempError, @MyTempError
-			return @MyTempError
-		end
-
--- check if the phone is formated
-	if @WorkPhone is not null and @CellPhone not like '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'
-		begin
-			set @TempError = @@ERROR
-			set @ErrorMessage = 'Cell Phone not correctly Formated' 
-			set @MyTempError = -3
-			execute InsertErrorInfo  @ErrorMessage, @ErrorOperation, @ErrorTable, @TempError, @MyTempError
-			return @MyTempError
-		end
-
--- check if the phone is formated
-	if @WorkPhone is not null and @WorkPhone not like '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'
-		begin
-			set @TempError = @@ERROR
-			set @ErrorMessage = 'Work Phone not correctly Formated' 
-			set @MyTempError = -4
-			execute InsertErrorInfo  @ErrorMessage, @ErrorOperation, @ErrorTable, @TempError, @MyTempError
-			return @MyTempError
-		end
-
 -- check if the email exists
 	update Users 
 	set 
 	FirstName = @FirstName,
     MiddleInitial = @MiddleInitial, 
-    LastName = @LastName, 
-    HomePhone = @HomePhone,
-    CellPhone = @CellPhone,
-    WorkPhone = @WorkPhone
+    LastName = @LastName
 	where UserID = @UserID
 	set @TempError = @@ERROR
 	if @TempError = 0

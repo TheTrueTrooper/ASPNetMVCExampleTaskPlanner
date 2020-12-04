@@ -35,14 +35,14 @@
             <tr ng-repeat="Task in Tasks">
                 <td>
                     <a class="ToolWidget">
-                        <div>
+                        <div style="width:100%; min-height:1em;">
                             <span ng-bind="PrintList(Task.PrevTask)"></span>
                             <div class="input-group">
                                 <span class="input-group-addon">
                                     <i class="glyphicon glyphicon-chevron-left"></i>
                                 </span>
                                 <span class="input-group-addon">
-                                    <select multiple ng-change="ChangePrevTasks(Task)" ng-model="Task.PrevTask" ng-bind-html="PrintListAsOptions(Tasks, Task.PrevTask)"></select>
+                                    <select multiple ng-change="ChangePrevTasks(Task)" ng-model="Task.PrevTask" ng-bind-html="PrintListAsOptions(Tasks, Task)"></select>
                                 </span>
                             </div>
                         </div>
@@ -77,7 +77,7 @@
         </table>
     </div>
     <hr />
-    <form action="">
+    <form id="CreateTaskForm" name="CreateTaskForm">
         <div class="row" style="width:100%">
             <div class="col-sm-4">
                 <h5>Optional TaskTypeID</h5>
@@ -91,22 +91,22 @@
         </div>
         <div class="row" style="width:100%">
             <div class="col-sm-4">
-                <input type="text" class="form-control" placeholder="Optional TaskType ID" style="width:100%">
+                <input ng-model="NewTask.TaskTypeID" ng-pattern="d+$;"  type="number" class="form-control" placeholder="Optional TaskType ID" style="width:100%">
             </div>
             <div class="col-sm-4">
-                <input type="text" class="form-control" placeholder="Optional Subcontractor" style="width:100%">
+                <input ng-model="NewTask.SubContractorID" ng-pattern="d+$;"  type="number" class="form-control" placeholder="Optional Subcontractor" style="width:100%">
             </div>
             <div class="col-sm-4">
-                <input type="text" class="form-control" placeholder="Expected Duration in Days" style="width:100%">
+                <input ng-required="true" ng-model="NewTask.ExpectedDuration" ng-pattern="d+$;" type="number" class="form-control" placeholder="Expected Duration in Days" style="width:100%">
             </div>
         </div>
         <div>
             <div style="width:100%">
                 <h5>Description</h5>
-                @Html.TextAreaFor(m => m.Description, new { @class = "form-control", style = "width:100%; min-width:100%" })
+                @Html.TextAreaFor(m => m.Description, new { ng_required="true", ng_model = "NewTask.Description", @class = "form-control", style = "width:100%; min-width:100%" })
             </div>
             <br />
-            <button type="submit" class="btn btn-default" style="width:100%">Create New Task</button>
+            <button type="button" ng-click="SubmitData()" class="btn btn-default" style="width:100%">Create New Task</button>
         </div>
     </form>
 </div>

@@ -40,266 +40,134 @@ USE [$(DatabaseName)];
 
 
 GO
-PRINT N'Creating [dbo].[CompanysCompanyAddressBooks]...';
+PRINT N'Altering [dbo].[UsersUpdateAntiNull]...';
 
 
 GO
-CREATE TABLE [dbo].[CompanysCompanyAddressBooks] (
-    [OwersID]    INT NOT NULL,
-    [UsersID]    INT NOT NULL,
-    [Affiliated] BIT NOT NULL,
-    [Verified]   BIT NOT NULL,
-    PRIMARY KEY CLUSTERED ([OwersID] ASC, [UsersID] ASC)
-);
-
-
-GO
-PRINT N'Creating [dbo].[UsersCompanyAddressBooks]...';
-
-
-GO
-CREATE TABLE [dbo].[UsersCompanyAddressBooks] (
-    [OwersID]    INT NOT NULL,
-    [CompanyID]  INT NOT NULL,
-    [Affiliated] BIT NOT NULL,
-    [Verified]   BIT NOT NULL,
-    PRIMARY KEY CLUSTERED ([OwersID] ASC, [CompanyID] ASC)
-);
-
-
-GO
-PRINT N'Creating [dbo].[UsersUserAddressBooks]...';
-
-
-GO
-CREATE TABLE [dbo].[UsersUserAddressBooks] (
-    [OwersID]  INT NOT NULL,
-    [OthersID] INT NOT NULL,
-    [Friend]   BIT NOT NULL,
-    [Verified] BIT NOT NULL,
-    PRIMARY KEY CLUSTERED ([OwersID] ASC, [OthersID] ASC)
-);
-
-
-GO
-PRINT N'Creating unnamed constraint on [dbo].[CompanysCompanyAddressBooks]...';
-
-
-GO
-ALTER TABLE [dbo].[CompanysCompanyAddressBooks]
-    ADD DEFAULT 0 FOR [Affiliated];
-
-
-GO
-PRINT N'Creating unnamed constraint on [dbo].[CompanysCompanyAddressBooks]...';
-
-
-GO
-ALTER TABLE [dbo].[CompanysCompanyAddressBooks]
-    ADD DEFAULT 0 FOR [Verified];
-
-
-GO
-PRINT N'Creating unnamed constraint on [dbo].[UsersCompanyAddressBooks]...';
-
-
-GO
-ALTER TABLE [dbo].[UsersCompanyAddressBooks]
-    ADD DEFAULT 0 FOR [Affiliated];
-
-
-GO
-PRINT N'Creating unnamed constraint on [dbo].[UsersCompanyAddressBooks]...';
-
-
-GO
-ALTER TABLE [dbo].[UsersCompanyAddressBooks]
-    ADD DEFAULT 0 FOR [Verified];
-
-
-GO
-PRINT N'Creating unnamed constraint on [dbo].[UsersUserAddressBooks]...';
-
-
-GO
-ALTER TABLE [dbo].[UsersUserAddressBooks]
-    ADD DEFAULT 0 FOR [Friend];
-
-
-GO
-PRINT N'Creating unnamed constraint on [dbo].[UsersUserAddressBooks]...';
-
-
-GO
-ALTER TABLE [dbo].[UsersUserAddressBooks]
-    ADD DEFAULT 0 FOR [Verified];
-
-
-GO
-PRINT N'Creating [dbo].[FK_CompanysCompanyAddressBooks_Companys]...';
-
-
-GO
-ALTER TABLE [dbo].[CompanysCompanyAddressBooks] WITH NOCHECK
-    ADD CONSTRAINT [FK_CompanysCompanyAddressBooks_Companys] FOREIGN KEY ([OwersID]) REFERENCES [dbo].[Companys] ([CompanyID]);
-
-
-GO
-PRINT N'Creating [dbo].[FK_CompanysCompanyAddressBooks_Users]...';
-
-
-GO
-ALTER TABLE [dbo].[CompanysCompanyAddressBooks] WITH NOCHECK
-    ADD CONSTRAINT [FK_CompanysCompanyAddressBooks_Users] FOREIGN KEY ([UsersID]) REFERENCES [dbo].[Users] ([UserID]);
-
-
-GO
-PRINT N'Creating [dbo].[FK_UsersCompanyAddressBooks_Companys]...';
-
-
-GO
-ALTER TABLE [dbo].[UsersCompanyAddressBooks] WITH NOCHECK
-    ADD CONSTRAINT [FK_UsersCompanyAddressBooks_Companys] FOREIGN KEY ([CompanyID]) REFERENCES [dbo].[Companys] ([CompanyID]);
-
-
-GO
-PRINT N'Creating [dbo].[FK_UsersCompanyAddressBooks_Users]...';
-
-
-GO
-ALTER TABLE [dbo].[UsersCompanyAddressBooks] WITH NOCHECK
-    ADD CONSTRAINT [FK_UsersCompanyAddressBooks_Users] FOREIGN KEY ([OwersID]) REFERENCES [dbo].[Users] ([UserID]);
-
-
-GO
-PRINT N'Creating [dbo].[FK_UsersUserAddressBooks_Users_Others]...';
-
-
-GO
-ALTER TABLE [dbo].[UsersUserAddressBooks] WITH NOCHECK
-    ADD CONSTRAINT [FK_UsersUserAddressBooks_Users_Others] FOREIGN KEY ([OthersID]) REFERENCES [dbo].[Users] ([UserID]);
-
-
-GO
-PRINT N'Creating [dbo].[FK_UsersUserAddressBooks_Users_Owners]...';
-
-
-GO
-ALTER TABLE [dbo].[UsersUserAddressBooks] WITH NOCHECK
-    ADD CONSTRAINT [FK_UsersUserAddressBooks_Users_Owners] FOREIGN KEY ([OwersID]) REFERENCES [dbo].[Users] ([UserID]);
-
-
-GO
-PRINT N'Creating [dbo].[UsersUserAddressBooks_TriggerCheck_OwersID_Not_OthersID]...';
-
-
-GO
-CREATE TRIGGER [UsersUserAddressBooks_TriggerCheck_OwersID_Not_OthersID]
-	ON [dbo].[UsersUserAddressBooks]
-	FOR INSERT, UPDATE
+--	  Writer: Angelo Sanches (BitSan)(Git:TheTrueTrooper)
+--    Date Writen: Sep 14, 2017
+--    Project Goal: Make a cloud based app to aid in project management
+--    File Goal: To Create a table to aid in the verif of accounts that is a normalized drop away 
+--    Link: https://github.com/TheTrueTrooper/AngelASPExtentions
+--    Sources/References:
+--      {
+--      Name: NA
+--      Writer/Publisher: NA
+--      Link: NA
+--      }
+ALTER TRIGGER [UsersUpdateAntiNull]
+	ON [dbo].[Users]
+	for Update
 	AS
 	BEGIN
-		declare @OwnerID int, @OthersID int
-		select @OthersID = OthersID, @OwnerID = OwersID from inserted
-
-		if(@OwnerID = @OthersID)
+		if exists(select UserID from inserted where [PrimaryPersonalEmailID] = null or [PrimaryPhoneID] = null)
 		begin
-			raiserror('OwnerID cannot be equal to OthersID', 547, 0)
-			rollback --do the transact roll back of tranact sql
+			raiserror('Update has faild due to Trigger Constraint Violation at UsersUpdateAntiNull due to setting either [PrimaryPersonalEmailID] or [PrimaryPhoneID] null Rolling back now', 15, 0)
+			rollback
 		end
 	END
 GO
-PRINT N'Altering [dbo].[SelectLinkerByTaskID]...';
 
-
+-- drop all errors at first to allow for drops--------------------
+delete from ErrorTable
+where 1=1 
 GO
-ALTER PROCEDURE [dbo].[SelectLinkerByTaskID]
-	@ID int = 0
-AS
-	SELECT LinkerID, TaskID, NextTaskID from TaskLinkers 
-	where TaskID = @ID
-RETURN 0
+
+--------------------------------------------------------<Table Table work begins
+--create a Pseudo Enum to use afte droping the poten of it
+--if exists(select 	[name] from sysobjects where [name] = 'PseudoConstants_ErrorTables')
+--	drop view [dbo].[PseudoConstants_ErrorTables]
+--go
+--CREATE VIEW [dbo].[PseudoConstants_ErrorTables]
+--as
+--SELECT
+--	CAST(0 AS tinyint) AS [Uknown],
+--	CAST(1 AS tinyint) AS [Users],
+--	CAST(2 AS tinyint) AS [Companys],
+--	CAST(3 AS tinyint) AS [Roles]
+--go
+
+
+Declare @Table nvarchar(20)
+
+delete from MYTableList
+where 1=1 
+
+set IDENTITY_INSERT MYTableList on
+set @Table = 'Unknown'
+if not exists(select TableName from MYTableList where @Table = TableName) 
+insert into MYTableList (TableID, TableName) values (0, @Table) 
+set IDENTITY_INSERT MYTableList off
+
+set @Table = 'Users'
+if not exists(select TableName from MYTableList where @Table = TableName) 
+insert into MYTableList (TableName) values (@Table) 
+
+set @Table = 'Companys'
+if not exists(select TableName from MYTableList where @Table = TableName) 
+insert into MYTableList (TableName) values (@Table) 
+
+set @Table = 'Roles'
+if not exists(select TableName from MYTableList where @Table = TableName) 
+insert into MYTableList (TableName) values (@Table) 
+
+select * from MYTableList order by TableID
 GO
-PRINT N'Creating [dbo].[CreateTaskLink]...';
+
+--------------------------------------------------------<Operation Table work begins
+--create a Pseudo Enum to use afte droping the poten of it
+--if exists(select 	[name] from sysobjects where [name] = 'PseudoConstants_OperationTypes')
+--	drop view [dbo].[PseudoConstants_OperationTypes]
+--go
+--CREATE VIEW [dbo].[PseudoConstants_OperationTypes]
+--as
+--SELECT
+--	CAST(0 AS tinyint) AS [Uknown],
+--	CAST(1 AS tinyint) AS [Insert],
+--	CAST(2 AS tinyint) AS [Delete],
+--	CAST(3 AS tinyint) AS [Update],
+--	CAST(4 AS tinyint) AS [Select],
+--	CAST(5 AS tinyint) AS [Other]
+--go
 
 
+Declare @Type char(6)
+
+delete from OperationTypes
+where 1=1 
+
+set IDENTITY_INSERT OperationTypes on
+set @Type = 'Unknown'
+if not exists(select [OperationType] from OperationTypes where @Type = [OperationType]) 
+insert into OperationTypes (OperationTypeID, [OperationType]) values (0, @Type) 
+set IDENTITY_INSERT OperationTypes off
+
+set @Type = 'Insert'
+if not exists(select [OperationType] from OperationTypes where @Type = [OperationType]) 
+insert into OperationTypes ([OperationType]) values (@Type) 
+
+set @Type = 'Delete'
+if not exists(select [OperationType] from OperationTypes where @Type = [OperationType]) 
+insert into OperationTypes ([OperationType]) values (@Type) 
+
+set @Type = 'Update'
+if not exists(select [OperationType] from OperationTypes where @Type = [OperationType]) 
+insert into OperationTypes ([OperationType]) values (@Type) 
+
+set @Type = 'Select'
+if not exists(select [OperationType] from OperationTypes where @Type = [OperationType]) 
+insert into OperationTypes ([OperationType]) values (@Type) 
+
+
+select * from OperationTypes order by OperationTypeID
 GO
-CREATE PROCEDURE [dbo].[CreateTaskLink]
-	@TaskID int,
-	@NextTaskID int,
-	@OutID int output,
-	@ErrorMessage char(100) output 
-AS
-	Declare @TempError int = 0,
-			@MyTempError int = 0,
-			@ErrorTable tinyint = 1,
-			@ErrorOperation tinyint = 2
 
-	if not exists(select TaskID from Tasks where TaskID = @TaskID)
-		begin
-			set @TempError = @@ERROR
-			set @ErrorMessage = 'Error Task does not exist'
-			set @MyTempError = -1
-			execute InsertErrorInfo  @ErrorMessage, @ErrorOperation, @ErrorTable, @TempError, @MyTempError
-			return @MyTempError
-		end
 
-	if not exists(select TaskID from Tasks where TaskID = @NextTaskID)
-		begin
-			set @TempError = @@ERROR
-			set @ErrorMessage = 'Error Next Task does not exist'
-			set @MyTempError = -2
-			execute InsertErrorInfo  @ErrorMessage, @ErrorOperation, @ErrorTable, @TempError, @MyTempError
-			return @MyTempError
-		end
 
-	insert into TaskLinkers
-		(TaskID, NextTaskID)
-	Values
-		(@TaskID, @NextTaskID)
-
-RETURN 0
+--some tools if you mess up the table
+--DBCC CHECKIDENT('MYTableList', RESEED, 2) -- resets the ID counter to the number note: adds before setting it
+--delete from MYTableList where TableID > 2
 GO
-PRINT N'Creating [dbo].[SelectLinkersByNextTask]...';
-
-
-GO
-CREATE PROCEDURE [dbo].[SelectLinkersByNextTask]
-	@TaskID int
-AS
-	SELECT LinkerID, TaskID, NextTaskID from TaskLinkers where TaskID = @TaskID
-RETURN 0
-GO
-PRINT N'Creating [dbo].[SelectLinkersByTask]...';
-
-
-GO
-CREATE PROCEDURE [dbo].[SelectLinkersByTask]
-	@TaskID int
-AS
-	SELECT LinkerID, TaskID, NextTaskID from TaskLinkers where NextTaskID = @TaskID
-RETURN 0
-GO
-PRINT N'Checking existing data against newly created constraints';
-
-
-GO
-USE [$(DatabaseName)];
-
-
-GO
-ALTER TABLE [dbo].[CompanysCompanyAddressBooks] WITH CHECK CHECK CONSTRAINT [FK_CompanysCompanyAddressBooks_Companys];
-
-ALTER TABLE [dbo].[CompanysCompanyAddressBooks] WITH CHECK CHECK CONSTRAINT [FK_CompanysCompanyAddressBooks_Users];
-
-ALTER TABLE [dbo].[UsersCompanyAddressBooks] WITH CHECK CHECK CONSTRAINT [FK_UsersCompanyAddressBooks_Companys];
-
-ALTER TABLE [dbo].[UsersCompanyAddressBooks] WITH CHECK CHECK CONSTRAINT [FK_UsersCompanyAddressBooks_Users];
-
-ALTER TABLE [dbo].[UsersUserAddressBooks] WITH CHECK CHECK CONSTRAINT [FK_UsersUserAddressBooks_Users_Others];
-
-ALTER TABLE [dbo].[UsersUserAddressBooks] WITH CHECK CHECK CONSTRAINT [FK_UsersUserAddressBooks_Users_Owners];
-
 
 GO
 PRINT N'Update complete.';

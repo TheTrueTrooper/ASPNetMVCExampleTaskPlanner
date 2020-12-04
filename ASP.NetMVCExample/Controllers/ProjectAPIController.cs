@@ -1,4 +1,5 @@
-﻿using ASP.NetMVCExample.Models;
+﻿using AngelASPExtentions.ExtraExtentions.ImageExtentions;
+using ASP.NetMVCExample.Models;
 using ASP.NetMVCExample.Models.ProjectView;
 using System;
 using System.Collections.Generic;
@@ -20,26 +21,26 @@ namespace ASP.NetMVCExample.Controllers
         ///// </summary>
         ///// <param name="email"></param>
         ///// <returns></returns>
-        //[AcceptVerbs("Get", "Post")]
-        //public JsonResult ProjectData(int ID)
-        //{
-        //    if (Session["SessionUserID"] == null)
-        //        return Json(@"Access Denied", JsonRequestBehavior.AllowGet);
+        [AcceptVerbs("Get", "Post")]
+        public JsonResult ProjectData(int ID)
+        {
+            if (Session["SessionUserID"] == null)
+                return Json(@"Access Denied", JsonRequestBehavior.AllowGet);
 
-        //    string ErrorMessage = "";
-        //    ObjectParameter ErrorMessageParameter = new ObjectParameter("ErrorMessage", ErrorMessage);
+            string ErrorMessage = "";
+            ObjectParameter ErrorMessageParameter = new ObjectParameter("ErrorMessage", ErrorMessage);
 
-        //    SelectProjectByID_Result ProjectData;
-        //    using (ObjectResult<SelectProjectByID_Result> TempResults = DB.SelectProjectByID(ID))
-        //        ProjectData = TempResults.First();
+            SelectProjectByID_Result ProjectData;
+            using (ObjectResult<SelectProjectByID_Result> TempResults = DB.SelectProjectByID(ID))
+                ProjectData = TempResults.First();
 
-        //    if (ProjectData.ManagerPicture == null)
-        //        ProjectData.ManagerPicture = new Bitmap(HostingEnvironment.MapPath("~/Images/NoProfilePicPic.jpg")).ToByteArray();
+            if (ProjectData.ManagerPicture == null)
+                ProjectData.ManagerPicture = new Bitmap(HostingEnvironment.MapPath("~/Images/NoProfilePicPic.jpg")).ToByteArray();
 
-        //    Project_IndexView_ViewOverViewAsSubView Return = new Project_IndexView_ViewOverViewAsSubView(ProjectData);
+            //Project_IndexView_ViewOverViewAsSubView Return = new Project_IndexView_ViewOverViewAsSubView(ProjectData);
 
-        //    return Json(Return, JsonRequestBehavior.AllowGet);
-        //}
+            return Json(ProjectData, JsonRequestBehavior.AllowGet);
+        }
 
         /// <summary>
         /// A severside Getter for a Project's tasks

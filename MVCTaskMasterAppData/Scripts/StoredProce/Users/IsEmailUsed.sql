@@ -13,7 +13,7 @@ CREATE PROCEDURE [dbo].[IsEmailUsed]
 	@Email NVARCHAR(320)
 AS
 	declare @IsUsed bit = 0
-	if exists(select UserID from Users where Email = @Email)
+	if exists(select EmailID from UserEmails where [Email] = @Email and [Validated] = 1 )
 		set @IsUsed = 1
 	SELECT @IsUsed
 RETURN 0

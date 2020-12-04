@@ -24,11 +24,7 @@ namespace ASP.NetMVCExample.Models.UsersView
         public string ConfirmPassword { get; set; }
         [StringLength(50)]
         public string Salt { get; set; }
-        [DisplayName("Home Phone"), StringLength(14), Phone(ErrorMessage = "Enter phone number value is not a valid phone number."), Required(ErrorMessage = "Home phone field is required")]
-        public string HomePhone { get; set; }
-        [DisplayName("Cell Phone"), StringLength(14), Phone]
-        public string CellPhone { get; set; }
-        [DisplayName("Work Phone"), StringLength(14), Phone]
-        public string WorkPhone { get; set; }
+        [DisplayName("Primary Phone Number"), StringLength(14), Phone(ErrorMessage = "Enter phone number value is not a valid phone number."), Required(ErrorMessage = "Home phone field is required")]
+        public string PrimaryPhoneNumber { get; set; }
     }
 }

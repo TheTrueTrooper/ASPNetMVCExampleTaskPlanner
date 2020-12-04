@@ -32,9 +32,6 @@
                 <br />First Name: @Model.FirstName,
                 @Html.Raw("<br />Middle Name: " + @Model.MiddleInitial + ",")
                 <br />Last Name: @Model.LastName
-                @Html.Raw(Model.WorkPhone != null ? ",<br />Work Phone: " + Model.WorkPhone.Insert(3, "-").Insert(7, "-") : "")
-                @Html.Raw(Model.CellPhone != null ? ",<br />Cell Phone: " + Model.CellPhone.Insert(3, "-").Insert(7, "-") : "")
-                @Html.Raw(Model.HomePhone != null ? ",<br />Home Phone: " + Model.HomePhone.Insert(3, "-").Insert(7, "-") : "")
             </p>
             <hr4>Bio</hr4>
             <p class="text-info " style="word-wrap:break-word;">

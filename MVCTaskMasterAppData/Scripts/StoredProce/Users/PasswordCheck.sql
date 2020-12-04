@@ -16,9 +16,10 @@ CREATE PROCEDURE [dbo].[PasswordCheck]
 	@ChecksOut bit output
 AS
 	set @ChecksOut = 0
-	if exists(select UserID from Users where Email = @Email and [Password] = @Password)
+
+	if exists(select U.UserID from Users as U join UserEmails as E on U.[PrimaryPersonalEmailID] = E.EmailID and U.UserID = E.UserID where [Email] = @Email and [Password] = @Password)
 	begin
 		set @ChecksOut = 1
-		set @IDOut = (select UserID from Users where Email = @Email and [Password] = @Password)
+		set @IDOut = (select top 1 U.UserID from Users as U join UserEmails as E on U.[PrimaryPersonalEmailID] = E.EmailID and U.UserID = E.UserID where [Email] = @Email and [Password] = @Password)
 	end
 RETURN 0

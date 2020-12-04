@@ -15,32 +15,44 @@
     Layout = null;
 }
 <div id="OverViewBody">
-    <hr2>Over View</hr2>
-    <div class="row">
+    <div class="MyBoxRow row">
         <div class="col-lg-4" style="word-wrap:break-word; overflow:hidden;">
             <h3>Project Manager</h3>
-            <div class="MyBox">
+            <div class="MyBox" style="height:330px;">
                 <p class="text-info" style="word-wrap:break-word; overflow:hidden;">
                     <img id="ManagerPicture" src="" class="img-thumbnail" width="140" height="140" />
                     <br /> User ID #: {{project.ManagerID}}
                     <br />First Name: {{project.ManagerFirstName}},
                     <br ng-if="project.ManagerMiddleInitialIsNull"/>{{project.ManagerMiddleInitial}}
                     <br />Last Name: {{project.ManagerLastName}}
-                    <br ng-if="project.ManagerWorkPhoneIsNull"/>{{project.ManagerWorkPhone}}
+                    @*<br ng-if="project.ManagerWorkPhoneIsNull"/>{{project.ManagerWorkPhone}}
                     <br ng-if="project.ManagerCellPhoneIsNull"/>{{project.ManagerCellPhone}}
-                    <br ng-if="project.ManagerHomePhoneIsNull"/>{{project.ManagerHomePhone}}
+                    <br ng-if="project.ManagerHomePhoneIsNull"/>{{project.ManagerHomePhone}}*@
                 </p>
             </div>
         </div>
         <div class="col-lg-8" style="word-wrap:break-word; overflow:hidden;">
             <h3>News Feed</h3>
-            <div class="MyBox" >
+            <div class="MyBox" style="height:330px;">
                 <div class="ScrollBox" style="word-wrap:break-word; overflow:scroll; height:100%; width:100%;">
                 </div>
             </div>
         </div>
     </div>
     <div class="row">
-
+        <div hieght class="col-lg-8" style="word-wrap:break-word; overflow:hidden;">
+            <h3>Sub Contractors</h3>
+            <div class="MyBox">
+                <div class="ScrollBox" style="word-wrap:break-word; overflow:scroll; height:100%; width:100%;">
+                </div>
+            </div>
+        </div>
+        <div hieght class="col-lg-4" style="word-wrap:break-word; overflow:hidden;">
+            <h3>Contractor Rolls</h3>
+            <div class="MyBox">
+                <div class="ScrollBox" style="word-wrap:break-word; overflow:scroll; height:100%; width:100%;">
+                </div>
+            </div>
+        </div>
     </div>
 </div>

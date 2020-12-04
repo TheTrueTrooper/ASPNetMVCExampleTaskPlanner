@@ -19,13 +19,13 @@ AS
 	@CutOffDate DateTime,
 	@UserID int = null
 
-	if not exists(select UserID from Users where Email = @Email)
+	if not exists(select U.UserID from Users as U join UserEmails as E on U.[PrimaryPersonalEmailID] = E.EmailID and U.UserID = E.UserID where [Email] = @Email)
 	begin
 		SELECT @Success
 			return 0
 	end
 
-	set @UserID = (select top 1 UserID from Users where Email = @Email)
+	set @UserID = (select top 1 U.UserID from Users as U join UserEmails as E on U.[PrimaryPersonalEmailID] = E.EmailID and U.UserID = E.UserID where [Email] = @Email)
 
 	if exists(select TimeIssued from UserPasswordResset where UserID = @UserID and Code = @Code)
 	begin

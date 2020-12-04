@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASP.NetMVCExample", "ASP.NetMVCExample\ASP.NetMVCExample.csproj", "{66E613DD-6420-489C-A102-93B367487F98}"
 EndProject
@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASP.NetMVCExample.Tests", "
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MVCTaskMasterAppData", "MVCTaskMasterAppData\MVCTaskMasterAppData.sqlproj", "{FACA6DED-30E1-4E7B-B963-110877490E7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngelASPExtentions", "..\AngelASPExtentions\AngelASPExtentions\AngelASPExtentions.csproj", "{6D934664-F600-4B7D-8FF6-1EC49D290C04}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngelASPExtentions", "..\AngelASPMVCExtensions\AngelASPExtentions\AngelASPExtentions.csproj", "{6D934664-F600-4B7D-8FF6-1EC49D290C04}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,5 +38,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4EEB4AB6-CB5F-471A-93C3-229E760F2415}
 	EndGlobalSection
 EndGlobal

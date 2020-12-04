@@ -1,5 +1,4 @@
-﻿using ASP.NetMVCExample.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
 using System.Linq;

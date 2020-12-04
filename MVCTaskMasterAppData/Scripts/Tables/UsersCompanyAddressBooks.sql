@@ -7,6 +7,6 @@
 
 	PRIMARY KEY(OwersID, CompanyID),
 
-	CONSTRAINT [FK_UsersCompanyAddressBooks_Companys] FOREIGN KEY (CompanyID) REFERENCES [Companys]([CompanyID]),
-	CONSTRAINT [FK_UsersCompanyAddressBooks_Users] FOREIGN KEY ([OwersID]) REFERENCES [Users]([UserID])
+	CONSTRAINT [FK_UsersCompanyAddressBooks_Companys] FOREIGN KEY (CompanyID) REFERENCES [Companys]([CompanyID]) ON DELETE CASCADE,
+	CONSTRAINT [FK_UsersCompanyAddressBooks_Users] FOREIGN KEY ([OwersID]) REFERENCES [Users]([UserID]) ON DELETE CASCADE
 )

@@ -1,183 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="MVCTaskMasterAppDataModelStoreContainer" CdmEntityContainer="MVCTaskMasterAppDataEntities2">
-    <EntitySetMapping Name="CompanyRoles">
-      <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.CompanyRoles">
-        <MappingFragment StoreEntitySet="CompanyRoles">
-          <ScalarProperty Name="Owner" ColumnName="Owner" />
-          <ScalarProperty Name="CanEditCompanyPage" ColumnName="CanEditCompanyPage" />
-          <ScalarProperty Name="CanEditCompanyEmpl" ColumnName="CanEditCompanyEmpl" />
-          <ScalarProperty Name="CanEditCompanyOffices" ColumnName="CanEditCompanyOffices" />
-          <ScalarProperty Name="CanViewCompanyOfficeEmpl" ColumnName="CanViewCompanyOfficeEmpl" />
-          <ScalarProperty Name="CanUploadCompanyProjectFile" ColumnName="CanUploadCompanyProjectFile" />
-          <ScalarProperty Name="CanDeleteCompanyProjectFile" ColumnName="CanDeleteCompanyProjectFile" />
-          <ScalarProperty Name="CanViewComapnyProjects" ColumnName="CanViewComapnyProjects" />
-          <ScalarProperty Name="CanEditCompanyProjects" ColumnName="CanEditCompanyProjects" />
-          <ScalarProperty Name="CanDeletePostCompanyProjects" ColumnName="CanDeletePostCompanyProjects" />
-          <ScalarProperty Name="CanPostToCompanyProjects" ColumnName="CanPostToCompanyProjects" />
-          <ScalarProperty Name="Admin" ColumnName="Admin" />
-          <ScalarProperty Name="SuperRole" ColumnName="SuperRole" />
-          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
-          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Companys">
-      <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.Companys">
-        <MappingFragment StoreEntitySet="Companys">
-          <ScalarProperty Name="CompanySite" ColumnName="CompanySite" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="CompanyWorkers">
-      <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.CompanyWorkers">
-        <MappingFragment StoreEntitySet="CompanyWorkers">
-          <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
-          <ScalarProperty Name="OfficeID" ColumnName="OfficeID" />
-          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Messages">
-      <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.Messages">
-        <MappingFragment StoreEntitySet="Messages">
-          <ScalarProperty Name="Time" ColumnName="Time" />
-          <ScalarProperty Name="Text" ColumnName="Text" />
-          <ScalarProperty Name="OfficeGroupID" ColumnName="OfficeGroupID" />
-          <ScalarProperty Name="CompanyGroupID" ColumnName="CompanyGroupID" />
-          <ScalarProperty Name="TaskTypesGroupID" ColumnName="TaskTypesGroupID" />
-          <ScalarProperty Name="ProjectGroupID" ColumnName="ProjectGroupID" />
-          <ScalarProperty Name="DirectToID" ColumnName="DirectToID" />
-          <ScalarProperty Name="ReplyToID" ColumnName="ReplyToID" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-          <ScalarProperty Name="MessageID" ColumnName="MessageID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Offices">
-      <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.Offices">
-        <MappingFragment StoreEntitySet="Offices">
-          <ScalarProperty Name="OfficeName" ColumnName="OfficeName" />
-          <ScalarProperty Name="Fax" ColumnName="Fax" />
-          <ScalarProperty Name="Phone" ColumnName="Phone" />
-          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="City" ColumnName="City" />
-          <ScalarProperty Name="Province" ColumnName="Province" />
-          <ScalarProperty Name="Country" ColumnName="Country" />
-          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
-          <ScalarProperty Name="OfficeID" ColumnName="OfficeID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ProjectFiles">
-      <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.ProjectFiles">
-        <MappingFragment StoreEntitySet="ProjectFiles">
-          <ScalarProperty Name="File" ColumnName="File" />
-          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
-          <ScalarProperty Name="FileID" ColumnName="FileID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Projects">
-      <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.Projects">
-        <MappingFragment StoreEntitySet="Projects">
-          <ScalarProperty Name="TaskManagersCanUploadFile" ColumnName="TaskManagersCanUploadFile" />
-          <ScalarProperty Name="TaskManagersCanDeleteFile" ColumnName="TaskManagersCanDeleteFile" />
-          <ScalarProperty Name="TaskManagersCanDeletePost" ColumnName="TaskManagersCanDeletePost" />
-          <ScalarProperty Name="TaskManagersCanPost" ColumnName="TaskManagersCanPost" />
-          <ScalarProperty Name="TaskManagersCanEdit" ColumnName="TaskManagersCanEdit" />
-          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
-          <ScalarProperty Name="ActualEndDate" ColumnName="ActualEndDate" />
-          <ScalarProperty Name="ActualStartDate" ColumnName="ActualStartDate" />
-          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="City" ColumnName="City" />
-          <ScalarProperty Name="Province" ColumnName="Province" />
-          <ScalarProperty Name="Country" ColumnName="Country" />
-          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="ProjectTaskTypeManagersID" ColumnName="ProjectTaskTypeManagersID" />
-          <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
-          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
-          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
-          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ProjectTaskTypeManagers">
-      <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.ProjectTaskTypeManagers">
-        <MappingFragment StoreEntitySet="ProjectTaskTypeManagers">
-          <ScalarProperty Name="ManagingCompanysID" ColumnName="ManagingCompanysID" />
-          <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
-          <ScalarProperty Name="TaskTypeID" ColumnName="TaskTypeID" />
-          <ScalarProperty Name="ProjectTaskTypeManagersID" ColumnName="ProjectTaskTypeManagersID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Sessions">
-      <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.Sessions">
-        <MappingFragment StoreEntitySet="Sessions">
-          <ScalarProperty Name="TimeLastValidated" ColumnName="TimeLastValidated" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-          <ScalarProperty Name="Code" ColumnName="Code" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="TaskTypes">
-      <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.TaskTypes">
-        <MappingFragment StoreEntitySet="TaskTypes">
-          <ScalarProperty Name="Tag" ColumnName="Tag" />
-          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
-          <ScalarProperty Name="TaskTypeID" ColumnName="TaskTypeID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="UserPasswordResset">
-      <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.UserPasswordResset">
-        <MappingFragment StoreEntitySet="UserPasswordResset">
-          <ScalarProperty Name="TimeIssued" ColumnName="TimeIssued" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-          <ScalarProperty Name="Code" ColumnName="Code" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.Users">
-        <MappingFragment StoreEntitySet="Users">
-          <ScalarProperty Name="PortfollURL" ColumnName="PortfollURL" />
-          <ScalarProperty Name="Bio" ColumnName="Bio" />
-          <ScalarProperty Name="Picture" ColumnName="Picture" />
-          <ScalarProperty Name="WorkPhone" ColumnName="WorkPhone" />
-          <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
-          <ScalarProperty Name="HomePhone" ColumnName="HomePhone" />
-          <ScalarProperty Name="Salt" ColumnName="Salt" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="MiddleInitial" ColumnName="MiddleInitial" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="UserValidations">
-      <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.UserValidations">
-        <MappingFragment StoreEntitySet="UserValidations">
-          <ScalarProperty Name="TimeIssued" ColumnName="TimeIssued" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-          <ScalarProperty Name="Code" ColumnName="Code" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="CreateProject" FunctionName="MVCTaskMasterAppDataModel.Store.CreateProject" />
+    <FunctionImportMapping FunctionImportName="CreateTask" FunctionName="MVCTaskMasterAppDataModel.Store.CreateTask" />
+    <FunctionImportMapping FunctionImportName="CreateTaskLink" FunctionName="MVCTaskMasterAppDataModel.Store.CreateTaskLink" />
     <FunctionImportMapping FunctionImportName="CreateThePasswordResset" FunctionName="MVCTaskMasterAppDataModel.Store.CreateThePasswordResset" />
     <FunctionImportMapping FunctionImportName="CreateTheSession" FunctionName="MVCTaskMasterAppDataModel.Store.CreateTheSession" />
     <FunctionImportMapping FunctionImportName="DeleteTheCompany" FunctionName="MVCTaskMasterAppDataModel.Store.DeleteTheCompany" />
@@ -193,6 +19,91 @@
     <FunctionImportMapping FunctionImportName="InsertNewUser" FunctionName="MVCTaskMasterAppDataModel.Store.InsertNewUser" />
     <FunctionImportMapping FunctionImportName="IsEmailUsed" FunctionName="MVCTaskMasterAppDataModel.Store.IsEmailUsed" />
     <FunctionImportMapping FunctionImportName="PasswordCheck" FunctionName="MVCTaskMasterAppDataModel.Store.PasswordCheck" />
+    <FunctionImportMapping FunctionImportName="SelectLinker" FunctionName="MVCTaskMasterAppDataModel.Store.SelectLinker">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCTaskMasterAppDataModel.SelectLinker_Result">
+          <ScalarProperty Name="LinkerID" ColumnName="LinkerID" />
+          <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+          <ScalarProperty Name="NextTaskID" ColumnName="NextTaskID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SelectLinkerByTaskID" FunctionName="MVCTaskMasterAppDataModel.Store.SelectLinkerByTaskID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCTaskMasterAppDataModel.SelectLinkerByTaskID_Result">
+          <ScalarProperty Name="LinkerID" ColumnName="LinkerID" />
+          <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+          <ScalarProperty Name="NextTaskID" ColumnName="NextTaskID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SelectLinkersByNextTask" FunctionName="MVCTaskMasterAppDataModel.Store.SelectLinkersByNextTask">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCTaskMasterAppDataModel.SelectLinkersByNextTask_Result">
+          <ScalarProperty Name="LinkerID" ColumnName="LinkerID" />
+          <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+          <ScalarProperty Name="NextTaskID" ColumnName="NextTaskID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SelectLinkersByTask" FunctionName="MVCTaskMasterAppDataModel.Store.SelectLinkersByTask">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCTaskMasterAppDataModel.SelectLinkersByTask_Result">
+          <ScalarProperty Name="LinkerID" ColumnName="LinkerID" />
+          <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+          <ScalarProperty Name="NextTaskID" ColumnName="NextTaskID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SelectProjectByID" FunctionName="MVCTaskMasterAppDataModel.Store.SelectProjectByID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCTaskMasterAppDataModel.SelectProjectByID_Result">
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+          <ScalarProperty Name="ProjectAddress" ColumnName="ProjectAddress" />
+          <ScalarProperty Name="ProjectCity" ColumnName="ProjectCity" />
+          <ScalarProperty Name="ProjectProvince" ColumnName="ProjectProvince" />
+          <ScalarProperty Name="ProjectCountry" ColumnName="ProjectCountry" />
+          <ScalarProperty Name="ProjectPostalCode" ColumnName="ProjectPostalCode" />
+          <ScalarProperty Name="ProjectStartDate" ColumnName="ProjectStartDate" />
+          <ScalarProperty Name="ProjectEndDate" ColumnName="ProjectEndDate" />
+          <ScalarProperty Name="ProjectActualStartDate" ColumnName="ProjectActualStartDate" />
+          <ScalarProperty Name="ProjectActualEndDate" ColumnName="ProjectActualEndDate" />
+          <ScalarProperty Name="ProjectDescription" ColumnName="ProjectDescription" />
+          <ScalarProperty Name="ProjectCreationDate" ColumnName="ProjectCreationDate" />
+          <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+          <ScalarProperty Name="ManagerPicture" ColumnName="ManagerPicture" />
+          <ScalarProperty Name="ManagerFirstName" ColumnName="ManagerFirstName" />
+          <ScalarProperty Name="ManagerMiddleInitial" ColumnName="ManagerMiddleInitial" />
+          <ScalarProperty Name="ManagerLastName" ColumnName="ManagerLastName" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="CompanySite" ColumnName="CompanySite" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SelectProjectByID_Light" FunctionName="MVCTaskMasterAppDataModel.Store.SelectProjectByID_Light">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCTaskMasterAppDataModel.SelectProjectByID_Light_Result">
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SelectTasksByProjectID" FunctionName="MVCTaskMasterAppDataModel.Store.SelectTasksByProjectID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCTaskMasterAppDataModel.SelectTasksByProjectID_Result">
+          <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+          <ScalarProperty Name="SubContractorID" ColumnName="SubContractorID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="TaskTypeID" ColumnName="TaskTypeID" />
+          <ScalarProperty Name="DurationTicks" ColumnName="DurationTicks" />
+          <ScalarProperty Name="ActualStartDate" ColumnName="ActualStartDate" />
+          <ScalarProperty Name="ActualEndDate" ColumnName="ActualEndDate" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="SelectTheUser" FunctionName="MVCTaskMasterAppDataModel.Store.SelectTheUser">
       <ResultMapping>
         <ComplexTypeMapping TypeName="MVCTaskMasterAppDataModel.SelectTheUser_Result">
@@ -201,9 +112,7 @@
           <ScalarProperty Name="LastName" ColumnName="LastName" />
           <ScalarProperty Name="Bio" ColumnName="Bio" />
           <ScalarProperty Name="Picture" ColumnName="Picture" />
-          <ScalarProperty Name="HomePhone" ColumnName="HomePhone" />
-          <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
-          <ScalarProperty Name="WorkPhone" ColumnName="WorkPhone" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="PortfollURL" ColumnName="PortfollURL" />
         </ComplexTypeMapping>
@@ -233,44 +142,6 @@
     <FunctionImportMapping FunctionImportName="UpdateTheUserChangePassword" FunctionName="MVCTaskMasterAppDataModel.Store.UpdateTheUserChangePassword" />
     <FunctionImportMapping FunctionImportName="UpdateTheUserInfo" FunctionName="MVCTaskMasterAppDataModel.Store.UpdateTheUserInfo" />
     <FunctionImportMapping FunctionImportName="ValidateSession" FunctionName="MVCTaskMasterAppDataModel.Store.ValidateSession" />
-    <FunctionImportMapping FunctionImportName="SelectProjectByID" FunctionName="MVCTaskMasterAppDataModel.Store.SelectProjectByID">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="MVCTaskMasterAppDataModel.SelectProjectByID_Result">
-          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
-          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
-          <ScalarProperty Name="ProjectAddress" ColumnName="ProjectAddress" />
-          <ScalarProperty Name="ProjectCity" ColumnName="ProjectCity" />
-          <ScalarProperty Name="ProjectProvince" ColumnName="ProjectProvince" />
-          <ScalarProperty Name="ProjectCountry" ColumnName="ProjectCountry" />
-          <ScalarProperty Name="ProjectPostalCode" ColumnName="ProjectPostalCode" />
-          <ScalarProperty Name="ProjectStartDate" ColumnName="ProjectStartDate" />
-          <ScalarProperty Name="ProjectEndDate" ColumnName="ProjectEndDate" />
-          <ScalarProperty Name="ProjectActualStartDate" ColumnName="ProjectActualStartDate" />
-          <ScalarProperty Name="ProjectActualEndDate" ColumnName="ProjectActualEndDate" />
-          <ScalarProperty Name="ProjectDescription" ColumnName="ProjectDescription" />
-          <ScalarProperty Name="ProjectCreationDate" ColumnName="ProjectCreationDate" />
-          <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
-          <ScalarProperty Name="ManagerPicture" ColumnName="ManagerPicture" />
-          <ScalarProperty Name="ManagerFirstName" ColumnName="ManagerFirstName" />
-          <ScalarProperty Name="ManagerMiddleInitial" ColumnName="ManagerMiddleInitial" />
-          <ScalarProperty Name="ManagerLastName" ColumnName="ManagerLastName" />
-          <ScalarProperty Name="ManagerHomePhone" ColumnName="ManagerHomePhone" />
-          <ScalarProperty Name="ManagerWorkPhone" ColumnName="ManagerWorkPhone" />
-          <ScalarProperty Name="ManagerCellPhone" ColumnName="ManagerCellPhone" />
-          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
-          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-          <ScalarProperty Name="CompanySite" ColumnName="CompanySite" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SelectProjectByID_Light" FunctionName="MVCTaskMasterAppDataModel.Store.SelectProjectByID_Light">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="MVCTaskMasterAppDataModel.SelectProjectByID_Light_Result">
-          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
-          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="ValidateWithProjectViewPriv" FunctionName="MVCTaskMasterAppDataModel.Store.ValidateWithProjectViewPriv">
       <ResultMapping>
         <ComplexTypeMapping TypeName="MVCTaskMasterAppDataModel.ValidateWithProjectViewPriv_Result">
@@ -282,102 +153,6 @@
           <ScalarProperty Name="CanDeleteProjectFile" ColumnName="CanDeleteProjectFile" />
           <ScalarProperty Name="CanEditProject" ColumnName="CanEditProject" />
           <ScalarProperty Name="FullProjectAdmin" ColumnName="FullProjectAdmin" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SelectLinkerByTaskID" FunctionName="MVCTaskMasterAppDataModel.Store.SelectLinkerByTaskID">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="MVCTaskMasterAppDataModel.SelectLinkerByTaskID_Result">
-          <ScalarProperty Name="linkerID" ColumnName="linkerID" />
-          <ScalarProperty Name="NextTaskID" ColumnName="NextTaskID" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SelectTasksByProjectID" FunctionName="MVCTaskMasterAppDataModel.Store.SelectTasksByProjectID">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="MVCTaskMasterAppDataModel.SelectTasksByProjectID_Result">
-          <ScalarProperty Name="TaskID" ColumnName="TaskID" />
-          <ScalarProperty Name="SubContractorID" ColumnName="SubContractorID" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="TaskTypeID" ColumnName="TaskTypeID" />
-          <ScalarProperty Name="ActualStartDate" ColumnName="ActualStartDate" />
-          <ScalarProperty Name="ActualEndDate" ColumnName="ActualEndDate" />
-          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
-          <ScalarProperty Name="DurationTicks" ColumnName="DurationTicks" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <EntitySetMapping Name="TaskLinkers">
-      <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.TaskLinkers">
-        <MappingFragment StoreEntitySet="TaskLinkers">
-          <ScalarProperty Name="NextTaskID" ColumnName="NextTaskID" />
-          <ScalarProperty Name="TaskID" ColumnName="TaskID" />
-          <ScalarProperty Name="linkerID" ColumnName="linkerID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Tasks">
-      <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.Tasks">
-        <MappingFragment StoreEntitySet="Tasks">
-          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
-          <ScalarProperty Name="ActualEndDate" ColumnName="ActualEndDate" />
-          <ScalarProperty Name="ActualStartDate" ColumnName="ActualStartDate" />
-          <ScalarProperty Name="DurationTicks" ColumnName="DurationTicks" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
-          <ScalarProperty Name="TaskTypeID" ColumnName="TaskTypeID" />
-          <ScalarProperty Name="SubContractorID" ColumnName="SubContractorID" />
-          <ScalarProperty Name="TaskID" ColumnName="TaskID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="CreateTask" FunctionName="MVCTaskMasterAppDataModel.Store.CreateTask" />
-    <EntitySetMapping Name="CompanysCompanyAddressBooks">
-      <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.CompanysCompanyAddressBooks">
-        <MappingFragment StoreEntitySet="CompanysCompanyAddressBooks">
-          <ScalarProperty Name="Verified" ColumnName="Verified" />
-          <ScalarProperty Name="Affiliated" ColumnName="Affiliated" />
-          <ScalarProperty Name="UsersID" ColumnName="UsersID" />
-          <ScalarProperty Name="OwersID" ColumnName="OwersID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="UsersCompanyAddressBooks">
-      <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.UsersCompanyAddressBooks">
-        <MappingFragment StoreEntitySet="UsersCompanyAddressBooks">
-          <ScalarProperty Name="Verified" ColumnName="Verified" />
-          <ScalarProperty Name="Affiliated" ColumnName="Affiliated" />
-          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
-          <ScalarProperty Name="OwersID" ColumnName="OwersID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="UsersUserAddressBooks">
-      <EntityTypeMapping TypeName="MVCTaskMasterAppDataModel.UsersUserAddressBooks">
-        <MappingFragment StoreEntitySet="UsersUserAddressBooks">
-          <ScalarProperty Name="Verified" ColumnName="Verified" />
-          <ScalarProperty Name="Friend" ColumnName="Friend" />
-          <ScalarProperty Name="OthersID" ColumnName="OthersID" />
-          <ScalarProperty Name="OwersID" ColumnName="OwersID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="CreateTaskLink" FunctionName="MVCTaskMasterAppDataModel.Store.CreateTaskLink" />
-    <FunctionImportMapping FunctionImportName="SelectLinkersByNextTask" FunctionName="MVCTaskMasterAppDataModel.Store.SelectLinkersByNextTask">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="MVCTaskMasterAppDataModel.SelectLinkersByNextTask_Result">
-          <ScalarProperty Name="LinkerID" ColumnName="LinkerID" />
-          <ScalarProperty Name="TaskID" ColumnName="TaskID" />
-          <ScalarProperty Name="NextTaskID" ColumnName="NextTaskID" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SelectLinkersByTask" FunctionName="MVCTaskMasterAppDataModel.Store.SelectLinkersByTask">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="MVCTaskMasterAppDataModel.SelectLinkersByTask_Result">
-          <ScalarProperty Name="LinkerID" ColumnName="LinkerID" />
-          <ScalarProperty Name="TaskID" ColumnName="TaskID" />
-          <ScalarProperty Name="NextTaskID" ColumnName="NextTaskID" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

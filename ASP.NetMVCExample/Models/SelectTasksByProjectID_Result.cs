@@ -16,10 +16,10 @@ namespace ASP.NetMVCExample.Models
         public int TaskID { get; set; }
         public Nullable<int> SubContractorID { get; set; }
         public string Description { get; set; }
-        public int TaskTypeID { get; set; }
+        public Nullable<int> TaskTypeID { get; set; }
+        public long DurationTicks { get; set; }
         public Nullable<System.DateTime> ActualStartDate { get; set; }
         public Nullable<System.DateTime> ActualEndDate { get; set; }
         public System.DateTime CreationDate { get; set; }
-        public long DurationTicks { get; set; }
     }
 }

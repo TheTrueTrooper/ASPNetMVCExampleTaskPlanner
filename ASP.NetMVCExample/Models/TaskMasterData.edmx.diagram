@@ -5,60 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="c497afa92f8a42a79262b9bd1f733c0e" Name="Diagram1" ZoomLevel="81">
-        <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.CompanyRoles" Width="1.5" PointX="0.75" PointY="19.375" />
-        <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.Companys" Width="1.5" PointX="0.75" PointY="9" />
-        <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.CompanyWorkers" Width="1.875" PointX="5.25" PointY="19.375" />
-        <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.Messages" Width="1.5" PointX="5.25" PointY="13.5" />
-        <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.Offices" Width="1.5" PointX="2.875" PointY="5.25" />
-        <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.ProjectFiles" Width="1.5" PointX="10.75" PointY="20.375" />
-        <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.Projects" Width="1.5" PointX="3" PointY="13.125" />
-        <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.ProjectTaskTypeManagers" Width="1.5" PointX="3" PointY="9.5" />
-        <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.Sessions" Width="1.5" PointX="5.25" PointY="25.125" />
-        <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.TaskTypes" Width="1.5" PointX="3" PointY="0.75" />
-        <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.UserPasswordResset" Width="1.5" PointX="4.5" PointY="27.5" />
-        <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.Users" Width="1.5" PointX="0.75" PointY="13.125" />
-        <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.UserValidations" Width="1.5" PointX="6.5" PointY="22.625" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_CompanyRoles_Companys" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_CompanyWorkers_Rolls" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_Rolls_SuperRoles" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_CompanyWorkers_Company" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_Messages_CompanyGroupID" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_Offices_Company" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_Projects_Company" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_ProjectTaskTypeManagers_UserManagingCompanysID" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_TaskTypes_Companys" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_CompanyWorkers_Offices" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_CompanyWorkers_Users" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_Messages_DirectToID" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_Messages_OfficeGroupID" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_Messages_ProjectsGroupID" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_Messages_ReplyToID" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_Messages_TaskTypesGroupID" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_Messages_Users" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_ProjectFiles_Projects" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_Projects_ProjectTaskTypeManagersID" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_Projects_User_PManager" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_ProjectTaskTypeManagers_User_ManagerID" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_Sessions_Users" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_UserPasswordResset_Users" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_UserValidations_Users" />
-        <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.TaskLinkers" Width="1.5" PointX="7.5" PointY="9" />
-        <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.Tasks" Width="1.5" PointX="5.25" PointY="8.125" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_Projects_SubContractorID" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_Tasks_Projects" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_TaskLinkers_Tasks_Next" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_TaskLinkers_Tasks_Owner" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_Tasks_TaskTypes" />
-        <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.CompanysCompanyAddressBooks" Width="1.5" PointX="8" PointY="12.875" />
-        <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.UsersCompanyAddressBooks" Width="1.5" PointX="8" PointY="15.875" />
-        <EntityTypeShape EntityType="MVCTaskMasterAppDataModel.UsersUserAddressBooks" Width="1.5" PointX="3" PointY="20.75" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_CompanysCompanyAddressBooks_Companys" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_UsersCompanyAddressBooks_Companys" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_CompanysCompanyAddressBooks_Users" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_UsersCompanyAddressBooks_Users" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_UsersUserAddressBooks_Users_Others" />
-        <AssociationConnector Association="MVCTaskMasterAppDataModel.FK_UsersUserAddressBooks_Users_Owners" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

@@ -172,9 +172,12 @@ namespace ASP.NetMVCExample.Controllers
                 SecurityReturn PasscodeHasher = SecurityHelper.PasswordToSaltedHash(Registy.Password, CodeLengths);
                 Registy.Salt = PasscodeHasher.Salt;
                 Registy.Password = PasscodeHasher.SaltedHashedPassword;
-
-                int Error = DB.InsertNewUser(Registy.FirstName, Registy.MiddleInitial, Registy.LastName, Registy.Email,
-                    Registy.Password, Registy.Salt, Registy.HomePhone, Registy.CellPhone, Registy.WorkPhone, ErrorMessageParameter);
+                /*InsertNewUser(string firstName, string middleInitial, 
+                 * string lastName, string email, string password, 
+                 * string salt, string primaryPhoneNumber, ObjectParameter errorMessage)*/
+                int Error = DB.InsertNewUser(Registy.FirstName, Registy.MiddleInitial, 
+                    Registy.LastName, Registy.Email, Registy.Password, Registy.Salt, 
+                    Registy.PrimaryPhoneNumber, ErrorMessageParameter);
                 ViewBag.ErrorMessage = ErrorMessageParameter.Value as string;
 
                 if (Error > 0)

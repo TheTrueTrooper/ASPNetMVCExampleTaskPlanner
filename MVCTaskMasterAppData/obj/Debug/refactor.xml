@@ -42,4 +42,25 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="ReplyToID" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="4043b1e9-ffeb-4415-8e81-e000772000b9" ChangeDateTime="04/30/2020 05:04:50" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[Users].[HomePhone]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Users]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PrimaryPhoneID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9a4557da-e459-4c98-a543-5c62d6ba1b28" ChangeDateTime="04/30/2020 05:05:23" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[Users].[CellPhone]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Users]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PublicHidePersonalEmail" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9ae23c17-50d7-4b99-9901-26a3b3b7c260" ChangeDateTime="04/30/2020 05:06:34" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[Users].[WorkPhone]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Users]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AddressBookHidePersonalEmail" />
+  </Operation>
 </Operations>

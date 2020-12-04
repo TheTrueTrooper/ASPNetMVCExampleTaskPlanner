@@ -19,9 +19,7 @@ namespace ASP.NetMVCExample.Models.ProjectView
         @ErrorMessage char (100) output
         */
         public Nullable<int> SubContractorID { get; set; }
-        [Required]
         public List<int> NextTask { get; set; }
-        [Required]
         public List<int> PrevTask { get; set; }
         [Required]
         public int ProjectID { get; set; }
@@ -31,13 +29,13 @@ namespace ASP.NetMVCExample.Models.ProjectView
         [Required]
         public int TaskTypeID { get; set; }
         [Required]
-        public string ExpectedDuration { get; set; }
+        public int ExpectedDurationInDays { get; set; }
         public long ExpectedDurationAsTicks
         {
             get
             {
                 //If we have a start date start using it to calculate agenst the end date. If not well we have not even started so the actual durration must be 0.
-                return TimeSpan.ParseExact(ExpectedDuration, "ddd\\:hh\\:mm\\:ss", CultureInfo.InvariantCulture).Ticks;
+                return TimeSpan.FromDays(ExpectedDurationInDays).Ticks;
             }
         }
 

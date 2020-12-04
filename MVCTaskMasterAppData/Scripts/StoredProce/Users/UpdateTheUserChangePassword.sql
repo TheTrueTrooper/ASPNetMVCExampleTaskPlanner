@@ -27,7 +27,7 @@ AS
 			@ErrorOperation tinyint = 3
 
 -- check if the email exists
-	if exists(select Email from Users where UserID = @UserID and [Password] = @Password)
+	if exists(select Email from Users as U join UserEmails as E on U.[PrimaryPersonalEmailID] = E.EmailID and U.UserID = E.UserID where U.UserID = @UserID and [Password] = @Password)
 		begin
 			set @TempError = @@ERROR
 			set @ErrorMessage = 'Error Email doesn''t exist or the wrong email Password combo'

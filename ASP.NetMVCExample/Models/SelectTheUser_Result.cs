@@ -18,9 +18,7 @@ namespace ASP.NetMVCExample.Models
         public string LastName { get; set; }
         public string Bio { get; set; }
         public byte[] Picture { get; set; }
-        public string HomePhone { get; set; }
-        public string CellPhone { get; set; }
-        public string WorkPhone { get; set; }
+        public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public string PortfollURL { get; set; }
     }

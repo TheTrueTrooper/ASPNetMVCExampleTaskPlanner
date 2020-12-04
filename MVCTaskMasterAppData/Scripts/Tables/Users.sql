@@ -15,19 +15,17 @@ CREATE TABLE [dbo].[Users]
     [FirstName] NVARCHAR(50) NOT NULL, 
     [MiddleInitial] NCHAR(50) NULL, 
     [LastName] NVARCHAR(50) NOT NULL, 
-    [Email] NVARCHAR(320) NOT NULL, 
+    [PrimaryPersonalEmailID] INT NULL, 
+	[PrimaryPhoneID] INT NULL,
     [Password] NCHAR(50) NOT NULL, 
 	[Salt] CHAR(28) NOT NULL,
-    [HomePhone] CHAR(11) NOT NULL, 
-    [CellPhone] CHAR(11) NULL,
-    [WorkPhone] CHAR(11) NULL,
 
 	--Profile stuff
 	--size is 2 tothe 16 - 1 = 65,536 - 1 bytes 
     [Picture] VARBINARY(16) NULL, 
     [Bio] NVARCHAR(250) NULL, 
-	[PortfollURL] NVARCHAR(100) NULL, 
+	[PortfollURL] NVARCHAR(100) NULL,
 
-    CONSTRAINT [CK_Users_Email] CHECK (Email like '[^.]%[^.][@]%[.]%'), 
-    CONSTRAINT [AK_Users_Email] UNIQUE ([Email])
+	--CONSTRAINT [FK_Users_UserEmails] FOREIGN KEY ([PrimaryPersonalEmailID]) REFERENCES [dbo].[UserEmails] ([EmailID]),
+ --   CONSTRAINT [FK_Users_UserPhoneNumbers] FOREIGN KEY ([PrimaryPhoneID]) REFERENCES [dbo].[UserPhoneNumbers] ([PhoneNumberID])
 )

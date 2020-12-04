@@ -57,7 +57,7 @@ namespace ASP.NetMVCExample.Controllers
             if (ModelState.IsValid)
             {
                 ObjectParameter ErrorMessage = new ObjectParameter("ErrorMessage", typeof(string));
-                int MyError = DB.UpdateTheUserInfo(int.Parse(Session["SessionUserID"] as string), null, null, null, Edits.HomePhone, Edits.CellPhone, Edits.WorkPhone, ErrorMessage);
+                int MyError = DB.UpdateTheUserInfo(int.Parse(Session["SessionUserID"] as string), null, null, null, ErrorMessage);
                 ViewBag.ErrorMessage = ErrorMessage.Value as string;
                 if (MyError > 0)
                     return RedirectToAction("Index", "Dashboard");

@@ -31,9 +31,6 @@ namespace ASP.NetMVCExample.Models
         public string ManagerFirstName { get; set; }
         public string ManagerMiddleInitial { get; set; }
         public string ManagerLastName { get; set; }
-        public string ManagerHomePhone { get; set; }
-        public string ManagerWorkPhone { get; set; }
-        public string ManagerCellPhone { get; set; }
         public Nullable<int> CompanyID { get; set; }
         public string CompanyName { get; set; }
         public string CompanySite { get; set; }

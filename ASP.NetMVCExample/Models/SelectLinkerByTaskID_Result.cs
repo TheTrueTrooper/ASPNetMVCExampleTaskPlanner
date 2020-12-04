@@ -13,7 +13,8 @@ namespace ASP.NetMVCExample.Models
     
     public partial class SelectLinkerByTaskID_Result
     {
-        public int linkerID { get; set; }
+        public int LinkerID { get; set; }
+        public int TaskID { get; set; }
         public int NextTaskID { get; set; }
     }
 }

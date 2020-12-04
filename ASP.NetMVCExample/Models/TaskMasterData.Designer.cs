@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Angelo's Tower PC\Desktop\ASP.NetMVCExample\ASP.NetMVCExample\Models\TaskMasterData.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Angelo's Tower PC\source\repos\ASPNetMVCExampleTaskPlanner\ASP.NetMVCExample\Models\TaskMasterData.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
